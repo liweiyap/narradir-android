@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
+
+gcloud-**.json
+gcloud-**.txt
