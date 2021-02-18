@@ -37,7 +37,7 @@ curl -H "Authorization: Bearer $(~/google-cloud-sdk/bin/gcloud auth application-
     }
   }" "https://texttospeech.googleapis.com/v1/text:synthesize" > gcloud-synthesized-text.txt
 
-# Remove everything from `  "audioContent": "` to `"` and redirect output back to the same text file from which input originally came
+# Keep only the substring between `  "audioContent": "` and `"`. Redirect output back to the same text file from which input originally came
 
 cat gcloud-synthesized-text.txt | grep "audioContent" | sed -e 's/  "audioContent": "\(.*\)"/\1/' | tee gcloud-synthesized-text.txt >/dev/null
 
