@@ -1,10 +1,12 @@
 package com.liweiyap.narradir;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        TextView textView = (TextView) findViewById(R.id.default_text);
+        textView.setTypeface(Typeface.createFromAsset(getAssets(), "Arkham_reg.TTF"));
+        textView.setTextSize(30);
 
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.testwavenet);
         mp.start();
