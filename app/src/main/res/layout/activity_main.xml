@@ -11,7 +11,7 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <com.liweiyap.narradir.CustomTypefaceableTextView
+    <com.liweiyap.narradir.fonts.CustomTypefaceableTextView
         style="@style/ArkhamBoldTypefacedTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

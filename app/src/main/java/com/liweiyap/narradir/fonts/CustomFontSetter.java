@@ -1,10 +1,12 @@
-package com.liweiyap.narradir;
+package com.liweiyap.narradir.fonts;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.liweiyap.narradir.R;
 
 public class CustomFontSetter
 {
