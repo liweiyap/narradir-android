@@ -12,12 +12,6 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <com.liweiyap.narradir.fonts.CustomTypefaceableTextView
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/game_title_avalon"
-        android:id="@+id/game_title"
-        android:textSize="50sp"/>
+    <include layout="@layout/game_title_textview" />
 
 </LinearLayout>
