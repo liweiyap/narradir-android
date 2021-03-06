@@ -25,7 +25,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     {
         TextView gameTitleTextView = findViewById(R.id.game_title);
 
-        int[] colourArray = new int[]{ getColor(R.color.ronchi), getColor(R.color.pirate_gold) };
+        int[] colourArray = new int[]{ getColor(R.color.yuma), getColor(R.color.husk) };
         Shader gameTitleTextViewShader = new LinearGradient(0, 0, 0, gameTitleTextView.getTextSize(), colourArray, null, Shader.TileMode.CLAMP);
 
         gameTitleTextView.getPaint().setShader(gameTitleTextViewShader);
