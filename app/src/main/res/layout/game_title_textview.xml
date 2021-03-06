@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liweiyap.narradir.fonts.CustomTypefaceableTextView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/ArkhamBoldTypefacedTextViewStyle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:text="@string/game_title_avalon"
     android:id="@+id/game_title"
-    android:textSize="50sp" />
+    android:textSize="50sp"
+    android:gravity="center"
+    android:includeFontPadding="false"
+    android:lineSpacingExtra="0dp" />
