@@ -1,14 +1,15 @@
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/bermuda_grey</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="ArkhamRegTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
-        <item name="fontName">fonts/Arkham_reg.TTF</item>
+        <item name="assetFontPath">fonts/Arkham_reg.TTF</item>
     </style>
 
     <style name="ArkhamBoldTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
-        <item name="fontName">fonts/Arkham_bold.TTF</item>
+        <item name="assetFontPath">fonts/Arkham_bold.TTF</item>
     </style>
 </resources>
