@@ -14,6 +14,7 @@ public class CustomFontSetter
      * Sets a font on a TextView based on the custom fontName attribute.
      * If the custom fontName attribute isn't found in the attributes, nothing happens.
      * Can also be used on Buttons, because Button extends (is a subclass of) TextView.
+     * Context required for getAssets() function.
      */
     public static void setCustomFont(TextView textView, Context context, AttributeSet attrs)
     {
@@ -26,15 +27,14 @@ public class CustomFontSetter
     /**
      * Sets a font on a TextView
      */
-    public static void setCustomFont(TextView textView, String fontName, Context context)
+    public static void setCustomFont(TextView textView, String assetFontPath, Context context)
     {
-        if (fontName == null)
+        if (assetFontPath == null)
         {
             return;
         }
 
-        Typeface typeface = FontCache.get(fontName, context);
-
+        Typeface typeface = FontCache.get(assetFontPath, context);
         if (typeface != null)
         {
             textView.setTypeface(typeface);

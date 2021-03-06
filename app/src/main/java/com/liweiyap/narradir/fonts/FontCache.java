@@ -14,22 +14,22 @@ public class FontCache
 {
     private static final ArrayMap<String, Typeface> fontCache = new ArrayMap<>();
 
-    public static Typeface get(String fontName, Context context)
+    public static Typeface get(String assetFontPath, Context context)
     {
-        Typeface typeface = fontCache.get(fontName);
+        Typeface typeface = fontCache.get(assetFontPath);
         
         if (typeface == null)
         {
             try
             {
-                typeface = Typeface.createFromAsset(context.getAssets(), fontName);
+                typeface = Typeface.createFromAsset(context.getAssets(), assetFontPath);
             }
             catch (Exception e)
             {
                 return null;
             }
             
-            fontCache.put(fontName, typeface);
+            fontCache.put(assetFontPath, typeface);
         }
         
         return typeface;

@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 /**
  * https://stackoverflow.com/questions/16901930/memory-leaks-with-custom-font-for-set-custom-font/16902532#16902532
  */
-public class CustomTypefaceableTextView extends androidx.appcompat.widget.AppCompatTextView
+public class CustomTypefaceableTextView extends androidx.appcompat.widget.AppCompatTextView implements CustomTypefaceable
 {
     public CustomTypefaceableTextView(@NonNull Context context)
     {
@@ -28,13 +28,21 @@ public class CustomTypefaceableTextView extends androidx.appcompat.widget.AppCom
         setCustomTypeface(context, attrs);
     }
 
+    public CustomTypefaceableTextView(@NonNull Context context, final String assetFontPath)
+    {
+        this(context);
+        setCustomTypeface(context, assetFontPath);
+    }
+
+    @Override
     public void setCustomTypeface(final Context context, final AttributeSet attrs)
     {
         CustomFontSetter.setCustomFont(this, context, attrs);
     }
 
-    public void setCustomTypeface(final Context context, final String fontName)
+    @Override
+    public void setCustomTypeface(final Context context, final String assetFontPath)
     {
-        CustomFontSetter.setCustomFont(this, fontName, context);
+        CustomFontSetter.setCustomFont(this, assetFontPath, context);
     }
 }
