@@ -5,10 +5,10 @@
     </style>
 
     <style name="ArkhamRegTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
-        <item name="fontName">fonts/Arkham_reg.TTF</item>
+        <item name="assetFontPath">fonts/Arkham_reg.TTF</item>
     </style>
 
     <style name="ArkhamBoldTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
-        <item name="fontName">fonts/Arkham_bold.TTF</item>
+        <item name="assetFontPath">fonts/Arkham_bold.TTF</item>
     </style>
 </resources>
