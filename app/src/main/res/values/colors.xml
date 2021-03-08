@@ -25,4 +25,11 @@
     <color name="pirate_gold">#FFBD7C24</color>
     <color name="antique_brass">#FF7B5121</color>
     <color name="bakers_chocolate">#FF38220E</color>
+
+    <color name="conifer">#FF97D960</color>
+    <color name="mischka">#FFACADB4</color>
+    <color name="california">#FFE79340</color>
+    <color name="norway">#FFA2b387</color>
+    <color name="domino">#FF755E50</color>
+    <color name="mobster">#FF5F5965</color>
 </resources>

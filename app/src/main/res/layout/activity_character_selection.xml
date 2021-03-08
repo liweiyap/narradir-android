@@ -17,4 +17,50 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/playerNumberSelectionLayout"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1" >
+
+        <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p5Button"
+            android:text="@string/p5_button_text" />
+
+        <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p6Button"
+            android:text="@string/p6_button_text" />
+
+        <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p7Button"
+            android:text="@string/p7_button_text" />
+
+        <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p8Button"
+            android:text="@string/p8_button_text" />
+
+        <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p9Button"
+            android:text="@string/p9_button_text" />
+
+        <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p10Button"
+            android:text="@string/p10_button_text" />
+
+    </LinearLayout>
+
 </LinearLayout>
