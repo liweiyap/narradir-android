@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liweiyap.narradir.fonts.CustomTypefaceableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liweiyap.narradir.fontutil.StrokedCustomTypefaceableTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:strokeAttrs="http://schemas.android.com/apk/res-auto"
     style="@style/ArkhamBoldTypefacedTextViewStyle"
+    strokeAttrs:textStrokeColor="@color/go_ben"
+    strokeAttrs:textStrokeWidth="2"
     android:text="@string/game_title_avalon"
     android:id="@+id/game_title"
     android:textSize="50sp"
+    android:textColor="@color/yuma"
     android:gravity="center"
     android:includeFontPadding="false"
     android:lineSpacingExtra="0dp" />

@@ -3,4 +3,9 @@
     <declare-styleable name="CustomFont">
         <attr name="assetFontPath" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="StrokedTextAttrs">
+        <attr name="textStrokeColor" format="color"/>
+        <attr name="textStrokeWidth" format="float"/>
+    </declare-styleable>
 </resources>

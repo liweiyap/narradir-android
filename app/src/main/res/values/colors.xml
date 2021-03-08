@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="grey005">#FFF2F2F2</color>
+
     <color name="sunset_orange">#FFFF605C</color>
     <color name="pastel_orange">#FFFFBD44</color>
     <color name="malachite">#FF00CA4E</color>
+
     <color name="royal_blue">#FF475ED5</color>
+
     <color name="dark_blue">#FF162D46</color>
     <color name="ocean_blue">#FF3873B3</color>
+
     <color name="cream">#FFF5EDE0</color>
-    <color name="grey005">#FFF2F2F2</color>
+
     <color name="bermuda_grey">#FF708D9A</color>
     <color name="dark_slate_grey">#FF324750</color>
-    <color name="ronchi">#FFEAC95B</color>
-    <color name="pirate_gold">#FFBD7C24</color>
+
     <color name="yuma">#FFC8B876</color>
+    <color name="brass">#FFBCA349</color>
     <color name="husk">#FFA78F49</color>
+    <color name="go_ben">#FF796847</color>
+    <color name="ronchi">#FFEAC95B</color>
+    <color name="nugget">#FFC58A25</color>
+    <color name="pirate_gold">#FFBD7C24</color>
+    <color name="antique_brass">#FF7B5121</color>
+    <color name="bakers_chocolate">#FF38220E</color>
 </resources>
