@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/playerNumberSelectionLayout"
+    android:weightSum="6"
+    android:gravity="top" >
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p5Button"
+        android:gravity="center"
+        android:text="@string/p5_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/conifer"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p6Button"
+        android:gravity="center"
+        android:text="@string/p6_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/mischka"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p7Button"
+        android:gravity="center"
+        android:text="@string/p7_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/california"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p8Button"
+        android:gravity="center"
+        android:text="@string/p8_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/norway"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p9Button"
+        android:gravity="center"
+        android:text="@string/p9_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/domino"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p10Button"
+        android:gravity="center"
+        android:text="@string/p10_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/mobster"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+</LinearLayout>
