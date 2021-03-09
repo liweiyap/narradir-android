@@ -20,12 +20,18 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection);
 
+        // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
+        clickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
+
         setPlayerNumberSelectionButtonBackgrounds();
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
+    }
 
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.testwavenet);
-        mp.start();
-//        mp.release();
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        clickSoundMediaPlayer.release();
     }
 
     private void setPlayerNumberSelectionButtonBackgrounds()
@@ -52,6 +58,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             CustomTypefaceableObserverButton btn = (CustomTypefaceableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
             int i = childIdx;
             btn.addOnClickObserver(() -> {
+                clickSoundMediaPlayer.start();
                 btn.setAlpha(1.f);
                 btn.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(playerNumberSelectionButtonBackgrounds.get(btn.getId())).first));
 
@@ -75,4 +82,5 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      *  - Second Integer in Pair represents the ID of the background drawable of the button in the unchecked state.
      */
     private final ArrayMap<Integer, Pair<Integer,Integer>> playerNumberSelectionButtonBackgrounds = new ArrayMap<>();
+    private MediaPlayer clickSoundMediaPlayer;
 }
