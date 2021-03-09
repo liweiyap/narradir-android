@@ -1,4 +1,4 @@
-package com.liweiyap.narradir;
+package com.liweiyap.narradir.utils;
 
 public interface Observer
 {

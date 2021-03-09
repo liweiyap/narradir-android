@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liweiyap.narradir.fontutil.StrokedCustomTypefaceableTextView
+<com.liweiyap.narradir.utils.fonts.StrokedCustomTypefaceableTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:strokeAttrs="http://schemas.android.com/apk/res-auto"
     style="@style/ArkhamBoldTypefacedTextViewStyle"
