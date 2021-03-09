@@ -14,12 +14,13 @@ import java.util.List;
 
 public class CustomTypefaceableObserverButton
     extends androidx.appcompat.widget.AppCompatButton
-    implements CustomTypefaceable, View.OnClickListener
+    implements CustomTypefaceable, View.OnClickListener, View.OnLongClickListener
 {
     public CustomTypefaceableObserverButton(@NonNull Context context)
     {
         super(context);
         setOnClickListener(this);
+        setOnLongClickListener(this);
     }
 
     public CustomTypefaceableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs)
@@ -27,6 +28,7 @@ public class CustomTypefaceableObserverButton
         super(context, attrs);
         setCustomTypeface(context, attrs);
         setOnClickListener(this);
+        setOnLongClickListener(this);
     }
 
     public CustomTypefaceableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
@@ -34,6 +36,7 @@ public class CustomTypefaceableObserverButton
         super(context, attrs, defStyleAttr);
         setCustomTypeface(context, attrs);
         setOnClickListener(this);
+        setOnLongClickListener(this);
     }
 
     public CustomTypefaceableObserverButton(@NonNull Context context, final String assetFontPath)
@@ -41,6 +44,7 @@ public class CustomTypefaceableObserverButton
         this(context);
         setCustomTypeface(context, assetFontPath);
         setOnClickListener(this);
+        setOnLongClickListener(this);
     }
 
     @Override
@@ -58,18 +62,36 @@ public class CustomTypefaceableObserverButton
     @Override
     public void onClick(View view)
     {
-        notifyObservers();
+        notifyOnClickObservers();
     }
 
-    public void addObserver(Observer observer)
+    @Override
+    public boolean onLongClick(View view)
     {
-        mObservers.add(observer);
+        notifyOnLongClickObservers();
+        return true;  // https://stackoverflow.com/a/3756619/12367873
     }
 
-    private void notifyObservers()
+    public void addOnClickObserver(Observer observer)
     {
-        mObservers.forEach(Observer::update);
+        mOnClickObservers.add(observer);
     }
 
-    private final List<Observer> mObservers = new ArrayList<>();
+    private void notifyOnClickObservers()
+    {
+        mOnClickObservers.forEach(Observer::update);
+    }
+
+    public void addOnLongClickObserver(Observer observer)
+    {
+        mOnLongClickObservers.add(observer);
+    }
+
+    private void notifyOnLongClickObservers()
+    {
+        mOnLongClickObservers.forEach(Observer::update);
+    }
+
+    private final List<Observer> mOnClickObservers = new ArrayList<>();
+    private final List<Observer> mOnLongClickObservers = new ArrayList<>();
 }
