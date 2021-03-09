@@ -21,7 +21,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         setContentView(R.layout.activity_character_selection);
 
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
-        clickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
+        mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
 
         setPlayerNumberSelectionButtonBackgrounds();
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
@@ -31,23 +31,23 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     protected void onDestroy()
     {
         super.onDestroy();
-        clickSoundMediaPlayer.release();
-        clickSoundMediaPlayer = null;
+        mClickSoundMediaPlayer.release();
+        mClickSoundMediaPlayer = null;
     }
 
     private void setPlayerNumberSelectionButtonBackgrounds()
     {
-        playerNumberSelectionButtonBackgrounds.put(
+        mPlayerNumberSelectionButtonBackgrounds.put(
             R.id.p5Button, new Pair<>(R.drawable.p5_button_checked_background, R.drawable.p5_button_unchecked_background));
-        playerNumberSelectionButtonBackgrounds.put(
+        mPlayerNumberSelectionButtonBackgrounds.put(
             R.id.p6Button, new Pair<>(R.drawable.p6_button_checked_background, R.drawable.p6_button_unchecked_background));
-        playerNumberSelectionButtonBackgrounds.put(
+        mPlayerNumberSelectionButtonBackgrounds.put(
             R.id.p7Button, new Pair<>(R.drawable.p7_button_checked_background, R.drawable.p7_button_unchecked_background));
-        playerNumberSelectionButtonBackgrounds.put(
+        mPlayerNumberSelectionButtonBackgrounds.put(
             R.id.p8Button, new Pair<>(R.drawable.p8_button_checked_background, R.drawable.p8_button_unchecked_background));
-        playerNumberSelectionButtonBackgrounds.put(
+        mPlayerNumberSelectionButtonBackgrounds.put(
             R.id.p9Button, new Pair<>(R.drawable.p9_button_checked_background, R.drawable.p9_button_unchecked_background));
-        playerNumberSelectionButtonBackgrounds.put(
+        mPlayerNumberSelectionButtonBackgrounds.put(
             R.id.p10Button, new Pair<>(R.drawable.p10_button_checked_background, R.drawable.p10_button_unchecked_background));
     }
 
@@ -59,9 +59,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             CustomTypefaceableObserverButton btn = (CustomTypefaceableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
             int i = childIdx;
             btn.addOnClickObserver(() -> {
-                clickSoundMediaPlayer.start();
+                mClickSoundMediaPlayer.start();
                 btn.setAlpha(1.f);
-                btn.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(playerNumberSelectionButtonBackgrounds.get(btn.getId())).first));
+                btn.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(mPlayerNumberSelectionButtonBackgrounds.get(btn.getId())).first));
 
                 for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
                 {
@@ -69,7 +69,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                     {
                         CustomTypefaceableObserverButton tmp = (CustomTypefaceableObserverButton) playerNumberSelectionLayout.getChildAt(j);
                         tmp.setAlpha(0.5f);
-                        tmp.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(playerNumberSelectionButtonBackgrounds.get(tmp.getId())).second));
+                        tmp.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(mPlayerNumberSelectionButtonBackgrounds.get(tmp.getId())).second));
                     }
                 }
             });
@@ -82,6 +82,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      *  - First Integer in Pair represents the ID of the background drawable of the button in the checked state.
      *  - Second Integer in Pair represents the ID of the background drawable of the button in the unchecked state.
      */
-    private final ArrayMap<Integer, Pair<Integer,Integer>> playerNumberSelectionButtonBackgrounds = new ArrayMap<>();
-    private MediaPlayer clickSoundMediaPlayer;
+    private final ArrayMap<Integer, Pair<Integer,Integer>> mPlayerNumberSelectionButtonBackgrounds = new ArrayMap<>();
+    private MediaPlayer mClickSoundMediaPlayer;
 }
