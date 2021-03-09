@@ -32,6 +32,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     {
         super.onDestroy();
         clickSoundMediaPlayer.release();
+        clickSoundMediaPlayer = null;
     }
 
     private void setPlayerNumberSelectionButtonBackgrounds()
