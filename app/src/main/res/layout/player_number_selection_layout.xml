@@ -16,7 +16,11 @@
         android:text="@string/p5_button_text"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:backgroundTint="@color/conifer"
+        android:background="@drawable/p5_button_checked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
     <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
@@ -28,7 +32,11 @@
         android:text="@string/p6_button_text"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:backgroundTint="@color/mischka"
+        android:background="@drawable/p6_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
     <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
@@ -40,7 +48,11 @@
         android:text="@string/p7_button_text"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:backgroundTint="@color/california"
+        android:background="@drawable/p7_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
     <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
@@ -52,7 +64,11 @@
         android:text="@string/p8_button_text"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:backgroundTint="@color/norway"
+        android:background="@drawable/p8_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
     <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
@@ -64,7 +80,11 @@
         android:text="@string/p9_button_text"
         android:textSize="16sp"
         android:textColor="@android:color/white"
-        android:backgroundTint="@color/domino"
+        android:background="@drawable/p9_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
     <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
@@ -76,7 +96,11 @@
         android:text="@string/p10_button_text"
         android:textSize="16sp"
         android:textColor="@android:color/white"
-        android:backgroundTint="@color/mobster"
+        android:background="@drawable/p10_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
 </LinearLayout>
