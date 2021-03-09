@@ -6,7 +6,7 @@
     android:id="@+id/goodCharactersLinearLayoutTop"
     android:weightSum="4" >
 
-    <com.liweiyap.narradir.ObserverImageButton
+    <com.liweiyap.narradir.utils.ObserverImageButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

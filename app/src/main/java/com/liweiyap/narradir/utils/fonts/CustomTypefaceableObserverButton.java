@@ -1,4 +1,4 @@
-package com.liweiyap.narradir.fontutil;
+package com.liweiyap.narradir.utils.fonts;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.liweiyap.narradir.Observer;
+import com.liweiyap.narradir.utils.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class CustomTypefaceableObserverButton
         mOnClickObservers.add(observer);
     }
 
-    private void notifyOnClickObservers()
+    protected void notifyOnClickObservers()
     {
         mOnClickObservers.forEach(Observer::update);
     }
@@ -87,11 +87,11 @@ public class CustomTypefaceableObserverButton
         mOnLongClickObservers.add(observer);
     }
 
-    private void notifyOnLongClickObservers()
+    protected void notifyOnLongClickObservers()
     {
         mOnLongClickObservers.forEach(Observer::update);
     }
 
-    private final List<Observer> mOnClickObservers = new ArrayList<>();
-    private final List<Observer> mOnLongClickObservers = new ArrayList<>();
+    protected final List<Observer> mOnClickObservers = new ArrayList<>();
+    protected final List<Observer> mOnLongClickObservers = new ArrayList<>();
 }

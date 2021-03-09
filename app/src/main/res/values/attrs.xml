@@ -8,4 +8,10 @@
         <attr name="textStrokeColor" format="color"/>
         <attr name="textStrokeWidth" format="float"/>
     </declare-styleable>
+
+    <declare-styleable name="CheckableDrawableIds">
+        <attr name="checkedDrawableId" format="integer"/>
+        <attr name="uncheckedDrawableId" format="integer"/>
+        <attr name="defaultCheckedState" format="boolean"/>
+    </declare-styleable>
 </resources>

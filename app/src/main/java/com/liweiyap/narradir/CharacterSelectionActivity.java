@@ -2,15 +2,9 @@ package com.liweiyap.narradir;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.ArrayMap;
-import android.util.Pair;
 import android.widget.LinearLayout;
 
-import androidx.core.content.ContextCompat;
-
-import com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton;
-
-import java.util.Objects;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 
 public class CharacterSelectionActivity extends FullScreenPortraitActivity
 {
@@ -22,8 +16,8 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
         mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
+        addSoundToPlayOnButtonClick();
 
-        setPlayerNumberSelectionButtonBackgrounds();
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
     }
 
@@ -35,20 +29,19 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mClickSoundMediaPlayer = null;
     }
 
-    private void setPlayerNumberSelectionButtonBackgrounds()
+    private void addSoundToPlayOnButtonClick()
     {
-        mPlayerNumberSelectionButtonBackgrounds.put(
-            R.id.p5Button, new Pair<>(R.drawable.p5_button_checked_background, R.drawable.p5_button_unchecked_background));
-        mPlayerNumberSelectionButtonBackgrounds.put(
-            R.id.p6Button, new Pair<>(R.drawable.p6_button_checked_background, R.drawable.p6_button_unchecked_background));
-        mPlayerNumberSelectionButtonBackgrounds.put(
-            R.id.p7Button, new Pair<>(R.drawable.p7_button_checked_background, R.drawable.p7_button_unchecked_background));
-        mPlayerNumberSelectionButtonBackgrounds.put(
-            R.id.p8Button, new Pair<>(R.drawable.p8_button_checked_background, R.drawable.p8_button_unchecked_background));
-        mPlayerNumberSelectionButtonBackgrounds.put(
-            R.id.p9Button, new Pair<>(R.drawable.p9_button_checked_background, R.drawable.p9_button_unchecked_background));
-        mPlayerNumberSelectionButtonBackgrounds.put(
-            R.id.p10Button, new Pair<>(R.drawable.p10_button_checked_background, R.drawable.p10_button_unchecked_background));
+        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
+        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
+        {
+            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
+            btn.addOnClickObserver(() -> {
+                if (mClickSoundMediaPlayer != null)
+                {
+                    mClickSoundMediaPlayer.start();
+                }
+            });
+        }
     }
 
     private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
@@ -56,32 +49,21 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
         for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
         {
-            CustomTypefaceableObserverButton btn = (CustomTypefaceableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
+            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
             int i = childIdx;
             btn.addOnClickObserver(() -> {
-                mClickSoundMediaPlayer.start();
-                btn.setAlpha(1.f);
-                btn.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(mPlayerNumberSelectionButtonBackgrounds.get(btn.getId())).first));
-
+                btn.check();
                 for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
                 {
                     if (i != j)
                     {
-                        CustomTypefaceableObserverButton tmp = (CustomTypefaceableObserverButton) playerNumberSelectionLayout.getChildAt(j);
-                        tmp.setAlpha(0.5f);
-                        tmp.setBackgroundDrawable(ContextCompat.getDrawable(this, Objects.requireNonNull(mPlayerNumberSelectionButtonBackgrounds.get(tmp.getId())).second));
+                        CustomTypefaceableCheckableObserverButton tmp = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(j);
+                        tmp.uncheck();
                     }
                 }
             });
         }
     }
 
-    /**
-     * Key is an Integer representing the ID of the button.
-     * Value is a Pair of Integers.
-     *  - First Integer in Pair represents the ID of the background drawable of the button in the checked state.
-     *  - Second Integer in Pair represents the ID of the background drawable of the button in the unchecked state.
-     */
-    private final ArrayMap<Integer, Pair<Integer,Integer>> mPlayerNumberSelectionButtonBackgrounds = new ArrayMap<>();
     private MediaPlayer mClickSoundMediaPlayer;
 }

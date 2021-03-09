@@ -1,4 +1,4 @@
-package com.liweiyap.narradir.fontutil;
+package com.liweiyap.narradir.utils.fonts;
 
 import android.content.Context;
 import android.content.res.TypedArray;
