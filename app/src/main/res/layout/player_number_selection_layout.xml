@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/playerNumberSelectionLayout"
+    android:weightSum="6"
+    android:gravity="top" >
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p5Button"
+        android:gravity="center"
+        android:text="@string/p5_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:background="@drawable/p5_button_checked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p6Button"
+        android:gravity="center"
+        android:text="@string/p6_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:background="@drawable/p6_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p7Button"
+        android:gravity="center"
+        android:text="@string/p7_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:background="@drawable/p7_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p8Button"
+        android:gravity="center"
+        android:text="@string/p8_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:background="@drawable/p8_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p9Button"
+        android:gravity="center"
+        android:text="@string/p9_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/p9_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+    <com.liweiyap.narradir.fontutil.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/p10Button"
+        android:gravity="center"
+        android:text="@string/p10_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/p10_button_unchecked_background"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.5"
+        style="@style/ArkhamBoldTypefacedTextViewStyle" />
+
+</LinearLayout>

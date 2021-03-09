@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">narradir</string>
     <string name="game_title_avalon">AVALON</string>
+    <string name="p5_button_text">5P</string>
+    <string name="p6_button_text">6P</string>
+    <string name="p7_button_text">7P</string>
+    <string name="p8_button_text">8P</string>
+    <string name="p9_button_text">9P</string>
+    <string name="p10_button_text">10P</string>
 </resources>
