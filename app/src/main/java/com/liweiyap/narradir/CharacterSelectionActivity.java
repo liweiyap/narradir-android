@@ -7,8 +7,8 @@ import android.widget.LinearLayout;
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverImageButton;
+import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 public class CharacterSelectionActivity extends FullScreenPortraitActivity
 {
@@ -62,17 +62,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private void addSoundToPlayOnButtonClick(CustomTypefaceableObserverButton btn)
-    {
-        btn.addOnClickObserver(() -> {
-            if (mClickSoundMediaPlayer != null)
-            {
-                mClickSoundMediaPlayer.start();
-            }
-        });
-    }
-
-    private void addSoundToPlayOnButtonClick(ObserverImageButton btn)
+    private void addSoundToPlayOnButtonClick(ObserverListener btn)
     {
         btn.addOnClickObserver(() -> {
             if (mClickSoundMediaPlayer != null)
