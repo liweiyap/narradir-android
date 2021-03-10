@@ -24,8 +24,14 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
 
-        mMerlinButton = findViewById(R.id.merlinButton);
-        mPercivalButton = findViewById(R.id.percivalButton);
+        initialiseCharacterImageButtonArray();
+        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray) {
+            characterImageButton.addOnClickObserver(() -> {
+                if (mGeneralMediaPlayer != null) {
+                    mGeneralMediaPlayer.stop();
+                }
+            });
+        }
 
         addSelectionRules();
         addCharacterDescriptions();
@@ -87,10 +93,24 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
+    private void initialiseCharacterImageButtonArray()
+    {
+        mCharacterImageButtonArray = new CheckableObserverImageButton[2];
+        mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
+        mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
+    }
+
     private void addCharacterDescriptions()
     {
-        mMerlinButton.addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
-        mPercivalButton.addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
+        try
+        {
+            mCharacterImageButtonArray[CharacterName.MERLIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void playCharacterDescription(int descriptionId)
@@ -113,32 +133,17 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addSelectionRules()
     {
-        mMerlinButton.addOnClickObserver(() -> {
-            if (mMerlinButton.isChecked())
-            {
-                mMerlinButton.uncheck();
-            }
-            else
-            {
-                mMerlinButton.check();
-            }
+        mCharacterImageButtonArray[CharacterName.MERLIN].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.MERLIN].toggle();
         });
 
-        mPercivalButton.addOnClickObserver(() -> {
-            if (mPercivalButton.isChecked())
-            {
-                mPercivalButton.uncheck();
-            }
-            else
-            {
-                mPercivalButton.check();
-            }
+        mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].toggle();
         });
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
     private MediaPlayer mGeneralMediaPlayer;
 
-    private CheckableObserverImageButton mMerlinButton;
-    private CheckableObserverImageButton mPercivalButton;
+    private CheckableObserverImageButton[] mCharacterImageButtonArray;
 }

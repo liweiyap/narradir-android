@@ -12,6 +12,7 @@ public interface Checkable
 
     void check();
     void uncheck();
+    void toggle();
 
     boolean isChecked();
 }
