@@ -6,7 +6,6 @@ import android.widget.LinearLayout;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 
@@ -18,13 +17,22 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection);
 
+        // ------------------------------------------------------------
+        // player number selection layout
+        // ------------------------------------------------------------
+
+        addSingleTargetSelectionToPlayerNumberSelectionLayout();
+
+        // ------------------------------------------------------------
+        // character selection layouts
+        // ------------------------------------------------------------
+
+        initialiseCharacterImageButtonArray();
+
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
         mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
         addSoundToPlayOnButtonClick();
 
-        addSingleTargetSelectionToPlayerNumberSelectionLayout();
-
-        initialiseCharacterImageButtonArray();
         for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
         {
             characterImageButton.addOnClickObserver(() -> {
@@ -85,11 +93,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             addSoundToPlayOnButtonClick(btn);
         }
 
-        LinearLayout goodCharactersLinearLayoutTop = findViewById(R.id.goodCharactersLinearLayoutTop);
-        for (int childIdx = 0; childIdx < goodCharactersLinearLayoutTop.getChildCount(); ++childIdx)
+        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
         {
-            ObserverImageButton btn = (ObserverImageButton) goodCharactersLinearLayoutTop.getChildAt(childIdx);
-            addSoundToPlayOnButtonClick(btn);
+            addSoundToPlayOnButtonClick(characterImageButton);
         }
     }
 
@@ -131,9 +137,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void initialiseCharacterImageButtonArray()
     {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[2];
+        mCharacterImageButtonArray = new CheckableObserverImageButton[3];
         mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
         mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
+        mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
     }
 
     private void addCharacterDescriptions()
@@ -142,6 +149,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         {
             mCharacterImageButtonArray[CharacterName.MERLIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
             mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
+            mCharacterImageButtonArray[CharacterName.LOYAL0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
         }
         catch (Exception e)
         {
@@ -175,6 +183,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.PERCIVAL].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.LOYAL0].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL0].toggle();
         });
     }
 
