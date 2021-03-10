@@ -8,13 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.utils.Observer;
+import com.liweiyap.narradir.utils.ObserverListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomTypefaceableObserverButton
     extends androidx.appcompat.widget.AppCompatButton
-    implements CustomTypefaceable, View.OnClickListener, View.OnLongClickListener
+    implements CustomTypefaceable, View.OnClickListener, View.OnLongClickListener, ObserverListener
 {
     public CustomTypefaceableObserverButton(@NonNull Context context)
     {
@@ -72,22 +73,26 @@ public class CustomTypefaceableObserverButton
         return true;  // https://stackoverflow.com/a/3756619/12367873
     }
 
+    @Override
     public void addOnClickObserver(Observer observer)
     {
         mOnClickObservers.add(observer);
     }
 
-    protected void notifyOnClickObservers()
+    @Override
+    public void notifyOnClickObservers()
     {
         mOnClickObservers.forEach(Observer::update);
     }
 
+    @Override
     public void addOnLongClickObserver(Observer observer)
     {
         mOnLongClickObservers.add(observer);
     }
 
-    protected void notifyOnLongClickObservers()
+    @Override
+    public void notifyOnLongClickObservers()
     {
         mOnLongClickObservers.forEach(Observer::update);
     }

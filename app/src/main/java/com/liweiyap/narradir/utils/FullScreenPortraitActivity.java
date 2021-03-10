@@ -1,4 +1,4 @@
-package com.liweiyap.narradir;
+package com.liweiyap.narradir.utils;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;

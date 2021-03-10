@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ObserverImageButton
     extends androidx.appcompat.widget.AppCompatImageButton
-    implements View.OnClickListener, View.OnLongClickListener
+    implements View.OnClickListener, View.OnLongClickListener, ObserverListener
 {
     public ObserverImageButton(@NonNull Context context)
     {
@@ -48,22 +48,26 @@ public class ObserverImageButton
         return true;  // https://stackoverflow.com/a/3756619/12367873
     }
 
+    @Override
     public void addOnClickObserver(Observer observer)
     {
         mOnClickObservers.add(observer);
     }
 
-    private void notifyOnClickObservers()
+    @Override
+    public void notifyOnClickObservers()
     {
         mOnClickObservers.forEach(Observer::update);
     }
 
+    @Override
     public void addOnLongClickObserver(Observer observer)
     {
         mOnLongClickObservers.add(observer);
     }
 
-    private void notifyOnLongClickObservers()
+    @Override
+    public void notifyOnLongClickObservers()
     {
         mOnLongClickObservers.forEach(Observer::update);
     }

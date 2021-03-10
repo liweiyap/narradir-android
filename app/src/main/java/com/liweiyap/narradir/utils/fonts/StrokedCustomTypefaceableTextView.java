@@ -103,6 +103,7 @@ public class StrokedCustomTypefaceableTextView
         mStrokeColor = typedArray.getColor(R.styleable.StrokedTextAttrs_textStrokeColor, getCurrentTextColor());
         mStrokeWidth = typedArray.getFloat(R.styleable.StrokedTextAttrs_textStrokeWidth, 0);
         typedArray.recycle();
+
         setStrokeColor(mStrokeColor);
         setStrokeWidth(mStrokeWidth);
     }
