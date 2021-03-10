@@ -29,10 +29,11 @@
         android:layout_height="0dp"
         android:layout_weight="1.5" />
 
-    <Space
+    <include
+        layout="@layout/good_characters_linear_layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25" />
+        android:layout_weight="1.5" />
 
     <Space
         android:layout_width="match_parent"

@@ -137,11 +137,12 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void initialiseCharacterImageButtonArray()
     {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[4];
+        mCharacterImageButtonArray = new CheckableObserverImageButton[5];
         mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
         mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
         mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
         mCharacterImageButtonArray[CharacterName.LOYAL1] = findViewById(R.id.loyal1Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL2] = findViewById(R.id.loyal2Button);
     }
 
     private void addCharacterDescriptions()
@@ -152,6 +153,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
             mCharacterImageButtonArray[CharacterName.LOYAL0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
             mCharacterImageButtonArray[CharacterName.LOYAL1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[CharacterName.LOYAL2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
         }
         catch (Exception e)
         {
@@ -193,6 +195,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.LOYAL1].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL1].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.LOYAL2].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL2].toggle();
         });
     }
 
