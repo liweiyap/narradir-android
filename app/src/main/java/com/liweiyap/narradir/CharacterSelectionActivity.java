@@ -137,7 +137,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void initialiseCharacterImageButtonArray()
     {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[8];
+        mCharacterImageButtonArray = new CheckableObserverImageButton[9];
         mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
         mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
         mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
@@ -146,6 +146,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mCharacterImageButtonArray[CharacterName.LOYAL3] = findViewById(R.id.loyal3Button);
         mCharacterImageButtonArray[CharacterName.LOYAL4] = findViewById(R.id.loyal4Button);
         mCharacterImageButtonArray[CharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
+        mCharacterImageButtonArray[CharacterName.ASSASSIN] = findViewById(R.id.assassinButton);
     }
 
     private void addCharacterDescriptions()
@@ -160,6 +161,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
             mCharacterImageButtonArray[CharacterName.LOYAL4].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
             mCharacterImageButtonArray[CharacterName.LOYAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.assassindescription));
         }
         catch (Exception e)
         {
@@ -217,6 +219,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.LOYAL5].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL5].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.ASSASSIN].toggle();
         });
     }
 
