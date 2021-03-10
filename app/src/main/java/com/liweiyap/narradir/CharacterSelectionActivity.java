@@ -25,9 +25,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
 
         initialiseCharacterImageButtonArray();
-        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray) {
+        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
+        {
             characterImageButton.addOnClickObserver(() -> {
-                if (mGeneralMediaPlayer != null) {
+                if (mGeneralMediaPlayer != null)
+                {
                     mGeneralMediaPlayer.stop();
                 }
             });
@@ -38,11 +40,40 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
+            mGeneralMediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.pause();
+            mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
+        }
+    }
+
+    @Override
     protected void onDestroy()
     {
         super.onDestroy();
+
         mClickSoundMediaPlayer.release();
         mClickSoundMediaPlayer = null;
+
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.release();
+            mGeneralMediaPlayer = null;
+        }
     }
 
     private void addSoundToPlayOnButtonClick()
@@ -149,6 +180,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private MediaPlayer mClickSoundMediaPlayer;
     private MediaPlayer mGeneralMediaPlayer;
+    private int mGeneralMediaPlayerCurrentLength;
 
     private CheckableObserverImageButton[] mCharacterImageButtonArray;
 }
