@@ -1,4 +1,4 @@
-package com.liweiyap.narradir.utils.fonts;
+package com.liweiyap.narradir.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,49 +10,34 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.liweiyap.narradir.R;
-import com.liweiyap.narradir.utils.Checkable;
 
-public class CustomTypefaceableCheckableObserverButton
-    extends CustomTypefaceableObserverButton
+public class CheckableObserverImageButton
+    extends ObserverImageButton
     implements Checkable
 {
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context)
+    public CheckableObserverImageButton(@NonNull Context context)
     {
         super(context);
         init();
     }
 
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs)
+    public CheckableObserverImageButton(@NonNull Context context, @Nullable AttributeSet attrs)
     {
         super(context, attrs);
         setDrawables(context, attrs);
         init();
     }
 
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
+    public CheckableObserverImageButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
         setDrawables(context, attrs);
         init();
     }
 
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, final String assetFontPath)
-    {
-        super(context, assetFontPath);
-        init();
-    }
-
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, final int checkedDrawableId, final int uncheckedDrawableId)
+    public CheckableObserverImageButton(@NonNull Context context, final int checkedDrawableId, final int uncheckedDrawableId)
     {
         super(context);
-        setCheckedDrawable(context, checkedDrawableId);
-        setUncheckedDrawable(context, uncheckedDrawableId);
-        init();
-    }
-
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, final String assetFontPath, final int checkedDrawableId, final int uncheckedDrawableId)
-    {
-        super(context, assetFontPath);
         setCheckedDrawable(context, checkedDrawableId);
         setUncheckedDrawable(context, uncheckedDrawableId);
         init();
@@ -109,7 +94,7 @@ public class CustomTypefaceableCheckableObserverButton
         setAlpha(1.f);
         if (mCheckedDrawable != null)
         {
-            setBackgroundDrawable(mCheckedDrawable);
+            setImageDrawable(mCheckedDrawable);
         }
     }
 
@@ -120,7 +105,7 @@ public class CustomTypefaceableCheckableObserverButton
         setAlpha(0.5f);
         if (mUncheckedDrawable != null)
         {
-            setBackgroundDrawable(mUncheckedDrawable);
+            setImageDrawable(mUncheckedDrawable);
         }
     }
 
