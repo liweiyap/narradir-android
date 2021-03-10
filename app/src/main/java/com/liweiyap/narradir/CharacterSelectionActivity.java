@@ -137,13 +137,15 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void initialiseCharacterImageButtonArray()
     {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[6];
+        mCharacterImageButtonArray = new CheckableObserverImageButton[8];
         mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
         mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
         mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
         mCharacterImageButtonArray[CharacterName.LOYAL1] = findViewById(R.id.loyal1Button);
         mCharacterImageButtonArray[CharacterName.LOYAL2] = findViewById(R.id.loyal2Button);
         mCharacterImageButtonArray[CharacterName.LOYAL3] = findViewById(R.id.loyal3Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL4] = findViewById(R.id.loyal4Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
     }
 
     private void addCharacterDescriptions()
@@ -156,6 +158,8 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
             mCharacterImageButtonArray[CharacterName.LOYAL2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
             mCharacterImageButtonArray[CharacterName.LOYAL3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[CharacterName.LOYAL4].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[CharacterName.LOYAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
         }
         catch (Exception e)
         {
@@ -205,6 +209,14 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.LOYAL3].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL3].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.LOYAL4].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL4].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.LOYAL5].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL5].toggle();
         });
     }
 
