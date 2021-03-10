@@ -136,7 +136,7 @@ public class StrokedCustomTypefaceableTextView
      * @param dp density independent pixel value
      * @return device specific pixel value.
      */
-    private int dpToPx(final Context context, final float dp)
+    private int dpToPx(final @NonNull Context context, final float dp)
     {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);

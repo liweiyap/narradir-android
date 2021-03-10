@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 
 import androidx.collection.ArrayMap;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Caches the custom Typefaces in the assets directory to:
  *  - avoid memory leaks on older handsets (https://issuetracker.google.com/issues/36919609)
@@ -14,7 +16,7 @@ public class FontCache
 {
     private static final ArrayMap<String, Typeface> fontCache = new ArrayMap<>();
 
-    public static Typeface get(String assetFontPath, Context context)
+    public static @Nullable Typeface get(String assetFontPath, Context context)
     {
         Typeface typeface = fontCache.get(assetFontPath);
         

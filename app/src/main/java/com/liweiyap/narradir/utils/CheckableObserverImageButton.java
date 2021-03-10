@@ -110,6 +110,19 @@ public class CheckableObserverImageButton
     }
 
     @Override
+    public void toggle()
+    {
+        if (mIsChecked)
+        {
+            uncheck();
+        }
+        else
+        {
+            check();
+        }
+    }
+
+    @Override
     public boolean isChecked()
     {
         return mIsChecked;

@@ -16,7 +16,7 @@ public class CustomFontSetter
      * Can also be used on Buttons, because Button extends (is a subclass of) TextView.
      * Context required for getAssets() function.
      */
-    public static void setCustomFont(TextView textView, Context context, AttributeSet attrs)
+    public static void setCustomFont(TextView textView, @org.jetbrains.annotations.NotNull Context context, AttributeSet attrs)
     {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFont);
         String assetFontPath = typedArray.getString(R.styleable.CustomFont_assetFontPath);

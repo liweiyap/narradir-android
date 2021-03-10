@@ -24,25 +24,56 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
 
-        CheckableObserverImageButton merlinButton = findViewById(R.id.merlinButton);
-        merlinButton.addOnClickObserver(() -> {
-            if (merlinButton.isChecked())
-            {
-                merlinButton.uncheck();
-            }
-            else
-            {
-                merlinButton.check();
-            }
-        });
+        initialiseCharacterImageButtonArray();
+        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
+        {
+            characterImageButton.addOnClickObserver(() -> {
+                if (mGeneralMediaPlayer != null)
+                {
+                    mGeneralMediaPlayer.stop();
+                }
+            });
+        }
+
+        addSelectionRules();
+        addCharacterDescriptions();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
+            mGeneralMediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.pause();
+            mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
+        }
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
+
         mClickSoundMediaPlayer.release();
         mClickSoundMediaPlayer = null;
+
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.release();
+            mGeneralMediaPlayer = null;
+        }
     }
 
     private void addSoundToPlayOnButtonClick()
@@ -64,6 +95,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addSoundToPlayOnButtonClick(ObserverListener btn)
     {
+        if (btn == null)
+        {
+            return;
+        }
+
         btn.addOnClickObserver(() -> {
             if (mClickSoundMediaPlayer != null)
             {
@@ -93,5 +129,58 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
+    private void initialiseCharacterImageButtonArray()
+    {
+        mCharacterImageButtonArray = new CheckableObserverImageButton[2];
+        mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
+        mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
+    }
+
+    private void addCharacterDescriptions()
+    {
+        try
+        {
+            mCharacterImageButtonArray[CharacterName.MERLIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void playCharacterDescription(int descriptionId)
+    {
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.stop();
+        }
+
+        try
+        {
+            mGeneralMediaPlayer = MediaPlayer.create(this, descriptionId);
+            mGeneralMediaPlayer.start();
+        }
+        catch (IllegalStateException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void addSelectionRules()
+    {
+        mCharacterImageButtonArray[CharacterName.MERLIN].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.MERLIN].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].toggle();
+        });
+    }
+
     private MediaPlayer mClickSoundMediaPlayer;
+    private MediaPlayer mGeneralMediaPlayer;
+    private int mGeneralMediaPlayerCurrentLength;
+
+    private CheckableObserverImageButton[] mCharacterImageButtonArray;
 }

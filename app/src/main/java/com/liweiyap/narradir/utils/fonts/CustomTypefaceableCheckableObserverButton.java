@@ -125,6 +125,19 @@ public class CustomTypefaceableCheckableObserverButton
     }
 
     @Override
+    public void toggle()
+    {
+        if (mIsChecked)
+        {
+            uncheck();
+        }
+        else
+        {
+            check();
+        }
+    }
+
+    @Override
     public boolean isChecked()
     {
         return mIsChecked;
