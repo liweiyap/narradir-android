@@ -64,6 +64,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addSoundToPlayOnButtonClick(ObserverListener btn)
     {
+        if (btn == null)
+        {
+            return;
+        }
+
         btn.addOnClickObserver(() -> {
             if (mClickSoundMediaPlayer != null)
             {
