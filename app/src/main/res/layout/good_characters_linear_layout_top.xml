@@ -19,4 +19,16 @@
         com.liweiyap.narradir:uncheckedDrawableId="@drawable/merlin_unchecked"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
+    <com.liweiyap.narradir.utils.CheckableObserverImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/percivalButton"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_marginBottom="5dp"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/percival_checked"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/percival_unchecked"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
 </LinearLayout>
