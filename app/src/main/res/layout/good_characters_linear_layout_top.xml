@@ -14,6 +14,7 @@
         android:id="@+id/merlinButton"
         android:scaleType="fitCenter"
         android:background="@null"
+        android:layout_marginBottom="5dp"
         com.liweiyap.narradir:checkedDrawableId="@drawable/merlin_checked"
         com.liweiyap.narradir:uncheckedDrawableId="@drawable/merlin_unchecked"
         com.liweiyap.narradir:defaultCheckedState="true" />

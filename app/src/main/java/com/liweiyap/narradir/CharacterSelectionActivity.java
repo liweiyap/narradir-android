@@ -35,6 +35,15 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                 merlinButton.check();
             }
         });
+        merlinButton.addOnLongClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
+            mGeneralMediaPlayer = MediaPlayer.create(this, R.raw.merlindescription);
+            mGeneralMediaPlayer.start();
+        });
     }
 
     @Override
@@ -94,4 +103,5 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
+    private MediaPlayer mGeneralMediaPlayer;
 }
