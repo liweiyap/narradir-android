@@ -137,7 +137,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void initialiseCharacterImageButtonArray()
     {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[10];
+        mCharacterImageButtonArray = new CheckableObserverImageButton[11];
         mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
         mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
         mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
@@ -148,6 +148,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mCharacterImageButtonArray[CharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
         mCharacterImageButtonArray[CharacterName.ASSASSIN] = findViewById(R.id.assassinButton);
         mCharacterImageButtonArray[CharacterName.MORGANA] = findViewById(R.id.morganaButton);
+        mCharacterImageButtonArray[CharacterName.MORDRED] = findViewById(R.id.mordredButton);
     }
 
     private void addCharacterDescriptions()
@@ -164,6 +165,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
             mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.assassindescription));
             mCharacterImageButtonArray[CharacterName.MORGANA].addOnLongClickObserver(() -> playCharacterDescription(R.raw.morganadescription));
+            mCharacterImageButtonArray[CharacterName.MORDRED].addOnLongClickObserver(() -> playCharacterDescription(R.raw.mordreddescription));
         }
         catch (Exception e)
         {
@@ -229,6 +231,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.MORGANA].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.MORGANA].toggle();
+        });
+
+        mCharacterImageButtonArray[CharacterName.MORDRED].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.MORDRED].toggle();
         });
     }
 
