@@ -105,6 +105,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mCharacterImageButtonArray[CharacterName.MINION0] = findViewById(R.id.minion0Button);
         mCharacterImageButtonArray[CharacterName.MINION1] = findViewById(R.id.minion1Button);
         mCharacterImageButtonArray[CharacterName.MINION2] = findViewById(R.id.minion2Button);
+        mCharacterImageButtonArray[CharacterName.MINION3] = findViewById(R.id.minion3Button);
     }
 
     private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
@@ -142,6 +143,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
         });
 
         p6Button.addOnClickObserver(() -> {
@@ -149,6 +151,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
         });
 
         p7Button.addOnClickObserver(() -> {
@@ -156,6 +159,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
         });
 
         p8Button.addOnClickObserver(() -> {
@@ -163,6 +167,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
         });
 
         p9Button.addOnClickObserver(() -> {
@@ -170,6 +175,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
         });
 
         p10Button.addOnClickObserver(() -> {
@@ -177,6 +183,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.VISIBLE);
         });
     }
 
@@ -229,6 +236,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.MINION0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
             mCharacterImageButtonArray[CharacterName.MINION1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
             mCharacterImageButtonArray[CharacterName.MINION2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterImageButtonArray[CharacterName.MINION3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
         }
         catch (Exception e)
         {
@@ -313,6 +321,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mCharacterImageButtonArray[CharacterName.MINION2].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.MINION2].toggle();
         });
+
+        mCharacterImageButtonArray[CharacterName.MINION3].addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.MINION3].toggle();
+        });
     }
 
     /**
@@ -326,7 +338,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.MERLIN].uncheck();
             mCharacterImageButtonArray[CharacterName.ASSASSIN].uncheck();
 
-            // Find the first LOYAL who is VISIBLE and not checked. Then, check him/her
+            // Find the first LOYAL who is VISIBLE and not checked. Then, check him/her.
             int currIdx = CharacterName.LOYAL0;
             int endIdx = CharacterName.LOYAL5;
             while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
@@ -342,7 +354,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
             // Find the first MINION who is VISIBLE and not checked. Then, check him/her.
             currIdx = CharacterName.MINION0;
-            endIdx = CharacterName.MINION2;
+            endIdx = CharacterName.MINION3;
             while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
             {
                 if (!mCharacterImageButtonArray[currIdx].isChecked())
@@ -379,8 +391,8 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                 --currIdx;
             }
 
-            // Find the last MINION who is VISIBLE and checked. Then, uncheck him/her
-            currIdx = CharacterName.MINION2;
+            // Find the last MINION who is VISIBLE and checked. Then, uncheck him/her.
+            currIdx = CharacterName.MINION3;
             endIdx = CharacterName.MINION0;
             while (currIdx >= endIdx)
             {
