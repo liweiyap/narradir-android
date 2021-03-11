@@ -5,10 +5,10 @@ import android.util.AttributeSet;
 
 public interface Checkable
 {
-    void setDrawables(final Context context, final AttributeSet attrs);
+    void setDrawableIds(final Context context, final AttributeSet attrs);
 
-    void setCheckedDrawable(final Context context, final int drawableId);
-    void setUncheckedDrawable(final Context context, final int drawableId);
+    void setCheckedDrawableId(final int drawableId);
+    void setUncheckedDrawableId(final int drawableId);
 
     void check();
     void uncheck();
