@@ -2,6 +2,7 @@ package com.liweiyap.narradir;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -140,7 +141,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
         });
 
@@ -148,7 +148,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
         });
 
@@ -156,31 +155,27 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
         });
 
         p8Button.addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
         });
 
         p9Button.addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
         });
 
         p10Button.addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
             mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
         });
     }
@@ -261,9 +256,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addSelectionRules()
     {
-        mCharacterImageButtonArray[CharacterName.MERLIN].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.MERLIN].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.MERLIN].addOnClickObserver(this::addMerlinSelectionRules);
 
         mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.PERCIVAL].toggle();
@@ -320,6 +313,92 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mCharacterImageButtonArray[CharacterName.MINION2].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.MINION2].toggle();
         });
+    }
+
+    /**
+     * If Merlin is selected, then Assassin is auto-selected, one of the LOYAL is auto-unselected, and one of the MINIONS is auto-unselected.
+     * If Merlin is unselected, then Assassin is auto-unselected, one of the LOYAL is auto-selected, and one of the MINIONS is auto-selected.
+     */
+    private void addMerlinSelectionRules()
+    {
+        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+        {
+            mCharacterImageButtonArray[CharacterName.MERLIN].uncheck();
+            mCharacterImageButtonArray[CharacterName.ASSASSIN].uncheck();
+
+            // Find the first LOYAL who is VISIBLE and not checked. Then, check him/her
+            int currIdx = CharacterName.LOYAL0;
+            int endIdx = CharacterName.LOYAL5;
+            while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
+            {
+                if (!mCharacterImageButtonArray[currIdx].isChecked())
+                {
+                    mCharacterImageButtonArray[currIdx].check();
+                    break;
+                }
+
+                ++currIdx;
+            }
+
+            // Find the first MINION who is VISIBLE and not checked. Then, check him/her.
+            currIdx = CharacterName.MINION0;
+            endIdx = CharacterName.MINION2;
+            while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
+            {
+                if (!mCharacterImageButtonArray[currIdx].isChecked())
+                {
+                    mCharacterImageButtonArray[currIdx].check();
+                    break;
+                }
+
+                ++currIdx;
+            }
+        }
+        else
+        {
+            mCharacterImageButtonArray[CharacterName.MERLIN].check();
+            mCharacterImageButtonArray[CharacterName.ASSASSIN].check();
+
+            // Find the last LOYAL who is VISIBLE and checked. Then, uncheck him/her
+            int currIdx = CharacterName.LOYAL5;
+            int endIdx = CharacterName.LOYAL0;
+            while (currIdx >= endIdx)
+            {
+                if (mCharacterImageButtonArray[currIdx].getVisibility() == View.INVISIBLE)
+                {
+                    --currIdx;
+                    continue;
+                }
+
+                if (mCharacterImageButtonArray[currIdx].isChecked())
+                {
+                    mCharacterImageButtonArray[currIdx].uncheck();
+                    break;
+                }
+
+                --currIdx;
+            }
+
+            // Find the last MINION who is VISIBLE and checked. Then, uncheck him/her
+            currIdx = CharacterName.MINION2;
+            endIdx = CharacterName.MINION0;
+            while (currIdx >= endIdx)
+            {
+                if (mCharacterImageButtonArray[currIdx].getVisibility() == View.INVISIBLE)
+                {
+                    --currIdx;
+                    continue;
+                }
+
+                if (mCharacterImageButtonArray[currIdx].isChecked())
+                {
+                    mCharacterImageButtonArray[currIdx].uncheck();
+                    break;
+                }
+
+                --currIdx;
+            }
+        }
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
