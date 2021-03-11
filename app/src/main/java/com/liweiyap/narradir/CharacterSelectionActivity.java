@@ -389,6 +389,18 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
+    /**
+     * If Percival is selected:
+     *  - If Merlin is not already selected, then Merlin is auto-selected.
+     *  - Morgana is auto-selected.
+     *     - If, prior to this, Morgana was not already selected, then one of the MINIONS is auto-unselected.
+     *  - One of the LOYAL is auto-unselected.
+     *
+     * If Percival is unselected:
+     *  - Morgana is auto-unselected.
+     *     - If, prior to this, Morgana was already selected, then one of the MINIONS is auto-selected.
+     *  - One of the LOYAL is auto-selected.
+     */
     private void addPercivalSelectionRules()
     {
         if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
