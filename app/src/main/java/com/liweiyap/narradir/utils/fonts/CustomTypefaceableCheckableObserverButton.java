@@ -2,12 +2,10 @@ package com.liweiyap.narradir.utils.fonts;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.utils.Checkable;
@@ -25,14 +23,14 @@ public class CustomTypefaceableCheckableObserverButton
     public CustomTypefaceableCheckableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs)
     {
         super(context, attrs);
-        setDrawables(context, attrs);
+        setDrawableIds(context, attrs);
         init();
     }
 
     public CustomTypefaceableCheckableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
-        setDrawables(context, attrs);
+        setDrawableIds(context, attrs);
         init();
     }
 
@@ -59,7 +57,7 @@ public class CustomTypefaceableCheckableObserverButton
     }
 
     @Override
-    public void setDrawables(final Context context, final AttributeSet attrs)
+    public void setDrawableIds(final Context context, final AttributeSet attrs)
     {
         if (attrs == null)
         {

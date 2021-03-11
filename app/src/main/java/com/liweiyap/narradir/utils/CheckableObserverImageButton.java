@@ -2,16 +2,12 @@ package com.liweiyap.narradir.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.liweiyap.narradir.R;
-
-import java.net.IDN;
 
 public class CheckableObserverImageButton
     extends ObserverImageButton
@@ -26,14 +22,14 @@ public class CheckableObserverImageButton
     public CheckableObserverImageButton(@NonNull Context context, @Nullable AttributeSet attrs)
     {
         super(context, attrs);
-        setDrawables(context, attrs);
+        setDrawableIds(context, attrs);
         init();
     }
 
     public CheckableObserverImageButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
-        setDrawables(context, attrs);
+        setDrawableIds(context, attrs);
         init();
     }
 
@@ -46,7 +42,7 @@ public class CheckableObserverImageButton
     }
 
     @Override
-    public void setDrawables(final Context context, final AttributeSet attrs)
+    public void setDrawableIds(final Context context, final AttributeSet attrs)
     {
         if (attrs == null)
         {
