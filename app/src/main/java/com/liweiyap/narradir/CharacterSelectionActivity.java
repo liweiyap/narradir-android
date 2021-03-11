@@ -2,7 +2,6 @@ package com.liweiyap.narradir;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -294,9 +293,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.LOYAL5].toggle();
         });
 
-        mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.ASSASSIN].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnClickObserver(this::addMerlinSelectionRules);
 
         mCharacterImageButtonArray[CharacterName.MORGANA].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.MORGANA].toggle();
