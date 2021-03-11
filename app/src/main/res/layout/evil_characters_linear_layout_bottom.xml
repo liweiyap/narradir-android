@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:com.liweiyap.narradir="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/evilCharactersLinearLayoutBottom"
+    android:weightSum="4" >
+
+    <com.liweiyap.narradir.utils.CheckableObserverImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/minion0Button"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_marginTop="5dp"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/minion0_checked"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/minion0_unchecked"
+        com.liweiyap.narradir:defaultCheckedState="true" />
+
+</LinearLayout>

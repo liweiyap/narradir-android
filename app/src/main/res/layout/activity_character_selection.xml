@@ -46,6 +46,12 @@
         android:layout_height="0dp"
         android:layout_weight="1.5" />
 
+    <include
+        layout="@layout/evil_characters_linear_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5" />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
