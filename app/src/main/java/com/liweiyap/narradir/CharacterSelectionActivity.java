@@ -124,6 +124,8 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                         tmp.uncheck();
                     }
                 }
+
+                mCurrentPlayerTotal = i + playerNumberSelectionLayout.getChildCount() - 1;
             });
         }
     }
@@ -265,9 +267,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     {
         mCharacterImageButtonArray[CharacterName.MERLIN].addOnClickObserver(this::addMerlinSelectionRules);
 
-        mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.PERCIVAL].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(this::addPercivalSelectionRules);
 
         mCharacterImageButtonArray[CharacterName.LOYAL0].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.LOYAL0].toggle();
@@ -337,80 +337,163 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         {
             mCharacterImageButtonArray[CharacterName.MERLIN].uncheck();
             mCharacterImageButtonArray[CharacterName.ASSASSIN].uncheck();
-
-            // Find the first LOYAL who is VISIBLE and not checked. Then, check him/her.
-            int currIdx = CharacterName.LOYAL0;
-            int endIdx = CharacterName.LOYAL5;
-            while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
-            {
-                if (!mCharacterImageButtonArray[currIdx].isChecked())
-                {
-                    mCharacterImageButtonArray[currIdx].check();
-                    break;
-                }
-
-                ++currIdx;
-            }
-
-            // Find the first MINION who is VISIBLE and not checked. Then, check him/her.
-            currIdx = CharacterName.MINION0;
-            endIdx = CharacterName.MINION3;
-            while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
-            {
-                if (!mCharacterImageButtonArray[currIdx].isChecked())
-                {
-                    mCharacterImageButtonArray[currIdx].check();
-                    break;
-                }
-
-                ++currIdx;
-            }
+            checkNewLoyal();
+            checkNewMinion();
         }
         else
         {
             mCharacterImageButtonArray[CharacterName.MERLIN].check();
             mCharacterImageButtonArray[CharacterName.ASSASSIN].check();
+            uncheckOldLoyal();
+            uncheckOldMinion();
+        }
 
-            // Find the last LOYAL who is VISIBLE and checked. Then, uncheck him/her
-            int currIdx = CharacterName.LOYAL5;
-            int endIdx = CharacterName.LOYAL0;
-            while (currIdx >= endIdx)
+        if (!verifyCurrentPlayerTotal())
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addMerlinSelectionRules(): " +
+                    "wrong player total");
+        }
+    }
+
+    private void addPercivalSelectionRules()
+    {
+        if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+        {
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].uncheck();
+            checkNewLoyal();
+
+            if (mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
             {
-                if (mCharacterImageButtonArray[currIdx].getVisibility() == View.INVISIBLE)
-                {
-                    --currIdx;
-                    continue;
-                }
+                checkNewMinion();
+            }
+            mCharacterImageButtonArray[CharacterName.MORGANA].uncheck();
+        }
+        else
+        {
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].check();
+            uncheckOldLoyal();
 
-                if (mCharacterImageButtonArray[currIdx].isChecked())
-                {
-                    mCharacterImageButtonArray[currIdx].uncheck();
-                    break;
-                }
-
-                --currIdx;
+            if (!mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+            {
+                mCharacterImageButtonArray[CharacterName.MERLIN].performClick();
             }
 
-            // Find the last MINION who is VISIBLE and checked. Then, uncheck him/her.
-            currIdx = CharacterName.MINION3;
-            endIdx = CharacterName.MINION0;
-            while (currIdx >= endIdx)
+            if (!mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
             {
-                if (mCharacterImageButtonArray[currIdx].getVisibility() == View.INVISIBLE)
-                {
-                    --currIdx;
-                    continue;
-                }
+                uncheckOldMinion();
+            }
+            mCharacterImageButtonArray[CharacterName.MORGANA].check();
+        }
 
-                if (mCharacterImageButtonArray[currIdx].isChecked())
-                {
-                    mCharacterImageButtonArray[currIdx].uncheck();
-                    break;
-                }
+        if (!verifyCurrentPlayerTotal())
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addPercivalSelectionRules(): " +
+                    "wrong player total");
+        }
+    }
 
+    /**
+     * Find the first LOYAL who is VISIBLE and not checked. Then, check him/her.
+     */
+    private void checkNewLoyal()
+    {
+        searchAndCheckNewCharacter(CharacterName.LOYAL0, CharacterName.LOYAL5);
+    }
+
+    /**
+     * Find the first MINION who is VISIBLE and not checked. Then, check him/her.
+     */
+    private void checkNewMinion()
+    {
+        searchAndCheckNewCharacter(CharacterName.MINION0, CharacterName.MINION3);
+    }
+
+    /**
+     * Find the first character between startIdx and endIdx who is VISIBLE and not checked. Then, check him/her.
+     */
+    private void searchAndCheckNewCharacter(final int startIdx, final int endIdx)
+    {
+        if (startIdx > endIdx)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::searchAndCheckNewCharacter(): " +
+                    "startIdx must be <= endIdx");
+        }
+
+        int currIdx = startIdx;
+        while (currIdx <= endIdx && mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE)
+        {
+            if (!mCharacterImageButtonArray[currIdx].isChecked())
+            {
+                mCharacterImageButtonArray[currIdx].check();
+                break;
+            }
+
+            ++currIdx;
+        }
+    }
+
+    /**
+     * Find the last LOYAL who is VISIBLE and checked. Then, uncheck him/her.
+     */
+    private void uncheckOldLoyal()
+    {
+        searchAndUncheckOldCharacter(CharacterName.LOYAL5, CharacterName.LOYAL0);
+    }
+
+    /**
+     * Find the last MINION who is VISIBLE and checked. Then, uncheck him/her.
+     */
+    private void uncheckOldMinion()
+    {
+        searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MINION0);
+    }
+
+    /**
+     * Find the last character between startIdx and endIdx who is VISIBLE and checked. Then, uncheck him/her.
+     */
+    private void searchAndUncheckOldCharacter(final int startIdx, final int endIdx)
+    {
+        if (startIdx < endIdx)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::searchAndUncheckOldCharacter(): " +
+                "startIdx must be >= endIdx");
+        }
+
+        int currIdx = startIdx;
+        while (currIdx >= endIdx)
+        {
+            if (mCharacterImageButtonArray[currIdx].getVisibility() == View.INVISIBLE)
+            {
                 --currIdx;
+                continue;
+            }
+
+            if (mCharacterImageButtonArray[currIdx].isChecked())
+            {
+                mCharacterImageButtonArray[currIdx].uncheck();
+                break;
+            }
+
+            --currIdx;
+        }
+    }
+
+    private boolean verifyCurrentPlayerTotal()
+    {
+        int test = 0;
+        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
+        {
+            if (characterImageButton.isChecked())
+            {
+                ++test;
             }
         }
+
+        return test == mCurrentPlayerTotal;
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
@@ -418,4 +501,5 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private int mGeneralMediaPlayerCurrentLength;
 
     private CheckableObserverImageButton[] mCharacterImageButtonArray;
+    private int mCurrentPlayerTotal = 5;
 }
