@@ -125,7 +125,33 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                     }
                 }
 
-                mCurrentPlayerTotal = i + playerNumberSelectionLayout.getChildCount() - 1;
+                switch (i)
+                {
+                    case 5:
+                        mCurrentGoodTotal = 3;
+                        mCurrentEvilTotal = 2;
+                        break;
+                    case 6:
+                        mCurrentGoodTotal = 4;
+                        mCurrentEvilTotal = 2;
+                        break;
+                    case 7:
+                        mCurrentGoodTotal = 4;
+                        mCurrentEvilTotal = 3;
+                        break;
+                    case 8:
+                        mCurrentGoodTotal = 5;
+                        mCurrentEvilTotal = 3;
+                        break;
+                    case 9:
+                        mCurrentGoodTotal = 6;
+                        mCurrentEvilTotal = 3;
+                        break;
+                    case 10:
+                        mCurrentGoodTotal = 6;
+                        mCurrentEvilTotal = 4;
+                        break;
+                }
             });
         }
     }
@@ -348,11 +374,18 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             uncheckOldMinion();
         }
 
-        if (!verifyCurrentPlayerTotal())
+        if (!verifyCurrentGoodTotal())
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addMerlinSelectionRules(): " +
-                    "wrong player total");
+                    "wrong good player total");
+        }
+
+        if (!verifyCurrentEvilTotal())
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addMerlinSelectionRules(): " +
+                    "wrong evil player total");
         }
     }
 
@@ -386,11 +419,18 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.MORGANA].check();
         }
 
-        if (!verifyCurrentPlayerTotal())
+        if (!verifyCurrentGoodTotal())
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addPercivalSelectionRules(): " +
-                    "wrong player total");
+                    "wrong good player total");
+        }
+
+        if (!verifyCurrentEvilTotal())
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addPercivalSelectionRules(): " +
+                    "wrong evil player total");
         }
     }
 
@@ -482,18 +522,32 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private boolean verifyCurrentPlayerTotal()
+    private boolean verifyCurrentGoodTotal()
     {
-        int test = 0;
-        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
+        int testGoodTotal = 0;
+        for (int idx = CharacterName.MERLIN; idx <= CharacterName.LOYAL5; ++idx)
         {
-            if (characterImageButton.isChecked())
+            if (mCharacterImageButtonArray[idx].isChecked())
             {
-                ++test;
+                ++testGoodTotal;
             }
         }
 
-        return test == mCurrentPlayerTotal;
+        return testGoodTotal == mCurrentGoodTotal;
+    }
+
+    private boolean verifyCurrentEvilTotal()
+    {
+        int testEvilTotal = 0;
+        for (int idx = CharacterName.ASSASSIN; idx <= CharacterName.MINION3; ++idx)
+        {
+            if (mCharacterImageButtonArray[idx].isChecked())
+            {
+                ++testEvilTotal;
+            }
+        }
+
+        return testEvilTotal == mCurrentEvilTotal;
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
@@ -501,5 +555,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private int mGeneralMediaPlayerCurrentLength;
 
     private CheckableObserverImageButton[] mCharacterImageButtonArray;
-    private int mCurrentPlayerTotal = 5;
+    private int mCurrentGoodTotal = 3;
+    private int mCurrentEvilTotal = 2;
 }
