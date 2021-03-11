@@ -2,6 +2,7 @@ package com.liweiyap.narradir;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
@@ -17,17 +18,18 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection);
 
+        initialiseCharacterImageButtonArray();
+
         // ------------------------------------------------------------
         // player number selection layout
         // ------------------------------------------------------------
 
         addSingleTargetSelectionToPlayerNumberSelectionLayout();
+        adaptAvailableCharactersAccordingToPlayerNumber();
 
         // ------------------------------------------------------------
         // character selection layouts
         // ------------------------------------------------------------
-
-        initialiseCharacterImageButtonArray();
 
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
         mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
@@ -84,6 +86,105 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
+    private void initialiseCharacterImageButtonArray()
+    {
+        mCharacterImageButtonArray = new CheckableObserverImageButton[CharacterName.getNumberOfCharacters()];
+        mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
+        mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
+        mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL1] = findViewById(R.id.loyal1Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL2] = findViewById(R.id.loyal2Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL3] = findViewById(R.id.loyal3Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL4] = findViewById(R.id.loyal4Button);
+        mCharacterImageButtonArray[CharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
+        mCharacterImageButtonArray[CharacterName.ASSASSIN] = findViewById(R.id.assassinButton);
+        mCharacterImageButtonArray[CharacterName.MORGANA] = findViewById(R.id.morganaButton);
+        mCharacterImageButtonArray[CharacterName.MORDRED] = findViewById(R.id.mordredButton);
+        mCharacterImageButtonArray[CharacterName.OBERON] = findViewById(R.id.oberonButton);
+        mCharacterImageButtonArray[CharacterName.MINION0] = findViewById(R.id.minion0Button);
+        mCharacterImageButtonArray[CharacterName.MINION1] = findViewById(R.id.minion1Button);
+        mCharacterImageButtonArray[CharacterName.MINION2] = findViewById(R.id.minion2Button);
+    }
+
+    private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
+    {
+        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
+        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
+        {
+            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
+            int i = childIdx;
+            btn.addOnClickObserver(() -> {
+                btn.check();
+                for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
+                {
+                    if (i != j)
+                    {
+                        CustomTypefaceableCheckableObserverButton tmp = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(j);
+                        tmp.uncheck();
+                    }
+                }
+            });
+        }
+    }
+
+    private void adaptAvailableCharactersAccordingToPlayerNumber()
+    {
+        CustomTypefaceableCheckableObserverButton p5Button = findViewById(R.id.p5Button);
+        CustomTypefaceableCheckableObserverButton p6Button = findViewById(R.id.p6Button);
+        CustomTypefaceableCheckableObserverButton p7Button = findViewById(R.id.p7Button);
+        CustomTypefaceableCheckableObserverButton p8Button = findViewById(R.id.p8Button);
+        CustomTypefaceableCheckableObserverButton p9Button = findViewById(R.id.p9Button);
+        CustomTypefaceableCheckableObserverButton p10Button = findViewById(R.id.p10Button);
+
+        p5Button.addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+        });
+
+        p6Button.addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+        });
+
+        p7Button.addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+        });
+
+        p8Button.addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+        });
+
+        p9Button.addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
+        });
+
+        p10Button.addOnClickObserver(() -> {
+            mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION1].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
+        });
+    }
+
     private void addSoundToPlayOnButtonClick()
     {
         LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
@@ -112,47 +213,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                 mClickSoundMediaPlayer.start();
             }
         });
-    }
-
-    private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
-    {
-        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
-        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
-        {
-            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
-            int i = childIdx;
-            btn.addOnClickObserver(() -> {
-                btn.check();
-                for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
-                {
-                    if (i != j)
-                    {
-                        CustomTypefaceableCheckableObserverButton tmp = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(j);
-                        tmp.uncheck();
-                    }
-                }
-            });
-        }
-    }
-
-    private void initialiseCharacterImageButtonArray()
-    {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[CharacterName.getNumberOfCharacters()];
-        mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
-        mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
-        mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL1] = findViewById(R.id.loyal1Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL2] = findViewById(R.id.loyal2Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL3] = findViewById(R.id.loyal3Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL4] = findViewById(R.id.loyal4Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
-        mCharacterImageButtonArray[CharacterName.ASSASSIN] = findViewById(R.id.assassinButton);
-        mCharacterImageButtonArray[CharacterName.MORGANA] = findViewById(R.id.morganaButton);
-        mCharacterImageButtonArray[CharacterName.MORDRED] = findViewById(R.id.mordredButton);
-        mCharacterImageButtonArray[CharacterName.OBERON] = findViewById(R.id.oberonButton);
-        mCharacterImageButtonArray[CharacterName.MINION0] = findViewById(R.id.minion0Button);
-        mCharacterImageButtonArray[CharacterName.MINION1] = findViewById(R.id.minion1Button);
-        mCharacterImageButtonArray[CharacterName.MINION2] = findViewById(R.id.minion2Button);
     }
 
     private void addCharacterDescriptions()
