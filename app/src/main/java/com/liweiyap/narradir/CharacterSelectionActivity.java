@@ -325,8 +325,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     }
 
     /**
-     * If Merlin is selected, then Assassin is auto-selected, one of the LOYAL is auto-unselected, and one of the MINIONS is auto-unselected.
-     * If Merlin is unselected, then Assassin is auto-unselected, one of the LOYAL is auto-selected, and one of the MINIONS is auto-selected.
+     * If Merlin is selected, then Assassin is auto-selected, and vice versa.
+     * In addition, one of the LOYAL is auto-unselected, and one of the MINIONS is auto-unselected.
+     *
+     * If Merlin is unselected, then Assassin is auto-unselected, and vice versa.
+     * In addition, one of the LOYAL is auto-selected, and one of the MINIONS is auto-selected.
      */
     private void addMerlinSelectionRules()
     {
