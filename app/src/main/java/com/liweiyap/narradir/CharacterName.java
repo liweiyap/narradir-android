@@ -20,9 +20,10 @@ public class CharacterName
     static final int MINION0 = 12;
     static final int MINION1 = 13;
     static final int MINION2 = 14;
+    static final int MINION3 = 15;
 
     static int getNumberOfCharacters()
     {
-        return 15;
+        return 16;
     }
 }
