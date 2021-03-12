@@ -309,25 +309,15 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.MORDRED].addOnClickObserver(this::addMordredSelectionRules);
 
-        mCharacterImageButtonArray[CharacterName.OBERON].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.OBERON].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.OBERON].addOnClickObserver(() -> addGeneralEvilSelectionRules(CharacterName.OBERON));
 
-        mCharacterImageButtonArray[CharacterName.MINION0].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.MINION0].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.MINION0].addOnClickObserver(() -> addGeneralEvilSelectionRules(CharacterName.MINION0));
 
-        mCharacterImageButtonArray[CharacterName.MINION1].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.MINION1].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.MINION1].addOnClickObserver(() -> addGeneralEvilSelectionRules(CharacterName.MINION1));
 
-        mCharacterImageButtonArray[CharacterName.MINION2].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.MINION2].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.MINION2].addOnClickObserver(() -> addGeneralEvilSelectionRules(CharacterName.MINION2));
 
-        mCharacterImageButtonArray[CharacterName.MINION3].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.MINION3].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.MINION3].addOnClickObserver(() -> addGeneralEvilSelectionRules(CharacterName.MINION3));
     }
 
     /**
@@ -580,6 +570,45 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             {
                 mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
             }
+        }
+
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                    "expected good player total is " + actualGoodTotal +
+                    " but actual good player total is " + mExpectedGoodTotal);
+        }
+
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                    "expected evil player total is " + actualEvilTotal +
+                    " but actual evil player total is " + mExpectedEvilTotal);
+        }
+    }
+
+    private void addGeneralEvilSelectionRules(int idx)
+    {
+        if (idx < CharacterName.OBERON)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
+                    "Invalid index");
+        }
+
+        if (mCharacterImageButtonArray[idx].isChecked())
+        {
+            mCharacterImageButtonArray[idx].uncheck();
+            searchAndCheckNewCharacter(CharacterName.MINION0, CharacterName.MINION3);
+        }
+        else
+        {
+            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORGANA);
+            mCharacterImageButtonArray[idx].check();
         }
 
         int actualGoodTotal = getActualGoodTotal();
