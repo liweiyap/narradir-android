@@ -128,28 +128,28 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                 switch (i)
                 {
                     case 5:
-                        mCurrentGoodTotal = 3;
-                        mCurrentEvilTotal = 2;
+                        mExpectedGoodTotal = 3;
+                        mExpectedEvilTotal = 2;
                         break;
                     case 6:
-                        mCurrentGoodTotal = 4;
-                        mCurrentEvilTotal = 2;
+                        mExpectedGoodTotal = 4;
+                        mExpectedEvilTotal = 2;
                         break;
                     case 7:
-                        mCurrentGoodTotal = 4;
-                        mCurrentEvilTotal = 3;
+                        mExpectedGoodTotal = 4;
+                        mExpectedEvilTotal = 3;
                         break;
                     case 8:
-                        mCurrentGoodTotal = 5;
-                        mCurrentEvilTotal = 3;
+                        mExpectedGoodTotal = 5;
+                        mExpectedEvilTotal = 3;
                         break;
                     case 9:
-                        mCurrentGoodTotal = 6;
-                        mCurrentEvilTotal = 3;
+                        mExpectedGoodTotal = 6;
+                        mExpectedEvilTotal = 3;
                         break;
                     case 10:
-                        mCurrentGoodTotal = 6;
-                        mCurrentEvilTotal = 4;
+                        mExpectedGoodTotal = 6;
+                        mExpectedEvilTotal = 4;
                         break;
                 }
             });
@@ -321,9 +321,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnClickObserver(this::addMerlinSelectionRules);
 
-        mCharacterImageButtonArray[CharacterName.MORGANA].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.MORGANA].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.MORGANA].addOnClickObserver(this::addMorganaSelectionRules);
 
         mCharacterImageButtonArray[CharacterName.MORDRED].addOnClickObserver(() -> {
             mCharacterImageButtonArray[CharacterName.MORDRED].toggle();
@@ -356,6 +354,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      *
      * If Merlin is unselected, then Assassin is auto-unselected, and vice versa.
      * In addition, one of the LOYAL is auto-selected, and one of the MINIONS is auto-selected.
+     * If Percival, Morgana, or Mordred are already selected, they should be replaced by MINIONS.
      */
     private void addMerlinSelectionRules()
     {
@@ -365,6 +364,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.ASSASSIN].uncheck();
             checkNewLoyal();
             checkNewMinion();
+
+            if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            {
+                mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+            }
         }
         else
         {
@@ -374,18 +378,22 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             uncheckOldMinion();
         }
 
-        if (!verifyCurrentGoodTotal())
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addMerlinSelectionRules(): " +
-                    "wrong good player total");
+                    "expected good player total is " + actualGoodTotal +
+                    " but actual good player total is " + mExpectedGoodTotal);
         }
 
-        if (!verifyCurrentEvilTotal())
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addMerlinSelectionRules(): " +
-                    "wrong evil player total");
+                    "expected evil player total is " + actualEvilTotal +
+                    " but actual evil player total is " + mExpectedEvilTotal);
         }
     }
 
@@ -393,7 +401,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      * If Percival is selected:
      *  - If Merlin is not already selected, then Merlin is auto-selected.
      *  - Morgana is auto-selected.
-     *     - If, prior to this, Morgana was not already selected, then one of the MINIONS is auto-unselected.
+     *     - If, prior to this, Morgana was not already selected, then one of the Evil players is auto-unselected.
      *  - One of the LOYAL is auto-unselected.
      *
      * If Percival is unselected:
@@ -426,23 +434,89 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
             if (!mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
             {
-                uncheckOldMinion();
+                searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORDRED);
             }
             mCharacterImageButtonArray[CharacterName.MORGANA].check();
         }
 
-        if (!verifyCurrentGoodTotal())
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addPercivalSelectionRules(): " +
-                    "wrong good player total");
+                    "expected good player total is " + actualGoodTotal +
+                    " but actual good player total is " + mExpectedGoodTotal);
         }
 
-        if (!verifyCurrentEvilTotal())
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addPercivalSelectionRules(): " +
-                    "wrong evil player total");
+                    "expected evil player total is " + actualEvilTotal +
+                    " but actual evil player total is " + mExpectedEvilTotal);
+        }
+    }
+
+    /**
+     * TRIANGLE amongst Percival, Morgana, and Mordred:
+     * You can have Percival without Morgana but you cannot have Morgana without Percival.
+     * You can have Percival without Mordred and you can also have Mordred without Percival.
+     * 
+     * If Morgana is selected:
+     *  - If Percival is not already selected, then Percival is auto-selected and one of the LOYAL is auto-unselected.
+     *  - One of the Evil players is auto-unselected.
+     * If Morgana is unselected:
+     *  - If Percival is not already selected, throw error.
+     *  - Mordred is auto-selected.
+     *     - If, prior to this, Mordred was already selected, then one of the Spies is auto-selected.
+     */
+    private void addMorganaSelectionRules()
+    {
+        if (mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
+        {
+            if (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            {
+                throw new RuntimeException(
+                    "CharacterSelectionActivity::addMorganaSelectionRules(): " +
+                        "Morgana was active in the absence of Percival");
+            }
+
+            mCharacterImageButtonArray[CharacterName.MORGANA].uncheck();
+
+            if (mCharacterImageButtonArray[CharacterName.MORDRED].isChecked())
+            {
+                checkNewMinion();
+            }
+            mCharacterImageButtonArray[CharacterName.MORDRED].check();
+        }
+        else
+        {
+            mCharacterImageButtonArray[CharacterName.MORGANA].check();
+            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORDRED);
+
+            if (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            {
+                mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+            }
+        }
+
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addMorganaSelectionRules(): " +
+                    "expected good player total is " + actualGoodTotal +
+                    " but actual good player total is " + mExpectedGoodTotal);
+        }
+
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addMorganaSelectionRules(): " +
+                    "expected evil player total is " + actualEvilTotal +
+                    " but actual evil player total is " + mExpectedEvilTotal);
         }
     }
 
@@ -534,32 +608,32 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private boolean verifyCurrentGoodTotal()
+    private int getActualGoodTotal()
     {
-        int testGoodTotal = 0;
+        int actualGoodTotal = 0;
         for (int idx = CharacterName.MERLIN; idx <= CharacterName.LOYAL5; ++idx)
         {
             if (mCharacterImageButtonArray[idx].isChecked())
             {
-                ++testGoodTotal;
+                ++actualGoodTotal;
             }
         }
 
-        return testGoodTotal == mCurrentGoodTotal;
+        return actualGoodTotal;
     }
 
-    private boolean verifyCurrentEvilTotal()
+    private int getActualEvilTotal()
     {
-        int testEvilTotal = 0;
+        int actualEvilTotal = 0;
         for (int idx = CharacterName.ASSASSIN; idx <= CharacterName.MINION3; ++idx)
         {
             if (mCharacterImageButtonArray[idx].isChecked())
             {
-                ++testEvilTotal;
+                ++actualEvilTotal;
             }
         }
 
-        return testEvilTotal == mCurrentEvilTotal;
+        return actualEvilTotal;
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
@@ -567,6 +641,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private int mGeneralMediaPlayerCurrentLength;
 
     private CheckableObserverImageButton[] mCharacterImageButtonArray;
-    private int mCurrentGoodTotal = 3;
-    private int mCurrentEvilTotal = 2;
+    private int mExpectedGoodTotal = 3;
+    private int mExpectedEvilTotal = 2;
 }
