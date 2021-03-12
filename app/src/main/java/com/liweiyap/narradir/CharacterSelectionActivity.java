@@ -279,29 +279,17 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(this::addPercivalSelectionRules);
 
-        mCharacterImageButtonArray[CharacterName.LOYAL0].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.LOYAL0].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.LOYAL0].addOnClickObserver(() -> addGeneralGoodSelectionRules(CharacterName.LOYAL0));
 
-        mCharacterImageButtonArray[CharacterName.LOYAL1].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.LOYAL1].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.LOYAL1].addOnClickObserver(() -> addGeneralGoodSelectionRules(CharacterName.LOYAL1));
 
-        mCharacterImageButtonArray[CharacterName.LOYAL2].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.LOYAL2].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.LOYAL2].addOnClickObserver(() -> addGeneralGoodSelectionRules(CharacterName.LOYAL2));
 
-        mCharacterImageButtonArray[CharacterName.LOYAL3].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.LOYAL3].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.LOYAL3].addOnClickObserver(() -> addGeneralGoodSelectionRules(CharacterName.LOYAL3));
 
-        mCharacterImageButtonArray[CharacterName.LOYAL4].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.LOYAL4].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.LOYAL4].addOnClickObserver(() -> addGeneralGoodSelectionRules(CharacterName.LOYAL4));
 
-        mCharacterImageButtonArray[CharacterName.LOYAL5].addOnClickObserver(() -> {
-            mCharacterImageButtonArray[CharacterName.LOYAL5].toggle();
-        });
+        mCharacterImageButtonArray[CharacterName.LOYAL5].addOnClickObserver(() -> addGeneralGoodSelectionRules(CharacterName.LOYAL5));
 
         mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnClickObserver(this::addMerlinSelectionRules);
 
@@ -591,13 +579,52 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private void addGeneralEvilSelectionRules(int idx)
+    private void addGeneralGoodSelectionRules(final int idx)
+    {
+        if ((idx <= CharacterName.PERCIVAL) || (idx >= CharacterName.ASSASSIN))
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addGeneralGoodSelectionRules(): " +
+                    "Invalid index " + idx);
+        }
+
+        if (mCharacterImageButtonArray[idx].isChecked())
+        {
+            mCharacterImageButtonArray[idx].uncheck();
+            checkNewLoyal();
+        }
+        else
+        {
+            uncheckOldLoyal();
+            mCharacterImageButtonArray[idx].check();
+        }
+
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addGeneralGoodSelectionRules(): " +
+                    "expected good player total is " + actualGoodTotal +
+                    " but actual good player total is " + mExpectedGoodTotal);
+        }
+
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::addGeneralGoodSelectionRules(): " +
+                    "expected evil player total is " + actualEvilTotal +
+                    " but actual evil player total is " + mExpectedEvilTotal);
+        }
+    }
+
+    private void addGeneralEvilSelectionRules(final int idx)
     {
         if (idx < CharacterName.OBERON)
         {
             throw new RuntimeException(
                 "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
-                    "Invalid index");
+                    "Invalid index " + idx);
         }
 
         if (mCharacterImageButtonArray[idx].isChecked())
@@ -615,7 +642,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
                     "expected good player total is " + actualGoodTotal +
                     " but actual good player total is " + mExpectedGoodTotal);
         }
@@ -624,7 +651,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
                     "expected evil player total is " + actualEvilTotal +
                     " but actual evil player total is " + mExpectedEvilTotal);
         }
