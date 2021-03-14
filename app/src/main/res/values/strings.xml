@@ -7,4 +7,5 @@
     <string name="p8_button_text">8P</string>
     <string name="p9_button_text">9P</string>
     <string name="p10_button_text">10P</string>
+    <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
 </resources>

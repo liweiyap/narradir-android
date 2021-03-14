@@ -298,20 +298,20 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (expectedGoodChange > 0)  // new > old (increase)
         {
 
-            searchAndCheckNewCharacter(CharacterName.LOYAL0, CharacterName.LOYAL5, expectedGoodChange);
+            searchAndCheckNewCharacters(CharacterName.LOYAL0, CharacterName.LOYAL5, expectedGoodChange);
         }
         else  // new < old (decrease)
         {
-            searchAndUncheckOldCharacter(CharacterName.LOYAL5, CharacterName.LOYAL0, -expectedGoodChange);
+            searchAndUncheckOldCharacters(CharacterName.LOYAL5, CharacterName.LOYAL0, -expectedGoodChange);
         }
 
         if (expectedEvilChange > 0)  // new > old (increase)
         {
-            searchAndCheckNewCharacter(CharacterName.MINION0, CharacterName.MINION3, expectedEvilChange);
+            searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, expectedEvilChange);
         }
         else  // new < old (decrease)
         {
-            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORGANA, -expectedEvilChange);
+            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORGANA, -expectedEvilChange);
         }
 
         // update old values to new values
@@ -476,7 +476,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
             mCharacterImageButtonArray[CharacterName.MERLIN].check();
             mCharacterImageButtonArray[CharacterName.ASSASSIN].check();
             uncheckOldLoyal();
-            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.OBERON, 1);
+            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.OBERON, 1);
         }
 
         int actualGoodTotal = getActualGoodTotal();
@@ -499,9 +499,14 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     }
 
     /**
+     * TRIANGLE amongst Percival, Morgana, and Mordred:
+     * You can have Percival without Morgana but you cannot have Morgana without Percival.
+     * For games of 5, add either Morgana or Mordred when playing with Percival.
+     * You can have Percival without Mordred and you can also have Mordred without Percival.
+     *
      * If Percival is selected:
      *  - If Merlin is not already selected, then Merlin is auto-selected.
-     *  - Morgana is auto-selected.
+     *  - In a 5-player game, Morgana is auto-selected.
      *     - If, prior to this, Morgana was not already selected, then one of the Evil players is auto-unselected.
      *  - One of the LOYAL is auto-unselected.
      *
@@ -533,11 +538,12 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
                 mCharacterImageButtonArray[CharacterName.MERLIN].performClick();
             }
 
-            if (!mCharacterImageButtonArray[CharacterName.MORDRED].isChecked())
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
+                 (!mCharacterImageButtonArray[CharacterName.MORDRED].isChecked()) )
             {
                 if (!mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
                 {
-                    searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORDRED, 1);
+                    searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORDRED, 1);
                 }
                 mCharacterImageButtonArray[CharacterName.MORGANA].check();
             }
@@ -607,7 +613,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         else
         {
             mCharacterImageButtonArray[CharacterName.MORGANA].check();
-            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORDRED, 1);
+            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORDRED, 1);
 
             if (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
             {
@@ -681,7 +687,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
         else
         {
-            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORGANA, 1);
+            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORGANA, 1);
             mCharacterImageButtonArray[CharacterName.MORDRED].check();
 
             if (!mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
@@ -717,7 +723,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addGeneralGoodSelectionRules()
     {
-        showNewToast("Loyal cannot be manually selected or unselected");
+        showNewToast("Loyal cannot be manually selected or unselected.");
     }
 
     private void addOberonSelectionRules()
@@ -725,11 +731,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (mCharacterImageButtonArray[CharacterName.OBERON].isChecked())
         {
             mCharacterImageButtonArray[CharacterName.OBERON].uncheck();
-            searchAndCheckNewCharacter(CharacterName.MINION0, CharacterName.MINION3, 1);
+            searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, 1);
         }
         else
         {
-            searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MORGANA, 1);
+            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORGANA, 1);
             mCharacterImageButtonArray[CharacterName.OBERON].check();
         }
 
@@ -762,7 +768,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      */
     private void checkNewLoyal()
     {
-        searchAndCheckNewCharacter(CharacterName.LOYAL0, CharacterName.LOYAL5, 1);
+        searchAndCheckNewCharacters(CharacterName.LOYAL0, CharacterName.LOYAL5, 1);
     }
 
     /**
@@ -770,14 +776,14 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      */
     private void checkNewMinion()
     {
-        searchAndCheckNewCharacter(CharacterName.MINION0, CharacterName.MINION3,1);
+        searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3,1);
     }
 
     /**
      * Find the first X characters between startIdx and endIdx who are VISIBLE and not checked. Then, check him/her.
      * Pre-condition: startIdx <= endIdx
      */
-    private void searchAndCheckNewCharacter(final int startIdx, final int endIdx, final int X)
+    private void searchAndCheckNewCharacters(final int startIdx, final int endIdx, final int X)
     {
         if (startIdx > endIdx)
         {
@@ -814,7 +820,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      */
     private void uncheckOldLoyal()
     {
-        searchAndUncheckOldCharacter(CharacterName.LOYAL5, CharacterName.LOYAL0, 1);
+        searchAndUncheckOldCharacters(CharacterName.LOYAL5, CharacterName.LOYAL0, 1);
     }
 
     /**
@@ -822,14 +828,14 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      */
     private void uncheckOldMinion()
     {
-        searchAndUncheckOldCharacter(CharacterName.MINION3, CharacterName.MINION0, 1);
+        searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MINION0, 1);
     }
 
     /**
      * Find the last X characters between startIdx and endIdx who are VISIBLE and checked. Then, uncheck him/her.
      * Pre-condition: startIdx >= endIdx
      */
-    private void searchAndUncheckOldCharacter(final int startIdx, final int endIdx, final int X)
+    private void searchAndUncheckOldCharacters(final int startIdx, final int endIdx, final int X)
     {
         if (startIdx < endIdx)
         {
