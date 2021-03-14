@@ -1,5 +1,6 @@
 package com.liweiyap.narradir;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 public class CharacterSelectionActivity extends FullScreenPortraitActivity
 {
@@ -50,6 +52,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         addSelectionRules();
         addCharacterDescriptions();
+
+        CustomTypefaceableObserverButton button = findViewById(R.id.mainLayoutPlayButton);
+        button.addOnClickObserver(() -> {
+            navigateToPlayIntroductionActivity(button);
+        });
     }
 
     @Override
@@ -776,7 +783,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      */
     private void checkNewMinion()
     {
-        searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3,1);
+        searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, 1);
     }
 
     /**
@@ -913,6 +920,12 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     public CheckableObserverImageButton[] getCharacterImageButtonArray()
     {
         return mCharacterImageButtonArray;
+    }
+
+    private void navigateToPlayIntroductionActivity(View view)
+    {
+        Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
+        view.getContext().startActivity(intent);
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
