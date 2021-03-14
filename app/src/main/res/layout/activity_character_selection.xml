@@ -38,7 +38,7 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.3" />
 
     <include
         layout="@layout/evil_characters_linear_layout_top"
@@ -52,9 +52,17 @@
         android:layout_height="0dp"
         android:layout_weight="1.5" />
 
-    <Space
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.7" >
+
+        <include
+            layout="@layout/game_hint_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
