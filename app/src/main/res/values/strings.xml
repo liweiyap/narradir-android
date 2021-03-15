@@ -9,4 +9,7 @@
     <string name="p10_button_text">10P</string>
     <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
     <string name="play_button_text">PLAY</string>
+    <string name="stop_button_text">STOP</string>
+    <string name="pause_button_text_state_active">PAUSE</string>
+    <string name="pause_button_text_state_inactive">RESUME</string>
 </resources>

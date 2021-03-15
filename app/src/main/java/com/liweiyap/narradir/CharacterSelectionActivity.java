@@ -369,6 +369,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORGANA]);
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORDRED]);
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.OBERON]);
+
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
+        addSoundToPlayOnButtonClick(playButton);
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener btn)
@@ -750,7 +753,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
+                "CharacterSelectionActivity::addOberonSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -759,7 +762,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
+                "CharacterSelectionActivity::addOberonSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }

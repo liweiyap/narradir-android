@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 public class PlayIntroductionActivity extends FullScreenPortraitActivity
 {
@@ -14,12 +15,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_introduction);
 
-        Button button = findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        CustomTypefaceableObserverButton stopButton = findViewById(R.id.playIntroLayoutStopButton);
+        stopButton.addOnClickObserver(this::finish);
     }
 }
