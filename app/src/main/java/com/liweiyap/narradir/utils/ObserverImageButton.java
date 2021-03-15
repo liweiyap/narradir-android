@@ -45,7 +45,7 @@ public class ObserverImageButton
     public boolean onLongClick(View view)
     {
         notifyOnLongClickObservers();
-        return true;  // https://stackoverflow.com/a/3756619/12367873
+        return true;  // https://stackoverflow.com/a/3756619/12367873; https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
     }
 
     @Override
