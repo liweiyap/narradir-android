@@ -15,6 +15,8 @@ import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
+import java.util.ArrayList;
+
 public class CharacterSelectionActivity extends FullScreenPortraitActivity
 {
     @Override
@@ -52,6 +54,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         addSelectionRules();
         addCharacterDescriptions();
+
+        // ------------------------------------------------------------
+        // navigation bar (of activity, not of phone)
+        // ------------------------------------------------------------
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
@@ -925,7 +931,34 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void navigateToPlayIntroductionActivity(View view)
     {
+        ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
+
+        introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.OBERON].isChecked() ?
+            R.raw.introsegment0withoberon :
+            R.raw.introsegment0nooberon);
+
+        introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORDRED].isChecked() ?
+            R.raw.introsegment1withmordred :
+            R.raw.introsegment1nomordred);
+
+        if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+        {
+            introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
+                R.raw.introsegment2withpercivalwithmorgana :
+                R.raw.introsegment2withpercivalnomorgana);
+
+            introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
+                R.raw.introsegment3withpercivalwithmorgana :
+                R.raw.introsegment3withpercivalnomorgana);
+        }
+        else
+        {
+            introSegmentArrayList.add(R.raw.introsegment2nopercival);
+        }
+
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
+        intent.putIntegerArrayListExtra("INTRO_SEGMENTS", introSegmentArrayList);
+        intent.putExtra("PAUSE_DURATION", pauseDurationInMilliSecs);
         view.getContext().startActivity(intent);
     }
 
@@ -938,4 +971,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private int mExpectedEvilTotal = 2;
 
     private Toast mToast;
+
+    private long pauseDurationInMilliSecs = 5000;
 }
