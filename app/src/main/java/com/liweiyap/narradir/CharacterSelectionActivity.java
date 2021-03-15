@@ -881,7 +881,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private int getActualGoodTotal()
+    public int getActualGoodTotal()
     {
         int actualGoodTotal = 0;
         for (int idx = CharacterName.MERLIN; idx <= CharacterName.LOYAL5; ++idx)
@@ -895,7 +895,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         return actualGoodTotal;
     }
 
-    private int getActualEvilTotal()
+    public int getActualEvilTotal()
     {
         int actualEvilTotal = 0;
         for (int idx = CharacterName.ASSASSIN; idx <= CharacterName.MINION3; ++idx)

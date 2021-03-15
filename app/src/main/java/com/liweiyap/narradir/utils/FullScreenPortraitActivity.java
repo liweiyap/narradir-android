@@ -1,16 +1,25 @@
 package com.liweiyap.narradir.utils;
 
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * https://stackoverflow.com/questions/31198923/preventing-android-navigation-and-action-bars-from-appearing-when-switching-acti
+ * https://stackoverflow.com/questions/34394916/why-navigation-bar-is-appearing-in-fullscreen-apps-when-clicked-on-popup-menu
+ */
 public class FullScreenPortraitActivity extends AppCompatActivity
 {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
@@ -20,6 +29,36 @@ public class FullScreenPortraitActivity extends AppCompatActivity
     {
         super.onResume();
         makeFullScreen();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        makeFullScreen();
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NotNull Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        makeFullScreen();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev)
+    {
+        makeFullScreen();
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus)
+    {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            makeFullScreen();
+        }
     }
 
     protected void makeFullScreen()
