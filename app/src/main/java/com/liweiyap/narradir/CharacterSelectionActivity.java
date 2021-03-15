@@ -53,10 +53,8 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         addSelectionRules();
         addCharacterDescriptions();
 
-        CustomTypefaceableObserverButton button = findViewById(R.id.mainLayoutPlayButton);
-        button.addOnClickObserver(() -> {
-            navigateToPlayIntroductionActivity(button);
-        });
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
+        playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
     }
 
     @Override
