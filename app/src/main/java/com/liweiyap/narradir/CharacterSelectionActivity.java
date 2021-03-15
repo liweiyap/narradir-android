@@ -1,5 +1,6 @@
 package com.liweiyap.narradir;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 public class CharacterSelectionActivity extends FullScreenPortraitActivity
 {
@@ -50,6 +52,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         addSelectionRules();
         addCharacterDescriptions();
+
+        CustomTypefaceableObserverButton button = findViewById(R.id.mainLayoutPlayButton);
+        button.addOnClickObserver(() -> {
+            navigateToPlayIntroductionActivity(button);
+        });
     }
 
     @Override
@@ -362,6 +369,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORGANA]);
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORDRED]);
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.OBERON]);
+
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
+        addSoundToPlayOnButtonClick(playButton);
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener btn)
@@ -743,7 +753,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
+                "CharacterSelectionActivity::addOberonSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -752,7 +762,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addGeneralEvilSelectionRules(): " +
+                "CharacterSelectionActivity::addOberonSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
@@ -776,7 +786,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      */
     private void checkNewMinion()
     {
-        searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3,1);
+        searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, 1);
     }
 
     /**
@@ -871,7 +881,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private int getActualGoodTotal()
+    public int getActualGoodTotal()
     {
         int actualGoodTotal = 0;
         for (int idx = CharacterName.MERLIN; idx <= CharacterName.LOYAL5; ++idx)
@@ -885,7 +895,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         return actualGoodTotal;
     }
 
-    private int getActualEvilTotal()
+    public int getActualEvilTotal()
     {
         int actualEvilTotal = 0;
         for (int idx = CharacterName.ASSASSIN; idx <= CharacterName.MINION3; ++idx)
@@ -913,6 +923,12 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     public CheckableObserverImageButton[] getCharacterImageButtonArray()
     {
         return mCharacterImageButtonArray;
+    }
+
+    private void navigateToPlayIntroductionActivity(View view)
+    {
+        Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
+        view.getContext().startActivity(intent);
     }
 
     private MediaPlayer mClickSoundMediaPlayer;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/playIntroLayout"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/bermudagrey_grunge_background"
+    android:weightSum="10"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".PlayIntroductionActivity">
+
+    <include
+        layout="@layout/game_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8" />
+
+    <include
+        layout="@layout/activity_play_introduction_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
