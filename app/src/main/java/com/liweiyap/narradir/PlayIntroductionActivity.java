@@ -6,6 +6,7 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
 
 import androidx.annotation.RawRes;
 
@@ -37,6 +38,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", mMinPauseDurationInMilliSecs);
 
+        mCurrentDisplayedCharacterImageView = findViewById(R.id.currentDisplayedCharacterImageView);
+
         // https://stackoverflow.com/a/23856215/12367873
         final Iterator<Integer> iter = introSegmentArrayList.iterator();
         mIntroMediaPlayer = iter.hasNext() ?
@@ -67,6 +70,10 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                     mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     afd.close();
                     mediaPlayer.prepare();
+
+                    // just for the sake of simplicity, we don't pass this to the Handler so that we
+                    // don't have to handle potential pause/resume events for the image
+                    switchCurrentDisplayedCharacterImage(resId);
 
                     mHandler.postDelayed(mediaPlayer::start, canPauseManuallyBeforeStarting(resId) ? mPauseDurationInMilliSecs : mMinPauseDurationInMilliSecs);
                 }
@@ -146,6 +153,30 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private void switchCurrentDisplayedCharacterImage(@RawRes final int resId)
+    {
+        switch (resId)
+        {
+            case R.raw.introsegment1nooberon:
+            case R.raw.introsegment1withoberon:
+                // TODO: Scan image of evil insignia
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.minion0_unchecked_unlabelled);
+                return;
+            case R.raw.introsegment3nomordred:
+            case R.raw.introsegment3withmordred:
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.merlin_unchecked_unlabelled);
+                return;
+            case R.raw.introsegment5withpercivalnomorgana:
+            case R.raw.introsegment5withpercivalwithmorgana:
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
+                return;
+            case R.raw.introsegment5nopercival:
+            case R.raw.introsegment7:
+                mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+        }
+    }
+
     private MediaPlayer mIntroMediaPlayer;
     private int mIntroMediaPlayerCurrentLength;
     private final Handler mHandler = new Handler();
@@ -154,4 +185,5 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     private boolean mWasPlaying = false;
     private final int mExpectedIntroSegmentTotalNoPercival = 6;
     private final int mExpectedIntroSegmentTotalWithPercival = 8;
+    private ImageView mCurrentDisplayedCharacterImageView;
 }

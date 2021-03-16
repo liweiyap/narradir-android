@@ -13,4 +13,5 @@
     <string name="stop_button_text">STOP</string>
     <string name="pause_button_text_state_active">PAUSE</string>
     <string name="pause_button_text_state_inactive">RESUME</string>
+    <string name="current_display_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
 </resources>
