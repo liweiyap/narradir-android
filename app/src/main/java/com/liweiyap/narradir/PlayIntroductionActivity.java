@@ -23,8 +23,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         Intent intent = getIntent();
         ArrayList<Integer> introSegmentArrayList = intent.getIntegerArrayListExtra("INTRO_SEGMENTS");
-        if ( (introSegmentArrayList.size() != 4) &&
-             !((introSegmentArrayList.size() == 3) && (introSegmentArrayList.get(2) == R.raw.introsegment2nopercival)) )
+        if ( (introSegmentArrayList.size() != mExpectedIntroSegmentTotalWithPercival) &&
+             !((introSegmentArrayList.size() == mExpectedIntroSegmentTotalNoPercival) && (introSegmentArrayList.get(5) == R.raw.introsegment5nopercival)) )
         {
             throw new RuntimeException(
                 "PlayIntroductionActivity::onCreate(): " +
@@ -131,4 +131,6 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     private final Handler mHandler = new Handler();
     private long mPauseDurationInMilliSecs = 5000;
     private boolean mWasPlaying = false;
+    private final int mExpectedIntroSegmentTotalNoPercival = 6;
+    private final int mExpectedIntroSegmentTotalWithPercival = 8;
 }
