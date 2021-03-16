@@ -25,7 +25,7 @@ curl -H "Authorization: Bearer $(~/google-cloud-sdk/bin/gcloud auth application-
   -H "Content-Type: application/json; charset=utf-8" \
   --data "{
     'input':{
-      'text':'$TEXT'
+      'ssml':'<speak>$TEXT</speak>'
     },
     'voice':{
       'languageCode':'$VOICE_LOCALE',
