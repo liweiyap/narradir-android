@@ -1,10 +1,13 @@
 package com.liweiyap.narradir;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
@@ -24,14 +27,15 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         Intent intent = getIntent();
         ArrayList<Integer> introSegmentArrayList = intent.getIntegerArrayListExtra("INTRO_SEGMENTS");
         if ( (introSegmentArrayList.size() != mExpectedIntroSegmentTotalWithPercival) &&
-             !((introSegmentArrayList.size() == mExpectedIntroSegmentTotalNoPercival) && (introSegmentArrayList.get(5) == R.raw.introsegment5nopercival)) )
+             !( (introSegmentArrayList.size() == mExpectedIntroSegmentTotalNoPercival) &&
+                (introSegmentArrayList.get(mExpectedIntroSegmentTotalNoPercival-1) == R.raw.introsegment5nopercival) ) )
         {
             throw new RuntimeException(
                 "PlayIntroductionActivity::onCreate(): " +
                     "Invalid input from intent");
         }
 
-        mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", 5000);
+        mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", mMinPauseDurationInMilliSecs);
 
         // https://stackoverflow.com/a/23856215/12367873
         final Iterator<Integer> iter = introSegmentArrayList.iterator();
@@ -54,7 +58,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                 try
                 {
                     // https://stackoverflow.com/a/20111291/12367873
-                    AssetFileDescriptor afd = PlayIntroductionActivity.this.getResources().openRawResourceFd(iter.next());
+                    final int resId = iter.next();
+                    AssetFileDescriptor afd = PlayIntroductionActivity.this.getResources().openRawResourceFd(resId);
                     if (afd == null)
                     {
                         return;
@@ -63,7 +68,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                     afd.close();
                     mediaPlayer.prepare();
 
-                    mHandler.postDelayed(mediaPlayer::start, mPauseDurationInMilliSecs);
+                    mHandler.postDelayed(mediaPlayer::start, canPauseManuallyBeforeStarting(resId) ? mPauseDurationInMilliSecs : mMinPauseDurationInMilliSecs);
                 }
                 catch (IOException e)
                 {
@@ -126,10 +131,26 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private boolean canPauseManuallyBeforeStarting(@RawRes final int resId)
+    {
+        switch (resId)
+        {
+            case R.raw.introsegment2:
+            case R.raw.introsegment4:
+            case R.raw.introsegment6withpercivalnomorgana:
+            case R.raw.introsegment6withpercivalwithmorgana:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     private MediaPlayer mIntroMediaPlayer;
     private int mIntroMediaPlayerCurrentLength;
     private final Handler mHandler = new Handler();
     private long mPauseDurationInMilliSecs = 5000;
+    private final long mMinPauseDurationInMilliSecs = 500;
     private boolean mWasPlaying = false;
     private final int mExpectedIntroSegmentTotalNoPercival = 6;
     private final int mExpectedIntroSegmentTotalWithPercival = 8;
