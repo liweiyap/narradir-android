@@ -15,3 +15,5 @@
 
 gcloud-**.json
 gcloud-**.txt
+
+/app/src/main/res/raw/background**.mp3
