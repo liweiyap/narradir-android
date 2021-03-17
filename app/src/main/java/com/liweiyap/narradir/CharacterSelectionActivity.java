@@ -933,32 +933,40 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     {
         ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
 
+        introSegmentArrayList.add(R.raw.introsegment0);
+
         introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.OBERON].isChecked() ?
-            R.raw.introsegment0withoberon :
-            R.raw.introsegment0nooberon);
+            R.raw.introsegment1withoberon :
+            R.raw.introsegment1nooberon);
+
+        introSegmentArrayList.add(R.raw.introsegment2);
 
         introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORDRED].isChecked() ?
-            R.raw.introsegment1withmordred :
-            R.raw.introsegment1nomordred);
+            R.raw.introsegment3withmordred :
+            R.raw.introsegment3nomordred);
+
+        introSegmentArrayList.add(R.raw.introsegment4);
 
         if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
         {
             introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
-                R.raw.introsegment2withpercivalwithmorgana :
-                R.raw.introsegment2withpercivalnomorgana);
+                R.raw.introsegment5withpercivalwithmorgana :
+                R.raw.introsegment5withpercivalnomorgana);
 
             introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
-                R.raw.introsegment3withpercivalwithmorgana :
-                R.raw.introsegment3withpercivalnomorgana);
+                R.raw.introsegment6withpercivalwithmorgana :
+                R.raw.introsegment6withpercivalnomorgana);
+
+            introSegmentArrayList.add(R.raw.introsegment7);
         }
         else
         {
-            introSegmentArrayList.add(R.raw.introsegment2nopercival);
+            introSegmentArrayList.add(R.raw.introsegment5nopercival);
         }
 
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
         intent.putIntegerArrayListExtra("INTRO_SEGMENTS", introSegmentArrayList);
-        intent.putExtra("PAUSE_DURATION", pauseDurationInMilliSecs);
+        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
         view.getContext().startActivity(intent);
     }
 
@@ -972,5 +980,5 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private Toast mToast;
 
-    private long pauseDurationInMilliSecs = 5000;
+    private long mPauseDurationInMilliSecs = 5000;
 }

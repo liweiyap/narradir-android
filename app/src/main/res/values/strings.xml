@@ -1,16 +1,35 @@
 <resources>
     <string name="app_name">narradir</string>
+
     <string name="game_title_avalon">AVALON</string>
+    <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
+
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
     <string name="p7_button_text">7P</string>
     <string name="p8_button_text">8P</string>
     <string name="p9_button_text">9P</string>
     <string name="p10_button_text">10P</string>
-    <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
+
     <string name="play_button_text">PLAY</string>
     <string name="play_button_text_alternate">Background</string>
     <string name="stop_button_text">STOP</string>
     <string name="pause_button_text_state_active">PAUSE</string>
     <string name="pause_button_text_state_inactive">RESUME</string>
+
+    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
+
+    <string name="introsegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
+    <string name="introsegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
+    <string name="introsegment1withoberon_text">AGENTS OF EVIL, except OBERON, wake up, and look for other agents of Evil.</string>
+    <string name="introsegment2_text">AGENTS OF EVIL, close your eyes.</string>
+    <string name="introsegment3nomordred_text">MERLIN, wake up. AGENTS OF EVIL, stick out your thumb, so that Merlin can see who you are.</string>
+    <string name="introsegment3withmordred_text">MERLIN, wake up. AGENTS OF EVIL, except MORDRED, stick out your thumb, so that Merlin can see who you are.</string>
+    <string name="introsegment4_text">AGENTS OF EVIL, put your thumbs away. MERLIN, close your eyes.</string>
+    <string name="introsegment5nopercival_text">EVERYONE, wake up.</string>
+    <string name="introsegment5withpercivalnomorgana_text">PERCIVAL, wake up. MERLIN, stick out your thumb, so that Percival can see who you are.</string>
+    <string name="introsegment5withpercivalwithmorgana_text">PERCIVAL, wake up. MERLIN and MORGANA, stick out your thumb, so that Percival can see who you are.</string>
+    <string name="introsegment6withpercivalnomorgana_text">MERLIN, put your thumb away. PERCIVAL, close your eyes.</string>
+    <string name="introsegment6withpercivalwithmorgana_text">MERLIN and MORGANA, put your thumbs away. PERCIVAL, close your eyes.</string>
+    <string name="introsegment7_text">EVERYONE, wake up.</string>
 </resources>

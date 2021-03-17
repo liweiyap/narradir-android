@@ -17,10 +17,18 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Space
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="8" />
+        android:layout_weight="3.5"
+        android:id="@+id/currentDisplayedCharacterImageView"
+        android:contentDescription="@string/current_displayed_character_contentdescription" />
+
+    <include
+        layout="@layout/current_displayed_introsegment_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4.5" />
 
     <include
         layout="@layout/activity_play_introduction_navbar"
