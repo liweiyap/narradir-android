@@ -6,6 +6,8 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.RawRes;
@@ -17,6 +19,8 @@ import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PlayIntroductionActivity extends FullScreenPortraitActivity
 {
@@ -29,14 +33,6 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         Intent intent = getIntent();
         ArrayList<Integer> introSegmentArrayList = intent.getIntegerArrayListExtra("INTRO_SEGMENTS");
-        if ( (introSegmentArrayList.size() != mExpectedIntroSegmentTotalWithPercival) &&
-             !( (introSegmentArrayList.size() == mExpectedIntroSegmentTotalNoPercival) &&
-                (introSegmentArrayList.get(mExpectedIntroSegmentTotalNoPercival-1) == R.raw.introsegment5nopercival) ) )
-        {
-            throw new RuntimeException(
-                "PlayIntroductionActivity::onCreate(): " +
-                    "Invalid input from intent");
-        }
 
         mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", mMinPauseDurationInMilliSecs);
 
@@ -48,6 +44,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         mIntroMediaPlayer = iter.hasNext() ?
             MediaPlayer.create(this, iter.next()) :
             null;
+        mBackgroundMediaPlayer = MediaPlayer.create(this, R.raw.backgroundsoftrock);
+        mBackgroundMediaPlayer.setLooping(true);
         if (mIntroMediaPlayer != null)
         {
             mIntroMediaPlayer.start();
@@ -131,6 +129,12 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                 }
             }
         }
+
+        if (mBackgroundMediaPlayer != null)
+        {
+            mBackgroundMediaPlayer.seekTo(mBackgroundMediaPlayerCurrentLength);
+            mBackgroundMediaPlayer.start();
+        }
     }
 
     @Override
@@ -151,6 +155,12 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                 mWasPlaying = false;
             }
         }
+
+        if (mBackgroundMediaPlayer != null)
+        {
+            mBackgroundMediaPlayer.pause();
+            mBackgroundMediaPlayerCurrentLength = mBackgroundMediaPlayer.getCurrentPosition();
+        }
     }
 
     @Override
@@ -162,6 +172,12 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         {
             mIntroMediaPlayer.release();
             mIntroMediaPlayer = null;
+        }
+
+        if (mBackgroundMediaPlayer != null)
+        {
+            mBackgroundMediaPlayer.release();
+            mBackgroundMediaPlayer = null;
         }
 
         mCurrentDisplayedCharacterImageView.setImageDrawable(null);
@@ -201,6 +217,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
             case R.raw.introsegment5withpercivalwithmorgana:
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
                 return;
+            case R.raw.introsegment3nomerlin:
             case R.raw.introsegment5nopercival:
             case R.raw.introsegment7:
                 mCurrentDisplayedCharacterImageView.setImageDrawable(null);
@@ -223,6 +240,9 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                 return;
             case R.raw.introsegment2:
                 mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment2_text);
+                return;
+            case R.raw.introsegment3nomerlin:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3nomerlin_text);
                 return;
             case R.raw.introsegment3nomordred:
                 mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3nomordred_text);
@@ -260,8 +280,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     private long mPauseDurationInMilliSecs = 5000;
     private final long mMinPauseDurationInMilliSecs = 500;
     private boolean mWasPlaying = false;
-    private final int mExpectedIntroSegmentTotalNoPercival = 6;
-    private final int mExpectedIntroSegmentTotalWithPercival = 8;
+    private MediaPlayer mBackgroundMediaPlayer;
+    private int mBackgroundMediaPlayerCurrentLength;
     private ImageView mCurrentDisplayedCharacterImageView;
     private CustomTypefaceableTextView mCurrentDisplayedIntroSegmentTextView;
 }

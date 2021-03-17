@@ -941,27 +941,34 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         introSegmentArrayList.add(R.raw.introsegment2);
 
-        introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORDRED].isChecked() ?
-            R.raw.introsegment3withmordred :
-            R.raw.introsegment3nomordred);
-
-        introSegmentArrayList.add(R.raw.introsegment4);
-
-        if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
         {
-            introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
-                R.raw.introsegment5withpercivalwithmorgana :
-                R.raw.introsegment5withpercivalnomorgana);
+            introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORDRED].isChecked() ?
+                R.raw.introsegment3withmordred :
+                R.raw.introsegment3nomordred);
 
-            introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
-                R.raw.introsegment6withpercivalwithmorgana :
-                R.raw.introsegment6withpercivalnomorgana);
+            introSegmentArrayList.add(R.raw.introsegment4);
 
-            introSegmentArrayList.add(R.raw.introsegment7);
+            if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            {
+                introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
+                    R.raw.introsegment5withpercivalwithmorgana :
+                    R.raw.introsegment5withpercivalnomorgana);
+
+                introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
+                    R.raw.introsegment6withpercivalwithmorgana :
+                    R.raw.introsegment6withpercivalnomorgana);
+
+                introSegmentArrayList.add(R.raw.introsegment7);
+            }
+            else
+            {
+                introSegmentArrayList.add(R.raw.introsegment5nopercival);
+            }
         }
         else
         {
-            introSegmentArrayList.add(R.raw.introsegment5nopercival);
+            introSegmentArrayList.add(R.raw.introsegment3nomerlin);
         }
 
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
