@@ -12,6 +12,7 @@ import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.Iterator;
 
 public class PlayIntroductionActivity extends FullScreenPortraitActivity
 {
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,6 +41,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", mMinPauseDurationInMilliSecs);
 
         mCurrentDisplayedCharacterImageView = findViewById(R.id.currentDisplayedCharacterImageView);
+        mCurrentDisplayedIntroSegmentTextView = findViewById(R.id.currentDisplayedIntroSegmentTextView);
 
         // https://stackoverflow.com/a/23856215/12367873
         final Iterator<Integer> iter = introSegmentArrayList.iterator();
@@ -48,6 +51,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         if (mIntroMediaPlayer != null)
         {
             mIntroMediaPlayer.start();
+            mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment0_text);
             mIntroMediaPlayer.setOnCompletionListener(mediaPlayer -> {
                 // https://medium.com/androiddevelopers/deep-dive-mediaplayer-best-practices-feb4d15a66f5
                 mediaPlayer.reset();
@@ -61,8 +65,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                 try
                 {
                     // https://stackoverflow.com/a/20111291/12367873
-                    final int resId = iter.next();
-                    AssetFileDescriptor afd = PlayIntroductionActivity.this.getResources().openRawResourceFd(resId);
+                    mLastResId = iter.next();
+                    AssetFileDescriptor afd = PlayIntroductionActivity.this.getResources().openRawResourceFd(mLastResId);
                     if (afd == null)
                     {
                         return;
@@ -71,11 +75,23 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                     afd.close();
                     mediaPlayer.prepare();
 
-                    // just for the sake of simplicity, we don't pass this to the Handler so that we
-                    // don't have to handle potential pause/resume events for the image
-                    switchCurrentDisplayedCharacterImage(resId);
+                    if (canPauseManuallyBeforeStarting(mLastResId))
+                    {
+                        if (mPauseDurationInMilliSecs != mMinPauseDurationInMilliSecs)
+                        {
+                            mCurrentDisplayedIntroSegmentTextView.setText("(PAUSE for " + mPauseDurationInMilliSecs/1000 + " seconds)");
+                        }
 
-                    mHandler.postDelayed(mediaPlayer::start, canPauseManuallyBeforeStarting(resId) ? mPauseDurationInMilliSecs : mMinPauseDurationInMilliSecs);
+                        mHandler.postDelayed(() -> switchCurrentDisplayedCharacterImage(mLastResId), mPauseDurationInMilliSecs);
+                        mHandler.postDelayed(() -> switchCurrentDisplayedIntroSegmentTextView(mLastResId), mPauseDurationInMilliSecs);
+                        mHandler.postDelayed(mediaPlayer::start, mPauseDurationInMilliSecs);
+                    }
+                    else
+                    {
+                        mHandler.postDelayed(() -> switchCurrentDisplayedCharacterImage(mLastResId), mMinPauseDurationInMilliSecs);
+                        mHandler.postDelayed(() -> switchCurrentDisplayedIntroSegmentTextView(mLastResId), mMinPauseDurationInMilliSecs);
+                        mHandler.postDelayed(mediaPlayer::start, mMinPauseDurationInMilliSecs);
+                    }
                 }
                 catch (IOException e)
                 {
@@ -101,7 +117,18 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
             }
             else
             {
-                mHandler.postDelayed(mIntroMediaPlayer::start, mPauseDurationInMilliSecs);
+                if (canPauseManuallyBeforeStarting(mLastResId))
+                {
+                    mHandler.postDelayed(() -> switchCurrentDisplayedCharacterImage(mLastResId), mPauseDurationInMilliSecs);
+                    mHandler.postDelayed(() -> switchCurrentDisplayedIntroSegmentTextView(mLastResId), mPauseDurationInMilliSecs);
+                    mHandler.postDelayed(mIntroMediaPlayer::start, mPauseDurationInMilliSecs);
+                }
+                else
+                {
+                    mHandler.postDelayed(() -> switchCurrentDisplayedCharacterImage(mLastResId), mMinPauseDurationInMilliSecs);
+                    mHandler.postDelayed(() -> switchCurrentDisplayedIntroSegmentTextView(mLastResId), mMinPauseDurationInMilliSecs);
+                    mHandler.postDelayed(mIntroMediaPlayer::start, mMinPauseDurationInMilliSecs);
+                }
             }
         }
     }
@@ -136,6 +163,9 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
             mIntroMediaPlayer.release();
             mIntroMediaPlayer = null;
         }
+
+        mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+        mCurrentDisplayedIntroSegmentTextView.setText("");
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -177,8 +207,55 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private void switchCurrentDisplayedIntroSegmentTextView(@RawRes final int resId)
+    {
+        switch (resId)
+        {
+            case R.raw.introsegment0:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment0_text);
+                return;
+            case R.raw.introsegment1nooberon:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment1nooberon_text);
+                return;
+            case R.raw.introsegment1withoberon:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment1withoberon_text);
+                return;
+            case R.raw.introsegment2:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment2_text);
+                return;
+            case R.raw.introsegment3nomordred:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3nomordred_text);
+                return;
+            case R.raw.introsegment3withmordred:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3withmordred_text);
+                return;
+            case R.raw.introsegment4:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment4_text);
+                return;
+            case R.raw.introsegment5nopercival:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment5nopercival_text);
+                return;
+            case R.raw.introsegment5withpercivalnomorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment5withpercivalnomorgana_text);
+                return;
+            case R.raw.introsegment5withpercivalwithmorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment5withpercivalwithmorgana_text);
+                return;
+            case R.raw.introsegment6withpercivalnomorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment6withpercivalnomorgana_text);
+                return;
+            case R.raw.introsegment6withpercivalwithmorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment6withpercivalwithmorgana_text);
+                return;
+            case R.raw.introsegment7:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment7_text);
+        }
+    }
+
     private MediaPlayer mIntroMediaPlayer;
     private int mIntroMediaPlayerCurrentLength;
+    private int mLastResId;
     private final Handler mHandler = new Handler();
     private long mPauseDurationInMilliSecs = 5000;
     private final long mMinPauseDurationInMilliSecs = 500;
@@ -186,4 +263,5 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     private final int mExpectedIntroSegmentTotalNoPercival = 6;
     private final int mExpectedIntroSegmentTotalWithPercival = 8;
     private ImageView mCurrentDisplayedCharacterImageView;
+    private CustomTypefaceableTextView mCurrentDisplayedIntroSegmentTextView;
 }
