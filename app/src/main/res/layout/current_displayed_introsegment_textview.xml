@@ -4,7 +4,7 @@
     style="@style/ArkhamRegTypefacedTextViewStyle"
     android:id="@+id/currentDisplayedIntroSegmentTextView"
     android:textSize="20sp"
-    android:textColor="@android:color/white"
+    android:textColor="@color/yellow"
     android:gravity="center"
     android:includeFontPadding="false"
     android:lineSpacingExtra="0dp" />
