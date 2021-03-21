@@ -308,7 +308,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         if (expectedGoodChange > 0)  // new > old (increase)
         {
-
             searchAndCheckNewCharacters(CharacterName.LOYAL0, CharacterName.LOYAL5, expectedGoodChange);
         }
         else  // new < old (decrease)

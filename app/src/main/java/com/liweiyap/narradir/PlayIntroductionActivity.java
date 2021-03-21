@@ -134,12 +134,13 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         // initialise SoundPool for background noise
         // ----------------------------------------------------------------------
 
-        mBackgroundSound = new SoundPool.Builder()
-            .setMaxStreams(1)
+        mGeneralSoundPool = new SoundPool.Builder()
+            .setMaxStreams(2)
             .build();
-        mBackgroundSoundId = mBackgroundSound.load(this, R.raw.backgroundcards, 1);
-        mBackgroundSound.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
-            if (status == 0)
+        mBackgroundSoundId = mGeneralSoundPool.load(this, R.raw.backgroundcards, 1);
+        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        mGeneralSoundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
+            if ((sampleId == mBackgroundSoundId) && (status == 0))
             {
                 mBackgroundStreamId = soundPool.play(sampleId, 1f, 1f, 1, -1, 1f);
             }
@@ -151,6 +152,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton pauseButton = findViewById(R.id.playIntroLayoutPauseButton);
         pauseButton.addOnClickObserver(() -> {
+            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
+
             if (mIsPlaying)
             {
                 mIsPlaying = false;
@@ -200,16 +203,16 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         if (mBackgroundStreamId != 0)
         {
-            mBackgroundSound.stop(mBackgroundStreamId);
+            mGeneralSoundPool.stop(mBackgroundStreamId);
         }
-        mBackgroundSound.release();
-        mBackgroundSound = null;
+        mGeneralSoundPool.release();
+        mGeneralSoundPool = null;
     }
 
     private void play()
     {
         mIntroSegmentPlayer.setPlayWhenReady(true);
-        mBackgroundStreamId = mBackgroundSound.play(mBackgroundSoundId, 1f, 1f, 1, -1, 1f);
+        mBackgroundStreamId = mGeneralSoundPool.play(mBackgroundSoundId, 1f, 1f, 1, -1, 1f);
     }
 
     private void pause()
@@ -218,7 +221,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         if (mBackgroundStreamId != 0)
         {
-            mBackgroundSound.stop(mBackgroundStreamId);
+            mGeneralSoundPool.stop(mBackgroundStreamId);
         }
     }
 
@@ -343,9 +346,10 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         new Mp3Extractor()
     };
 
-    private SoundPool mBackgroundSound;
+    private SoundPool mGeneralSoundPool;
     private int mBackgroundSoundId;
     private int mBackgroundStreamId = 0;
+    private int mClickSoundId;
 
     private boolean mIsPlaying;
 
