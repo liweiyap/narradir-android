@@ -10,7 +10,14 @@ import androidx.annotation.RawRes;
 
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.Renderer;
+import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.audio.MediaCodecAudioRenderer;
+import com.google.android.exoplayer2.extractor.Extractor;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
+import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
@@ -48,7 +55,11 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         // initialise and prepare ExoPlayer for intro segments
         // ----------------------------------------------------------------------
 
-        mIntroSegmentPlayer = new SimpleExoPlayer.Builder(this).build();
+        RenderersFactory audioOnlyRenderersFactory = (handler, videoListener, audioListener, textOutput, metadataOutput) -> new Renderer[] {
+            new MediaCodecAudioRenderer(this, MediaCodecSelector.DEFAULT, handler, audioListener)
+        };
+
+        mIntroSegmentPlayer = new SimpleExoPlayer.Builder(this, audioOnlyRenderersFactory, ExtractorsFactory.EMPTY).build();
         for (int idx = 0; idx < mIntroSegmentArrayList.size(); ++idx)
         {
             @RawRes int segment = mIntroSegmentArrayList.get(idx);
@@ -221,7 +232,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
             Assertions.checkNotNull(dataSource.getUri());
             MediaItem mediaItem = MediaItem.fromUri(dataSource.getUri());
-            MediaSourceFactory mediaSourceFactory = new DefaultMediaSourceFactory(this);
+            MediaSourceFactory mediaSourceFactory = new DefaultMediaSourceFactory(this, mMp3ExtractorFactory);
             return (ProgressiveMediaSource) mediaSourceFactory.createMediaSource(mediaItem);
         }
         catch (RawResourceDataSource.RawResourceDataSourceException e)
@@ -328,6 +339,9 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
     private ArrayList<Integer> mIntroSegmentArrayList;
     private SimpleExoPlayer mIntroSegmentPlayer;
+    private final ExtractorsFactory mMp3ExtractorFactory = () -> new Extractor[] {
+        new Mp3Extractor()
+    };
 
     private SoundPool mBackgroundSound;
     private int mBackgroundSoundId;
