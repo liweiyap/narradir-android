@@ -975,6 +975,8 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         intent.putIntegerArrayListExtra("INTRO_SEGMENTS", introSegmentArrayList);
         intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
         view.getContext().startActivity(intent);
     }
 
@@ -990,4 +992,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId = R.raw.backgroundcards;
+    private float mBackgroundSoundVolume = 1f;
+    private float mNarrationVolume = 1f;
 }

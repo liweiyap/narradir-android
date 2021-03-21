@@ -51,6 +51,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         mIntroSegmentArrayList = intent.getIntegerArrayListExtra("INTRO_SEGMENTS");
         mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", mMinPauseDurationInMilliSecs);
         mBackgroundSoundRawResId = intent.getIntExtra("BACKGROUND_SOUND", 0);
+        mBackgroundSoundVolume = intent.getFloatExtra("BACKGROUND_VOLUME", 1f);
+        mNarrationVolume = intent.getFloatExtra("NARRATION_VOLUME", 1f);
 
         // ----------------------------------------------------------------------
         // initialise and prepare ExoPlayer for intro segments
@@ -129,6 +131,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
             }
         });
 
+        mIntroSegmentPlayer.setVolume(mNarrationVolume);
         mIntroSegmentPlayer.prepare();
 
         // ----------------------------------------------------------------------
@@ -147,7 +150,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
             mGeneralSoundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
                 if ((sampleId == mBackgroundSoundId) && (status == 0))
                 {
-                    mBackgroundStreamId = soundPool.play(sampleId, 1f, 1f, 1, -1, 1f);
+                    mBackgroundStreamId = soundPool.play(sampleId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f);
                 }
             });
         }
@@ -218,7 +221,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     private void play()
     {
         mIntroSegmentPlayer.setPlayWhenReady(true);
-        mBackgroundStreamId = mGeneralSoundPool.play(mBackgroundSoundId, 1f, 1f, 1, -1, 1f);
+        mBackgroundStreamId = mGeneralSoundPool.play(mBackgroundSoundId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f);
     }
 
     private void pause()
@@ -351,11 +354,13 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     private final ExtractorsFactory mMp3ExtractorFactory = () -> new Extractor[] {
         new Mp3Extractor()
     };
+    private float mNarrationVolume = 1f;
 
     private SoundPool mGeneralSoundPool;
     private @RawRes int mBackgroundSoundRawResId = 0;
     private int mBackgroundSoundId;
     private int mBackgroundStreamId = 0;
+    private float mBackgroundSoundVolume = 1f;
     private int mClickSoundId;
 
     private boolean mIsPlaying;
