@@ -18,8 +18,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PlayIntroductionActivity" android:configChanges="orientation|screenSize|screenLayout">
-        </activity>
+        <activity android:name=".PlayIntroductionActivity" android:configChanges="orientation|screenSize|screenLayout" />
     </application>
 
 </manifest>
