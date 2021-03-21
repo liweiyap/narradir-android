@@ -197,14 +197,11 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     protected void onDestroy()
     {
         super.onDestroy();
+        pause();
 
         mIntroSegmentPlayer.release();
         mIntroSegmentPlayer = null;
 
-        if (mBackgroundStreamId != 0)
-        {
-            mGeneralSoundPool.stop(mBackgroundStreamId);
-        }
         mGeneralSoundPool.release();
         mGeneralSoundPool = null;
     }
