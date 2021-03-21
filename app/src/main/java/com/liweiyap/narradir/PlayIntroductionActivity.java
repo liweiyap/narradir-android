@@ -152,7 +152,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton pauseButton = findViewById(R.id.playIntroLayoutPauseButton);
         pauseButton.addOnClickObserver(() -> {
-            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
+            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 2, 0, 1f);
 
             if (mIsPlaying)
             {
