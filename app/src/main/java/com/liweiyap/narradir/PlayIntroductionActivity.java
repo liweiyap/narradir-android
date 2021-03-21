@@ -204,6 +204,9 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         mGeneralSoundPool.release();
         mGeneralSoundPool = null;
+
+        mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+        mCurrentDisplayedIntroSegmentTextView.setText("");
     }
 
     private void play()
