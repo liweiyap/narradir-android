@@ -55,6 +55,27 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         mNarrationVolume = intent.getFloatExtra("NARRATION_VOLUME", 1f);
 
         // ----------------------------------------------------------------------
+        // initialise SoundPool for background noise and click sound
+        // ----------------------------------------------------------------------
+
+        mGeneralSoundPool = new SoundPool.Builder()
+            .setMaxStreams(2)
+            .build();
+
+        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+
+        if (mBackgroundSoundRawResId != 0)
+        {
+            mBackgroundSoundId = mGeneralSoundPool.load(this, mBackgroundSoundRawResId, 1);
+            mGeneralSoundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
+                if ((sampleId == mBackgroundSoundId) && (status == 0))
+                {
+                    mBackgroundStreamId = soundPool.play(sampleId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f);
+                }
+            });
+        }
+
+        // ----------------------------------------------------------------------
         // initialise and prepare ExoPlayer for intro segments
         // ----------------------------------------------------------------------
 
@@ -133,27 +154,6 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
 
         mIntroSegmentPlayer.setVolume(mNarrationVolume);
         mIntroSegmentPlayer.prepare();
-
-        // ----------------------------------------------------------------------
-        // initialise SoundPool for background noise
-        // ----------------------------------------------------------------------
-
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(2)
-            .build();
-
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
-
-        if (mBackgroundSoundRawResId != 0)
-        {
-            mBackgroundSoundId = mGeneralSoundPool.load(this, mBackgroundSoundRawResId, 1);
-            mGeneralSoundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
-                if ((sampleId == mBackgroundSoundId) && (status == 0))
-                {
-                    mBackgroundStreamId = soundPool.play(sampleId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f);
-                }
-            });
-        }
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
