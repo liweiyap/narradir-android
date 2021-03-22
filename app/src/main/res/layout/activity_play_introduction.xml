@@ -28,6 +28,8 @@
         layout="@layout/current_displayed_introsegment_textview"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_weight="4.5" />
 
     <include

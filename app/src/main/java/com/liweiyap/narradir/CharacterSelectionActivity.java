@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.RawRes;
 import androidx.core.util.Pair;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
@@ -308,7 +309,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         if (expectedGoodChange > 0)  // new > old (increase)
         {
-
             searchAndCheckNewCharacters(CharacterName.LOYAL0, CharacterName.LOYAL5, expectedGoodChange);
         }
         else  // new < old (decrease)
@@ -974,6 +974,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
         intent.putIntegerArrayListExtra("INTRO_SEGMENTS", introSegmentArrayList);
         intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
         view.getContext().startActivity(intent);
     }
 
@@ -988,4 +991,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private Toast mToast;
 
     private long mPauseDurationInMilliSecs = 5000;
+    private @RawRes int mBackgroundSoundRawResId = R.raw.backgroundcards;
+    private float mBackgroundSoundVolume = 1f;
+    private float mNarrationVolume = 1f;
 }
