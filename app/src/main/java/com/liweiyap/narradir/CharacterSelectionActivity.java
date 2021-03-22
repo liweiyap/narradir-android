@@ -12,6 +12,7 @@ import androidx.core.util.Pair;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
@@ -376,6 +377,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
         addSoundToPlayOnButtonClick(playButton);
+
+        ObserverImageButton settingsButton = findViewById(R.id.settingsButton);
+        addSoundToPlayOnButtonClick(settingsButton);
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener btn)
