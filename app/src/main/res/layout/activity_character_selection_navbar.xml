@@ -27,4 +27,23 @@
         android:background="@drawable/capsule"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <com.liweiyap.narradir.utils.ObserverImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLayoutSettingsButton"
+            android:src="@drawable/ic_gear"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/settings_button_background" />
+
+    </RelativeLayout>
+
 </LinearLayout>

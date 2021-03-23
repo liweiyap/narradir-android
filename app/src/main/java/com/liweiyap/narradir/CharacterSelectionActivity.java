@@ -12,6 +12,7 @@ import androidx.core.util.Pair;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
@@ -62,6 +63,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
+
+        ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
+        settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
     }
 
     @Override
@@ -376,6 +380,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
         addSoundToPlayOnButtonClick(playButton);
+
+        ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
+        addSoundToPlayOnButtonClick(settingsButton);
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener btn)
@@ -980,6 +987,12 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         view.getContext().startActivity(intent);
     }
 
+    private void navigateToSettingsHomeActivity(View view)
+    {
+        Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
+        view.getContext().startActivity(intent);
+    }
+
     private MediaPlayer mClickSoundMediaPlayer;
     private MediaPlayer mGeneralMediaPlayer;
     private int mGeneralMediaPlayerCurrentLength;
@@ -991,7 +1004,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private Toast mToast;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId = R.raw.backgroundcards;
+    private @RawRes int mBackgroundSoundRawResId = R.raw.backgroundrainforest;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
 }
