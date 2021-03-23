@@ -10,6 +10,7 @@ import androidx.annotation.RawRes;
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.SettingsLayout;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -57,6 +58,13 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey("ROLE TIMER");
         mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+
+        // ----------------------------------------------------------------------
+        // navigation bar (of activity, not of phone)
+        // ----------------------------------------------------------------------
+
+        mBackButton = findViewById(R.id.settingsHomeLayoutBackButton);
+        mHelpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
 
         // ----------------------------------------------------------------------
         // initialise SoundPool for background noise and click sound
@@ -113,6 +121,9 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick(mNarrationSettingsLayout.getEditButton());
         addSoundToPlayOnButtonClick(mBackgroundSettingsLayout.getEditButton());
         addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout.getEditButton());
+
+        addSoundToPlayOnButtonClick(mBackButton);
+        addSoundToPlayOnButtonClick(mHelpButton);
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
@@ -128,6 +139,9 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
     private SettingsLayout mNarrationSettingsLayout;
     private SettingsLayout mBackgroundSettingsLayout;
     private SettingsLayout mRoleTimerSettingsLayout;
+
+    private CustomTypefaceableObserverButton mBackButton;
+    private CustomTypefaceableObserverButton mHelpButton;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId = 0;
