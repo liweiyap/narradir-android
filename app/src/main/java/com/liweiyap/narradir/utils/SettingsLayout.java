@@ -203,6 +203,10 @@ public class SettingsLayout
         }
     }
 
+    /**
+     * Assumes that SettingsLayout has been initialised in an XML file, and that the same XML file also
+     * initialises a CustomTypefaceableObserverButton that is a child view of this object and that serves as the edit button
+     */
     public CustomTypefaceableObserverButton getEditButton()
     {
         return findViewById(R.id.editButton);
