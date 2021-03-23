@@ -11,6 +11,10 @@ import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.SettingsLayout;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -65,8 +69,9 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick();
     }
 
+    @Contract(pure = true)
     @SuppressLint("NonConstantResourceId")
-    private String getBackgroundSoundName(@RawRes int resId)
+    private @Nullable String getBackgroundSoundName(@RawRes int resId)
     {
         switch (resId)
         {
@@ -89,7 +94,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         return null;
     }
 
-    private String getTimeFromPauseDuration(long msec)
+    private @NotNull String getTimeFromPauseDuration(long msec)
     {
         return String.format(
             Locale.getDefault(),
@@ -104,6 +109,10 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick(mNarrationSettingsLayout);
         addSoundToPlayOnButtonClick(mBackgroundSettingsLayout);
         addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout);
+
+        addSoundToPlayOnButtonClick(mNarrationSettingsLayout.getEditButton());
+        addSoundToPlayOnButtonClick(mBackgroundSettingsLayout.getEditButton());
+        addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout.getEditButton());
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener observerListener)

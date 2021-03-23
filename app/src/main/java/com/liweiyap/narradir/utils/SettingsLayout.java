@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 
 import java.util.ArrayList;
@@ -200,6 +201,11 @@ public class SettingsLayout
         {
             valueTextView.setText(value);
         }
+    }
+
+    public CustomTypefaceableObserverButton getEditButton()
+    {
+        return findViewById(R.id.editButton);
     }
 
     private int mCheckedDrawableId;
