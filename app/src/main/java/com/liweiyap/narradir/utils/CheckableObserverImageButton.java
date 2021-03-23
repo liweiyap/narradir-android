@@ -50,8 +50,8 @@ public class CheckableObserverImageButton
         }
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableDrawableIds);
-        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, IDNOTFOUND);
-        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, IDNOTFOUND);
+        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, ID_NULL);
+        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, ID_NULL);
         mIsChecked = typedArray.getBoolean(R.styleable.CheckableDrawableIds_defaultCheckedState, false);
         typedArray.recycle();
 
@@ -134,6 +134,6 @@ public class CheckableObserverImageButton
 
     private int mCheckedDrawableId;
     private int mUncheckedDrawableId;
-    private final int IDNOTFOUND = -1;
+    private final int ID_NULL = 0;
     private boolean mIsChecked = false;
 }
