@@ -2,12 +2,13 @@ package com.liweiyap.narradir;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.SettingsLayout;
 
 import java.util.Locale;
@@ -36,22 +37,32 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         // set key and value of each individual SettingsLayout
         // ----------------------------------------------------------------------
 
-        SettingsLayout narrationSettingsLayout = findViewById(R.id.narrationSettingsLayout);
-        narrationSettingsLayout.setKey("NARRATION");
-        narrationSettingsLayout.setValue("Vol " + (int) (mNarrationVolume * 10));
+        mNarrationSettingsLayout = findViewById(R.id.narrationSettingsLayout);
+        mNarrationSettingsLayout.setKey("NARRATION");
+        mNarrationSettingsLayout.setValue("Vol " + (int) (mNarrationVolume * 10));
 
-        SettingsLayout backgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
-        backgroundSettingsLayout.setKey("BACKGROUND");
+        mBackgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
+        mBackgroundSettingsLayout.setKey("BACKGROUND");
         String backgroundSettingsLayoutValue = getBackgroundSoundName(mBackgroundSoundRawResId);
-        backgroundSettingsLayout.setValue(
+        mBackgroundSettingsLayout.setValue(
             (backgroundSettingsLayoutValue != null) ?
                 (backgroundSettingsLayoutValue + ", Vol " + (int) (mBackgroundSoundVolume * 10)) :
                 ("None, Vol " + (int) (mBackgroundSoundVolume * 10))
         );
 
-        SettingsLayout roleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
-        roleTimerSettingsLayout.setKey("ROLE TIMER");
-        roleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+        mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
+        mRoleTimerSettingsLayout.setKey("ROLE TIMER");
+        mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+
+        // ----------------------------------------------------------------------
+        // initialise SoundPool for background noise and click sound
+        // ----------------------------------------------------------------------
+
+        mGeneralSoundPool = new SoundPool.Builder()
+            .setMaxStreams(1)
+            .build();
+        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        addSoundToPlayOnButtonClick();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -88,8 +99,32 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         );
     }
 
+    private void addSoundToPlayOnButtonClick()
+    {
+        addSoundToPlayOnButtonClick(mNarrationSettingsLayout);
+        addSoundToPlayOnButtonClick(mBackgroundSettingsLayout);
+        addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout);
+    }
+
+    private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
+    {
+        if (observerListener == null)
+        {
+            return;
+        }
+
+        observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+    }
+
+    private SettingsLayout mNarrationSettingsLayout;
+    private SettingsLayout mBackgroundSettingsLayout;
+    private SettingsLayout mRoleTimerSettingsLayout;
+
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
+
+    private SoundPool mGeneralSoundPool;
+    private int mClickSoundId;
 }
