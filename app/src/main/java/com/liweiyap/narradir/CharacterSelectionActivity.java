@@ -990,6 +990,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private void navigateToSettingsHomeActivity(View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
+        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
         view.getContext().startActivity(intent);
     }
 

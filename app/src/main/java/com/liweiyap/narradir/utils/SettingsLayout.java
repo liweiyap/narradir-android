@@ -187,6 +187,21 @@ public class SettingsLayout
         }
     }
 
+    /**
+     * Assumes that SettingsLayout has been initialised in an XML file, and that the same XML file also
+     * initialises a CustomTypefaceableTextView that is a child view of this object and that serves as the subheading
+     *
+     * @param value String that serves as the new subheading
+     */
+    public void setValue(String value)
+    {
+        CustomTypefaceableTextView valueTextView = findViewById(R.id.valueTextView);
+        if (valueTextView != null)
+        {
+            valueTextView.setText(value);
+        }
+    }
+
     private int mCheckedDrawableId;
     private int mUncheckedDrawableId;
     private final int IDNOTFOUND = -1;
