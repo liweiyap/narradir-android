@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liweiyap.narradir.utils.SettingsLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:com.liweiyap.narradir="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:weightSum="4"
+    com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+    com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+    com.liweiyap.narradir:defaultCheckedState="true" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:weightSum="2" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                style="@style/ArkhamBoldTypefacedTextViewStyle"
+                android:id="@+id/keyTextView"
+                android:text="@string/dummy_placeholder_text"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                style="@style/ArkhamBoldTypefacedTextViewStyle"
+                android:id="@+id/valueTextView"
+                android:text="@string/dummy_placeholder_text"
+                android:textSize="14sp"
+                android:textColor="@color/yellow"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginEnd="10dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:id="@+id/editButton"
+        android:text="@string/edit_button_text"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/edit_button_background" />
+
+</com.liweiyap.narradir.utils.SettingsLayout>

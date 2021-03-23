@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".PlayIntroductionActivity" android:configChanges="orientation|screenSize|screenLayout" />
+        <activity android:name=".SettingsHomeActivity" android:configChanges="orientation|screenSize|screenLayout" />
     </application>
 
 </manifest>

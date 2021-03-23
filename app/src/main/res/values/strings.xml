@@ -33,4 +33,8 @@
     <string name="introsegment6withpercivalnomorgana_text">MERLIN, put your thumb away. PERCIVAL, close your eyes.</string>
     <string name="introsegment6withpercivalwithmorgana_text">MERLIN and MORGANA, put your thumbs away. PERCIVAL, close your eyes.</string>
     <string name="introsegment7_text">EVERYONE, wake up.</string>
+
+    <string name="edit_button_text">Edit</string>
+
+    <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>
