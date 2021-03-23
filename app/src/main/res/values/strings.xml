@@ -17,8 +17,6 @@
     <string name="pause_button_text_state_active">PAUSE</string>
     <string name="pause_button_text_state_inactive">RESUME</string>
 
-    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
-
     <string name="introsegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
     <string name="introsegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
     <string name="introsegment1withoberon_text">AGENTS OF EVIL, except OBERON, wake up, and look for other agents of Evil.</string>
@@ -35,6 +33,11 @@
     <string name="introsegment7_text">EVERYONE, wake up.</string>
 
     <string name="edit_button_text">Edit</string>
+
+    <string name="author_website">App Creator:\nliweiyap.github.io</string>
+
+    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
+    <string name="author_logo_contentdescription">Personal logo of author of code.</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>
