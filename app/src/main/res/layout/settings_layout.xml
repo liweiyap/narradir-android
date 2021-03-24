@@ -33,6 +33,7 @@
                 android:text="@string/dummy_placeholder_text"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"
+                android:textAllCaps="true"
                 android:gravity="start"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="0dp" />

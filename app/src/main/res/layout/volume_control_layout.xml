@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/volumeControlLayout">
+
+    <com.liweiyap.narradir.utils.ObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/volume_increase_text"
+        android:background="@drawable/volume_increase_button_background"
+        android:layout_margin="5dp"
+        android:textSize="45sp"
+        android:textColor="@android:color/white" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/default_volume"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="30sp"
+        android:textColor="@android:color/white" />
+
+    <com.liweiyap.narradir.utils.ObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/volume_decrease_text"
+        android:background="@drawable/volume_decrease_button_background"
+        android:layout_margin="5dp"
+        android:textSize="45sp"
+        android:textColor="@android:color/white" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/volume_control_layout_label"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="30sp"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

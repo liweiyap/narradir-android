@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
+import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 
 import java.util.ArrayList;
@@ -48,8 +49,8 @@ public class SettingsLayout
         }
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableDrawableIds);
-        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, IDNOTFOUND);
-        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, IDNOTFOUND);
+        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, ID_NULL);
+        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, ID_NULL);
         mIsChecked = typedArray.getBoolean(R.styleable.CheckableDrawableIds_defaultCheckedState, false);
         typedArray.recycle();
 
@@ -187,9 +188,33 @@ public class SettingsLayout
         }
     }
 
+    /**
+     * Assumes that SettingsLayout has been initialised in an XML file, and that the same XML file also
+     * initialises a CustomTypefaceableTextView that is a child view of this object and that serves as the subheading
+     *
+     * @param value String that serves as the new subheading
+     */
+    public void setValue(String value)
+    {
+        CustomTypefaceableTextView valueTextView = findViewById(R.id.valueTextView);
+        if (valueTextView != null)
+        {
+            valueTextView.setText(value);
+        }
+    }
+
+    /**
+     * Assumes that SettingsLayout has been initialised in an XML file, and that the same XML file also
+     * initialises a CustomTypefaceableObserverButton that is a child view of this object and that serves as the edit button
+     */
+    public CustomTypefaceableObserverButton getEditButton()
+    {
+        return findViewById(R.id.editButton);
+    }
+
     private int mCheckedDrawableId;
     private int mUncheckedDrawableId;
-    private final int IDNOTFOUND = -1;
+    private final int ID_NULL = 0;
     private boolean mIsChecked = false;
 
     private final List<Observer> mOnClickObservers = new ArrayList<>();
