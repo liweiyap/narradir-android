@@ -62,10 +62,24 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         // ------------------------------------------------------------
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
-        playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
+        playButton.addOnClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
+            navigateToPlayIntroductionActivity(playButton);
+        });
 
         ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
-        settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
+        settingsButton.addOnClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
+            navigateToSettingsHomeActivity(settingsButton);
+        });
     }
 
     @Override
@@ -1008,7 +1022,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     private Toast mToast;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId = R.raw.backgroundrainforest;
+    private @RawRes int mBackgroundSoundRawResId;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
 }
