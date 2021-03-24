@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.RawRes;
 
@@ -43,20 +44,15 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         mNarrationSettingsLayout = findViewById(R.id.narrationSettingsLayout);
-        mNarrationSettingsLayout.setKey("NARRATION");
+        mNarrationSettingsLayout.setKey(getString(R.string.settings_title_narration));
         mNarrationSettingsLayout.setValue("Vol " + (int) (mNarrationVolume * 10));
 
         mBackgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
-        mBackgroundSettingsLayout.setKey("BACKGROUND");
-        String backgroundSettingsLayoutValue = getBackgroundSoundName(mBackgroundSoundRawResId);
-        mBackgroundSettingsLayout.setValue(
-            (backgroundSettingsLayoutValue != null) ?
-                (backgroundSettingsLayoutValue + ", Vol " + (int) (mBackgroundSoundVolume * 10)) :
-                ("None, Vol " + (int) (mBackgroundSoundVolume * 10))
-        );
+        mBackgroundSettingsLayout.setKey(getString(R.string.settings_title_background));
+        mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + (int) (mBackgroundSoundVolume * 10));
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
-        mRoleTimerSettingsLayout.setKey("ROLE TIMER");
+        mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
         mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
 
         // ----------------------------------------------------------------------
@@ -67,7 +63,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         mHelpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
 
         // ----------------------------------------------------------------------
-        // initialise SoundPool for background noise and click sound
+        // initialise SoundPool for click sound
         // ----------------------------------------------------------------------
 
         mGeneralSoundPool = new SoundPool.Builder()
@@ -75,31 +71,36 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
             .build();
         mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
         addSoundToPlayOnButtonClick();
+
+        // ----------------------------------------------------------------------
+        // navigation bar (of activity, not of phone)
+        // ----------------------------------------------------------------------
+
+        mBackgroundSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsBackgroundActivity(mBackgroundSettingsLayout.getEditButton()));
     }
 
-    @Contract(pure = true)
     @SuppressLint("NonConstantResourceId")
-    private @Nullable String getBackgroundSoundName(@RawRes int resId)
+    private String getBackgroundSoundName(@RawRes int resId)
     {
         switch (resId)
         {
             case R.raw.backgroundcards:
-                return "Cards";
+                return getString(R.string.backgroundsound_cards);
             case R.raw.backgroundcrickets:
-                return "Crickets";
+                return getString(R.string.backgroundsound_crickets);
             case R.raw.backgroundfireplace:
-                return "Fireplace";
+                return getString(R.string.backgroundsound_fireplace);
             case R.raw.backgroundrain:
-                return "Rain";
+                return getString(R.string.backgroundsound_rain);
             case R.raw.backgroundrainforest:
-                return "Rainforest";
+                return getString(R.string.backgroundsound_rainforest);
             case R.raw.backgroundrainstorm:
-                return "Rainstorm";
+                return getString(R.string.backgroundsound_rainstorm);
             case R.raw.backgroundwolves:
-                return "Wolves";
+                return getString(R.string.backgroundsound_wolves);
         }
 
-        return null;
+        return getString(R.string.backgroundsound_none);
     }
 
     private @NotNull String getTimeFromPauseDuration(long msec)
@@ -134,6 +135,12 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         }
 
         observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+    }
+
+    private void navigateToSettingsBackgroundActivity(View view)
+    {
+        Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
+        view.getContext().startActivity(intent);
     }
 
     private SettingsLayout mNarrationSettingsLayout;

@@ -18,6 +18,7 @@
     <string name="pause_button_text_state_inactive">RESUME</string>
     <string name="back_button_text">◀ BACK</string>
     <string name="help_button_text">HELP</string>
+    <string name="main_button_text">MAIN</string>
 
     <string name="introsegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
     <string name="introsegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
@@ -40,6 +41,24 @@
 
     <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
     <string name="author_logo_contentdescription">Personal logo of author of code.</string>
+
+    <string name="backgroundsound_none">None</string>
+    <string name="backgroundsound_cards">Cards</string>
+    <string name="backgroundsound_crickets">Crickets</string>
+    <string name="backgroundsound_fireplace">Fireplace</string>
+    <string name="backgroundsound_rain">Rain</string>
+    <string name="backgroundsound_rainforest">Rainforest</string>
+    <string name="backgroundsound_rainstorm">Rainstorm</string>
+    <string name="backgroundsound_wolves">Wolves</string>
+
+    <string name="volume_increase_text">+</string>
+    <string name="volume_decrease_text">–</string>  <!-- note: not the regular hyphen you find on your keyboard, but the middle-length en dash (see: https://www.btb.termiumplus.gc.ca/tpv2guides/guides/pep/index-eng.html?lang=eng&page=punct_4_hyphens_dashes#:~:text=The%20hyphen%20(%2D)%2C%20the%20shortest,most%20mysterious%20of%20the%20three.) -->
+    <string name="default_volume">10</string>
+    <string name="volume_control_layout_label">VOL</string>
+
+    <string name="settings_title_narration">Narration</string>
+    <string name="settings_title_background">Background</string>
+    <string name="settings_title_roletimer">Role Timer</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>

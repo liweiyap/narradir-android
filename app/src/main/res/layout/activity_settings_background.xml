@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/settingsHomeLayout"
+    android:id="@+id/settingsBackgroundLayout"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="@drawable/bermudagrey_grunge_background"
     android:weightSum="10"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SettingsHomeActivity">
+    tools:context=".SettingsBackgroundActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,63 +25,42 @@
     </RelativeLayout>
 
     <include
-        layout="@layout/settings_layout"
+        layout="@layout/settings_title_textview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:id="@+id/narrationSettingsLayout" />
-
-    <include
-        layout="@layout/settings_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:id="@+id/backgroundSettingsLayout" />
-
-    <include
-        layout="@layout/settings_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:id="@+id/roleTimerSettingsLayout" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="7"
         android:orientation="horizontal"
-        android:weightSum="5" >
+        android:weightSum="4"
+        android:baselineAligned="false">
 
         <include
-            layout="@layout/author_website_textview"
+            layout="@layout/background_sound_selection_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3" />
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:src="@drawable/ic_logo"
-            android:contentDescription="@string/author_logo_contentdescription" />
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <include
+                layout="@layout/volume_control_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" />
-
     <include
-        layout="@layout/activity_settings_home_navbar"
+        layout="@layout/non_activity_starting_navbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

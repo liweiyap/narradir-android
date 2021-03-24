@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:com.liweiyap.narradir="http://schemas.android.com/apk/res-auto"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="8"
+    android:id="@+id/backgroundSoundSelectionLayout">
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_none"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="true" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_cards"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_crickets"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_fireplace"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_rain"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_rainforest"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_rainstorm"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/backgroundsound_wolves"
+        android:textAllCaps="true"
+        android:layout_margin="5dp"
+        style="@style/ArkhamBoldTypefacedTextViewStyle"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        com.liweiyap.narradir:defaultCheckedState="false" />
+
+</LinearLayout>
