@@ -129,6 +129,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         if ( (requestCode == Constants.REQUEST_NEWSETTING) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
         {
             mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+            mBackgroundSoundVolume = data.getFloatExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+            mPauseDurationInMilliSecs = data.getLongExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+            mNarrationVolume = data.getFloatExtra("NARRATION_VOLUME", mNarrationVolume);
         }
     }
 

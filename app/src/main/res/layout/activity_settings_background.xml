@@ -51,7 +51,7 @@
             android:gravity="center">
 
             <include
-                layout="@layout/volume_control_layout"
+                layout="@layout/updown_control_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

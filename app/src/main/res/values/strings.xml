@@ -51,9 +51,10 @@
     <string name="backgroundsound_rainstorm">Rainstorm</string>
     <string name="backgroundsound_wolves">Wolves</string>
 
-    <string name="volume_increase_text">+</string>
-    <string name="volume_decrease_text">–</string>  <!-- note: not the regular hyphen you find on your keyboard, but the middle-length en dash (see: https://www.btb.termiumplus.gc.ca/tpv2guides/guides/pep/index-eng.html?lang=eng&page=punct_4_hyphens_dashes#:~:text=The%20hyphen%20(%2D)%2C%20the%20shortest,most%20mysterious%20of%20the%20three.) -->
-    <string name="default_volume">10</string>
+    <string name="up_control_button_text">+</string>
+    <string name="down_control_button_text">–</string>  <!-- note: not the regular hyphen you find on your keyboard, but the middle-length en dash (see: https://www.btb.termiumplus.gc.ca/tpv2guides/guides/pep/index-eng.html?lang=eng&page=punct_4_hyphens_dashes#:~:text=The%20hyphen%20(%2D)%2C%20the%20shortest,most%20mysterious%20of%20the%20three.) -->
+    <string name="updown_control_layout_default_value">10</string>
+    <string name="updown_control_layout_default_label">NA</string>
     <string name="volume_control_layout_label">VOL</string>
 
     <string name="settings_title_narration">Narration</string>

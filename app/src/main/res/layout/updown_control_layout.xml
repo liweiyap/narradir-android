@@ -3,13 +3,14 @@
     android:layout_width="0dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/volumeControlLayout">
+    android:id="@+id/updownControlLayout">
 
     <com.liweiyap.narradir.utils.ObserverButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/volume_increase_text"
-        android:background="@drawable/volume_increase_button_background"
+        android:text="@string/up_control_button_text"
+        android:background="@drawable/control_button_up_background"
+        android:id="@+id/upControlButton"
         android:layout_margin="5dp"
         android:textSize="45sp"
         android:textColor="@android:color/white" />
@@ -18,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/default_volume"
+        android:text="@string/updown_control_layout_default_value"
+        android:id="@+id/updownControlLayoutValue"
         style="@style/ArkhamBoldTypefacedTextViewStyle"
         android:textSize="30sp"
         android:textColor="@android:color/white" />
@@ -26,8 +28,9 @@
     <com.liweiyap.narradir.utils.ObserverButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/volume_decrease_text"
-        android:background="@drawable/volume_decrease_button_background"
+        android:text="@string/down_control_button_text"
+        android:background="@drawable/control_button_down_background"
+        android:id="@+id/downControlButton"
         android:layout_margin="5dp"
         android:textSize="45sp"
         android:textColor="@android:color/white" />
@@ -36,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/volume_control_layout_label"
+        android:text="@string/updown_control_layout_default_label"
+        android:id="@+id/updownControlLayoutLabel"
         style="@style/ArkhamBoldTypefacedTextViewStyle"
         android:textSize="30sp"
         android:textColor="@android:color/white" />

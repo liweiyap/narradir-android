@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ObserverButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
@@ -22,8 +23,15 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_background);
 
+        mVolumeControlLayoutValueTextView = findViewById(R.id.updownControlLayoutValue);
+        mVolumeIncreaseButton = findViewById(R.id.upControlButton);
+        mVolumeDecreaseButton = findViewById(R.id.downControlButton);
+
         CustomTypefaceableTextView settingsTitle = findViewById(R.id.settingsTitleTextView);
         settingsTitle.setText(R.string.settings_title_background);
+
+        CustomTypefaceableTextView volumeControlLayoutLabelTextView = findViewById(R.id.updownControlLayoutLabel);
+        volumeControlLayoutLabelTextView.setText(R.string.volume_control_layout_label);
 
         addSingleTargetSelectionToBackgroundSoundSelectionLayout();
 
@@ -39,15 +47,14 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         selectBackgroundSound(mBackgroundSoundRawResId);
         addBackgroundSoundSetters();
 
+        displayVolume();
+
         // ----------------------------------------------------------------------
-        // initialise SoundPool for click sound
+        // volume control
         // ----------------------------------------------------------------------
 
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(1)
-            .build();
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
-        addSoundToPlayOnButtonClick();
+        mVolumeIncreaseButton.addOnClickObserver(this::increaseVolume);
+        mVolumeDecreaseButton.addOnClickObserver(this::decreaseVolume);
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
@@ -58,6 +65,16 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
         mainButton.addOnClickObserver(this::navigateBackwardsByUndefinedSteps);
+
+        // ----------------------------------------------------------------------
+        // initialise SoundPool for click sound
+        // ----------------------------------------------------------------------
+
+        mGeneralSoundPool = new SoundPool.Builder()
+            .setMaxStreams(1)
+            .build();
+        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        addSoundToPlayOnButtonClick();
     }
 
     private void addSingleTargetSelectionToBackgroundSoundSelectionLayout()
@@ -95,6 +112,9 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
         CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
         addSoundToPlayOnButtonClick(mainButton);
+
+        addSoundToPlayOnButtonClick(mVolumeIncreaseButton);
+        addSoundToPlayOnButtonClick(mVolumeDecreaseButton);
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
@@ -201,10 +221,31 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundwolves);
     }
 
+    private void displayVolume()
+    {
+        if (mVolumeControlLayoutValueTextView != null)
+        {
+            mVolumeControlLayoutValueTextView.setText(String.valueOf(Math.round(mBackgroundSoundVolume * 10)));
+        }
+    }
+
+    private void increaseVolume()
+    {
+        mBackgroundSoundVolume = Math.min(1f, mBackgroundSoundVolume + 0.1f);
+        displayVolume();
+    }
+
+    private void decreaseVolume()
+    {
+        mBackgroundSoundVolume = Math.max(0f, mBackgroundSoundVolume - 0.1f);
+        displayVolume();
+    }
+
     private void navigateBackwardsByOneStep()
     {
         Intent intent = new Intent();
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
         setResult(Constants.RESULT_OK_SETTINGS_ONESTEP, intent);
         finish();
     }
@@ -221,6 +262,7 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
     {
         Intent intent = new Intent();
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
         setResult(Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS, intent);
         finish();
     }
@@ -230,4 +272,8 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
     private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
+
+    private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
+    private ObserverButton mVolumeIncreaseButton;
+    private ObserverButton mVolumeDecreaseButton;
 }

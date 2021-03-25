@@ -58,6 +58,8 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         mBackButton = findViewById(R.id.settingsHomeLayoutBackButton);
+        mBackButton.addOnClickObserver(this::navigateBackwards);
+
         mHelpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
 
         // ----------------------------------------------------------------------
@@ -85,11 +87,13 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         if (requestCode == Constants.REQUEST_NEWBACKGROUNDSETTING)
         {
             mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+            mBackgroundSoundVolume = data.getFloatExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
 
             if (resultCode == Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS)
             {
                 Intent intent = new Intent();
                 intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+                intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
                 setResult(Constants.RESULT_OK_SETTINGS_HOME, intent);
                 finish();
             }
@@ -175,6 +179,17 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
         intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
         startActivityForResult(intent, Constants.REQUEST_NEWBACKGROUNDSETTING);
+    }
+
+    private void navigateBackwards()
+    {
+        Intent intent = new Intent();
+        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
+        setResult(Constants.RESULT_OK_SETTINGS_HOME, intent);
+        finish();
     }
 
     private SettingsLayout mNarrationSettingsLayout;
