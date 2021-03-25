@@ -2,6 +2,7 @@ package com.liweiyap.narradir;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -77,6 +78,47 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick();
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        if (mGeneralMediaPlayer != null)
+        {
+            if (mIsPlaying)
+            {
+                mGeneralMediaPlayer.start();
+            }
+        }
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        if (mGeneralMediaPlayer != null)
+        {
+            mIsPlaying = mGeneralMediaPlayer.isPlaying();
+            mGeneralMediaPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.release();
+            mGeneralMediaPlayer = null;
+        }
+
+        mGeneralSoundPool.release();
+        mGeneralSoundPool = null;
+    }
+
     private void addSingleTargetSelectionToBackgroundSoundSelectionLayout()
     {
         LinearLayout backgroundSoundSelectionLayout = findViewById(R.id.backgroundSoundSelectionLayout);
@@ -124,7 +166,14 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
             return;
         }
 
-        observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+        observerListener.addOnClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
+            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
+        });
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -198,27 +247,60 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
         btn = findViewById(R.id.backgroundSoundNoneButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = 0);
+        btn.addOnLongClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+        });
 
         btn = findViewById(R.id.backgroundSoundCardsButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundcards);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcards));
 
         btn = findViewById(R.id.backgroundSoundCricketsButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundcrickets);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcrickets));
 
         btn = findViewById(R.id.backgroundSoundFireplaceButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundfireplace);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundfireplace));
 
         btn = findViewById(R.id.backgroundSoundRainButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundrain);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrain));
 
         btn = findViewById(R.id.backgroundSoundRainforestButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundrainforest);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainforest));
 
         btn = findViewById(R.id.backgroundSoundRainstormButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundrainstorm);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainstorm));
 
         btn = findViewById(R.id.backgroundSoundWolvesButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundwolves);
+        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundwolves));
+    }
+
+    private void playBackgroundSound(@RawRes int soundId)
+    {
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.stop();
+        }
+
+        try
+        {
+            mGeneralMediaPlayer = MediaPlayer.create(this, soundId);
+            mGeneralMediaPlayer.setLooping(true);
+            mGeneralMediaPlayer.setVolume(mBackgroundSoundVolume, mBackgroundSoundVolume);
+            mGeneralMediaPlayer.start();
+        }
+        catch (IllegalStateException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void displayVolume()
@@ -270,6 +352,8 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
     private SoundPool mGeneralSoundPool;
     private int mClickSoundId;
 
+    private MediaPlayer mGeneralMediaPlayer;
+    private boolean mIsPlaying;
     private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
 

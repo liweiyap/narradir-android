@@ -46,16 +46,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
         addSoundToPlayOnButtonClick();
 
-        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
-        {
-            characterImageButton.addOnClickObserver(() -> {
-                if (mGeneralMediaPlayer != null)
-                {
-                    mGeneralMediaPlayer.stop();
-                }
-            });
-        }
-
         addSelectionRules();
         addCharacterDescriptions();
 
@@ -64,24 +54,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         // ------------------------------------------------------------
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
-        playButton.addOnClickObserver(() -> {
-            if (mGeneralMediaPlayer != null)
-            {
-                mGeneralMediaPlayer.stop();
-            }
-
-            navigateToPlayIntroductionActivity(playButton);
-        });
+        playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
 
         ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
-        settingsButton.addOnClickObserver(() -> {
-            if (mGeneralMediaPlayer != null)
-            {
-                mGeneralMediaPlayer.stop();
-            }
-
-            navigateToSettingsHomeActivity(settingsButton);
-        });
+        settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
     }
 
     @Override
@@ -423,6 +399,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
 
         btn.addOnClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
             if (mClickSoundMediaPlayer != null)
             {
                 mClickSoundMediaPlayer.start();

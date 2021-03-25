@@ -29,6 +29,8 @@ import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 public class PlayIntroductionActivity extends FullScreenPortraitActivity
@@ -206,7 +208,6 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
     protected void onDestroy()
     {
         super.onDestroy();
-        pause();
 
         mIntroSegmentPlayer.release();
         mIntroSegmentPlayer = null;
@@ -234,7 +235,7 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         }
     }
 
-    private ProgressiveMediaSource createMediaSourceFromId(@RawRes int resId)
+    private @Nullable ProgressiveMediaSource createMediaSourceFromId(@RawRes int resId)
     {
         try
         {

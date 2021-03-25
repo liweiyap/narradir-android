@@ -80,6 +80,15 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
     }
 
     @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        mGeneralSoundPool.release();
+        mGeneralSoundPool = null;
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,7 +178,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
     }
 
-    private void navigateToSettingsBackgroundActivity(View view)
+    private void navigateToSettingsBackgroundActivity(@NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
