@@ -13,9 +13,7 @@ import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.SettingsLayout;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -73,10 +71,33 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick();
 
         // ----------------------------------------------------------------------
-        // navigation bar (of activity, not of phone)
+        // navigation from background sound selection layout itself
         // ----------------------------------------------------------------------
 
         mBackgroundSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsBackgroundActivity(mBackgroundSettingsLayout.getEditButton()));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == Constants.REQUEST_NEWBACKGROUNDSETTING)
+        {
+            mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+
+            if (resultCode == Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS)
+            {
+                Intent intent = new Intent();
+                intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+                setResult(Constants.RESULT_OK_SETTINGS_HOME, intent);
+                finish();
+            }
+            else if (resultCode == Constants.RESULT_OK_SETTINGS_ONESTEP)
+            {
+                mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + (int) (mBackgroundSoundVolume * 10));
+            }
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -119,9 +140,20 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         addSoundToPlayOnButtonClick(mBackgroundSettingsLayout);
         addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout);
 
-        addSoundToPlayOnButtonClick(mNarrationSettingsLayout.getEditButton());
-        addSoundToPlayOnButtonClick(mBackgroundSettingsLayout.getEditButton());
-        addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout.getEditButton());
+        if (mNarrationSettingsLayout != null)
+        {
+            addSoundToPlayOnButtonClick(mNarrationSettingsLayout.getEditButton());
+        }
+
+        if (mBackgroundSettingsLayout != null)
+        {
+            addSoundToPlayOnButtonClick(mBackgroundSettingsLayout.getEditButton());
+        }
+
+        if (mRoleTimerSettingsLayout != null)
+        {
+            addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout.getEditButton());
+        }
 
         addSoundToPlayOnButtonClick(mBackButton);
         addSoundToPlayOnButtonClick(mHelpButton);
@@ -140,7 +172,9 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
     private void navigateToSettingsBackgroundActivity(View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
-        view.getContext().startActivity(intent);
+        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        startActivityForResult(intent, Constants.REQUEST_NEWBACKGROUNDSETTING);
     }
 
     private SettingsLayout mNarrationSettingsLayout;
