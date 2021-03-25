@@ -140,10 +140,6 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
 
     private void addSoundToPlayOnButtonClick()
     {
-        addSoundToPlayOnButtonClick(mNarrationSettingsLayout);
-        addSoundToPlayOnButtonClick(mBackgroundSettingsLayout);
-        addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout);
-
         if (mNarrationSettingsLayout != null)
         {
             addSoundToPlayOnButtonClick(mNarrationSettingsLayout.getEditButton());
