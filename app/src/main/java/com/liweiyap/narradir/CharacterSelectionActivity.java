@@ -17,6 +17,8 @@ import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class CharacterSelectionActivity extends FullScreenPortraitActivity
@@ -44,16 +46,6 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
         addSoundToPlayOnButtonClick();
 
-        for (CheckableObserverImageButton characterImageButton : mCharacterImageButtonArray)
-        {
-            characterImageButton.addOnClickObserver(() -> {
-                if (mGeneralMediaPlayer != null)
-                {
-                    mGeneralMediaPlayer.stop();
-                }
-            });
-        }
-
         addSelectionRules();
         addCharacterDescriptions();
 
@@ -62,24 +54,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         // ------------------------------------------------------------
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
-        playButton.addOnClickObserver(() -> {
-            if (mGeneralMediaPlayer != null)
-            {
-                mGeneralMediaPlayer.stop();
-            }
-
-            navigateToPlayIntroductionActivity(playButton);
-        });
+        playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
 
         ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
-        settingsButton.addOnClickObserver(() -> {
-            if (mGeneralMediaPlayer != null)
-            {
-                mGeneralMediaPlayer.stop();
-            }
-
-            navigateToSettingsHomeActivity(settingsButton);
-        });
+        settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
     }
 
     @Override
@@ -116,6 +94,20 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         {
             mGeneralMediaPlayer.release();
             mGeneralMediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ( (requestCode == Constants.REQUEST_NEWSETTING) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
+        {
+            mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+            mBackgroundSoundVolume = data.getFloatExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+            mPauseDurationInMilliSecs = data.getLongExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+            mNarrationVolume = data.getFloatExtra("NARRATION_VOLUME", mNarrationVolume);
         }
     }
 
@@ -407,6 +399,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         }
 
         btn.addOnClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
             if (mClickSoundMediaPlayer != null)
             {
                 mClickSoundMediaPlayer.start();
@@ -950,7 +947,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         return mCharacterImageButtonArray;
     }
 
-    private void navigateToPlayIntroductionActivity(View view)
+    private void navigateToPlayIntroductionActivity(@NotNull View view)
     {
         ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
 
@@ -1001,14 +998,14 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToSettingsHomeActivity(View view)
+    private void navigateToSettingsHomeActivity(@NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
         intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
         intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
         intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
-        view.getContext().startActivity(intent);
+        startActivityForResult(intent, Constants.REQUEST_NEWSETTING);
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
