@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
-public class HelpActivity extends FullScreenPortraitActivity
+public class HelpActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

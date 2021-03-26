@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RawRes;
 
-import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.SettingsLayout;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class SettingsHomeActivity extends FullScreenPortraitActivity
+public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
