@@ -3,8 +3,10 @@ package com.liweiyap.narradir;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RawRes;
@@ -62,6 +64,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         mBackButton.addOnClickObserver(this::navigateBackwards);
 
         mHelpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
+        mHelpButton.addOnClickObserver(() -> navigateToHelpActivity(mHelpButton));
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
@@ -94,6 +97,13 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         mNarrationSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsNarrationActivity(mNarrationSettingsLayout.getEditButton()));
         mBackgroundSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsBackgroundActivity(mBackgroundSettingsLayout.getEditButton()));
         mRoleTimerSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsRoleTimerActivity(mRoleTimerSettingsLayout.getEditButton()));
+
+        // ----------------------------------------------------------------------
+        // navigation to external web browser
+        // ----------------------------------------------------------------------
+
+        LinearLayout authorInfoLayout = findViewById(R.id.authorInfoLayout);
+        authorInfoLayout.setOnClickListener(view -> navigateToAuthorWebsite());
     }
 
     @Override
@@ -223,6 +233,12 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);
     }
 
+    private void navigateToHelpActivity(@NotNull View view)
+    {
+        Intent intent = new Intent(view.getContext(), HelpActivity.class);
+        startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);
+    }
+
     private void navigateBackwards()
     {
         Intent intent = new Intent();
@@ -232,6 +248,12 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
         setResult(Constants.RESULT_OK_SETTINGS_HOME, intent);
         finish();
+    }
+
+    private void navigateToAuthorWebsite()
+    {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://liweiyap.github.io"));
+        startActivity(browserIntent);
     }
 
     private SettingsLayout mNarrationSettingsLayout;
