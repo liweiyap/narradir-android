@@ -92,7 +92,9 @@
     <string name="help_subheading3_para3">The ARKHAM fonts used in the app were designed by James Cianciarusco.\n</string>
     <string name="help_subheading3_para4">The gear icon in the settings button was taken from www.flaticon.com and designed by Freeepik.\n</string>
     <string name="help_subheading3_para5">The voice of the narrator is "en-US-Wavenet-B" from the Text-to-Speech API of the Google Cloud SDK.\n</string>
-    <string name="help_subheading3_para6">The cards background sound was taken from the YouTube Audio library. The rest of the background sounds were taken from SoundBible.com. The crickets background sound was recorded anonymously. The fireplace background sound was recorded by Daniel Simion. The rain background sound was recorded by Mark DiAngelo. The rainforest background sound was recorded by glorysunz. The rainstorm background sound was recorded by Mike Koenig. The wolves background sound was recorded by fws.gov.</string>
+    <string name="help_subheading3_para6">The cards background sound was taken from the YouTube Audio library. The rest of the background sounds were taken from SoundBible.com. The crickets background sound was recorded anonymously. The fireplace background sound was recorded by Daniel Simion. The rain background sound was recorded by Mark DiAngelo. The rainforest background sound was recorded by glorysunz. The rainstorm background sound was recorded by Mike Koenig. The wolves background sound was recorded by fws.gov.\n</string>
+    <string name="help_subheading3_para7">The overall app design was inspired by the One Night Ultimate Werewolf app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, and Akihisa Okui (amongst others).\n</string>
+    <string name="help_subheading3_para8">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>

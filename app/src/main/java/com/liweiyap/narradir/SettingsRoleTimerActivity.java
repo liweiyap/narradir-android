@@ -6,13 +6,13 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 
-public class SettingsRoleTimerActivity extends FullScreenPortraitActivity
+public class SettingsRoleTimerActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

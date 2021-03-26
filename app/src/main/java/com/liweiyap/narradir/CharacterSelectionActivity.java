@@ -11,7 +11,7 @@ import androidx.annotation.RawRes;
 import androidx.core.util.Pair;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
-import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class CharacterSelectionActivity extends FullScreenPortraitActivity
+public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

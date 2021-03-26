@@ -15,13 +15,14 @@ import org.jetbrains.annotations.NotNull;
  * https://stackoverflow.com/questions/31198923/preventing-android-navigation-and-action-bars-from-appearing-when-switching-acti
  * https://stackoverflow.com/questions/34394916/why-navigation-bar-is-appearing-in-fullscreen-apps-when-clicked-on-popup-menu
  */
-public class FullScreenPortraitActivity extends AppCompatActivity
+public class ActiveFullScreenPortraitActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
@@ -56,7 +57,8 @@ public class FullScreenPortraitActivity extends AppCompatActivity
     public void onWindowFocusChanged(boolean hasFocus)
     {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
+        if (hasFocus)
+        {
             makeFullScreen();
         }
     }

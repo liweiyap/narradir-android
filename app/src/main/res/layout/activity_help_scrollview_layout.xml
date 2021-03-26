@@ -214,4 +214,18 @@
         android:textSize="16sp"
         android:textColor="@android:color/white" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_subheading3_para7"
+        android:textSize="16sp"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_subheading3_para8"
+        android:textSize="16sp"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
