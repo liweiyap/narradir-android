@@ -7,6 +7,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.utils.FullScreenPortraitActivity;
@@ -27,6 +28,8 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         mVolumeControlLayoutValueTextView = findViewById(R.id.updownControlLayoutValue);
         mVolumeIncreaseButton = findViewById(R.id.upControlButton);
         mVolumeDecreaseButton = findViewById(R.id.downControlButton);
+        mGeneralBackButton = findViewById(R.id.generalBackButton);
+        mMainButton = findViewById(R.id.mainButton);
 
         CustomTypefaceableTextView settingsTitle = findViewById(R.id.settingsTitleTextView);
         settingsTitle.setText(R.string.settings_title_background);
@@ -61,11 +64,22 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
-        CustomTypefaceableObserverButton generalBackButton = findViewById(R.id.generalBackButton);
-        generalBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
+        mGeneralBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
+        mMainButton.addOnClickObserver(this::navigateBackwardsByUndefinedSteps);
 
-        CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
-        mainButton.addOnClickObserver(this::navigateBackwardsByUndefinedSteps);
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed()
+            {
+                if (mGeneralBackButton == null)
+                {
+                    return;
+                }
+
+                mGeneralBackButton.performClick();
+            }
+        });
 
         // ----------------------------------------------------------------------
         // initialise SoundPool for click sound
@@ -83,12 +97,14 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
     {
         super.onResume();
 
-        if (mGeneralMediaPlayer != null)
+        if (mGeneralMediaPlayer == null)
         {
-            if (mIsPlaying)
-            {
-                mGeneralMediaPlayer.start();
-            }
+            return;
+        }
+
+        if (mIsPlaying)
+        {
+            mGeneralMediaPlayer.start();
         }
     }
 
@@ -97,11 +113,13 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
     {
         super.onPause();
 
-        if (mGeneralMediaPlayer != null)
+        if (mGeneralMediaPlayer == null)
         {
-            mIsPlaying = mGeneralMediaPlayer.isPlaying();
-            mGeneralMediaPlayer.pause();
+            return;
         }
+
+        mIsPlaying = mGeneralMediaPlayer.isPlaying();
+        mGeneralMediaPlayer.pause();
     }
 
     @Override
@@ -149,12 +167,8 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
             addSoundToPlayOnButtonClick(btn);
         }
 
-        CustomTypefaceableObserverButton generalBackButton = findViewById(R.id.generalBackButton);
-        addSoundToPlayOnButtonClick(generalBackButton);
-
-        CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
-        addSoundToPlayOnButtonClick(mainButton);
-
+        addSoundToPlayOnButtonClick(mGeneralBackButton);
+        addSoundToPlayOnButtonClick(mMainButton);
         addSoundToPlayOnButtonClick(mVolumeIncreaseButton);
         addSoundToPlayOnButtonClick(mVolumeDecreaseButton);
     }
@@ -305,10 +319,12 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
     private void displayVolume()
     {
-        if (mVolumeControlLayoutValueTextView != null)
+        if (mVolumeControlLayoutValueTextView == null)
         {
-            mVolumeControlLayoutValueTextView.setText(String.valueOf(Math.round(mBackgroundSoundVolume * 10)));
+            return;
         }
+
+        mVolumeControlLayoutValueTextView.setText(String.valueOf(Math.round(mBackgroundSoundVolume * 10)));
     }
 
     private void increaseVolume()
@@ -360,4 +376,7 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
     private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
     private ObserverButton mVolumeIncreaseButton;
     private ObserverButton mVolumeDecreaseButton;
+
+    private CustomTypefaceableObserverButton mGeneralBackButton;
+    private CustomTypefaceableObserverButton mMainButton;
 }
