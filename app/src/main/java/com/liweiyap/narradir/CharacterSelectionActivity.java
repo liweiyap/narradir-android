@@ -485,9 +485,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     /**
      * If Merlin is selected, then Assassin is auto-selected, and vice versa.
-     * In addition, one of the LOYAL is auto-unselected, and one of the MINIONS is auto-unselected.
+     * In addition, one of the LOYAL is auto-deselected, and one of the MINIONS is auto-deselected.
      *
-     * If Merlin is unselected, then Assassin is auto-unselected, and vice versa.
+     * If Merlin is deselected, then Assassin is auto-deselected, and vice versa.
      * In addition, one of the LOYAL is auto-selected, and one of the MINIONS is auto-selected.
      * If Percival, Morgana, or Mordred are already selected, they should be replaced by MINIONS.
      */
@@ -546,11 +546,11 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      * If Percival is selected:
      *  - If Merlin is not already selected, then Merlin is auto-selected.
      *  - In a 5-player game, Morgana is auto-selected.
-     *     - If, prior to this, Morgana was not already selected, then one of the Evil players is auto-unselected.
-     *  - One of the LOYAL is auto-unselected.
+     *     - If, prior to this, Morgana was not already selected, then one of the Evil players is auto-deselected.
+     *  - One of the LOYAL is auto-deselected.
      *
-     * If Percival is unselected:
-     *  - Morgana is auto-unselected.
+     * If Percival is deselected:
+     *  - Morgana is auto-deselected.
      *     - If, prior to this, Morgana was already selected, then one of the MINIONS is auto-selected.
      *  - One of the LOYAL is auto-selected.
      */
@@ -614,9 +614,9 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      * You can have Percival without Mordred and you can also have Mordred without Percival.
      *
      * If Morgana is selected:
-     *  - If Percival is not already selected, then Percival is auto-selected and one of the LOYAL is auto-unselected.
-     *  - One of the Evil players is auto-unselected.
-     * If Morgana is unselected:
+     *  - If Percival is not already selected, then Percival is auto-selected and one of the LOYAL is auto-deselected.
+     *  - One of the Evil players is auto-deselected.
+     * If Morgana is deselected:
      *  - If Percival is not already selected, then throw error.
      *  - In a 5-player game, if Percival is already selected, then Mordred is auto-selected.
      *     - If, prior to this, Mordred was already selected, then one of the MINIONS is auto-selected.
@@ -688,10 +688,10 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
      * You can have Merlin without Mordred but you cannot have Mordred without Merlin.
      *
      * If Mordred is selected:
-     *  - If Merlin is not already selected, then Merlin is auto-selected and one of the LOYAL is auto-unselected.
+     *  - If Merlin is not already selected, then Merlin is auto-selected and one of the LOYAL is auto-deselected.
      *  - In a 5-player game, if Percival is not already selected, then Percival is auto-selected.
-     *  - One of the Evil players is auto-unselected.
-     * If Mordred is unselected:
+     *  - One of the Evil players is auto-deselected.
+     * If Mordred is deselected:
      *  - If Merlin is not already selected, then throw error.
      *  - In a 5-player game, if Percival is already selected, then Morgana is auto-selected.
      *     - If, prior to this, Morgana was already selected, then one of the MINIONS is auto-selected.
@@ -762,7 +762,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addGeneralGoodSelectionRules()
     {
-        showNewToast("Loyal cannot be manually selected or unselected.");
+        showNewToast("Loyal cannot be manually selected or deselected.");
     }
 
     private void addOberonSelectionRules()
@@ -799,7 +799,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
 
     private void addGeneralEvilSelectionRules()
     {
-        showNewToast("Minions cannot be manually selected or unselected.");
+        showNewToast("Minions cannot be manually selected or deselected.");
     }
 
     /**
