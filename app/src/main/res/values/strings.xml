@@ -56,6 +56,7 @@
     <string name="updown_control_layout_default_value">10</string>
     <string name="updown_control_layout_default_label">NA</string>
     <string name="volume_control_layout_label">VOL</string>
+    <string name="time_control_layout_label">Secs</string>
 
     <string name="settings_title_narration">Narration</string>
     <string name="settings_title_background">Background</string>

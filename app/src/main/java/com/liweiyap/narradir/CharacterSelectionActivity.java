@@ -64,22 +64,29 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     protected void onResume()
     {
         super.onResume();
-        if (mGeneralMediaPlayer != null)
+
+        if (mGeneralMediaPlayer == null)
         {
-            mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
-            mGeneralMediaPlayer.start();
+            return;
         }
+
+        mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
+        mGeneralMediaPlayer.start();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        if (mGeneralMediaPlayer != null)
+
+        if (mGeneralMediaPlayer == null)
         {
-            mGeneralMediaPlayer.pause();
-            mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
+            return;
+
         }
+
+        mGeneralMediaPlayer.pause();
+        mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
     }
 
     @Override
@@ -102,7 +109,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if ( (requestCode == Constants.REQUEST_NEWSETTING) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
+        if ( (requestCode == Constants.REQUEST_SETTINGS_HOME) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
         {
             mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
             mBackgroundSoundVolume = data.getFloatExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
@@ -1005,7 +1012,7 @@ public class CharacterSelectionActivity extends FullScreenPortraitActivity
         intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
         intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
         intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
-        startActivityForResult(intent, Constants.REQUEST_NEWSETTING);
+        startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
     }
 
     private MediaPlayer mClickSoundMediaPlayer;

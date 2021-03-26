@@ -56,6 +56,8 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
         mBackgroundSoundVolume = intent.getFloatExtra("BACKGROUND_VOLUME", 1f);
         mNarrationVolume = intent.getFloatExtra("NARRATION_VOLUME", 1f);
 
+        mPauseDurationInMilliSecs = Math.max(mPauseDurationInMilliSecs, mMinPauseDurationInMilliSecs);
+
         // ----------------------------------------------------------------------
         // initialise SoundPool for background noise and click sound
         // ----------------------------------------------------------------------
@@ -139,7 +141,18 @@ public class PlayIntroductionActivity extends FullScreenPortraitActivity
                     if ( (canPauseManuallyAtEnd(mIntroSegmentArrayList.get(newWindowIdx/2))) &&
                          (mPauseDurationInMilliSecs != mMinPauseDurationInMilliSecs) )
                     {
-                        mCurrentDisplayedIntroSegmentTextView.setText("(PAUSE for " + mPauseDurationInMilliSecs/1000 + " seconds)");
+                        String text;
+
+                        if (mPauseDurationInMilliSecs == 1000)
+                        {
+                            text = "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " second)";
+                        }
+                        else
+                        {
+                            text = "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " seconds)";
+                        }
+
+                        mCurrentDisplayedIntroSegmentTextView.setText(text);
                     }
                 }
             }

@@ -72,6 +72,6 @@ public class ObserverImageButton
         mOnLongClickObservers.forEach(Observer::update);
     }
 
-    private final List<Observer> mOnClickObservers = new ArrayList<>();
-    private final List<Observer> mOnLongClickObservers = new ArrayList<>();
+    protected final List<Observer> mOnClickObservers = new ArrayList<>();
+    protected final List<Observer> mOnLongClickObservers = new ArrayList<>();
 }
