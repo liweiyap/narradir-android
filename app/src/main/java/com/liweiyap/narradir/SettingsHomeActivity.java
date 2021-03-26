@@ -91,6 +91,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         // navigation from background sound selection layout itself
         // ----------------------------------------------------------------------
 
+        mNarrationSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsNarrationActivity(mNarrationSettingsLayout.getEditButton()));
         mBackgroundSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsBackgroundActivity(mBackgroundSettingsLayout.getEditButton()));
         mRoleTimerSettingsLayout.getEditButton().addOnClickObserver(() -> navigateToSettingsRoleTimerActivity(mRoleTimerSettingsLayout.getEditButton()));
     }
@@ -114,6 +115,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
             mPauseDurationInMilliSecs = data.getLongExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
             mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
             mBackgroundSoundVolume = data.getFloatExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+            mNarrationVolume = data.getFloatExtra("NARRATION_VOLUME", mNarrationVolume);
 
             if (resultCode == Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS)
             {
@@ -121,12 +123,14 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
                 intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
                 intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
                 intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+                intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
                 setResult(Constants.RESULT_OK_SETTINGS_HOME, intent);
                 finish();
             }
             else if (resultCode == Constants.RESULT_OK_SETTINGS_ONESTEP)
             {
-                mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + (int) (mBackgroundSoundVolume * 10));
+                mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
+                mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
                 mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
             }
         }
@@ -195,6 +199,13 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         }
 
         observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+    }
+
+    private void navigateToSettingsNarrationActivity(@NotNull View view)
+    {
+        Intent intent = new Intent(view.getContext(), SettingsNarrationActivity.class);
+        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
+        startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);
     }
 
     private void navigateToSettingsBackgroundActivity(@NotNull View view)
