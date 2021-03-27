@@ -37,7 +37,7 @@ public class SettingsRoleTimerActivity extends ActiveFullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         Intent intent = getIntent();
-        mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", 5000);
+        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), 5000);
         displayPauseDuration();
 
         // ----------------------------------------------------------------------
@@ -131,7 +131,7 @@ public class SettingsRoleTimerActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByOneStep()
     {
         Intent intent = new Intent();
-        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         setResult(Constants.RESULT_OK_SETTINGS_ONESTEP, intent);
         finish();
     }
@@ -147,7 +147,7 @@ public class SettingsRoleTimerActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByUndefinedSteps()
     {
         Intent intent = new Intent();
-        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         setResult(Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS, intent);
         finish();
     }

@@ -50,11 +50,11 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
 
         Intent intent = getIntent();
 
-        mIntroSegmentArrayList = intent.getIntegerArrayListExtra("INTRO_SEGMENTS");
-        mPauseDurationInMilliSecs = intent.getLongExtra("PAUSE_DURATION", mMinPauseDurationInMilliSecs);
-        mBackgroundSoundRawResId = intent.getIntExtra("BACKGROUND_SOUND", 0);
-        mBackgroundSoundVolume = intent.getFloatExtra("BACKGROUND_VOLUME", 1f);
-        mNarrationVolume = intent.getFloatExtra("NARRATION_VOLUME", 1f);
+        mIntroSegmentArrayList = intent.getIntegerArrayListExtra(getString(R.string.intro_segments_key));
+        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), mMinPauseDurationInMilliSecs);
+        mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), 0);
+        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
+        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), 1f);
 
         // handle edge case of mPauseDurationInMilliSecs passed in as 0
         mPauseDurationInMilliSecs = Math.max(mPauseDurationInMilliSecs, mMinPauseDurationInMilliSecs);

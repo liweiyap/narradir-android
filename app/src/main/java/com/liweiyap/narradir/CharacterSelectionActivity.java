@@ -123,10 +123,10 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
         if ( (requestCode == Constants.REQUEST_SETTINGS_HOME) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
         {
-            mBackgroundSoundRawResId = data.getIntExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-            mBackgroundSoundVolume = data.getFloatExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
-            mPauseDurationInMilliSecs = data.getLongExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
-            mNarrationVolume = data.getFloatExtra("NARRATION_VOLUME", mNarrationVolume);
+            mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+            mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+            mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+            mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         }
     }
 
@@ -1007,21 +1007,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         }
 
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
-        intent.putIntegerArrayListExtra("INTRO_SEGMENTS", introSegmentArrayList);
-        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
-        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
-        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
+        intent.putIntegerArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
+        intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         view.getContext().startActivity(intent);
     }
 
     private void navigateToSettingsHomeActivity(@NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
-        intent.putExtra("PAUSE_DURATION", mPauseDurationInMilliSecs);
-        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
-        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
+        intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
     }
 
@@ -1032,12 +1032,12 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
-        sharedPrefEditor.putLong("PAUSE_DURATION", mPauseDurationInMilliSecs);
-        sharedPrefEditor.putInt("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-        sharedPrefEditor.putFloat("BACKGROUND_VOLUME", mBackgroundSoundVolume);
-        sharedPrefEditor.putFloat("NARRATION_VOLUME", mNarrationVolume);
-        sharedPrefEditor.putInt("GOOD_PLAYER_NUMBER", mExpectedGoodTotal);
-        sharedPrefEditor.putInt("EVIL_PLAYER_NUMBER", mExpectedEvilTotal);
+        sharedPrefEditor.putLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
+        sharedPrefEditor.putInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
+        sharedPrefEditor.putInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
 
         if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[CharacterName.ASSASSIN].isChecked())
         {
@@ -1046,34 +1046,34 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
                     "Checked state of Assassin should be identical to that of Merlin");
         }
 
-        sharedPrefEditor.putBoolean("IS_MERLIN_CHECKED", mCharacterImageButtonArray[CharacterName.MERLIN].isChecked());
-        sharedPrefEditor.putBoolean("IS_PERCIVAL_CHECKED", mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked());
-        sharedPrefEditor.putBoolean("IS_MORGANA_CHECKED", mCharacterImageButtonArray[CharacterName.MORGANA].isChecked());
-        sharedPrefEditor.putBoolean("IS_MORDRED_CHECKED", mCharacterImageButtonArray[CharacterName.MORDRED].isChecked());
-        sharedPrefEditor.putBoolean("IS_OBERON_CHECKED", mCharacterImageButtonArray[CharacterName.OBERON].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_merlin_checked_key), mCharacterImageButtonArray[CharacterName.MERLIN].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_percival_checked_key), mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_morgana_checked_key), mCharacterImageButtonArray[CharacterName.MORGANA].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_mordred_checked_key), mCharacterImageButtonArray[CharacterName.MORDRED].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_oberon_checked_key), mCharacterImageButtonArray[CharacterName.OBERON].isChecked());
         sharedPrefEditor.apply();
     }
 
     private void loadPreferences()
     {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        mPauseDurationInMilliSecs = sharedPref.getLong("PAUSE_DURATION", mPauseDurationInMilliSecs);
-        mBackgroundSoundRawResId = sharedPref.getInt("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-        mBackgroundSoundVolume = sharedPref.getFloat("BACKGROUND_VOLUME", mBackgroundSoundVolume);
-        mNarrationVolume = sharedPref.getFloat("NARRATION_VOLUME", mNarrationVolume);
+        mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
 
         if (mCharacterImageButtonArray == null)
         {
             return;
         }
 
-        int expectedGoodTotal = sharedPref.getInt("GOOD_PLAYER_NUMBER", mExpectedGoodTotal);
-        int expectedEvilTotal = sharedPref.getInt("EVIL_PLAYER_NUMBER", mExpectedEvilTotal);
-        boolean isMerlinChecked = sharedPref.getBoolean("IS_MERLIN_CHECKED", true);
-        boolean isPercivalChecked = sharedPref.getBoolean("IS_PERCIVAL_CHECKED", false);
-        boolean isMorganaChecked = sharedPref.getBoolean("IS_MORGANA_CHECKED", false);
-        boolean isMordredChecked = sharedPref.getBoolean("IS_MORDRED_CHECKED", false);
-        boolean isOberonChecked = sharedPref.getBoolean("IS_OBERON_CHECKED", false);
+        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
+        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
+        boolean isMerlinChecked = sharedPref.getBoolean(getString(R.string.is_merlin_checked_key), true);
+        boolean isPercivalChecked = sharedPref.getBoolean(getString(R.string.is_percival_checked_key), false);
+        boolean isMorganaChecked = sharedPref.getBoolean(getString(R.string.is_morgana_checked_key), false);
+        boolean isMordredChecked = sharedPref.getBoolean(getString(R.string.is_mordred_checked_key), false);
+        boolean isOberonChecked = sharedPref.getBoolean(getString(R.string.is_oberon_checked_key), false);
 
         switch (expectedGoodTotal + expectedEvilTotal)
         {

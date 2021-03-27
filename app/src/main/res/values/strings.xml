@@ -6,6 +6,19 @@
     <string name="game_title_avalon">AVALON</string>
     <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
 
+    <string name="intro_segments_key">INTRO_SEGMENTS</string>
+    <string name="pause_duration_key">PAUSE_DURATION</string>
+    <string name="background_sound_key">BACKGROUND_SOUND</string>
+    <string name="background_volume_key">BACKGROUND_VOLUME</string>
+    <string name="narration_volume_key">NARRATION_VOLUME</string>
+    <string name="good_player_number_key">GOOD_PLAYER_NUMBER</string>
+    <string name="evil_player_number_key">EVIL_PLAYER_NUMBER</string>
+    <string name="is_merlin_checked_key">IS_MERLIN_CHECKED</string>
+    <string name="is_percival_checked_key">IS_PERCIVAL_CHECKED</string>
+    <string name="is_morgana_checked_key">IS_MORGANA_CHECKED</string>
+    <string name="is_mordred_checked_key">IS_MORDRED_CHECKED</string>
+    <string name="is_oberon_checked_key">IS_OBERON_CHECKED</string>
+
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
     <string name="p7_button_text">7P</string>
