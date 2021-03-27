@@ -56,6 +56,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         mBackgroundSoundVolume = intent.getFloatExtra("BACKGROUND_VOLUME", 1f);
         mNarrationVolume = intent.getFloatExtra("NARRATION_VOLUME", 1f);
 
+        // handle edge case of mPauseDurationInMilliSecs passed in as 0
         mPauseDurationInMilliSecs = Math.max(mPauseDurationInMilliSecs, mMinPauseDurationInMilliSecs);
 
         // ----------------------------------------------------------------------

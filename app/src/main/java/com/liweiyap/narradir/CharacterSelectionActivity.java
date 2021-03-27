@@ -1,6 +1,8 @@
 package com.liweiyap.narradir;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -42,11 +44,18 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         // character selection layouts
         // ------------------------------------------------------------
 
+        /* set up */
+        addSelectionRules();
+        loadPreferences();
+
+        /* click sound */
+
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
         mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
         addSoundToPlayOnButtonClick();
 
-        addSelectionRules();
+        /* general MediaPlayer for character descriptions */
+
         addCharacterDescriptions();
 
         // ------------------------------------------------------------
@@ -79,12 +88,12 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     {
         super.onPause();
 
+        savePreferences();  // https://stackoverflow.com/a/32576942/12367873; https://stackoverflow.com/a/14756816/12367873
+
         if (mGeneralMediaPlayer == null)
         {
             return;
-
         }
-
         mGeneralMediaPlayer.pause();
         mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
     }
@@ -1013,6 +1022,149 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
         intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
+    }
+
+    /**
+     * https://stackoverflow.com/a/24822131/12367873
+     */
+    private void savePreferences()
+    {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
+        sharedPrefEditor.putLong("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        sharedPrefEditor.putInt("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        sharedPrefEditor.putFloat("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        sharedPrefEditor.putFloat("NARRATION_VOLUME", mNarrationVolume);
+        sharedPrefEditor.putInt("GOOD_PLAYER_NUMBER", mExpectedGoodTotal);
+        sharedPrefEditor.putInt("EVIL_PLAYER_NUMBER", mExpectedEvilTotal);
+
+        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[CharacterName.ASSASSIN].isChecked())
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::savePreferences(): " +
+                    "Checked state of Assassin should be identical to that of Merlin");
+        }
+
+        sharedPrefEditor.putBoolean("IS_MERLIN_CHECKED", mCharacterImageButtonArray[CharacterName.MERLIN].isChecked());
+        sharedPrefEditor.putBoolean("IS_PERCIVAL_CHECKED", mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked());
+        sharedPrefEditor.putBoolean("IS_MORGANA_CHECKED", mCharacterImageButtonArray[CharacterName.MORGANA].isChecked());
+        sharedPrefEditor.putBoolean("IS_MORDRED_CHECKED", mCharacterImageButtonArray[CharacterName.MORDRED].isChecked());
+        sharedPrefEditor.putBoolean("IS_OBERON_CHECKED", mCharacterImageButtonArray[CharacterName.OBERON].isChecked());
+        sharedPrefEditor.apply();
+    }
+
+    private void loadPreferences()
+    {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        mPauseDurationInMilliSecs = sharedPref.getLong("PAUSE_DURATION", mPauseDurationInMilliSecs);
+        mBackgroundSoundRawResId = sharedPref.getInt("BACKGROUND_SOUND", mBackgroundSoundRawResId);
+        mBackgroundSoundVolume = sharedPref.getFloat("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        mNarrationVolume = sharedPref.getFloat("NARRATION_VOLUME", mNarrationVolume);
+
+        if (mCharacterImageButtonArray == null)
+        {
+            return;
+        }
+
+        int expectedGoodTotal = sharedPref.getInt("GOOD_PLAYER_NUMBER", mExpectedGoodTotal);
+        int expectedEvilTotal = sharedPref.getInt("EVIL_PLAYER_NUMBER", mExpectedEvilTotal);
+        boolean isMerlinChecked = sharedPref.getBoolean("IS_MERLIN_CHECKED", true);
+        boolean isPercivalChecked = sharedPref.getBoolean("IS_PERCIVAL_CHECKED", false);
+        boolean isMorganaChecked = sharedPref.getBoolean("IS_MORGANA_CHECKED", false);
+        boolean isMordredChecked = sharedPref.getBoolean("IS_MORDRED_CHECKED", false);
+        boolean isOberonChecked = sharedPref.getBoolean("IS_OBERON_CHECKED", false);
+
+        switch (expectedGoodTotal + expectedEvilTotal)
+        {
+            case 5:
+                CustomTypefaceableCheckableObserverButton p5Button = findViewById(R.id.p5Button);
+                p5Button.performClick();
+                break;
+            case 6:
+                CustomTypefaceableCheckableObserverButton p6Button = findViewById(R.id.p6Button);
+                p6Button.performClick();
+                break;
+            case 7:
+                CustomTypefaceableCheckableObserverButton p7Button = findViewById(R.id.p7Button);
+                p7Button.performClick();
+                break;
+            case 8:
+                CustomTypefaceableCheckableObserverButton p8Button = findViewById(R.id.p8Button);
+                p8Button.performClick();
+                break;
+            case 9:
+                CustomTypefaceableCheckableObserverButton p9Button = findViewById(R.id.p9Button);
+                p9Button.performClick();
+                break;
+            case 10:
+                CustomTypefaceableCheckableObserverButton p10Button = findViewById(R.id.p10Button);
+                p10Button.performClick();
+                break;
+            default:
+                throw new RuntimeException(
+                    "CharacterSelectionActivity::loadPreferences(): " +
+                        "Invalid no of players: " + (expectedGoodTotal + expectedEvilTotal));
+        }
+
+        // default: Merlin is checked
+        // saved preferences: if Merlin is not checked
+        if ( (!isMerlinChecked) && (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked()) )
+        {
+            mCharacterImageButtonArray[CharacterName.MERLIN].performClick();
+        }
+
+        // default: Percival is not checked
+        // saved preferences: if Percival is checked
+        if ( (isPercivalChecked) && (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked()) )
+        {
+            mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+        }
+
+        // default: Morgana is not checked
+        // saved preferences: if Morgana is checked
+        if ( (isMorganaChecked) && (!mCharacterImageButtonArray[CharacterName.MORGANA].isChecked()) )
+        {
+            mCharacterImageButtonArray[CharacterName.MORGANA].performClick();
+        }
+
+        // default: Mordred is not checked
+        // saved preferences: if Mordred is checked
+        if ( (isMordredChecked) && (!mCharacterImageButtonArray[CharacterName.MORDRED].isChecked()) )
+        {
+            mCharacterImageButtonArray[CharacterName.MORDRED].performClick();
+        }
+
+        // default: Oberon is not checked
+        // saved preferences: if Oberon is checked
+        if ( (isOberonChecked) && (!mCharacterImageButtonArray[CharacterName.OBERON].isChecked()) )
+        {
+            mCharacterImageButtonArray[CharacterName.OBERON].performClick();
+        }
+
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::loadPreferences(): " +
+                    "expected good player total is " + mExpectedGoodTotal +
+                    " but actual good player total is " + actualGoodTotal);
+        }
+
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::loadPreferences(): " +
+                    "expected evil player total is " + mExpectedEvilTotal +
+                    " but actual evil player total is " + actualEvilTotal);
+        }
+
+        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[CharacterName.ASSASSIN].isChecked())
+        {
+            throw new RuntimeException(
+                "CharacterSelectionActivity::loadPreferences(): " +
+                    "Checked state of Assassin should be identical to that of Merlin");
+        }
     }
 
     private MediaPlayer mClickSoundMediaPlayer;
