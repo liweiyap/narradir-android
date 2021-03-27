@@ -37,7 +37,7 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         Intent intent = getIntent();
-        mNarrationVolume = intent.getFloatExtra("NARRATION_VOLUME", 1f);
+        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), 1f);
         displayVolume();
 
         // ----------------------------------------------------------------------
@@ -131,7 +131,7 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByOneStep()
     {
         Intent intent = new Intent();
-        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
+        intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         setResult(Constants.RESULT_OK_SETTINGS_ONESTEP, intent);
         finish();
     }
@@ -147,7 +147,7 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByUndefinedSteps()
     {
         Intent intent = new Intent();
-        intent.putExtra("NARRATION_VOLUME", mNarrationVolume);
+        intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         setResult(Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS, intent);
         finish();
     }

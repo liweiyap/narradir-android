@@ -45,8 +45,8 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
 
         Intent intent = getIntent();
 
-        mBackgroundSoundRawResId = intent.getIntExtra("BACKGROUND_SOUND", 0);
-        mBackgroundSoundVolume = intent.getFloatExtra("BACKGROUND_VOLUME", 1f);
+        mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), 0);
+        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
 
         selectBackgroundSound(mBackgroundSoundRawResId);
         addBackgroundSoundSetters();
@@ -342,8 +342,8 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByOneStep()
     {
         Intent intent = new Intent();
-        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         setResult(Constants.RESULT_OK_SETTINGS_ONESTEP, intent);
         finish();
     }
@@ -359,8 +359,8 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByUndefinedSteps()
     {
         Intent intent = new Intent();
-        intent.putExtra("BACKGROUND_SOUND", mBackgroundSoundRawResId);
-        intent.putExtra("BACKGROUND_VOLUME", mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         setResult(Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS, intent);
         finish();
     }

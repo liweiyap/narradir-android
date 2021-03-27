@@ -6,6 +6,19 @@
     <string name="game_title_avalon">AVALON</string>
     <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
 
+    <string name="intro_segments_key">INTRO_SEGMENTS</string>
+    <string name="pause_duration_key">PAUSE_DURATION</string>
+    <string name="background_sound_key">BACKGROUND_SOUND</string>
+    <string name="background_volume_key">BACKGROUND_VOLUME</string>
+    <string name="narration_volume_key">NARRATION_VOLUME</string>
+    <string name="good_player_number_key">GOOD_PLAYER_NUMBER</string>
+    <string name="evil_player_number_key">EVIL_PLAYER_NUMBER</string>
+    <string name="is_merlin_checked_key">IS_MERLIN_CHECKED</string>
+    <string name="is_percival_checked_key">IS_PERCIVAL_CHECKED</string>
+    <string name="is_morgana_checked_key">IS_MORGANA_CHECKED</string>
+    <string name="is_mordred_checked_key">IS_MORDRED_CHECKED</string>
+    <string name="is_oberon_checked_key">IS_OBERON_CHECKED</string>
+
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
     <string name="p7_button_text">7P</string>
@@ -64,22 +77,22 @@
     <string name="settings_title_background">Background</string>
     <string name="settings_title_roletimer">Role Timer</string>
 
-    <string name="help_intro_para0">"The Resistance: Avalon" is a game for 5–10 players designed by Don Eskridge and published by Indie Boards and Cards. It is a trademark of Don Eskridge and Indie Boards and Cards. For the avoidance of doubt, this app is not affiliated with or sponsored by Don Eskridge or Indie Boards and Cards.\n</string>
+    <string name="help_intro_para0">\"The Resistance: Avalon\" is a game for 5–10 players designed by Don Eskridge, developed by Travis Worthington, and published by Indie Boards and Cards. It is a trademark of Don Eskridge and Indie Boards and Cards. For the avoidance of doubt, this app is not affiliated with or sponsored by Don Eskridge, Travis Worthington, or Indie Boards and Cards.\n</string>
     <string name="help_intro_para1">No profit was made through the distribution of this app.\n</string>
-    <string name="help_subheading0">Using the App</string>
-    <string name="help_subheading0_para0">You\'ll need the original "The Resistance: Avalon" game in order to use this app.\n</string>
+    <string name="help_subheading0">Using the app</string>
+    <string name="help_subheading0_para0">You\'ll need the original \"The Resistance: Avalon\" game in order to use this app.\n</string>
     <string name="help_subheading0_para1">Choose the number of players along the top of the main screen. The range of characters who are available for selection will be automatically adapted to the number of players selected.\n</string>
-    <string name="help_subheading0_para2">The special roles in "The Resistance: Avalon" are: Merlin, Assassin, Percival, Morgana, Mordred, and Oberon. Select the special roles that you’re using by tapping them on the main screen. Selected (active) characters will have a white frame around them.\n</string>
+    <string name="help_subheading0_para2">The special roles in \"The Resistance: Avalon\" are: Merlin, Assassin, Percival, Morgana, Mordred, and Oberon. Select the special roles that you’re using by tapping them on the main screen. Selected (active) characters will have a white frame around them.\n</string>
     <string name="help_subheading0_para3">Some selection rules will apply. For example, you cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin. In addition, in a 5-player game, you cannot have Percival without either Morgana or Mordred. Some characters will be automatically selected/deselected depending on the selection/deselection of other characters.\n</string>
     <string name="help_subheading0_para4">Tap the Play button when you\'re ready for the night phase to begin (i.e. for all players to close their eyes and for the playback/narration of the introduction script).\n</string>
-    <string name="help_subheading1">Customising Settings</string>
+    <string name="help_subheading1">Customising settings</string>
     <string name="help_subheading1_para0">Tap the gear icon in the lower right corner to view the settings screen, which allows you to customize every aspect of the app.\n</string>
     <string name="help_subheading1_para1">On the Settings screen, tapping the Back button returns you to the main screen. Tapping the Help button displays this Help that you\'re reading now. Tapping the app creator\'s personal logo takes you to his website.\n</string>
-    <string name="help_subheading1_subsubheading0">Narration Settings</string>
+    <string name="help_subheading1_subsubheading0">Narration settings</string>
     <string name="help_subheading1_subsubheading0_para0">The Narration Settings allows you to change the volume of the narration.\n</string>
-    <string name="help_subheading1_subsubheading1">Background Settings</string>
+    <string name="help_subheading1_subsubheading1">Background settings</string>
     <string name="help_subheading1_subsubheading1_para0">The Background Settings allows you to change the background sounds and their volume. These background sounds are played during the night phase (to help cover up any sounds made by players).\n</string>
-    <string name="help_subheading1_subsubheading2">Role Timer Settings</string>
+    <string name="help_subheading1_subsubheading2">Role timer settings</string>
     <string name="help_subheading1_subsubheading2_para0">This timer determines the length of the pause during the action of the roles that wake up at night (namely Merlin, Percival, and/or the Agents of Evil).\n</string>
     <string name="help_subheading2">Tips</string>
     <string name="help_subheading2_para0">Tap and hold the image of each character to learn his/her role in the game.\n</string>
@@ -87,14 +100,16 @@
     <string name="help_subheading2_para2">Notifications (calls, mail, messages, etc.) may interrupt the playback of the app, depending on how your notifications are set up.\n</string>
     <string name="help_subheading3">Credits</string>
     <string name="help_subheading3_para0">This app was developed by Li-Wei Yap. The code within this app is Copyright © 2021 Li-Wei Yap and licensed under the GNU General Public Licence v3.0. The code may not be reproduced without citation.\n</string>
-    <string name="help_subheading3_para1">Role artwork was designed entirely by Don Eskridge and Indie Boards and Cards, and then cartoonified using the Cartoon Photo Editor from Lyrebird Studio.\n</string>
+    <string name="help_subheading3_para1">The character artwork was designed entirely by Indie Boards and Cards and others including Luis Francisco, George Patsouras, Marco Turini, Pablo Messuti, and Luis Tomas. For the purposes of this app, the character artwork was cartoonified using the Cartoon Photo Editor from Lyrebird Studio.\n</string>
     <string name="help_subheading3_para2">The app background was designed by \'Logos by Nick\'.\n</string>
     <string name="help_subheading3_para3">The ARKHAM fonts used in the app were designed by James Cianciarusco.\n</string>
-    <string name="help_subheading3_para4">The gear icon in the settings button was taken from www.flaticon.com and designed by Freeepik.\n</string>
-    <string name="help_subheading3_para5">The voice of the narrator is "en-US-Wavenet-B" from the Text-to-Speech API of the Google Cloud SDK.\n</string>
+    <string name="help_subheading3_para4">The gear icon in the settings button was taken from www.flaticon.com and designed by Freepik.\n</string>
+    <string name="help_subheading3_para5">The voice of the narrator is \"en-US-Wavenet-B\" from the Text-to-Speech API of the Google Cloud SDK.\n</string>
     <string name="help_subheading3_para6">The cards background sound was taken from the YouTube Audio library. The rest of the background sounds were taken from SoundBible.com. The crickets background sound was recorded anonymously. The fireplace background sound was recorded by Daniel Simion. The rain background sound was recorded by Mark DiAngelo. The rainforest background sound was recorded by glorysunz. The rainstorm background sound was recorded by Mike Koenig. The wolves background sound was recorded by fws.gov.\n</string>
-    <string name="help_subheading3_para7">The overall app design was inspired by the One Night Ultimate Werewolf app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, and Akihisa Okui (amongst others).\n</string>
-    <string name="help_subheading3_para8">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.</string>
+    <string name="help_subheading3_para7">The overall app design was inspired by the One Night Ultimate Werewolf app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.\n</string>
+    <string name="help_subheading3_para8">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.\n</string>
+    <string name="help_subheading4">Why the name \"Narradir\"?</string>
+    <string name="help_subheading4_para0">The name is a portmanteau of \"narrator\" and \"Nadir\", which is the last name of Abed, one of the main characters of the American television sitcom \"Community\". In one episode involving delicious chicken fingers, Abed narrated a good chunk of the story line, as if \"in a mafia movie\" (his own words). In two other episodes featuring Dungeons &amp; Dragons, Abed was the Dungeon Master, whose tasks include narration. The launcher icon of the app is also a reference to the school logo of Greendale Community College, which is the main setting of this sitcom.</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>
