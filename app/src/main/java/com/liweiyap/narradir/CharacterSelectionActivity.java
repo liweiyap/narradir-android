@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -50,8 +51,10 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
         /* click sound */
 
-        // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
-        mClickSoundMediaPlayer = MediaPlayer.create(this, R.raw.clicksound);
+        mGeneralSoundPool = new SoundPool.Builder()
+            .setMaxStreams(1)
+            .build();
+        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
         addSoundToPlayOnButtonClick();
 
         /* general MediaPlayer for character descriptions */
@@ -103,14 +106,14 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     {
         super.onDestroy();
 
-        mClickSoundMediaPlayer.release();
-        mClickSoundMediaPlayer = null;
-
         if (mGeneralMediaPlayer != null)
         {
             mGeneralMediaPlayer.release();
             mGeneralMediaPlayer = null;
         }
+
+        mGeneralSoundPool.release();
+        mGeneralSoundPool = null;
     }
 
     @Override
@@ -420,10 +423,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
                 mGeneralMediaPlayer.stop();
             }
 
-            if (mClickSoundMediaPlayer != null)
-            {
-                mClickSoundMediaPlayer.start();
-            }
+            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
         });
     }
 
@@ -463,6 +463,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
         try
         {
+            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
             mGeneralMediaPlayer = MediaPlayer.create(this, descriptionId);
             mGeneralMediaPlayer.start();
         }
@@ -1167,7 +1168,9 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         }
     }
 
-    private MediaPlayer mClickSoundMediaPlayer;
+    private SoundPool mGeneralSoundPool;
+    private int mClickSoundId;
+
     private MediaPlayer mGeneralMediaPlayer;
     private int mGeneralMediaPlayerCurrentLength;
 
