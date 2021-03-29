@@ -50,7 +50,6 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         loadPreferences();
 
         /* click sound */
-
         mGeneralSoundPool = new SoundPool.Builder()
             .setMaxStreams(1)
             .build();
@@ -58,7 +57,6 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick();
 
         /* general MediaPlayer for character descriptions */
-
         addCharacterDescriptions();
 
         // ------------------------------------------------------------
