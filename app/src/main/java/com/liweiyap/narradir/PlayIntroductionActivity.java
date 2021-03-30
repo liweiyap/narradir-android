@@ -281,6 +281,9 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
             case R.raw.introsegment3withmordred:
             case R.raw.introsegment5withpercivalnomorgana:
             case R.raw.introsegment5withpercivalwithmorgana:
+            case R.raw.secrethitlerintrosegment1small:
+            case R.raw.secrethitlerintrosegment1large:
+            case R.raw.secrethitlerintrosegment2large:
                 return true;
             default:
                 return false;
@@ -305,10 +308,19 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
             case R.raw.introsegment5withpercivalwithmorgana:
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
                 return;
+            case R.raw.secrethitlerintrosegment1small:
+                // TODO: Scan image of evil insignia
+            case R.raw.secrethitlerintrosegment1large:
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_fascist);
+                mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
+                return;
             case R.raw.introsegment3nomerlin:
             case R.raw.introsegment5nopercival:
             case R.raw.introsegment7:
+            case R.raw.secrethitlerintrosegment3small:
+            case R.raw.secrethitlerintrosegment4large:
                 mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+                mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
         }
     }
 
@@ -358,6 +370,33 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                 return;
             case R.raw.introsegment7:
                 mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment7_text);
+                return;
+            case R.raw.secrethitlerintrosegment0small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment0small_text);
+                return;
+            case R.raw.secrethitlerintrosegment1small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment1small_text);
+                return;
+            case R.raw.secrethitlerintrosegment2small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment2small_text);
+                return;
+            case R.raw.secrethitlerintrosegment3small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment3small_text);
+                return;
+            case R.raw.secrethitlerintrosegment0large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment0large_text);
+                return;
+            case R.raw.secrethitlerintrosegment1large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment1large_text);
+                return;
+            case R.raw.secrethitlerintrosegment2large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment2large_text);
+                return;
+            case R.raw.secrethitlerintrosegment3large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment3large_text);
+                return;
+            case R.raw.secrethitlerintrosegment4large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment4large_text);
         }
     }
 

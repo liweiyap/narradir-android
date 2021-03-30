@@ -20,6 +20,8 @@ import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
@@ -62,6 +64,9 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_avalon));
         gameSwitcherButton.addOnClickObserver(() -> navigateToAvalonCharacterSelectionActivity(gameSwitcherButton));
+
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
+        playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
     }
 
     @Override
@@ -463,6 +468,35 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         Intent intent = new Intent(view.getContext(), CharacterSelectionActivity.class);
         finish();
+        view.getContext().startActivity(intent);
+    }
+
+    private void navigateToPlayIntroductionActivity(@NotNull View view)
+    {
+        ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
+
+        if (mExpectedGoodTotal + mExpectedEvilTotal < 7)
+        {
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment0small);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment1small);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment2small);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment3small);
+        }
+        else
+        {
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment0large);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment1large);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment2large);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment3large);
+            introSegmentArrayList.add(R.raw.secrethitlerintrosegment4large);
+        }
+
+        Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
+        intent.putIntegerArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
+        intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         view.getContext().startActivity(intent);
     }
 
