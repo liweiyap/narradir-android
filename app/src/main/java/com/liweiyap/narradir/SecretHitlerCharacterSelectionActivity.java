@@ -514,6 +514,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        intent.putExtra(getString(R.string.is_started_from_avalon_key), false);
         view.getContext().startActivity(intent);
     }
 

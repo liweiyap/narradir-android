@@ -20,7 +20,15 @@
             layout="@layout/game_title_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible" />
+
+        <include
+            layout="@layout/game_title_secrethitler_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/gameTitleAvalonTextView"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

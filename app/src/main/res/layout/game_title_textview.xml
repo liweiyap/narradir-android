@@ -6,7 +6,7 @@
     strokeAttrs:textStrokeColor="@color/go_ben"
     strokeAttrs:textStrokeWidth="2"
     android:text="@string/game_title_avalon"
-    android:id="@+id/gameTitleTextView"
+    android:id="@+id/gameTitleAvalonTextView"
     android:textSize="50sp"
     android:textColor="@color/yuma"
     android:gravity="center"
