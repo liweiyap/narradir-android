@@ -65,7 +65,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         mGeneralBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
-        mMainButton.addOnClickObserver(this::navigateBackwardsByUndefinedSteps);
+        mMainButton.addOnClickObserver(this::navigateBackwardsByTwoSteps);
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
@@ -356,12 +356,12 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
      *  - `intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)` (https://stackoverflow.com/a/21571381/12367873)
      *  - `intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)` (https://stackoverflow.com/a/10085298/12367873)
      */
-    private void navigateBackwardsByUndefinedSteps()
+    private void navigateBackwardsByTwoSteps()
     {
         Intent intent = new Intent();
         intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
-        setResult(Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS, intent);
+        setResult(Constants.RESULT_OK_SETTINGS_TWOSTEPS, intent);
         finish();
     }
 

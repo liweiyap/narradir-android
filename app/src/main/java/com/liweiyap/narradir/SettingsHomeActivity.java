@@ -127,7 +127,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
             mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
 
-            if (resultCode == Constants.RESULT_OK_SETTINGS_UNDEFINEDSTEPS)
+            if (resultCode == Constants.RESULT_OK_SETTINGS_TWOSTEPS)
             {
                 Intent intent = new Intent();
                 intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);

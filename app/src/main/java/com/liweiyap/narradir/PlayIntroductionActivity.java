@@ -291,12 +291,12 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     {
         switch (resId)
         {
-            case R.raw.introsegment1nooberon:
-            case R.raw.introsegment1withoberon:
-            case R.raw.introsegment3nomordred:
-            case R.raw.introsegment3withmordred:
-            case R.raw.introsegment5withpercivalnomorgana:
-            case R.raw.introsegment5withpercivalwithmorgana:
+            case R.raw.avalonintrosegment1nooberon:
+            case R.raw.avalonintrosegment1withoberon:
+            case R.raw.avalonintrosegment3nomordred:
+            case R.raw.avalonintrosegment3withmordred:
+            case R.raw.avalonintrosegment5withpercivalnomorgana:
+            case R.raw.avalonintrosegment5withpercivalwithmorgana:
             case R.raw.secrethitlerintrosegment1small:
             case R.raw.secrethitlerintrosegment1large:
             case R.raw.secrethitlerintrosegment2large:
@@ -311,17 +311,17 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     {
         switch (resId)
         {
-            case R.raw.introsegment1nooberon:
-            case R.raw.introsegment1withoberon:
+            case R.raw.avalonintrosegment1nooberon:
+            case R.raw.avalonintrosegment1withoberon:
                 // TODO: Scan image of evil insignia
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.minion0_unchecked_unlabelled);
                 return;
-            case R.raw.introsegment3nomordred:
-            case R.raw.introsegment3withmordred:
+            case R.raw.avalonintrosegment3nomordred:
+            case R.raw.avalonintrosegment3withmordred:
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.merlin_unchecked_unlabelled);
                 return;
-            case R.raw.introsegment5withpercivalnomorgana:
-            case R.raw.introsegment5withpercivalwithmorgana:
+            case R.raw.avalonintrosegment5withpercivalnomorgana:
+            case R.raw.avalonintrosegment5withpercivalwithmorgana:
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
                 return;
             case R.raw.secrethitlerintrosegment1small:
@@ -330,9 +330,9 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_fascist);
                 mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
                 return;
-            case R.raw.introsegment3nomerlin:
-            case R.raw.introsegment5nopercival:
-            case R.raw.introsegment7:
+            case R.raw.avalonintrosegment3nomerlin:
+            case R.raw.avalonintrosegment5nopercival:
+            case R.raw.avalonintrosegment7:
             case R.raw.secrethitlerintrosegment3small:
             case R.raw.secrethitlerintrosegment4large:
                 mCurrentDisplayedCharacterImageView.setImageDrawable(null);
@@ -345,47 +345,47 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     {
         switch (resId)
         {
-            case R.raw.introsegment0:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment0_text);
+            case R.raw.avalonintrosegment0:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment0_text);
                 return;
-            case R.raw.introsegment1nooberon:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment1nooberon_text);
+            case R.raw.avalonintrosegment1nooberon:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment1nooberon_text);
                 return;
-            case R.raw.introsegment1withoberon:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment1withoberon_text);
+            case R.raw.avalonintrosegment1withoberon:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment1withoberon_text);
                 return;
-            case R.raw.introsegment2:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment2_text);
+            case R.raw.avalonintrosegment2:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment2_text);
                 return;
-            case R.raw.introsegment3nomerlin:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3nomerlin_text);
+            case R.raw.avalonintrosegment3nomerlin:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment3nomerlin_text);
                 return;
-            case R.raw.introsegment3nomordred:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3nomordred_text);
+            case R.raw.avalonintrosegment3nomordred:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment3nomordred_text);
                 return;
-            case R.raw.introsegment3withmordred:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment3withmordred_text);
+            case R.raw.avalonintrosegment3withmordred:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment3withmordred_text);
                 return;
-            case R.raw.introsegment4:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment4_text);
+            case R.raw.avalonintrosegment4:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment4_text);
                 return;
-            case R.raw.introsegment5nopercival:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment5nopercival_text);
+            case R.raw.avalonintrosegment5nopercival:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment5nopercival_text);
                 return;
-            case R.raw.introsegment5withpercivalnomorgana:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment5withpercivalnomorgana_text);
+            case R.raw.avalonintrosegment5withpercivalnomorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment5withpercivalnomorgana_text);
                 return;
-            case R.raw.introsegment5withpercivalwithmorgana:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment5withpercivalwithmorgana_text);
+            case R.raw.avalonintrosegment5withpercivalwithmorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment5withpercivalwithmorgana_text);
                 return;
-            case R.raw.introsegment6withpercivalnomorgana:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment6withpercivalnomorgana_text);
+            case R.raw.avalonintrosegment6withpercivalnomorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment6withpercivalnomorgana_text);
                 return;
-            case R.raw.introsegment6withpercivalwithmorgana:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment6withpercivalwithmorgana_text);
+            case R.raw.avalonintrosegment6withpercivalwithmorgana:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment6withpercivalwithmorgana_text);
                 return;
-            case R.raw.introsegment7:
-                mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment7_text);
+            case R.raw.avalonintrosegment7:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.avalonintrosegment7_text);
                 return;
             case R.raw.secrethitlerintrosegment0small:
                 mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment0small_text);
