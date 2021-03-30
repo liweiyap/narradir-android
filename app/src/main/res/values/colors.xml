@@ -35,4 +35,11 @@
     <color name="norway">#FFA2b387</color>
     <color name="domino">#FF755E50</color>
     <color name="mobster">#FF5F5965</color>
+
+    <color name="oasis">#FFFBE5C1</color>
+    <color name="acadia">#FF373531</color>
+    <color name="harley_davidson_orange">#FFC93B1B</color>
+    <color name="burnt_orange">#FFFE7030</color>
+    <color name="matisse">#FF3A5077</color>
+    <color name="glacier">#FF6EA6BB</color>
 </resources>

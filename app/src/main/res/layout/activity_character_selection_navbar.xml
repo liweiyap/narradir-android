@@ -3,20 +3,33 @@
     android:orientation="horizontal"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:id="@+id/mainLayoutNavBar"
+    android:id="@+id/characterSelectionLayoutNavBar"
     android:weightSum="3" >
 
-    <Space
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/characterSelectionLayoutGameSwitcherButton"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/game_switcher_button_background"
+            style="@style/ArkhamRegTypefacedTextViewStyle" />
+
+    </RelativeLayout>
 
     <com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:id="@+id/mainLayoutPlayButton"
+        android:id="@+id/characterSelectionLayoutPlayButton"
         android:gravity="center"
         android:text="@string/play_button_text"
         android:textSize="16sp"
@@ -37,7 +50,7 @@
         <com.liweiyap.narradir.utils.ObserverImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mainLayoutSettingsButton"
+            android:id="@+id/characterSelectionLayoutSettingsButton"
             android:src="@drawable/ic_gear"
             android:minHeight="40dp"
             android:minWidth="40dp"

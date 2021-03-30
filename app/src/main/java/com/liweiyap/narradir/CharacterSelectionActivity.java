@@ -63,10 +63,14 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         // navigation bar (of activity, not of phone)
         // ------------------------------------------------------------
 
-        CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
+        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
+        gameSwitcherButton.setText(getString(R.string.game_switcher_button_secrethitler));
+        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));
+
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
 
-        ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
+        ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
         settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
     }
 
@@ -401,10 +405,13 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORDRED]);
         addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.OBERON]);
 
-        CustomTypefaceableObserverButton playButton = findViewById(R.id.mainLayoutPlayButton);
+        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
+        addSoundToPlayOnButtonClick(gameSwitcherButton);
+
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
         addSoundToPlayOnButtonClick(playButton);
 
-        ObserverImageButton settingsButton = findViewById(R.id.mainLayoutSettingsButton);
+        ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
         addSoundToPlayOnButtonClick(settingsButton);
     }
 
@@ -827,7 +834,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     }
 
     /**
-     * Find the first X characters between startIdx and endIdx who are VISIBLE and not checked. Then, check him/her.
+     * Find the first X characters between startIdx and endIdx who are VISIBLE and not checked. Then, check them.
      * Pre-condition: startIdx <= endIdx
      */
     private void searchAndCheckNewCharacters(final int startIdx, final int endIdx, final int X)
@@ -879,7 +886,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     }
 
     /**
-     * Find the last X characters between startIdx and endIdx who are VISIBLE and checked. Then, uncheck him/her.
+     * Find the last X characters between startIdx and endIdx who are VISIBLE and checked. Then, uncheck them.
      * Pre-condition: startIdx >= endIdx
      */
     private void searchAndUncheckOldCharacters(final int startIdx, final int endIdx, final int X)
@@ -962,6 +969,13 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         return mCharacterImageButtonArray;
     }
 
+    private void navigateToSecretHitlerCharacterSelectionActivity(@NotNull View view)
+    {
+        Intent intent = new Intent(view.getContext(), SecretHitlerCharacterSelectionActivity.class);
+        finish();
+        view.getContext().startActivity(intent);
+    }
+
     private void navigateToPlayIntroductionActivity(@NotNull View view)
     {
         ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
@@ -1025,10 +1039,11 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
     /**
      * https://stackoverflow.com/a/24822131/12367873
+     * https://stackoverflow.com/a/10991785/12367873
      */
     private void savePreferences()
     {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
         sharedPrefEditor.putLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
@@ -1054,7 +1069,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
     private void loadPreferences()
     {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
