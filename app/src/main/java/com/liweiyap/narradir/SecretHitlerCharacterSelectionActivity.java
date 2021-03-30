@@ -483,6 +483,11 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
     private void navigateToAvalonCharacterSelectionActivity(@NotNull View view)
     {
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
+        sharedPrefEditor.putInt(getString(R.string.last_selected_game_key), Constants.GAME_AVALON);
+        sharedPrefEditor.apply();
+
         Intent intent = new Intent(view.getContext(), CharacterSelectionActivity.class);
         finish();
         view.getContext().startActivity(intent);

@@ -46,10 +46,17 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         // ------------------------------------------------------------
 
         /* set up */
+
         addSelectionRules();
+
+        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
+        gameSwitcherButton.setText(getString(R.string.game_switcher_button_secrethitler));
+        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));
+
         loadPreferences();
 
         /* click sound */
+
         mGeneralSoundPool = new SoundPool.Builder()
             .setMaxStreams(1)
             .build();
@@ -57,15 +64,12 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick();
 
         /* general MediaPlayer for character descriptions */
+
         addCharacterDescriptions();
 
         // ------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ------------------------------------------------------------
-
-        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
-        gameSwitcherButton.setText(getString(R.string.game_switcher_button_secrethitler));
-        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
@@ -971,6 +975,11 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
     private void navigateToSecretHitlerCharacterSelectionActivity(@NotNull View view)
     {
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
+        sharedPrefEditor.putInt(getString(R.string.last_selected_game_key), Constants.GAME_SECRETHITLER);
+        sharedPrefEditor.apply();
+
         Intent intent = new Intent(view.getContext(), SecretHitlerCharacterSelectionActivity.class);
         finish();
         view.getContext().startActivity(intent);
@@ -1071,6 +1080,15 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     private void loadPreferences()
     {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+
+        // Avalon is the default game but another game might have been the last selected
+        int lastSelectedGame = sharedPref.getInt(getString(R.string.last_selected_game_key), Constants.GAME_AVALON);
+        if (lastSelectedGame != Constants.GAME_AVALON)  // if last selected game is not the default game, then switch game
+        {
+            CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
+            gameSwitcherButton.performClick();
+        }
+
         mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);

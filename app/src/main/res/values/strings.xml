@@ -24,6 +24,7 @@
     <string name="is_mordred_checked_key">IS_MORDRED_CHECKED</string>
     <string name="is_oberon_checked_key">IS_OBERON_CHECKED</string>
     <string name="is_started_from_avalon_key">IS_STARTED_FROM_AVALON</string>
+    <string name="last_selected_game_key">LAST_SELECTED_GAME</string>
 
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
