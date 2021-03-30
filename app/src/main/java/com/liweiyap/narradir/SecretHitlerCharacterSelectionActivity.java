@@ -3,14 +3,18 @@ package com.liweiyap.narradir;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverImageButton;
+import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
@@ -35,6 +39,23 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         loadPreferences();
 
         // ------------------------------------------------------------
+        // character selection layouts
+        // ------------------------------------------------------------
+
+        /* set up Toast */
+        setUpToast();
+
+        /* click sound */
+        mGeneralSoundPool = new SoundPool.Builder()
+            .setMaxStreams(1)
+            .build();
+        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        addSoundToPlayOnButtonClick();
+
+        /* general MediaPlayer for character descriptions */
+        addCharacterDescriptions();
+
+        // ------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ------------------------------------------------------------
 
@@ -44,11 +65,47 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        if (mGeneralMediaPlayer == null)
+        {
+            return;
+        }
+
+        mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
+        mGeneralMediaPlayer.start();
+    }
+
+    @Override
     protected void onPause()
     {
         super.onPause();
 
         savePreferences();  // https://stackoverflow.com/a/32576942/12367873; https://stackoverflow.com/a/14756816/12367873
+
+        if (mGeneralMediaPlayer == null)
+        {
+            return;
+        }
+        mGeneralMediaPlayer.pause();
+        mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.release();
+            mGeneralMediaPlayer = null;
+        }
+
+        mGeneralSoundPool.release();
+        mGeneralSoundPool = null;
     }
 
     private void initialiseCharacterImageButtonArray()
@@ -271,6 +328,98 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         });
     }
 
+    private void addSoundToPlayOnButtonClick()
+    {
+        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
+        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
+        {
+            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
+            addSoundToPlayOnButtonClick(btn);
+        }
+
+        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
+        addSoundToPlayOnButtonClick(gameSwitcherButton);
+
+        CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
+        addSoundToPlayOnButtonClick(playButton);
+
+        ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
+        addSoundToPlayOnButtonClick(settingsButton);
+    }
+
+    private void addSoundToPlayOnButtonClick(ObserverListener btn)
+    {
+        if (btn == null)
+        {
+            return;
+        }
+
+        btn.addOnClickObserver(() -> {
+            if (mGeneralMediaPlayer != null)
+            {
+                mGeneralMediaPlayer.stop();
+            }
+
+            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
+        });
+    }
+
+    private void addCharacterDescriptions()
+    {
+        try
+        {
+            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnLongClickObserver(() -> playCharacterDescription(R.raw.hitlerdescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
+            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void playCharacterDescription(int descriptionId)
+    {
+        if (mGeneralMediaPlayer != null)
+        {
+            mGeneralMediaPlayer.stop();
+        }
+
+        try
+        {
+            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
+            mGeneralMediaPlayer = MediaPlayer.create(this, descriptionId);
+            mGeneralMediaPlayer.start();
+        }
+        catch (IllegalStateException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void setUpToast()
+    {
+        final String toastMessage = "Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.";
+
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(() -> showNewToast(toastMessage));
+    }
+
     public int getActualGoodTotal()
     {
         int actualGoodTotal = 0;
@@ -297,6 +446,17 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         }
 
         return actualEvilTotal;
+    }
+
+    private void showNewToast(final String message)
+    {
+        if (mToast != null)
+        {
+            mToast.cancel();
+        }
+
+        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        mToast.show();
     }
 
     private void navigateToAvalonCharacterSelectionActivity(@NotNull View view)
@@ -331,6 +491,11 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
 
+        // At the moment, the values of mExpectedGoodTotal and mExpectedEvilTotal are shared amongst all activities.
+        // This set-up assumes that all activities have the same range for the number of players, as is the case for
+        // AvalonCharacterSelectionActivity and SecretHitlerCharacterSelectionActivity (5-10 players each).
+        // In future, if you wish to add more games, but the games that you add have a different range of player numbers,
+        // then we should store separate mExpectedGoodTotal and mExpectedEvilTotal variables for different games.
         int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
         int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
 
@@ -367,9 +532,17 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         }
     }
 
+    private SoundPool mGeneralSoundPool;
+    private int mClickSoundId;
+
+    private MediaPlayer mGeneralMediaPlayer;
+    private int mGeneralMediaPlayerCurrentLength;
+
     private ObserverImageButton[] mCharacterImageButtonArray;
     private int mExpectedGoodTotal = 3;
     private int mExpectedEvilTotal = 2;
+
+    private Toast mToast;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;
