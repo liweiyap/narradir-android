@@ -67,6 +67,9 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
+
+        ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
+        settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
     }
 
     @Override
@@ -111,6 +114,20 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         mGeneralSoundPool.release();
         mGeneralSoundPool = null;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ( (requestCode == Constants.REQUEST_SETTINGS_HOME) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
+        {
+            mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+            mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+            mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+            mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        }
     }
 
     private void initialiseCharacterImageButtonArray()
@@ -498,6 +515,16 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         view.getContext().startActivity(intent);
+    }
+
+    private void navigateToSettingsHomeActivity(@NotNull View view)
+    {
+        Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
+        intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
     }
 
     /**
