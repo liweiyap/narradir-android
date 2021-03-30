@@ -51,7 +51,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_secrethitler));
-        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));
+        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));  // set this before loadPreferences() because Avalon might not have been the last selected game
 
         loadPreferences();
 
