@@ -3,8 +3,13 @@
     <string name="app_version">1.0</string>
     <string name="app_name_and_version">Narradir Version 1.0</string>
 
-    <string name="game_title_avalon">AVALON</string>
+    <string name="game_title_avalon">Avalon</string>
+    <string name="game_title_secrethitler">Secret Hitler</string>
+    <string name="game_switcher_button_avalon">Avalon</string>
+    <string name="game_switcher_button_secrethitler">Secret\nHitler</string>
     <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
+
+    <string name="shared_preferences_key">SHARED_PREFERENCES_KEY</string>
 
     <string name="intro_segments_key">INTRO_SEGMENTS</string>
     <string name="pause_duration_key">PAUSE_DURATION</string>
@@ -18,6 +23,8 @@
     <string name="is_morgana_checked_key">IS_MORGANA_CHECKED</string>
     <string name="is_mordred_checked_key">IS_MORDRED_CHECKED</string>
     <string name="is_oberon_checked_key">IS_OBERON_CHECKED</string>
+    <string name="is_started_from_avalon_key">IS_STARTED_FROM_AVALON</string>
+    <string name="last_selected_game_key">LAST_SELECTED_GAME</string>
 
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
@@ -49,6 +56,16 @@
     <string name="introsegment6withpercivalnomorgana_text">MERLIN, put your thumb away. PERCIVAL, close your eyes.</string>
     <string name="introsegment6withpercivalwithmorgana_text">MERLIN and MORGANA, put your thumbs away. PERCIVAL, close your eyes.</string>
     <string name="introsegment7_text">EVERYONE, wake up.</string>
+
+    <string name="secrethitlerintrosegment0small_text">EVERYONE, close your eyes.</string>
+    <string name="secrethitlerintrosegment1small_text">FASCIST and HITLER, wake up, and look for each other.</string>
+    <string name="secrethitlerintrosegment2small_text">FASCIST and HITLER, close your eyes.</string>
+    <string name="secrethitlerintrosegment3small_text">EVERYONE, wake up.</string>
+    <string name="secrethitlerintrosegment0large_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
+    <string name="secrethitlerintrosegment1large_text">FASCISTS, except HITLER, wake up, and look for other Fascists.</string>
+    <string name="secrethitlerintrosegment2large_text">HITLER, stick out your thumb, so that the Fascists can see who you are.</string>
+    <string name="secrethitlerintrosegment3large_text">HITLER, put your thumb away. FASCISTS, close your eyes.</string>
+    <string name="secrethitlerintrosegment4large_text">EVERYONE, wake up.</string>
 
     <string name="edit_button_text">Edit</string>
 

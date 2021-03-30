@@ -20,7 +20,15 @@
             layout="@layout/game_title_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible" />
+
+        <include
+            layout="@layout/game_title_secrethitler_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/gameTitleAvalonTextView"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
@@ -28,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="3.5"
+        android:minWidth="200dp"
         android:id="@+id/currentDisplayedCharacterImageView"
         android:contentDescription="@string/current_displayed_character_contentdescription" />
 

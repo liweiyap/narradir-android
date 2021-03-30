@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SecretHitlerCharacterSelectionActivity" android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".PlayIntroductionActivity" android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".SettingsHomeActivity" android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".SettingsNarrationActivity" android:configChanges="orientation|screenSize|screenLayout" />

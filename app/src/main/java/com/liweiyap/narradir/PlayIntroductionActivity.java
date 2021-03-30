@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.RawRes;
@@ -28,6 +29,7 @@ import com.google.android.exoplayer2.util.Assertions;
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.utils.fonts.StrokedCustomTypefaceableTextView;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -55,6 +57,20 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), 0);
         mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
         mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), 1f);
+
+        boolean isStartedFromAvalon = intent.getBooleanExtra(getString(R.string.is_started_from_avalon_key), true);
+        StrokedCustomTypefaceableTextView gameTitleAvalonTextView = findViewById(R.id.gameTitleAvalonTextView);
+        StrokedCustomTypefaceableTextView gameTitleSecretHitlerTextView = findViewById(R.id.gameTitleSecretHitlerTextView);
+        if (isStartedFromAvalon)
+        {
+            gameTitleAvalonTextView.setVisibility(View.VISIBLE);
+            gameTitleSecretHitlerTextView.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            gameTitleAvalonTextView.setVisibility(View.INVISIBLE);
+            gameTitleSecretHitlerTextView.setVisibility(View.VISIBLE);
+        }
 
         // handle edge case of mPauseDurationInMilliSecs passed in as 0
         mPauseDurationInMilliSecs = Math.max(mPauseDurationInMilliSecs, mMinPauseDurationInMilliSecs);
@@ -281,6 +297,9 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
             case R.raw.introsegment3withmordred:
             case R.raw.introsegment5withpercivalnomorgana:
             case R.raw.introsegment5withpercivalwithmorgana:
+            case R.raw.secrethitlerintrosegment1small:
+            case R.raw.secrethitlerintrosegment1large:
+            case R.raw.secrethitlerintrosegment2large:
                 return true;
             default:
                 return false;
@@ -305,10 +324,19 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
             case R.raw.introsegment5withpercivalwithmorgana:
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
                 return;
+            case R.raw.secrethitlerintrosegment1small:
+                // TODO: Scan image of evil insignia
+            case R.raw.secrethitlerintrosegment1large:
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_fascist);
+                mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
+                return;
             case R.raw.introsegment3nomerlin:
             case R.raw.introsegment5nopercival:
             case R.raw.introsegment7:
+            case R.raw.secrethitlerintrosegment3small:
+            case R.raw.secrethitlerintrosegment4large:
                 mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+                mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
         }
     }
 
@@ -358,6 +386,33 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                 return;
             case R.raw.introsegment7:
                 mCurrentDisplayedIntroSegmentTextView.setText(R.string.introsegment7_text);
+                return;
+            case R.raw.secrethitlerintrosegment0small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment0small_text);
+                return;
+            case R.raw.secrethitlerintrosegment1small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment1small_text);
+                return;
+            case R.raw.secrethitlerintrosegment2small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment2small_text);
+                return;
+            case R.raw.secrethitlerintrosegment3small:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment3small_text);
+                return;
+            case R.raw.secrethitlerintrosegment0large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment0large_text);
+                return;
+            case R.raw.secrethitlerintrosegment1large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment1large_text);
+                return;
+            case R.raw.secrethitlerintrosegment2large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment2large_text);
+                return;
+            case R.raw.secrethitlerintrosegment3large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment3large_text);
+                return;
+            case R.raw.secrethitlerintrosegment4large:
+                mCurrentDisplayedIntroSegmentTextView.setText(R.string.secrethitlerintrosegment4large_text);
         }
     }
 
