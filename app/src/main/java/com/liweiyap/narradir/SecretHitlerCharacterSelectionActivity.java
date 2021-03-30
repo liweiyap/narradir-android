@@ -488,7 +488,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         sharedPrefEditor.putInt(getString(R.string.last_selected_game_key), Constants.GAME_AVALON);
         sharedPrefEditor.apply();
 
-        Intent intent = new Intent(view.getContext(), CharacterSelectionActivity.class);
+        Intent intent = new Intent(view.getContext(), AvalonCharacterSelectionActivity.class);
         finish();
         view.getContext().startActivity(intent);
     }

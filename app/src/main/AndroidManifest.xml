@@ -11,7 +11,7 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".CharacterSelectionActivity" android:configChanges="orientation|screenSize|screenLayout">
+        <activity android:name=".AvalonCharacterSelectionActivity" android:configChanges="orientation|screenSize|screenLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

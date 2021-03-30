@@ -1,8 +1,6 @@
 package com.liweiyap.narradir;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.View;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -37,7 +35,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Rule
-    public ActivityScenarioRule<CharacterSelectionActivity> mActivityRule = new ActivityScenarioRule<>(CharacterSelectionActivity.class);
+    public ActivityScenarioRule<AvalonCharacterSelectionActivity> mActivityRule = new ActivityScenarioRule<>(AvalonCharacterSelectionActivity.class);
 
     @Test
     public void dummyTest()
@@ -46,21 +44,21 @@ public class ExampleInstrumentedTest {
 
 //        mActivityRule.getScenario().onActivity(activity -> {
 //            CheckableObserverImageButton[] characterImageButtonArray = activity.getCharacterImageButtonArray();
-//            assertFalse(characterImageButtonArray[CharacterName.MERLIN].isChecked());
-//            assertFalse(characterImageButtonArray[CharacterName.ASSASSIN].isChecked());
-//            assertTrue(characterImageButtonArray[CharacterName.LOYAL0].isChecked());
-//            assertTrue(characterImageButtonArray[CharacterName.LOYAL1].isChecked());
-//            assertTrue(characterImageButtonArray[CharacterName.LOYAL2].isChecked());
-//            assertTrue(characterImageButtonArray[CharacterName.MINION0].isChecked());
-//            assertTrue(characterImageButtonArray[CharacterName.MINION1].isChecked());
+//            assertFalse(characterImageButtonArray[AvalonCharacterName.MERLIN].isChecked());
+//            assertFalse(characterImageButtonArray[AvalonCharacterName.ASSASSIN].isChecked());
+//            assertTrue(characterImageButtonArray[AvalonCharacterName.LOYAL0].isChecked());
+//            assertTrue(characterImageButtonArray[AvalonCharacterName.LOYAL1].isChecked());
+//            assertTrue(characterImageButtonArray[AvalonCharacterName.LOYAL2].isChecked());
+//            assertTrue(characterImageButtonArray[AvalonCharacterName.MINION0].isChecked());
+//            assertTrue(characterImageButtonArray[AvalonCharacterName.MINION1].isChecked());
 //        });
 
         onView(withId(R.id.p10Button)).perform(click());
 
 //        mActivityRule.getScenario().onActivity(activity -> {
 //            CheckableObserverImageButton[] characterImageButtonArray = activity.getCharacterImageButtonArray();
-//            assertFalse(characterImageButtonArray[CharacterName.MERLIN].isChecked());
-//            assertFalse(characterImageButtonArray[CharacterName.ASSASSIN].isChecked());
+//            assertFalse(characterImageButtonArray[AvalonCharacterName.MERLIN].isChecked());
+//            assertFalse(characterImageButtonArray[AvalonCharacterName.ASSASSIN].isChecked());
 //        });
 
         onView(withId(R.id.percivalButton)).perform(click());
@@ -68,7 +66,7 @@ public class ExampleInstrumentedTest {
         // Morgana should be checked only in 5-player mode.
         mActivityRule.getScenario().onActivity(activity -> {
             CheckableObserverImageButton[] characterImageButtonArray = activity.getCharacterImageButtonArray();
-            assertFalse(characterImageButtonArray[CharacterName.MORGANA].isChecked());
+            assertFalse(characterImageButtonArray[AvalonCharacterName.MORGANA].isChecked());
         });
     }
 }

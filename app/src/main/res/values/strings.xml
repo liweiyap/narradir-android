@@ -42,20 +42,20 @@
     <string name="help_button_text">HELP</string>
     <string name="main_button_text">MAIN</string>
 
-    <string name="introsegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
-    <string name="introsegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
-    <string name="introsegment1withoberon_text">AGENTS OF EVIL, except OBERON, wake up, and look for other agents of Evil.</string>
-    <string name="introsegment2_text">AGENTS OF EVIL, close your eyes.</string>
-    <string name="introsegment3nomerlin_text">EVERYONE, wake up.</string>
-    <string name="introsegment3nomordred_text">MERLIN, wake up. AGENTS OF EVIL, stick out your thumb, so that Merlin can see who you are.</string>
-    <string name="introsegment3withmordred_text">MERLIN, wake up. AGENTS OF EVIL, except MORDRED, stick out your thumb, so that Merlin can see who you are.</string>
-    <string name="introsegment4_text">AGENTS OF EVIL, put your thumbs away. MERLIN, close your eyes.</string>
-    <string name="introsegment5nopercival_text">EVERYONE, wake up.</string>
-    <string name="introsegment5withpercivalnomorgana_text">PERCIVAL, wake up. MERLIN, stick out your thumb, so that Percival can see who you are.</string>
-    <string name="introsegment5withpercivalwithmorgana_text">PERCIVAL, wake up. MERLIN and MORGANA, stick out your thumb, so that Percival can see who you are.</string>
-    <string name="introsegment6withpercivalnomorgana_text">MERLIN, put your thumb away. PERCIVAL, close your eyes.</string>
-    <string name="introsegment6withpercivalwithmorgana_text">MERLIN and MORGANA, put your thumbs away. PERCIVAL, close your eyes.</string>
-    <string name="introsegment7_text">EVERYONE, wake up.</string>
+    <string name="avalonintrosegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
+    <string name="avalonintrosegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
+    <string name="avalonintrosegment1withoberon_text">AGENTS OF EVIL, except OBERON, wake up, and look for other agents of Evil.</string>
+    <string name="avalonintrosegment2_text">AGENTS OF EVIL, close your eyes.</string>
+    <string name="avalonintrosegment3nomerlin_text">EVERYONE, wake up.</string>
+    <string name="avalonintrosegment3nomordred_text">MERLIN, wake up. AGENTS OF EVIL, stick out your thumb, so that Merlin can see who you are.</string>
+    <string name="avalonintrosegment3withmordred_text">MERLIN, wake up. AGENTS OF EVIL, except MORDRED, stick out your thumb, so that Merlin can see who you are.</string>
+    <string name="avalonintrosegment4_text">AGENTS OF EVIL, put your thumbs away. MERLIN, close your eyes.</string>
+    <string name="avalonintrosegment5nopercival_text">EVERYONE, wake up.</string>
+    <string name="avalonintrosegment5withpercivalnomorgana_text">PERCIVAL, wake up. MERLIN, stick out your thumb, so that Percival can see who you are.</string>
+    <string name="avalonintrosegment5withpercivalwithmorgana_text">PERCIVAL, wake up. MERLIN and MORGANA, stick out your thumb, so that Percival can see who you are.</string>
+    <string name="avalonintrosegment6withpercivalnomorgana_text">MERLIN, put your thumb away. PERCIVAL, close your eyes.</string>
+    <string name="avalonintrosegment6withpercivalwithmorgana_text">MERLIN and MORGANA, put your thumbs away. PERCIVAL, close your eyes.</string>
+    <string name="avalonintrosegment7_text">EVERYONE, wake up.</string>
 
     <string name="secrethitlerintrosegment0small_text">EVERYONE, close your eyes.</string>
     <string name="secrethitlerintrosegment1small_text">FASCIST and HITLER, wake up, and look for each other.</string>

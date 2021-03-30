@@ -24,13 +24,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
+public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_character_selection);
+        setContentView(R.layout.activity_character_selection_avalon);
 
         initialiseCharacterImageButtonArray();
 
@@ -138,23 +138,23 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
     private void initialiseCharacterImageButtonArray()
     {
-        mCharacterImageButtonArray = new CheckableObserverImageButton[CharacterName.getNumberOfCharacters()];
-        mCharacterImageButtonArray[CharacterName.MERLIN] = findViewById(R.id.merlinButton);
-        mCharacterImageButtonArray[CharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
-        mCharacterImageButtonArray[CharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL1] = findViewById(R.id.loyal1Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL2] = findViewById(R.id.loyal2Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL3] = findViewById(R.id.loyal3Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL4] = findViewById(R.id.loyal4Button);
-        mCharacterImageButtonArray[CharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
-        mCharacterImageButtonArray[CharacterName.ASSASSIN] = findViewById(R.id.assassinButton);
-        mCharacterImageButtonArray[CharacterName.MORGANA] = findViewById(R.id.morganaButton);
-        mCharacterImageButtonArray[CharacterName.MORDRED] = findViewById(R.id.mordredButton);
-        mCharacterImageButtonArray[CharacterName.OBERON] = findViewById(R.id.oberonButton);
-        mCharacterImageButtonArray[CharacterName.MINION0] = findViewById(R.id.minion0Button);
-        mCharacterImageButtonArray[CharacterName.MINION1] = findViewById(R.id.minion1Button);
-        mCharacterImageButtonArray[CharacterName.MINION2] = findViewById(R.id.minion2Button);
-        mCharacterImageButtonArray[CharacterName.MINION3] = findViewById(R.id.minion3Button);
+        mCharacterImageButtonArray = new CheckableObserverImageButton[AvalonCharacterName.getNumberOfCharacters()];
+        mCharacterImageButtonArray[AvalonCharacterName.MERLIN] = findViewById(R.id.merlinButton);
+        mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL] = findViewById(R.id.percivalButton);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL0] = findViewById(R.id.loyal0Button);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL1] = findViewById(R.id.loyal1Button);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL2] = findViewById(R.id.loyal2Button);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL3] = findViewById(R.id.loyal3Button);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL4] = findViewById(R.id.loyal4Button);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL5] = findViewById(R.id.loyal5Button);
+        mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN] = findViewById(R.id.assassinButton);
+        mCharacterImageButtonArray[AvalonCharacterName.MORGANA] = findViewById(R.id.morganaButton);
+        mCharacterImageButtonArray[AvalonCharacterName.MORDRED] = findViewById(R.id.mordredButton);
+        mCharacterImageButtonArray[AvalonCharacterName.OBERON] = findViewById(R.id.oberonButton);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION0] = findViewById(R.id.minion0Button);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION1] = findViewById(R.id.minion1Button);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION2] = findViewById(R.id.minion2Button);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION3] = findViewById(R.id.minion3Button);
     }
 
     private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
@@ -192,21 +192,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(5);
             }
             else if (playerNumberChange < 0)  // new < old (decrease)
             {
                 playerNumberSelectionLayoutChecker(5);
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
@@ -215,21 +215,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(6);
             }
             else if (playerNumberChange < 0)  // new < old (decrease)
             {
                 playerNumberSelectionLayoutChecker(6);
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
@@ -238,21 +238,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(7);
             }
             else if (playerNumberChange < 0)  // new < old (decrease)
             {
                 playerNumberSelectionLayoutChecker(7);
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
@@ -261,21 +261,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(8);
             }
             else if (playerNumberChange < 0)  // new < old (decrease)
             {
                 playerNumberSelectionLayoutChecker(8);
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
@@ -284,21 +284,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(9);
             }
             else if (playerNumberChange < 0)  // new < old (decrease)
             {
                 playerNumberSelectionLayoutChecker(9);
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.INVISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
@@ -307,21 +307,21 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.VISIBLE);
                 playerNumberSelectionLayoutChecker(10);
             }
             else if (playerNumberChange < 0)  // new < old (decrease)
             {
                 playerNumberSelectionLayoutChecker(10);
-                mCharacterImageButtonArray[CharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[CharacterName.MINION3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.VISIBLE);
             }
         });
     }
@@ -331,7 +331,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if ((newPlayerNumber < 5) || (newPlayerNumber > 10))
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::playerNumberSelectionLayoutChecker(): " +
+                "AvalonCharacterSelectionActivity::playerNumberSelectionLayoutChecker(): " +
                     "Invalid input " + newPlayerNumber);
         }
 
@@ -344,20 +344,20 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
         if (expectedGoodChange > 0)  // new > old (increase)
         {
-            searchAndCheckNewCharacters(CharacterName.LOYAL0, CharacterName.LOYAL5, expectedGoodChange);
+            searchAndCheckNewCharacters(AvalonCharacterName.LOYAL0, AvalonCharacterName.LOYAL5, expectedGoodChange);
         }
         else  // new < old (decrease)
         {
-            searchAndUncheckOldCharacters(CharacterName.LOYAL5, CharacterName.LOYAL0, -expectedGoodChange);
+            searchAndUncheckOldCharacters(AvalonCharacterName.LOYAL5, AvalonCharacterName.LOYAL0, -expectedGoodChange);
         }
 
         if (expectedEvilChange > 0)  // new > old (increase)
         {
-            searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, expectedEvilChange);
+            searchAndCheckNewCharacters(AvalonCharacterName.MINION0, AvalonCharacterName.MINION3, expectedEvilChange);
         }
         else  // new < old (decrease)
         {
-            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORGANA, -expectedEvilChange);
+            searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, -expectedEvilChange);
         }
 
         // update old values to new values
@@ -370,7 +370,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if ((playerNumber < 5) || (playerNumber > 10))
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::getPlayerComposition(): " +
+                "AvalonCharacterSelectionActivity::getPlayerComposition(): " +
                     "Invalid input " + playerNumber);
         }
 
@@ -402,12 +402,12 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
             addSoundToPlayOnButtonClick(btn);
         }
 
-        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MERLIN]);
-        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.PERCIVAL]);
-        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.ASSASSIN]);
-        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORGANA]);
-        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.MORDRED]);
-        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[CharacterName.OBERON]);
+        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[AvalonCharacterName.MERLIN]);
+        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL]);
+        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN]);
+        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[AvalonCharacterName.MORGANA]);
+        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[AvalonCharacterName.MORDRED]);
+        addSoundToPlayOnButtonClick(mCharacterImageButtonArray[AvalonCharacterName.OBERON]);
 
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         addSoundToPlayOnButtonClick(gameSwitcherButton);
@@ -440,22 +440,22 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     {
         try
         {
-            mCharacterImageButtonArray[CharacterName.MERLIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
-            mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
-            mCharacterImageButtonArray[CharacterName.LOYAL0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mCharacterImageButtonArray[CharacterName.LOYAL1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mCharacterImageButtonArray[CharacterName.LOYAL2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mCharacterImageButtonArray[CharacterName.LOYAL3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mCharacterImageButtonArray[CharacterName.LOYAL4].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mCharacterImageButtonArray[CharacterName.LOYAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.assassindescription));
-            mCharacterImageButtonArray[CharacterName.MORGANA].addOnLongClickObserver(() -> playCharacterDescription(R.raw.morganadescription));
-            mCharacterImageButtonArray[CharacterName.MORDRED].addOnLongClickObserver(() -> playCharacterDescription(R.raw.mordreddescription));
-            mCharacterImageButtonArray[CharacterName.OBERON].addOnLongClickObserver(() -> playCharacterDescription(R.raw.oberondescription));
-            mCharacterImageButtonArray[CharacterName.MINION0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-            mCharacterImageButtonArray[CharacterName.MINION1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-            mCharacterImageButtonArray[CharacterName.MINION2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-            mCharacterImageButtonArray[CharacterName.MINION3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
+            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].addOnLongClickObserver(() -> playCharacterDescription(R.raw.assassindescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].addOnLongClickObserver(() -> playCharacterDescription(R.raw.morganadescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].addOnLongClickObserver(() -> playCharacterDescription(R.raw.mordreddescription));
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].addOnLongClickObserver(() -> playCharacterDescription(R.raw.oberondescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MINION0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MINION1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
         }
         catch (Exception e)
         {
@@ -484,22 +484,22 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
     private void addSelectionRules()
     {
-        mCharacterImageButtonArray[CharacterName.MERLIN].addOnClickObserver(this::addMerlinSelectionRules);
-        mCharacterImageButtonArray[CharacterName.PERCIVAL].addOnClickObserver(this::addPercivalSelectionRules);
-        mCharacterImageButtonArray[CharacterName.LOYAL0].addOnClickObserver(this::addGeneralGoodSelectionRules);
-        mCharacterImageButtonArray[CharacterName.LOYAL1].addOnClickObserver(this::addGeneralGoodSelectionRules);
-        mCharacterImageButtonArray[CharacterName.LOYAL2].addOnClickObserver(this::addGeneralGoodSelectionRules);
-        mCharacterImageButtonArray[CharacterName.LOYAL3].addOnClickObserver(this::addGeneralGoodSelectionRules);
-        mCharacterImageButtonArray[CharacterName.LOYAL4].addOnClickObserver(this::addGeneralGoodSelectionRules);
-        mCharacterImageButtonArray[CharacterName.LOYAL5].addOnClickObserver(this::addGeneralGoodSelectionRules);
-        mCharacterImageButtonArray[CharacterName.ASSASSIN].addOnClickObserver(this::addMerlinSelectionRules);
-        mCharacterImageButtonArray[CharacterName.MORGANA].addOnClickObserver(this::addMorganaSelectionRules);
-        mCharacterImageButtonArray[CharacterName.MORDRED].addOnClickObserver(this::addMordredSelectionRules);
-        mCharacterImageButtonArray[CharacterName.OBERON].addOnClickObserver(this::addOberonSelectionRules);
-        mCharacterImageButtonArray[CharacterName.MINION0].addOnClickObserver(this::addGeneralEvilSelectionRules);
-        mCharacterImageButtonArray[CharacterName.MINION1].addOnClickObserver(this::addGeneralEvilSelectionRules);
-        mCharacterImageButtonArray[CharacterName.MINION2].addOnClickObserver(this::addGeneralEvilSelectionRules);
-        mCharacterImageButtonArray[CharacterName.MINION3].addOnClickObserver(this::addGeneralEvilSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MERLIN].addOnClickObserver(this::addMerlinSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].addOnClickObserver(this::addPercivalSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL0].addOnClickObserver(this::addGeneralGoodSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL1].addOnClickObserver(this::addGeneralGoodSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL2].addOnClickObserver(this::addGeneralGoodSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].addOnClickObserver(this::addGeneralGoodSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].addOnClickObserver(this::addGeneralGoodSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].addOnClickObserver(this::addGeneralGoodSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].addOnClickObserver(this::addMerlinSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MORGANA].addOnClickObserver(this::addMorganaSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MORDRED].addOnClickObserver(this::addMordredSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.OBERON].addOnClickObserver(this::addOberonSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION0].addOnClickObserver(this::addGeneralEvilSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION1].addOnClickObserver(this::addGeneralEvilSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION2].addOnClickObserver(this::addGeneralEvilSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MINION3].addOnClickObserver(this::addGeneralEvilSelectionRules);
     }
 
     /**
@@ -512,36 +512,36 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void addMerlinSelectionRules()
     {
-        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
         {
-            if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            if (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
             {
-                mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+                mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].performClick();
             }
 
-            if (mCharacterImageButtonArray[CharacterName.MORDRED].isChecked())
+            if (mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked())
             {
-                mCharacterImageButtonArray[CharacterName.MORDRED].performClick();
+                mCharacterImageButtonArray[AvalonCharacterName.MORDRED].performClick();
             }
 
-            mCharacterImageButtonArray[CharacterName.MERLIN].uncheck();
-            mCharacterImageButtonArray[CharacterName.ASSASSIN].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].uncheck();
             checkNewLoyal();
             checkNewMinion();
         }
         else
         {
-            mCharacterImageButtonArray[CharacterName.MERLIN].check();
-            mCharacterImageButtonArray[CharacterName.ASSASSIN].check();
+            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].check();
+            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].check();
             uncheckOldLoyal();
-            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.OBERON, 1);
+            searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.OBERON, 1);
         }
 
         int actualGoodTotal = getActualGoodTotal();
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMerlinSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addMerlinSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -550,7 +550,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMerlinSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addMerlinSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
@@ -575,35 +575,35 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void addPercivalSelectionRules()
     {
-        if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
         {
-            mCharacterImageButtonArray[CharacterName.PERCIVAL].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].uncheck();
             checkNewLoyal();
 
-            if (mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
+            if (mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
             {
                 checkNewMinion();
             }
-            mCharacterImageButtonArray[CharacterName.MORGANA].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].uncheck();
         }
         else
         {
-            mCharacterImageButtonArray[CharacterName.PERCIVAL].check();
+            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].check();
             uncheckOldLoyal();
 
-            if (!mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+            if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
             {
-                mCharacterImageButtonArray[CharacterName.MERLIN].performClick();
+                mCharacterImageButtonArray[AvalonCharacterName.MERLIN].performClick();
             }
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                 (!mCharacterImageButtonArray[CharacterName.MORDRED].isChecked()) )
+                 (!mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked()) )
             {
-                if (!mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
+                if (!mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
                 {
-                    searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORDRED, 1);
+                    searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORDRED, 1);
                 }
-                mCharacterImageButtonArray[CharacterName.MORGANA].check();
+                mCharacterImageButtonArray[AvalonCharacterName.MORGANA].check();
             }
         }
 
@@ -611,7 +611,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addPercivalSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addPercivalSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -620,7 +620,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addPercivalSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addPercivalSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
@@ -643,25 +643,25 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void addMorganaSelectionRules()
     {
-        if (mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
         {
-            if (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            if (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
             {
                 throw new RuntimeException(
-                    "CharacterSelectionActivity::addMorganaSelectionRules(): " +
+                    "AvalonCharacterSelectionActivity::addMorganaSelectionRules(): " +
                         "Morgana was active in the absence of Percival");
             }
 
-            mCharacterImageButtonArray[CharacterName.MORGANA].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].uncheck();
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                 (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked()) )
+                 (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
             {
-                if (mCharacterImageButtonArray[CharacterName.MORDRED].isChecked())
+                if (mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked())
                 {
                     checkNewMinion();
                 }
-                mCharacterImageButtonArray[CharacterName.MORDRED].check();
+                mCharacterImageButtonArray[AvalonCharacterName.MORDRED].check();
             }
             else
             {
@@ -670,12 +670,12 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         }
         else
         {
-            mCharacterImageButtonArray[CharacterName.MORGANA].check();
-            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORDRED, 1);
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].check();
+            searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORDRED, 1);
 
-            if (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            if (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
             {
-                mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+                mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].performClick();
             }
         }
 
@@ -683,7 +683,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMorganaSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addMorganaSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -692,7 +692,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMorganaSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addMorganaSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
@@ -718,25 +718,25 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void addMordredSelectionRules()
     {
-        if (mCharacterImageButtonArray[CharacterName.MORDRED].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked())
         {
-            if (!mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+            if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
             {
                 throw new RuntimeException(
-                    "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                    "AvalonCharacterSelectionActivity::addMordredSelectionRules(): " +
                         "Mordred was active in the absence of Merlin");
             }
 
-            mCharacterImageButtonArray[CharacterName.MORDRED].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].uncheck();
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                 (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked()) )
+                 (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
             {
-                if (mCharacterImageButtonArray[CharacterName.MORGANA].isChecked())
+                if (mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
                 {
                     checkNewMinion();
                 }
-                mCharacterImageButtonArray[CharacterName.MORGANA].check();
+                mCharacterImageButtonArray[AvalonCharacterName.MORGANA].check();
             }
             else
             {
@@ -745,18 +745,18 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         }
         else
         {
-            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORGANA, 1);
-            mCharacterImageButtonArray[CharacterName.MORDRED].check();
+            searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1);
+            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].check();
 
-            if (!mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+            if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
             {
-                mCharacterImageButtonArray[CharacterName.MERLIN].performClick();
+                mCharacterImageButtonArray[AvalonCharacterName.MERLIN].performClick();
             }
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                 (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked()) )
+                 (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
             {
-                mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+                mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].performClick();
             }
         }
 
@@ -764,7 +764,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addMordredSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -773,7 +773,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addMordredSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addMordredSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
@@ -786,22 +786,22 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
 
     private void addOberonSelectionRules()
     {
-        if (mCharacterImageButtonArray[CharacterName.OBERON].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked())
         {
-            mCharacterImageButtonArray[CharacterName.OBERON].uncheck();
-            searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, 1);
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].uncheck();
+            searchAndCheckNewCharacters(AvalonCharacterName.MINION0, AvalonCharacterName.MINION3, 1);
         }
         else
         {
-            searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MORGANA, 1);
-            mCharacterImageButtonArray[CharacterName.OBERON].check();
+            searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1);
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].check();
         }
 
         int actualGoodTotal = getActualGoodTotal();
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addOberonSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addOberonSelectionRules(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -810,7 +810,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::addOberonSelectionRules(): " +
+                "AvalonCharacterSelectionActivity::addOberonSelectionRules(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
@@ -826,7 +826,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void checkNewLoyal()
     {
-        searchAndCheckNewCharacters(CharacterName.LOYAL0, CharacterName.LOYAL5, 1);
+        searchAndCheckNewCharacters(AvalonCharacterName.LOYAL0, AvalonCharacterName.LOYAL5, 1);
     }
 
     /**
@@ -834,7 +834,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void checkNewMinion()
     {
-        searchAndCheckNewCharacters(CharacterName.MINION0, CharacterName.MINION3, 1);
+        searchAndCheckNewCharacters(AvalonCharacterName.MINION0, AvalonCharacterName.MINION3, 1);
     }
 
     /**
@@ -846,14 +846,14 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (startIdx > endIdx)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::searchAndCheckNewCharacter(): " +
+                "AvalonCharacterSelectionActivity::searchAndCheckNewCharacter(): " +
                     "startIdx must be <= endIdx");
         }
 
         if (X < 0)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::searchAndCheckNewCharacter(): " +
+                "AvalonCharacterSelectionActivity::searchAndCheckNewCharacter(): " +
                     "X must be >= 0");
         }
 
@@ -878,7 +878,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void uncheckOldLoyal()
     {
-        searchAndUncheckOldCharacters(CharacterName.LOYAL5, CharacterName.LOYAL0, 1);
+        searchAndUncheckOldCharacters(AvalonCharacterName.LOYAL5, AvalonCharacterName.LOYAL0, 1);
     }
 
     /**
@@ -886,7 +886,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
      */
     private void uncheckOldMinion()
     {
-        searchAndUncheckOldCharacters(CharacterName.MINION3, CharacterName.MINION0, 1);
+        searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MINION0, 1);
     }
 
     /**
@@ -898,14 +898,14 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (startIdx < endIdx)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::searchAndUncheckOldCharacter(): " +
+                "AvalonCharacterSelectionActivity::searchAndUncheckOldCharacter(): " +
                 "startIdx must be >= endIdx");
         }
 
         if (X < 0)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::searchAndUncheckOldCharacter(): " +
+                "AvalonCharacterSelectionActivity::searchAndUncheckOldCharacter(): " +
                     "X must be >= 0");
         }
 
@@ -932,7 +932,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     public int getActualGoodTotal()
     {
         int actualGoodTotal = 0;
-        for (int idx = CharacterName.MERLIN; idx <= CharacterName.LOYAL5; ++idx)
+        for (int idx = AvalonCharacterName.MERLIN; idx <= AvalonCharacterName.LOYAL5; ++idx)
         {
             if (mCharacterImageButtonArray[idx].isChecked())
             {
@@ -946,7 +946,7 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     public int getActualEvilTotal()
     {
         int actualEvilTotal = 0;
-        for (int idx = CharacterName.ASSASSIN; idx <= CharacterName.MINION3; ++idx)
+        for (int idx = AvalonCharacterName.ASSASSIN; idx <= AvalonCharacterName.MINION3; ++idx)
         {
             if (mCharacterImageButtonArray[idx].isChecked())
             {
@@ -989,42 +989,42 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
     {
         ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
 
-        introSegmentArrayList.add(R.raw.introsegment0);
+        introSegmentArrayList.add(R.raw.avalonintrosegment0);
 
-        introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.OBERON].isChecked() ?
-            R.raw.introsegment1withoberon :
-            R.raw.introsegment1nooberon);
+        introSegmentArrayList.add(mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked() ?
+            R.raw.avalonintrosegment1withoberon :
+            R.raw.avalonintrosegment1nooberon);
 
-        introSegmentArrayList.add(R.raw.introsegment2);
+        introSegmentArrayList.add(R.raw.avalonintrosegment2);
 
-        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
         {
-            introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORDRED].isChecked() ?
-                R.raw.introsegment3withmordred :
-                R.raw.introsegment3nomordred);
+            introSegmentArrayList.add(mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked() ?
+                R.raw.avalonintrosegment3withmordred :
+                R.raw.avalonintrosegment3nomordred);
 
-            introSegmentArrayList.add(R.raw.introsegment4);
+            introSegmentArrayList.add(R.raw.avalonintrosegment4);
 
-            if (mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked())
+            if (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
             {
-                introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
-                    R.raw.introsegment5withpercivalwithmorgana :
-                    R.raw.introsegment5withpercivalnomorgana);
+                introSegmentArrayList.add(mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked() ?
+                    R.raw.avalonintrosegment5withpercivalwithmorgana :
+                    R.raw.avalonintrosegment5withpercivalnomorgana);
 
-                introSegmentArrayList.add(mCharacterImageButtonArray[CharacterName.MORGANA].isChecked() ?
-                    R.raw.introsegment6withpercivalwithmorgana :
-                    R.raw.introsegment6withpercivalnomorgana);
+                introSegmentArrayList.add(mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked() ?
+                    R.raw.avalonintrosegment6withpercivalwithmorgana :
+                    R.raw.avalonintrosegment6withpercivalnomorgana);
 
-                introSegmentArrayList.add(R.raw.introsegment7);
+                introSegmentArrayList.add(R.raw.avalonintrosegment7);
             }
             else
             {
-                introSegmentArrayList.add(R.raw.introsegment5nopercival);
+                introSegmentArrayList.add(R.raw.avalonintrosegment5nopercival);
             }
         }
         else
         {
-            introSegmentArrayList.add(R.raw.introsegment3nomerlin);
+            introSegmentArrayList.add(R.raw.avalonintrosegment3nomerlin);
         }
 
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
@@ -1062,18 +1062,18 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         sharedPrefEditor.putInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
         sharedPrefEditor.putInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
 
-        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[CharacterName.ASSASSIN].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].isChecked())
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::savePreferences(): " +
+                "AvalonCharacterSelectionActivity::savePreferences(): " +
                     "Checked state of Assassin should be identical to that of Merlin");
         }
 
-        sharedPrefEditor.putBoolean(getString(R.string.is_merlin_checked_key), mCharacterImageButtonArray[CharacterName.MERLIN].isChecked());
-        sharedPrefEditor.putBoolean(getString(R.string.is_percival_checked_key), mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked());
-        sharedPrefEditor.putBoolean(getString(R.string.is_morgana_checked_key), mCharacterImageButtonArray[CharacterName.MORGANA].isChecked());
-        sharedPrefEditor.putBoolean(getString(R.string.is_mordred_checked_key), mCharacterImageButtonArray[CharacterName.MORDRED].isChecked());
-        sharedPrefEditor.putBoolean(getString(R.string.is_oberon_checked_key), mCharacterImageButtonArray[CharacterName.OBERON].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_merlin_checked_key), mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_percival_checked_key), mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_morgana_checked_key), mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_mordred_checked_key), mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked());
+        sharedPrefEditor.putBoolean(getString(R.string.is_oberon_checked_key), mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked());
         sharedPrefEditor.apply();
     }
 
@@ -1135,50 +1135,50 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
                 break;
             default:
                 throw new RuntimeException(
-                    "CharacterSelectionActivity::loadPreferences(): " +
+                    "AvalonCharacterSelectionActivity::loadPreferences(): " +
                         "Invalid no of players: " + (expectedGoodTotal + expectedEvilTotal));
         }
 
         // default: Merlin is checked
         // saved preferences: if Merlin is not checked
-        if ( (!isMerlinChecked) && (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked()) )
+        if ( (!isMerlinChecked) && (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked()) )
         {
-            mCharacterImageButtonArray[CharacterName.MERLIN].performClick();
+            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].performClick();
         }
 
         // default: Percival is not checked
         // saved preferences: if Percival is checked
-        if ( (isPercivalChecked) && (!mCharacterImageButtonArray[CharacterName.PERCIVAL].isChecked()) )
+        if ( (isPercivalChecked) && (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
         {
-            mCharacterImageButtonArray[CharacterName.PERCIVAL].performClick();
+            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].performClick();
         }
 
         // default: Morgana is not checked
         // saved preferences: if Morgana is checked
-        if ( (isMorganaChecked) && (!mCharacterImageButtonArray[CharacterName.MORGANA].isChecked()) )
+        if ( (isMorganaChecked) && (!mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked()) )
         {
-            mCharacterImageButtonArray[CharacterName.MORGANA].performClick();
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].performClick();
         }
 
         // default: Mordred is not checked
         // saved preferences: if Mordred is checked
-        if ( (isMordredChecked) && (!mCharacterImageButtonArray[CharacterName.MORDRED].isChecked()) )
+        if ( (isMordredChecked) && (!mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked()) )
         {
-            mCharacterImageButtonArray[CharacterName.MORDRED].performClick();
+            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].performClick();
         }
 
         // default: Oberon is not checked
         // saved preferences: if Oberon is checked
-        if ( (isOberonChecked) && (!mCharacterImageButtonArray[CharacterName.OBERON].isChecked()) )
+        if ( (isOberonChecked) && (!mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked()) )
         {
-            mCharacterImageButtonArray[CharacterName.OBERON].performClick();
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].performClick();
         }
 
         int actualGoodTotal = getActualGoodTotal();
         if (actualGoodTotal != mExpectedGoodTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::loadPreferences(): " +
+                "AvalonCharacterSelectionActivity::loadPreferences(): " +
                     "expected good player total is " + mExpectedGoodTotal +
                     " but actual good player total is " + actualGoodTotal);
         }
@@ -1187,15 +1187,15 @@ public class CharacterSelectionActivity extends ActiveFullScreenPortraitActivity
         if (actualEvilTotal != mExpectedEvilTotal)
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::loadPreferences(): " +
+                "AvalonCharacterSelectionActivity::loadPreferences(): " +
                     "expected evil player total is " + mExpectedEvilTotal +
                     " but actual evil player total is " + actualEvilTotal);
         }
 
-        if (mCharacterImageButtonArray[CharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[CharacterName.ASSASSIN].isChecked())
+        if (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].isChecked())
         {
             throw new RuntimeException(
-                "CharacterSelectionActivity::loadPreferences(): " +
+                "AvalonCharacterSelectionActivity::loadPreferences(): " +
                     "Checked state of Assassin should be identical to that of Merlin");
         }
     }
