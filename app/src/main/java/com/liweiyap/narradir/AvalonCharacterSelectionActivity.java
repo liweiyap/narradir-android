@@ -32,6 +32,24 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection_avalon);
 
+        /*
+         * Avalon is the default game but another game might have been the last selected.
+         * If last selected game is not the default game, then switch game.
+         */
+
+        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
+        gameSwitcherButton.setText(getString(R.string.game_switcher_button_secrethitler));
+        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));
+
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+        int lastSelectedGame = sharedPref.getInt(getString(R.string.last_selected_game_key), Constants.GAME_AVALON);
+        if (lastSelectedGame != Constants.GAME_AVALON)
+        {
+            gameSwitcherButton.performClick();
+        }
+
+        /* storage in array */
+
         initialiseCharacterImageButtonArray();
 
         // ------------------------------------------------------------
@@ -46,17 +64,10 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         // ------------------------------------------------------------
 
         /* set up */
-
         addSelectionRules();
-
-        CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
-        gameSwitcherButton.setText(getString(R.string.game_switcher_button_secrethitler));
-        gameSwitcherButton.addOnClickObserver(() -> navigateToSecretHitlerCharacterSelectionActivity(gameSwitcherButton));  // set this before loadPreferences() because Avalon might not have been the last selected game
-
         loadPreferences();
 
         /* click sound */
-
         mGeneralSoundPool = new SoundPool.Builder()
             .setMaxStreams(1)
             .build();
@@ -64,7 +75,6 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         addSoundToPlayOnButtonClick();
 
         /* general MediaPlayer for character descriptions */
-
         addCharacterDescriptions();
 
         // ------------------------------------------------------------
@@ -1080,15 +1090,6 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     private void loadPreferences()
     {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
-
-        // Avalon is the default game but another game might have been the last selected
-        int lastSelectedGame = sharedPref.getInt(getString(R.string.last_selected_game_key), Constants.GAME_AVALON);
-        if (lastSelectedGame != Constants.GAME_AVALON)  // if last selected game is not the default game, then switch game
-        {
-            CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
-            gameSwitcherButton.performClick();
-        }
-
         mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
