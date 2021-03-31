@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -313,8 +314,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             case R.raw.avalonintrosegment1nooberon:
             case R.raw.avalonintrosegment1withoberon:
-                // TODO: Scan image of evil insignia
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.minion0_unchecked_unlabelled);
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.teamevil);
                 return;
             case R.raw.avalonintrosegment3nomordred:
             case R.raw.avalonintrosegment3withmordred:
@@ -325,7 +325,9 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
                 return;
             case R.raw.secrethitlerintrosegment1small:
-                // TODO: Scan image of evil insignia
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_teamfascists);
+                mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
+                return;
             case R.raw.secrethitlerintrosegment1large:
                 mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_fascist);
                 mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
