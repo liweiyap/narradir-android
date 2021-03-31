@@ -314,8 +314,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             case R.raw.avalonintrosegment1nooberon:
             case R.raw.avalonintrosegment1withoberon:
-                // TODO: Scan image of evil insignia
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.minion0_unchecked_unlabelled);
+                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.teamevil);
                 return;
             case R.raw.avalonintrosegment3nomordred:
             case R.raw.avalonintrosegment3withmordred:
