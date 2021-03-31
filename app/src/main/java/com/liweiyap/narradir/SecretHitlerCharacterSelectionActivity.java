@@ -545,8 +545,8 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
-        sharedPrefEditor.putInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
-        sharedPrefEditor.putInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
+        sharedPrefEditor.putInt(getString(R.string.good_player_number_secrethitler_key), mExpectedGoodTotal);
+        sharedPrefEditor.putInt(getString(R.string.evil_player_number_secrethitler_key), mExpectedEvilTotal);
         sharedPrefEditor.apply();
     }
 
@@ -557,14 +557,8 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
-
-        // At the moment, the values of mExpectedGoodTotal and mExpectedEvilTotal are shared amongst all activities.
-        // This set-up assumes that all activities have the same range for the number of players, as is the case for
-        // AvalonCharacterSelectionActivity and SecretHitlerCharacterSelectionActivity (5-10 players each).
-        // In future, if you wish to add more games, but the games that you add have a different range of player numbers,
-        // then we should store separate mExpectedGoodTotal and mExpectedEvilTotal variables for different games.
-        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
-        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
+        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mExpectedGoodTotal);
+        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mExpectedEvilTotal);
 
         switch (expectedGoodTotal + expectedEvilTotal)
         {
