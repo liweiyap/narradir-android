@@ -1069,8 +1069,8 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
-        sharedPrefEditor.putInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
-        sharedPrefEditor.putInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
+        sharedPrefEditor.putInt(getString(R.string.good_player_number_avalon_key), mExpectedGoodTotal);
+        sharedPrefEditor.putInt(getString(R.string.evil_player_number_avalon_key), mExpectedEvilTotal);
 
         if (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked() != mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].isChecked())
         {
@@ -1100,8 +1100,8 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
             return;
         }
 
-        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_key), mExpectedGoodTotal);
-        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_key), mExpectedEvilTotal);
+        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_avalon_key), mExpectedGoodTotal);
+        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_avalon_key), mExpectedEvilTotal);
         boolean isMerlinChecked = sharedPref.getBoolean(getString(R.string.is_merlin_checked_key), true);
         boolean isPercivalChecked = sharedPref.getBoolean(getString(R.string.is_percival_checked_key), false);
         boolean isMorganaChecked = sharedPref.getBoolean(getString(R.string.is_morgana_checked_key), false);

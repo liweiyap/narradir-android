@@ -16,8 +16,10 @@
     <string name="background_sound_key">BACKGROUND_SOUND</string>
     <string name="background_volume_key">BACKGROUND_VOLUME</string>
     <string name="narration_volume_key">NARRATION_VOLUME</string>
-    <string name="good_player_number_key">GOOD_PLAYER_NUMBER</string>
-    <string name="evil_player_number_key">EVIL_PLAYER_NUMBER</string>
+    <string name="good_player_number_avalon_key">GOOD_PLAYER_NUMBER_AVALON</string>
+    <string name="evil_player_number_avalon_key">EVIL_PLAYER_NUMBER_AVALON</string>
+    <string name="good_player_number_secrethitler_key">GOOD_PLAYER_NUMBER_SECRETHITLER</string>
+    <string name="evil_player_number_secrethitler_key">EVIL_PLAYER_NUMBER_SECRETHITLER</string>
     <string name="is_merlin_checked_key">IS_MERLIN_CHECKED</string>
     <string name="is_percival_checked_key">IS_PERCIVAL_CHECKED</string>
     <string name="is_morgana_checked_key">IS_MORGANA_CHECKED</string>
