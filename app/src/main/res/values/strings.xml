@@ -114,7 +114,7 @@
     <string name="help_subheading1_subsubheading1">Background settings</string>
     <string name="help_subheading1_subsubheading1_para0">The Background Settings allows you to change the background sounds and their volume. These background sounds are played during the night phase (to help cover up any sounds made by players).\n</string>
     <string name="help_subheading1_subsubheading2">Role timer settings</string>
-    <string name="help_subheading1_subsubheading2_para0">This timer determines the length of the pause during the action of the roles that wake up at night (namely Merlin, Percival, and/or the Agents of Evil).\n</string>
+    <string name="help_subheading1_subsubheading2_para0">This timer determines the length of the pause during the action of the roles that wake up at night (namely Merlin, Percival, the Agents of Evil, Hitler, and/or the Fascists).\n</string>
     <string name="help_subheading2">Tips</string>
     <string name="help_subheading2_para0">Tap and hold the image of each character to learn his/her role in the game.\n</string>
     <string name="help_subheading2_para1">When the app is active on any screen, it prevents your device from going to sleep. If playing for extended periods of time, you should plug in your device or change the brightness to a low setting.\n</string>
