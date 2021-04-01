@@ -19,3 +19,4 @@ gcloud-**.txt
 /app/src/main/res/raw/backgroundcrickets.mp3
 
 keystore.properties
+/app/release/**
