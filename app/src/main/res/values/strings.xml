@@ -73,9 +73,6 @@
 
     <string name="author_website">App Creator:\nliweiyap.github.io</string>
 
-    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
-    <string name="author_logo_contentdescription">Personal logo of author of code.</string>
-
     <string name="backgroundsound_none">None</string>
     <string name="backgroundsound_cards">Cards</string>
     <string name="backgroundsound_crickets">Crickets</string>
@@ -132,6 +129,29 @@
     <string name="help_subheading3_para9">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.\n</string>
     <string name="help_subheading4">Why the name \"Narradir\"?</string>
     <string name="help_subheading4_para0">The name is a portmanteau of \"narrator\" and \"Nadir\", which is the last name of Abed, one of the main characters of the American television sitcom \"Community\". In one episode involving delicious chicken fingers, Abed narrated a good chunk of the story line, as if \"in a mafia movie\" (his own words). In two other episodes featuring Dungeons &amp; Dragons, Abed was the Dungeon Master, whose tasks include narration. The launcher icon of the app is also a reference to the school logo of Greendale Community College, which is the main setting of this sitcom.</string>
+
+    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
+    <string name="author_logo_contentdescription">Personal logo of author of code.</string>
+    <string name="merlin_button_contentdescription">Click on Merlin to select or deselect him. If Merlin is deselected, then Percival, Assassin, Morgana, and Mordred are auto-deselected.</string>
+    <string name="percival_button_contentdescription">Click on Percival to select or deselect him. If Percival is selected, then Merlin is auto-selected. If Percival is deselected, then Morgana is auto-deselected.</string>
+    <string name="loyal_button_contentdescription">Clicking on the Loyal Servant of Arthur has no effect, as he/she can be neither selected or deselected. Instead, he/she will be auto-selected or auto-deselected depending on the selection or deselection of the special roles Merlin, Percival, Assassin, Morgana, Mordred, and Oberon.</string>
+    <string name="assassin_button_contentdescription">Click on the Assassin to select or deselect her. If the Assassin is selected, then Merlin is auto-selected, and the opposite is also true.</string>
+    <string name="morgana_button_contentdescription">Click on Morgana to select or deselect her. If Morgana is selected, then Merlin and Percival are auto-selected.</string>
+    <string name="mordred_button_contentdescription">Click on Mordred to select or deselect him. If Mordred is selected, then Merlin is auto-selected.</string>
+    <string name="oberon_button_contentdescription">Click on Oberon to select or deselect him.</string>
+    <string name="minion_button_contentdescription">Clicking on the Minion of Mordred has no effect, as he can be neither selected or deselected. Instead, he will be auto-selected or auto-deselected depending on the selection or deselection of the special roles Merlin, Percival, Assassin, Morgana, Mordred, and Oberon.</string>
+    <string name="liberal_button_contentdescription">Clicking on the Liberal has no effect, as he can be neither selected or deselected. Use the player number selection buttons above instead.</string>
+    <string name="hitler_button_contentdescription">Clicking on Hitler has no effect, as he can be neither selected or deselected. Use the player number selection buttons above instead.</string>
+    <string name="fascist_button_contentdescription">Clicking on the Fascist has no effect, as he can be neither selected or deselected. Use the player number selection buttons above instead.</string>
+    <string name="settings_button_contentdescription">Click on the Settings Button to navigate to the Settings page.</string>
+    <string name="p5_button_contentdescription">Click to select 5-player mode.</string>
+    <string name="p6_button_contentdescription">Click to select 6-player mode.</string>
+    <string name="p7_button_contentdescription">Click to select 7-player mode.</string>
+    <string name="p8_button_contentdescription">Click to select 8-player mode.</string>
+    <string name="p9_button_contentdescription">Click to select 9-player mode.</string>
+    <string name="p10_button_contentdescription">Click to select 10-player mode.</string>
+    <string name="up_button_contentdescription">Click to increase.</string>
+    <string name="down_button_contentdescription">Click to decrease.</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>
