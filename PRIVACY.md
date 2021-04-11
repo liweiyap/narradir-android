@@ -2,7 +2,7 @@
 
 Li-Wei Yap built the Narradir app as a Free app. This SERVICE is provided by Li-Wei Yap at no cost and is intended for use as is.
 
-The terms used in this Privacy Policy have the same meanings as in my Terms and Conditions, which is accessible [here](https://github.com/liweiyap/narradir-android/blob/master/TERMS-AND-CONDITIONS.md) unless otherwise defined in this Privacy Policy.
+The terms used in this Privacy Policy have the same meanings as in my Terms and Conditions, which is accessible [here](https://github.com/liweiyap/narradir-android/blob/main/TERMS-AND-CONDITIONS.md) unless otherwise defined in this Privacy Policy.
 
 ## Personal Information Collection and Use
 
