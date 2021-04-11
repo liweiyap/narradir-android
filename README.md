@@ -1,5 +1,9 @@
 # Narradir
 
+<p align="center">
+  <img src="assets-github/ic_launcher-mipmap-xxxhdpi.png" height="100px" />
+</p>
+
 _Narradir_ [na-rey-deer] is designed to be used with the original _The Resistance: Avalon_ and _Secret Hitler_ board games. You will need at least one of these games, as well as an Android phone, in order to take advantage of this app.
 
 This app automates the night-time narration based on the roles in your game. It offers the following improvements over similar apps out there:
