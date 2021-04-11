@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Narradir</string>
-    <string name="app_version">1.0</string>
-    <string name="app_name_and_version">Narradir Version 1.0</string>
+    <string name="app_version">1.1</string>
+    <string name="app_name_and_version">Narradir Version 1.1</string>
 
     <string name="game_title_avalon">Avalon</string>
     <string name="game_title_secrethitler">Secret Hitler</string>
@@ -73,9 +73,6 @@
 
     <string name="author_website">App Creator:\nliweiyap.github.io</string>
 
-    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
-    <string name="author_logo_contentdescription">Personal logo of author of code.</string>
-
     <string name="backgroundsound_none">None</string>
     <string name="backgroundsound_cards">Cards</string>
     <string name="backgroundsound_crickets">Crickets</string>
@@ -114,7 +111,7 @@
     <string name="help_subheading1_subsubheading1">Background settings</string>
     <string name="help_subheading1_subsubheading1_para0">The Background Settings allows you to change the background sounds and their volume. These background sounds are played during the night phase (to help cover up any sounds made by players).\n</string>
     <string name="help_subheading1_subsubheading2">Role timer settings</string>
-    <string name="help_subheading1_subsubheading2_para0">This timer determines the length of the pause during the action of the roles that wake up at night (namely Merlin, Percival, and/or the Agents of Evil).\n</string>
+    <string name="help_subheading1_subsubheading2_para0">This timer determines the length of the pause during the action of the roles that wake up at night, namely: Merlin, Percival, the Agents of Evil (except Oberon), Hitler, and/or the Fascists).\n</string>
     <string name="help_subheading2">Tips</string>
     <string name="help_subheading2_para0">Tap and hold the image of each character to learn his/her role in the game.\n</string>
     <string name="help_subheading2_para1">When the app is active on any screen, it prevents your device from going to sleep. If playing for extended periods of time, you should plug in your device or change the brightness to a low setting.\n</string>
@@ -124,14 +121,38 @@
     <string name="help_subheading3_para1">The character artwork for \"The Resistance: Avalon\" was designed entirely by Indie Boards and Cards and others including Luis Francisco, George Patsouras, Marco Turini, Pablo Messuti, and Luis Tomas. For the purposes of this app, the character artwork for \"The Resistance: Avalon\" was cartoonified using the Cartoon Photo Editor from Lyrebird Studio.\n</string>
     <string name="help_subheading3_para2">The character artwork for \"Secret Hitler\" was designed entirely by Mackenzie Schubert.\n</string>
     <string name="help_subheading3_para3">The app background was designed by \'Logos by Nick\'.\n</string>
-    <string name="help_subheading3_para4">The ARKHAM fonts used in the app were designed by James Cianciarusco.\n</string>
+    <string name="help_subheading3_para4">The ARKHAM fonts used in the app were designed by James Cianciaruso.\n</string>
     <string name="help_subheading3_para5">The gear icon in the settings button was taken from www.flaticon.com and designed by Freepik.\n</string>
     <string name="help_subheading3_para6">The voice of the narrator is \"en-US-Wavenet-B\" from the Text-to-Speech API of the Google Cloud SDK.\n</string>
     <string name="help_subheading3_para7">The cards background sound was taken from the YouTube Audio library. The rest of the background sounds were taken from SoundBible.com. The crickets background sound was recorded anonymously. The fireplace background sound was recorded by Daniel Simion. The rain background sound was recorded by Mark DiAngelo. The rainforest background sound was recorded by glorysunz. The rainstorm background sound was recorded by Mike Koenig. The wolves background sound was recorded by fws.gov.\n</string>
     <string name="help_subheading3_para8">The overall app design was inspired by the One Night Ultimate Werewolf app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.\n</string>
-    <string name="help_subheading3_para9">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.\n</string>
+    <string name="help_subheading3_para9">The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, and Li-Toong Yap for their generous help in the internal testing of the app and in providing valuable feedback.\n</string>
+    <string name="help_subheading3_para10">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.\n</string>
     <string name="help_subheading4">Why the name \"Narradir\"?</string>
     <string name="help_subheading4_para0">The name is a portmanteau of \"narrator\" and \"Nadir\", which is the last name of Abed, one of the main characters of the American television sitcom \"Community\". In one episode involving delicious chicken fingers, Abed narrated a good chunk of the story line, as if \"in a mafia movie\" (his own words). In two other episodes featuring Dungeons &amp; Dragons, Abed was the Dungeon Master, whose tasks include narration. The launcher icon of the app is also a reference to the school logo of Greendale Community College, which is the main setting of this sitcom.</string>
+
+    <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
+    <string name="author_logo_contentdescription">Personal logo of author of code.</string>
+    <string name="merlin_button_contentdescription">Click on Merlin to select or deselect him. If Merlin is deselected, then Percival, Assassin, Morgana, and Mordred are auto-deselected.</string>
+    <string name="percival_button_contentdescription">Click on Percival to select or deselect him. If Percival is selected, then Merlin is auto-selected. If Percival is deselected, then Morgana is auto-deselected.</string>
+    <string name="loyal_button_contentdescription">Clicking on the Loyal Servant of Arthur has no effect, as he/she can be neither selected or deselected. Instead, he/she will be auto-selected or auto-deselected depending on the selection or deselection of the special roles Merlin, Percival, Assassin, Morgana, Mordred, and Oberon.</string>
+    <string name="assassin_button_contentdescription">Click on the Assassin to select or deselect her. If the Assassin is selected, then Merlin is auto-selected, and the opposite is also true.</string>
+    <string name="morgana_button_contentdescription">Click on Morgana to select or deselect her. If Morgana is selected, then Merlin and Percival are auto-selected.</string>
+    <string name="mordred_button_contentdescription">Click on Mordred to select or deselect him. If Mordred is selected, then Merlin is auto-selected.</string>
+    <string name="oberon_button_contentdescription">Click on Oberon to select or deselect him.</string>
+    <string name="minion_button_contentdescription">Clicking on the Minion of Mordred has no effect, as he can be neither selected or deselected. Instead, he will be auto-selected or auto-deselected depending on the selection or deselection of the special roles Merlin, Percival, Assassin, Morgana, Mordred, and Oberon.</string>
+    <string name="liberal_button_contentdescription">Clicking on the Liberal has no effect, as he can be neither selected or deselected. Use the player number selection buttons above instead.</string>
+    <string name="hitler_button_contentdescription">Clicking on Hitler has no effect, as he can be neither selected or deselected. Use the player number selection buttons above instead.</string>
+    <string name="fascist_button_contentdescription">Clicking on the Fascist has no effect, as he can be neither selected or deselected. Use the player number selection buttons above instead.</string>
+    <string name="settings_button_contentdescription">Click on the Settings Button to navigate to the Settings page.</string>
+    <string name="p5_button_contentdescription">Click to select 5-player mode.</string>
+    <string name="p6_button_contentdescription">Click to select 6-player mode.</string>
+    <string name="p7_button_contentdescription">Click to select 7-player mode.</string>
+    <string name="p8_button_contentdescription">Click to select 8-player mode.</string>
+    <string name="p9_button_contentdescription">Click to select 9-player mode.</string>
+    <string name="p10_button_contentdescription">Click to select 10-player mode.</string>
+    <string name="up_button_contentdescription">Click to increase.</string>
+    <string name="down_button_contentdescription">Click to decrease.</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>

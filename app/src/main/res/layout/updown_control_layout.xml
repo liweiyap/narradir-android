@@ -11,6 +11,7 @@
         android:text="@string/up_control_button_text"
         android:background="@drawable/control_button_up_background"
         android:id="@+id/upControlButton"
+        android:contentDescription="@string/up_button_contentdescription"
         android:layout_margin="5dp"
         android:textSize="45sp"
         android:textColor="@android:color/white" />
@@ -31,6 +32,7 @@
         android:text="@string/down_control_button_text"
         android:background="@drawable/control_button_down_background"
         android:id="@+id/downControlButton"
+        android:contentDescription="@string/down_button_contentdescription"
         android:layout_margin="5dp"
         android:textSize="45sp"
         android:textColor="@android:color/white" />

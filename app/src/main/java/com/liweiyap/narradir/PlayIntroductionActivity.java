@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RawRes;
 
 import com.google.android.exoplayer2.MediaItem;
@@ -211,6 +212,15 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
 
         CustomTypefaceableObserverButton stopButton = findViewById(R.id.playIntroLayoutStopButton);
         stopButton.addOnClickObserver(this::finish);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed()
+            {
+                stopButton.performClick();
+            }
+        });
 
         // ----------------------------------------------------------------------
         // miscellaneous UI initialisation
