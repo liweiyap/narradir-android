@@ -56,6 +56,16 @@ The voice of the narrator is _en-US-Wavenet-B_ from the [Text-to-Speech API](htt
 
 The cards background sound was taken from the YouTube Audio library. The rest of the background sounds were taken from [SoundBible.com](https://soundbible.com/). The [crickets](https://soundbible.com/295-Summer-Crickets-Chirping.html) background sound was recorded anonymously. The [fireplace](https://soundbible.com/2178-Crackling-Fireplace.html) background sound was recorded by Daniel Simion. The [rain](https://soundbible.com/2065-Rain-Inside-House.html) background sound was recorded by Mark DiAngelo. The [rainforest](https://soundbible.com/1818-Rainforest-Ambience.html) background sound was recorded by glorysunz. The [rainstorm](https://soundbible.com/907-Distant-Thunder.html) background sound was recorded by Mike Koenig. The [wolves](https://soundbible.com/277-Medium-Pack-Of-Wolves-Howling.html) background sound was recorded by fws.gov.
 
+The overall app design was inspired by the [_One Night Ultimate Werewolf_](https://play.google.com/store/apps/details?id=com.mobieos.karan.Wolf_Android14_11_13&hl=en_SG&gl=US) app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.
+
+The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, and Li-Toong Yap for their generous help in the internal testing of the app and in providing valuable feedback.
+
+The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.
+
 ## Important note
 
-The code may ___not___ be reproduced without citation. If, for whatever reason, one decides to download this source code and build it himself/herself, note that the code will ___not___ run because the raw resource MP3 file for the [crickets](https://soundbible.com/295-Summer-Crickets-Chirping.html) background sound is missing. I am not permitted to upload it because it is licensed for personal use only.
+The code may ___not___ be reproduced without citation. If, for whatever reason, one decides to download this source code and build it himself/herself, please note that the code will ___not___ run because the raw resource MP3 file for the [crickets](https://soundbible.com/295-Summer-Crickets-Chirping.html) background sound is missing. I am not permitted to upload it because it is licensed for personal use only.
+
+## Why the name _Narradir_?
+
+The name is a portmanteau of _narrator_ and _Nadir_, which is the last name of Abed, one of the main characters of the American television sitcom [_Community_](https://en.wikipedia.org/wiki/Community_(TV_series)). In one episode involving delicious chicken fingers, Abed narrated a good chunk of the story line, as if "in a mafia movie" (his own words). In two other episodes featuring Dungeons &amp; Dragons, Abed was the Dungeon Master, whose tasks include narration. The launcher icon of the app is also a reference to the school logo of Greendale Community College, which is the main setting of this sitcom.
