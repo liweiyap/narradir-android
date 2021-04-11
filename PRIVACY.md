@@ -2,7 +2,7 @@
 
 Li-Wei Yap built the Narradir app as a Free app. This SERVICE is provided by Li-Wei Yap at no cost and is intended for use as is.
 
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Narradir unless otherwise defined in this Privacy Policy.
+The terms used in this Privacy Policy have the same meanings as in my Terms and Conditions, which is accessible at Narradir unless otherwise defined in this Privacy Policy.
 
 ## Personal Information Collection and Use
 
@@ -37,7 +37,7 @@ Please refer to the respective Children's Privacy Policies of Google Play Servic
 
 ## Changes to This Privacy Policy
 
-I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
+I may update my Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
 
 This policy is effective as of 11 April 2021.
 
