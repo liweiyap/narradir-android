@@ -68,7 +68,7 @@ The app developer sincerely apologises in advance if he has forgotten to acknowl
 
 ## Important note
 
-The source code may ___not___ be reproduced without citation. If, for whatever reason, one decides to download the source code and build it himself/herself, please note that the code will ___not___ run because the raw resource MP3 file for the [crickets](https://soundbible.com/295-Summer-Crickets-Chirping.html) background sound is missing. I am not permitted to upload it because it is licensed for personal use only.
+The source code may ___not___ be reproduced without citation. If, for whatever reason, one decides to download the source code and build it himself/herself, please note that there will be a build error because the raw resource MP3 file for the [crickets](https://soundbible.com/295-Summer-Crickets-Chirping.html) background sound is missing. I am not permitted to upload it because it is licensed for personal use only.
 
 ## Why the name _Narradir_?
 
