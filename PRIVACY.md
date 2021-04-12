@@ -22,11 +22,14 @@ I want to inform you that whenever you use my Service, in a case of an error in 
 
 ## Links to Other Sites
 
-This Service contains a link to my [personal website](https://liweiyap.github.io/). If you click on the link, you will be directed to that site. Whilst I do not collect, use, or share any of your Personal Information on my website either, the website is hosted on GitHub Pages. Please note that GitHub may collect User Personal Information from visitors to your GitHub Pages website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the Website and the Service.
+This Service contains a link to my [personal website](https://liweiyap.github.io/). If you click on the link, you will be directed to that site. Whilst I do not collect, use, or share any of your Personal Information on my website either, the website is hosted on GitHub Pages. In addition, the website contains icons from JSDELIVR and Font Awesome, as well as fonts from Google Fonts. Please note that GitHub, JSDELIVR, Font Awesome, and Google Fonts may collect User Personal Information from visitors to my website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the Website and the Service.
 
-Link to privacy policy of GitHub Pages
+Link to privacy policy of other sites
 
 *   [GitHub Pages](https://docs.github.com/en/github/site-policy/github-privacy-statement)
+*   [JSDELIVR](https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net)
+*   [Font Awesome](https://fontawesome.com/privacy)
+*   [Google Fonts](https://developers.google.com/fonts/faq#:~:text=the%20web%20faster.-,What%20does%20using%20the%20Google%20Fonts%20API%20mean%20for%20the,to%20the%20Google%20Fonts%20API.)
 
 ## Children’s Privacy
 
@@ -34,6 +37,7 @@ Please refer to the respective Children's Privacy Policies of Google Play Servic
 
 *   [Google Play Services](https://families.google.com/intl/en-GB/familylink/privacy/child-policy/)
 *   [GitHub Pages](https://docs.github.com/en/github/site-policy/github-privacy-statement#what-information-github-does-not-collect)
+*   [JSDELIVR](https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net)
 
 ## Changes to This Privacy Policy
 
