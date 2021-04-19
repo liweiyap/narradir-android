@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Narradir</string>
-    <string name="app_version">1.1</string>
-    <string name="app_name_and_version">Narradir Version 1.1</string>
+    <string name="app_version">1.2</string>
+    <string name="app_name_and_version">Narradir Version 1.2</string>
 
     <string name="game_title_avalon">Avalon</string>
     <string name="game_title_secrethitler">Secret Hitler</string>
