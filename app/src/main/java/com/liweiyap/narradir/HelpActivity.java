@@ -53,6 +53,15 @@ public class HelpActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick();
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        mGeneralSoundPool.release();
+        mGeneralSoundPool = null;
+    }
+
     private void addSoundToPlayOnButtonClick()
     {
         addSoundToPlayOnButtonClick(mGeneralBackButton);
