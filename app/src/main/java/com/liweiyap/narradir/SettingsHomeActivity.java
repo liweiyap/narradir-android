@@ -46,11 +46,11 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
         mNarrationSettingsLayout = findViewById(R.id.narrationSettingsLayout);
         mNarrationSettingsLayout.setKey(getString(R.string.settings_title_narration));
-        mNarrationSettingsLayout.setValue("Vol " + (int) (mNarrationVolume * 10));
+        mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
 
         mBackgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
         mBackgroundSettingsLayout.setKey(getString(R.string.settings_title_background));
-        mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + (int) (mBackgroundSoundVolume * 10));
+        mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
