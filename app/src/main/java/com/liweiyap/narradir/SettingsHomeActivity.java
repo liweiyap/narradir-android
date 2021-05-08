@@ -1,6 +1,5 @@
 package com.liweiyap.narradir;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -50,7 +49,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
         mBackgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
         mBackgroundSettingsLayout.setKey(getString(R.string.settings_title_background));
-        mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
+        mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
@@ -140,34 +139,10 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             else if (resultCode == Constants.RESULT_OK_SETTINGS_ONESTEP)
             {
                 mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
-                mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
+                mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
                 mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
             }
         }
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    private String getBackgroundSoundName(@RawRes int resId)
-    {
-        switch (resId)
-        {
-            case R.raw.backgroundcards:
-                return getString(R.string.backgroundsound_cards);
-            case R.raw.backgroundcrickets:
-                return getString(R.string.backgroundsound_crickets);
-            case R.raw.backgroundfireplace:
-                return getString(R.string.backgroundsound_fireplace);
-            case R.raw.backgroundrain:
-                return getString(R.string.backgroundsound_rain);
-            case R.raw.backgroundrainforest:
-                return getString(R.string.backgroundsound_rainforest);
-            case R.raw.backgroundrainstorm:
-                return getString(R.string.backgroundsound_rainstorm);
-            case R.raw.backgroundwolves:
-                return getString(R.string.backgroundsound_wolves);
-        }
-
-        return getString(R.string.backgroundsound_none);
     }
 
     private @NotNull String getTimeFromPauseDuration(long msec)
