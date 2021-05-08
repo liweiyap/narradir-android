@@ -1,6 +1,5 @@
 package com.liweiyap.narradir;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -17,9 +16,6 @@ import com.liweiyap.narradir.utils.SettingsLayout;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 {
@@ -50,11 +46,11 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
         mBackgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
         mBackgroundSettingsLayout.setKey(getString(R.string.settings_title_background));
-        mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
+        mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
-        mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+        mRoleTimerSettingsLayout.setValue(TimeDisplay.fromPauseDuration(mPauseDurationInMilliSecs));
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
@@ -140,44 +136,10 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             else if (resultCode == Constants.RESULT_OK_SETTINGS_ONESTEP)
             {
                 mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
-                mBackgroundSettingsLayout.setValue(getBackgroundSoundName(mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
-                mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+                mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
+                mRoleTimerSettingsLayout.setValue(TimeDisplay.fromPauseDuration(mPauseDurationInMilliSecs));
             }
         }
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    private String getBackgroundSoundName(@RawRes int resId)
-    {
-        switch (resId)
-        {
-            case R.raw.backgroundcards:
-                return getString(R.string.backgroundsound_cards);
-            case R.raw.backgroundcrickets:
-                return getString(R.string.backgroundsound_crickets);
-            case R.raw.backgroundfireplace:
-                return getString(R.string.backgroundsound_fireplace);
-            case R.raw.backgroundrain:
-                return getString(R.string.backgroundsound_rain);
-            case R.raw.backgroundrainforest:
-                return getString(R.string.backgroundsound_rainforest);
-            case R.raw.backgroundrainstorm:
-                return getString(R.string.backgroundsound_rainstorm);
-            case R.raw.backgroundwolves:
-                return getString(R.string.backgroundsound_wolves);
-        }
-
-        return getString(R.string.backgroundsound_none);
-    }
-
-    private @NotNull String getTimeFromPauseDuration(long msec)
-    {
-        return String.format(
-            Locale.getDefault(),
-            "%02d:%02d",
-            TimeUnit.MILLISECONDS.toMinutes(msec) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(msec)),
-            TimeUnit.MILLISECONDS.toSeconds(msec) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(msec))
-        );
     }
 
     private void addSoundToPlayOnButtonClick()

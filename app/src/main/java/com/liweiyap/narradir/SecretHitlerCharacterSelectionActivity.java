@@ -15,6 +15,8 @@ import androidx.annotation.RawRes;
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
+import com.liweiyap.narradir.utils.ToastSingleton;
+import com.liweiyap.narradir.utils.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
@@ -147,22 +149,13 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
     private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
     {
-        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
-        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
+        try
         {
-            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
-            int i = childIdx;
-            btn.addOnClickObserver(() -> {
-                btn.check();
-                for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
-                {
-                    if (i != j)
-                    {
-                        CustomTypefaceableCheckableObserverButton tmp = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(j);
-                        tmp.uncheck();
-                    }
-                }
-            });
+            ViewGroupSingleTargetSelector.addSingleTargetSelection(findViewById(R.id.playerNumberSelectionLayout));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -430,16 +423,16 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         final String toastMessage = "Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.";
 
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(() -> showNewToast(toastMessage));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(() -> showNewToast(toastMessage));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
     }
 
     public int getActualGoodTotal()
@@ -468,17 +461,6 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         }
 
         return actualEvilTotal;
-    }
-
-    private void showNewToast(final String message)
-    {
-        if (mToast != null)
-        {
-            mToast.cancel();
-        }
-
-        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        mToast.show();
     }
 
     private void navigateToAvalonCharacterSelectionActivity(@NotNull View view)
@@ -602,8 +584,6 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     private ObserverImageButton[] mCharacterImageButtonArray;
     private int mExpectedGoodTotal = 3;
     private int mExpectedEvilTotal = 2;
-
-    private Toast mToast;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;

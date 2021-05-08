@@ -17,6 +17,8 @@ import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
+import com.liweiyap.narradir.utils.ToastSingleton;
+import com.liweiyap.narradir.utils.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
@@ -169,22 +171,13 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
     private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
     {
-        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
-        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
+        try
         {
-            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
-            int i = childIdx;
-            btn.addOnClickObserver(() -> {
-                btn.check();
-                for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
-                {
-                    if (i != j)
-                    {
-                        CustomTypefaceableCheckableObserverButton tmp = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(j);
-                        tmp.uncheck();
-                    }
-                }
-            });
+            ViewGroupSingleTargetSelector.addSingleTargetSelection(findViewById(R.id.playerNumberSelectionLayout));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -791,7 +784,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
     private void addGeneralGoodSelectionRules()
     {
-        showNewToast("Loyal cannot be manually selected or deselected.");
+        ToastSingleton.getInstance().showNewToast(getApplicationContext(), "Loyal cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
     }
 
     private void addOberonSelectionRules()
@@ -828,7 +821,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
     private void addGeneralEvilSelectionRules()
     {
-        showNewToast("Minions cannot be manually selected or deselected.");
+        ToastSingleton.getInstance().showNewToast(getApplicationContext(), "Minions cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
     }
 
     /**
@@ -965,17 +958,6 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         }
 
         return actualEvilTotal;
-    }
-
-    private void showNewToast(final String message)
-    {
-        if (mToast != null)
-        {
-            mToast.cancel();
-        }
-
-        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        mToast.show();
     }
 
     public CheckableObserverImageButton[] getCharacterImageButtonArray()
@@ -1210,8 +1192,6 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     private CheckableObserverImageButton[] mCharacterImageButtonArray;
     private int mExpectedGoodTotal = 3;
     private int mExpectedEvilTotal = 2;
-
-    private Toast mToast;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;
