@@ -17,6 +17,7 @@ import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
+import com.liweiyap.narradir.utils.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
@@ -169,22 +170,13 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
     private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
     {
-        LinearLayout playerNumberSelectionLayout = findViewById(R.id.playerNumberSelectionLayout);
-        for (int childIdx = 0; childIdx < playerNumberSelectionLayout.getChildCount(); ++childIdx)
+        try
         {
-            CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(childIdx);
-            int i = childIdx;
-            btn.addOnClickObserver(() -> {
-                btn.check();
-                for (int j = 0; j < playerNumberSelectionLayout.getChildCount(); ++j)
-                {
-                    if (i != j)
-                    {
-                        CustomTypefaceableCheckableObserverButton tmp = (CustomTypefaceableCheckableObserverButton) playerNumberSelectionLayout.getChildAt(j);
-                        tmp.uncheck();
-                    }
-                }
-            });
+            ViewGroupSingleTargetSelector.addSingleTargetSelection(findViewById(R.id.playerNumberSelectionLayout));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
