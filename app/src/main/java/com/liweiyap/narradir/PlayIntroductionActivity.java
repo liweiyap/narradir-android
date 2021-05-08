@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RawRes;
 
-import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Renderer;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -20,19 +19,13 @@ import com.google.android.exoplayer2.extractor.Extractor;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
 import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
-import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
-import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SilenceMediaSource;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.RawResourceDataSource;
-import com.google.android.exoplayer2.util.Assertions;
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.MediaSourceCreator;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.utils.fonts.StrokedCustomTypefaceableTextView;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -110,7 +103,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             @RawRes int segment = mIntroSegmentArrayList.get(idx);
 
-            ProgressiveMediaSource mediaSource = createMediaSourceFromId(segment);
+            ProgressiveMediaSource mediaSource = MediaSourceCreator.createProgressiveMediaSourceFromResId(this, segment, mMp3ExtractorFactory);
             if (mediaSource != null)
             {
                 mIntroSegmentPlayer.addMediaSource(mediaSource);
@@ -273,27 +266,6 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             mGeneralSoundPool.stop(mBackgroundStreamId);
         }
-    }
-
-    private @Nullable ProgressiveMediaSource createMediaSourceFromId(@RawRes int resId)
-    {
-        try
-        {
-            RawResourceDataSource dataSource = new RawResourceDataSource(this);
-            DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(resId));
-            dataSource.open(dataSpec);
-
-            Assertions.checkNotNull(dataSource.getUri());
-            MediaItem mediaItem = MediaItem.fromUri(dataSource.getUri());
-            MediaSourceFactory mediaSourceFactory = new DefaultMediaSourceFactory(this, mMp3ExtractorFactory);
-            return (ProgressiveMediaSource) mediaSourceFactory.createMediaSource(mediaItem);
-        }
-        catch (RawResourceDataSource.RawResourceDataSourceException e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     @SuppressLint("NonConstantResourceId")
