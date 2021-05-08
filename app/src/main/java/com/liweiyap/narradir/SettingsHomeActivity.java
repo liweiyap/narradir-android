@@ -17,9 +17,6 @@ import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-
 public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
@@ -53,7 +50,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
-        mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+        mRoleTimerSettingsLayout.setValue(TimeDisplay.fromPauseDuration(mPauseDurationInMilliSecs));
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
@@ -140,19 +137,9 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             {
                 mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
                 mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
-                mRoleTimerSettingsLayout.setValue(getTimeFromPauseDuration(mPauseDurationInMilliSecs));
+                mRoleTimerSettingsLayout.setValue(TimeDisplay.fromPauseDuration(mPauseDurationInMilliSecs));
             }
         }
-    }
-
-    private @NotNull String getTimeFromPauseDuration(long msec)
-    {
-        return String.format(
-            Locale.getDefault(),
-            "%02d:%02d",
-            TimeUnit.MILLISECONDS.toMinutes(msec) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(msec)),
-            TimeUnit.MILLISECONDS.toSeconds(msec) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(msec))
-        );
     }
 
     private void addSoundToPlayOnButtonClick()
