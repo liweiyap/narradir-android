@@ -78,7 +78,7 @@ public class CheckableObserverImageButton
         setAlpha(1.f);
         try
         {
-            setImageResource(mCheckedDrawableId);
+            setBackgroundResource(mCheckedDrawableId);
         }
         catch (Exception e)
         {
@@ -93,7 +93,7 @@ public class CheckableObserverImageButton
         setAlpha(0.5f);
         try
         {
-            setImageResource(mUncheckedDrawableId);
+            setBackgroundResource(mUncheckedDrawableId);
         }
         catch (Exception e)
         {

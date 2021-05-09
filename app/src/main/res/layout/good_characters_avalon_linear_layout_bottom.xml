@@ -13,11 +13,14 @@
         android:layout_weight="1"
         android:id="@+id/loyal2Button"
         android:contentDescription="@string/loyal_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/loyal2_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/loyal2_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/loyal2_unchecked"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.utils.CheckableObserverImageButton
@@ -26,12 +29,15 @@
         android:layout_weight="1"
         android:id="@+id/loyal3Button"
         android:contentDescription="@string/loyal_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/loyal3_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:visibility="invisible"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/loyal3_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/loyal3_unchecked"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.utils.CheckableObserverImageButton
@@ -40,12 +46,15 @@
         android:layout_weight="1"
         android:id="@+id/loyal4Button"
         android:contentDescription="@string/loyal_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/loyal4_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:visibility="invisible"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/loyal4_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/loyal4_unchecked"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.utils.CheckableObserverImageButton
@@ -54,12 +63,15 @@
         android:layout_weight="1"
         android:id="@+id/loyal5Button"
         android:contentDescription="@string/loyal_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/loyal0_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
         android:visibility="invisible"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/loyal0_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/loyal0_unchecked"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
 </LinearLayout>
