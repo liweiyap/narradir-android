@@ -13,11 +13,14 @@
         android:layout_weight="1"
         android:id="@+id/minion0Button"
         android:contentDescription="@string/minion_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/minion0_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/minion0_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/minion0_unchecked"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
     <com.liweiyap.narradir.utils.CheckableObserverImageButton
@@ -26,11 +29,14 @@
         android:layout_weight="1"
         android:id="@+id/minion1Button"
         android:contentDescription="@string/minion_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/minion1_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/minion1_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/minion1_unchecked"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.utils.CheckableObserverImageButton
@@ -39,12 +45,15 @@
         android:layout_weight="1"
         android:id="@+id/minion2Button"
         android:contentDescription="@string/minion_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/minion0_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:visibility="invisible"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/minion0_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/minion0_unchecked"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.utils.CheckableObserverImageButton
@@ -53,12 +62,15 @@
         android:layout_weight="1"
         android:id="@+id/minion3Button"
         android:contentDescription="@string/minion_button_contentdescription"
-        android:scaleType="fitCenter"
-        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/minion1_unchecked"
+        android:padding="2dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
         android:visibility="invisible"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/minion1_checked"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/minion1_unchecked"
+        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
+        com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
 </LinearLayout>
