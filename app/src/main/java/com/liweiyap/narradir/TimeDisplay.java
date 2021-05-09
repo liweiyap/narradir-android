@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeDisplay
 {
-    public static @NotNull String fromPauseDuration(final long msec)
+    public static @NotNull String fromMilliseconds(final long msec)
     {
         return String.format(
             Locale.getDefault(),

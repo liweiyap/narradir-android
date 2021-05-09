@@ -50,7 +50,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
-        mRoleTimerSettingsLayout.setValue(TimeDisplay.fromPauseDuration(mPauseDurationInMilliSecs));
+        mRoleTimerSettingsLayout.setValue(TimeDisplay.fromMilliseconds(mPauseDurationInMilliSecs));
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
@@ -137,7 +137,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             {
                 mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
                 mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
-                mRoleTimerSettingsLayout.setValue(TimeDisplay.fromPauseDuration(mPauseDurationInMilliSecs));
+                mRoleTimerSettingsLayout.setValue(TimeDisplay.fromMilliseconds(mPauseDurationInMilliSecs));
             }
         }
     }
