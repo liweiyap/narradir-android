@@ -43,7 +43,7 @@ public class ToastSingleton
             return;
         }
 
-        mToast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        mToast = Toast.makeText(context, message, duration);
         mToast.show();
     }
 
