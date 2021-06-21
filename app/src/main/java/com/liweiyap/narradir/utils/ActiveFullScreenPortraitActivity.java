@@ -1,5 +1,6 @@
 package com.liweiyap.narradir.utils;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -20,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class ActiveFullScreenPortraitActivity extends AppCompatActivity
 {
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

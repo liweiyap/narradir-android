@@ -13,8 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.RawRes;
 import androidx.core.util.Pair;
 
-import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.utils.CheckableObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverImageButton;
 import com.liweiyap.narradir.utils.ObserverListener;
 import com.liweiyap.narradir.utils.ToastSingleton;
@@ -191,140 +191,122 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         CustomTypefaceableCheckableObserverButton p10Button = findViewById(R.id.p10Button);
 
         p5Button.addOnClickObserver(() -> {
-            int playerNumberChange = 5 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+            final int playerNumberChange = 5 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+
+            if (playerNumberChange < 0)  // new < old (decrease)
+            {
+                playerNumberSelectionLayoutChecker(5);
+            }
+
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(5);
-            }
-            else if (playerNumberChange < 0)  // new < old (decrease)
-            {
-                playerNumberSelectionLayoutChecker(5);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
         p6Button.addOnClickObserver(() -> {
-            int playerNumberChange = 6 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+            final int playerNumberChange = 6 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+
+            if (playerNumberChange < 0)  // new < old (decrease)
+            {
+                playerNumberSelectionLayoutChecker(6);
+            }
+
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(6);
-            }
-            else if (playerNumberChange < 0)  // new < old (decrease)
-            {
-                playerNumberSelectionLayoutChecker(6);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
         p7Button.addOnClickObserver(() -> {
-            int playerNumberChange = 7 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+            final int playerNumberChange = 7 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+
+            if (playerNumberChange < 0)  // new < old (decrease)
+            {
+                playerNumberSelectionLayoutChecker(7);
+            }
+
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(7);
-            }
-            else if (playerNumberChange < 0)  // new < old (decrease)
-            {
-                playerNumberSelectionLayoutChecker(7);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
         p8Button.addOnClickObserver(() -> {
-            int playerNumberChange = 8 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+            final int playerNumberChange = 8 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+
+            if (playerNumberChange < 0)  // new < old (decrease)
+            {
+                playerNumberSelectionLayoutChecker(8);
+            }
+
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(8);
-            }
-            else if (playerNumberChange < 0)  // new < old (decrease)
-            {
-                playerNumberSelectionLayoutChecker(8);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.INVISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
         p9Button.addOnClickObserver(() -> {
-            int playerNumberChange = 9 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+            final int playerNumberChange = 9 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+
+            if (playerNumberChange < 0)  // new < old (decrease)
+            {
+                playerNumberSelectionLayoutChecker(9);
+            }
+
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
                 playerNumberSelectionLayoutChecker(9);
-            }
-            else if (playerNumberChange < 0)  // new < old (decrease)
-            {
-                playerNumberSelectionLayoutChecker(9);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.INVISIBLE);
             }
         });
 
         p10Button.addOnClickObserver(() -> {
-            int playerNumberChange = 10 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+            final int playerNumberChange = 10 - (mExpectedGoodTotal + mExpectedEvilTotal);  // new - old
+
+            if (playerNumberChange < 0)  // new < old (decrease)
+            {
+                playerNumberSelectionLayoutChecker(10);
+            }
+
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
+            mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.VISIBLE);
 
             if (playerNumberChange > 0)  // new > old (increase)
             {
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.VISIBLE);
                 playerNumberSelectionLayoutChecker(10);
-            }
-            else if (playerNumberChange < 0)  // new < old (decrease)
-            {
-                playerNumberSelectionLayoutChecker(10);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION2].setVisibility(View.VISIBLE);
-                mCharacterImageButtonArray[AvalonCharacterName.MINION3].setVisibility(View.VISIBLE);
             }
         });
     }
