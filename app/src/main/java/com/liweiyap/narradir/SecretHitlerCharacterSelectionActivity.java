@@ -400,7 +400,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         }
     }
 
-    private void playCharacterDescription(int descriptionId)
+    private void playCharacterDescription(@RawRes int descriptionId)
     {
         if (mGeneralMediaPlayer != null)
         {
