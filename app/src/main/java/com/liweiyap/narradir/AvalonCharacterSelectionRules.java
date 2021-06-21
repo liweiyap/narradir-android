@@ -12,23 +12,23 @@ import com.liweiyap.narradir.utils.ToastSingleton;
 public class AvalonCharacterSelectionRules
 {
     public AvalonCharacterSelectionRules(
-        @NonNull Context applicationContext,
-        @NonNull CheckableObserverImageButton merlinButton,
-        @NonNull CheckableObserverImageButton percivalButton,
-        @NonNull CheckableObserverImageButton loyal0Button,
-        @NonNull CheckableObserverImageButton loyal1Button,
-        @NonNull CheckableObserverImageButton loyal2Button,
-        @NonNull CheckableObserverImageButton loyal3Button,
-        @NonNull CheckableObserverImageButton loyal4Button,
-        @NonNull CheckableObserverImageButton loyal5Button,
-        @NonNull CheckableObserverImageButton assassinButton,
-        @NonNull CheckableObserverImageButton morganaButton,
-        @NonNull CheckableObserverImageButton mordredButton,
-        @NonNull CheckableObserverImageButton oberonButton,
-        @NonNull CheckableObserverImageButton minion0Button,
-        @NonNull CheckableObserverImageButton minion1Button,
-        @NonNull CheckableObserverImageButton minion2Button,
-        @NonNull CheckableObserverImageButton minion3Button)
+        @NonNull final Context applicationContext,
+        @NonNull final CheckableObserverImageButton merlinButton,
+        @NonNull final CheckableObserverImageButton percivalButton,
+        @NonNull final CheckableObserverImageButton loyal0Button,
+        @NonNull final CheckableObserverImageButton loyal1Button,
+        @NonNull final CheckableObserverImageButton loyal2Button,
+        @NonNull final CheckableObserverImageButton loyal3Button,
+        @NonNull final CheckableObserverImageButton loyal4Button,
+        @NonNull final CheckableObserverImageButton loyal5Button,
+        @NonNull final CheckableObserverImageButton assassinButton,
+        @NonNull final CheckableObserverImageButton morganaButton,
+        @NonNull final CheckableObserverImageButton mordredButton,
+        @NonNull final CheckableObserverImageButton oberonButton,
+        @NonNull final CheckableObserverImageButton minion0Button,
+        @NonNull final CheckableObserverImageButton minion1Button,
+        @NonNull final CheckableObserverImageButton minion2Button,
+        @NonNull final CheckableObserverImageButton minion3Button)
     {
         mApplicationContext = applicationContext;
 
@@ -81,7 +81,7 @@ public class AvalonCharacterSelectionRules
         mCharacterImageButtonArray[AvalonCharacterName.MINION3].addOnClickObserver(this::runGeneralEvilSelectionRules);
     }
 
-    public CheckableObserverImageButton getCharacter(int idx)
+    public CheckableObserverImageButton getCharacter(final int idx)
     {
         if ( (idx < AvalonCharacterName.MERLIN) || (idx > AvalonCharacterName.MINION3) )
         {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
@@ -13,30 +14,30 @@ import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButt
 public class AvalonControlGroup
 {
     public AvalonControlGroup(
-        Context applicationContext,
-        LinearLayout playerNumberSelectionLayout,
-        CustomTypefaceableCheckableObserverButton p5Button,
-        CustomTypefaceableCheckableObserverButton p6Button,
-        CustomTypefaceableCheckableObserverButton p7Button,
-        CustomTypefaceableCheckableObserverButton p8Button,
-        CustomTypefaceableCheckableObserverButton p9Button,
-        CustomTypefaceableCheckableObserverButton p10Button,
-        CheckableObserverImageButton merlinButton,
-        CheckableObserverImageButton percivalButton,
-        CheckableObserverImageButton loyal0Button,
-        CheckableObserverImageButton loyal1Button,
-        CheckableObserverImageButton loyal2Button,
-        CheckableObserverImageButton loyal3Button,
-        CheckableObserverImageButton loyal4Button,
-        CheckableObserverImageButton loyal5Button,
-        CheckableObserverImageButton assassinButton,
-        CheckableObserverImageButton morganaButton,
-        CheckableObserverImageButton mordredButton,
-        CheckableObserverImageButton oberonButton,
-        CheckableObserverImageButton minion0Button,
-        CheckableObserverImageButton minion1Button,
-        CheckableObserverImageButton minion2Button,
-        CheckableObserverImageButton minion3Button)
+        @NonNull final Context applicationContext,
+        @NonNull final LinearLayout playerNumberSelectionLayout,
+        @NonNull final CustomTypefaceableCheckableObserverButton p5Button,
+        @NonNull final CustomTypefaceableCheckableObserverButton p6Button,
+        @NonNull final CustomTypefaceableCheckableObserverButton p7Button,
+        @NonNull final CustomTypefaceableCheckableObserverButton p8Button,
+        @NonNull final CustomTypefaceableCheckableObserverButton p9Button,
+        @NonNull final CustomTypefaceableCheckableObserverButton p10Button,
+        @NonNull final CheckableObserverImageButton merlinButton,
+        @NonNull final CheckableObserverImageButton percivalButton,
+        @NonNull final CheckableObserverImageButton loyal0Button,
+        @NonNull final CheckableObserverImageButton loyal1Button,
+        @NonNull final CheckableObserverImageButton loyal2Button,
+        @NonNull final CheckableObserverImageButton loyal3Button,
+        @NonNull final CheckableObserverImageButton loyal4Button,
+        @NonNull final CheckableObserverImageButton loyal5Button,
+        @NonNull final CheckableObserverImageButton assassinButton,
+        @NonNull final CheckableObserverImageButton morganaButton,
+        @NonNull final CheckableObserverImageButton mordredButton,
+        @NonNull final CheckableObserverImageButton oberonButton,
+        @NonNull final CheckableObserverImageButton minion0Button,
+        @NonNull final CheckableObserverImageButton minion1Button,
+        @NonNull final CheckableObserverImageButton minion2Button,
+        @NonNull final CheckableObserverImageButton minion3Button)
     {
         mCharacterSelectionRules = new AvalonCharacterSelectionRules(
             applicationContext,
