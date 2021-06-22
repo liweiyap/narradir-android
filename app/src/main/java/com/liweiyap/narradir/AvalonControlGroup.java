@@ -1,10 +1,12 @@
 package com.liweiyap.narradir;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RawRes;
 import androidx.core.util.Pair;
 
 import com.liweiyap.narradir.utils.CheckableObserverImageButton;
@@ -14,7 +16,7 @@ import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButt
 public class AvalonControlGroup
 {
     public AvalonControlGroup(
-        @NonNull final Context applicationContext,
+        @NonNull final Context context,
         @NonNull final LinearLayout playerNumberSelectionLayout,
         @NonNull final CustomTypefaceableCheckableObserverButton p5Button,
         @NonNull final CustomTypefaceableCheckableObserverButton p6Button,
@@ -39,8 +41,10 @@ public class AvalonControlGroup
         @NonNull final CheckableObserverImageButton minion2Button,
         @NonNull final CheckableObserverImageButton minion3Button)
     {
+        mContext = context;
+
         mCharacterSelectionRules = new AvalonCharacterSelectionRules(
-            applicationContext,
+            context,
             merlinButton, percivalButton, loyal0Button, loyal1Button,
             loyal2Button, loyal3Button, loyal4Button, loyal5Button,
             assassinButton, morganaButton, mordredButton, oberonButton,
@@ -48,7 +52,9 @@ public class AvalonControlGroup
 
         ViewGroupSingleTargetSelector.addSingleTargetSelection(playerNumberSelectionLayout);
 
-        /* adapt available characters according to player number */
+        // -----------------------------------------------------------------------------------------
+        // adapt available characters according to player number
+        // -----------------------------------------------------------------------------------------
 
         p5Button.addOnClickObserver(() -> {
             final int playerNumberChange = 5 - (mCharacterSelectionRules.getExpectedGoodTotal() + mCharacterSelectionRules.getExpectedEvilTotal());  // new - old
@@ -169,6 +175,12 @@ public class AvalonControlGroup
                 playerNumberSelectionLayoutChecker(10);
             }
         });
+
+        // -----------------------------------------------------------------------------------------
+        // initialise MediaPlayer for character descriptions
+        // -----------------------------------------------------------------------------------------
+
+        addCharacterDescriptions();
     }
 
     private void playerNumberSelectionLayoutChecker(final int newPlayerNumber)
@@ -244,6 +256,100 @@ public class AvalonControlGroup
         return new Pair<>(null, null);  // quick and dirty fix
     }
 
+    private void addCharacterDescriptions()
+    {
+        if (mCharacterSelectionRules == null)
+        {
+            throw new RuntimeException("AvalonControlGroup::addCharacterDescriptions(): mCharacterSelectionRules is NULL");
+        }
+
+        try
+        {
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MERLIN).addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.PERCIVAL).addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL0).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL1).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL2).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL3).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL4).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL5).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.ASSASSIN).addOnLongClickObserver(() -> playCharacterDescription(R.raw.assassindescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MORGANA).addOnLongClickObserver(() -> playCharacterDescription(R.raw.morganadescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MORDRED).addOnLongClickObserver(() -> playCharacterDescription(R.raw.mordreddescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.OBERON).addOnLongClickObserver(() -> playCharacterDescription(R.raw.oberondescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION0).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION1).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION2).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION3).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void playCharacterDescription(@RawRes int descriptionId)
+    {
+        if (mCharacterDescriptionMediaPlayer != null)
+        {
+            mCharacterDescriptionMediaPlayer.stop();
+        }
+
+        try
+        {
+            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
+            mCharacterDescriptionMediaPlayer = MediaPlayer.create(mContext, descriptionId);
+            mCharacterDescriptionMediaPlayer.start();
+        }
+        catch (IllegalStateException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void startCharacterDescriptionMediaPlayer()
+    {
+        if (mCharacterDescriptionMediaPlayer == null)
+        {
+            return;
+        }
+
+        mCharacterDescriptionMediaPlayer.seekTo(mCharacterDescriptionMediaPlayerCurrentLength);
+        mCharacterDescriptionMediaPlayer.start();
+    }
+
+    public void pauseCharacterDescriptionMediaPlayer()
+    {
+        if (mCharacterDescriptionMediaPlayer == null)
+        {
+            return;
+        }
+
+        mCharacterDescriptionMediaPlayer.pause();
+        mCharacterDescriptionMediaPlayerCurrentLength = mCharacterDescriptionMediaPlayer.getCurrentPosition();
+    }
+
+    public void stopCharacterDescriptionMediaPlayer()
+    {
+        if (mCharacterDescriptionMediaPlayer == null)
+        {
+            return;
+        }
+
+        mCharacterDescriptionMediaPlayer.stop();
+    }
+
+    public void freeCharacterDescriptionMediaPlayer()
+    {
+        if (mCharacterDescriptionMediaPlayer == null)
+        {
+            return;
+        }
+
+        mCharacterDescriptionMediaPlayer.release();
+        mCharacterDescriptionMediaPlayer = null;
+    }
+
     public CheckableObserverImageButton getCharacter(final int idx)
     {
         if (mCharacterSelectionRules == null)
@@ -304,5 +410,10 @@ public class AvalonControlGroup
         return mCharacterSelectionRules.getExpectedEvilTotal();
     }
 
+    private final Context mContext;
+
     private final AvalonCharacterSelectionRules mCharacterSelectionRules;
+
+    private MediaPlayer mCharacterDescriptionMediaPlayer;
+    private int mCharacterDescriptionMediaPlayerCurrentLength;
 }

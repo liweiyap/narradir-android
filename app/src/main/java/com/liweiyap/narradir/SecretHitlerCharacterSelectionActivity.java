@@ -423,16 +423,16 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         final String toastMessage = "Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.";
 
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
+        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(this, toastMessage, Toast.LENGTH_SHORT));
     }
 
     public int getActualGoodTotal()

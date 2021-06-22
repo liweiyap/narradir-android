@@ -3,8 +3,6 @@ package com.liweiyap.narradir;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -53,7 +51,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         // -----------------------------------------------------------------------------------------
 
         mAvalonControlGroup = new AvalonControlGroup(
-            getApplicationContext(),
+            this,
             findViewById(R.id.playerNumberSelectionLayout),
             findViewById(R.id.p5Button), findViewById(R.id.p6Button), findViewById(R.id.p7Button),
             findViewById(R.id.p8Button), findViewById(R.id.p9Button), findViewById(R.id.p10Button),
@@ -68,19 +66,12 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         // sounds
         // -----------------------------------------------------------------------------------------
 
-        /* click sound */
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(1)
-            .build();
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        mClickSoundGenerator = new ClickSoundGenerator(this);
         addSoundToPlayOnButtonClick();
 
-        /* general MediaPlayer for character descriptions */
-        addCharacterDescriptions();
-
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
@@ -94,13 +85,11 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     {
         super.onResume();
 
-        if (mGeneralMediaPlayer == null)
+        if (mAvalonControlGroup == null)
         {
             return;
         }
-
-        mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
-        mGeneralMediaPlayer.start();
+        mAvalonControlGroup.startCharacterDescriptionMediaPlayer();
     }
 
     @Override
@@ -110,12 +99,11 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
         savePreferences();  // https://stackoverflow.com/a/32576942/12367873; https://stackoverflow.com/a/14756816/12367873
 
-        if (mGeneralMediaPlayer == null)
+        if (mAvalonControlGroup == null)
         {
             return;
         }
-        mGeneralMediaPlayer.pause();
-        mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
+        mAvalonControlGroup.pauseCharacterDescriptionMediaPlayer();
     }
 
     @Override
@@ -123,14 +111,15 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     {
         super.onDestroy();
 
-        if (mGeneralMediaPlayer != null)
+        if (mAvalonControlGroup != null)
         {
-            mGeneralMediaPlayer.release();
-            mGeneralMediaPlayer = null;
+            mAvalonControlGroup.freeCharacterDescriptionMediaPlayer();
         }
 
-        mGeneralSoundPool.release();
-        mGeneralSoundPool = null;
+        if (mClickSoundGenerator != null)
+        {
+            mClickSoundGenerator.freeResources();
+        }
     }
 
 //    @Override
@@ -186,64 +175,13 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         }
 
         btn.addOnClickObserver(() -> {
-            if (mGeneralMediaPlayer != null)
+            if (mAvalonControlGroup != null)
             {
-                mGeneralMediaPlayer.stop();
+                mAvalonControlGroup.stopCharacterDescriptionMediaPlayer();
             }
 
-            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
+            mClickSoundGenerator.playClickSound();
         });
-    }
-
-    private void addCharacterDescriptions()
-    {
-        if (mAvalonControlGroup == null)
-        {
-            throw new RuntimeException("AvalonCharacterSelectionActivity::addCharacterDescriptions(): mAvalonControlGroup is NULL");
-        }
-
-        try
-        {
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MERLIN).addOnLongClickObserver(() -> playCharacterDescription(R.raw.merlindescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.PERCIVAL).addOnLongClickObserver(() -> playCharacterDescription(R.raw.percivaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.LOYAL0).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.LOYAL1).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.LOYAL2).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.LOYAL3).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.LOYAL4).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.LOYAL5).addOnLongClickObserver(() -> playCharacterDescription(R.raw.loyaldescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.ASSASSIN).addOnLongClickObserver(() -> playCharacterDescription(R.raw.assassindescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).addOnLongClickObserver(() -> playCharacterDescription(R.raw.morganadescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MORDRED).addOnLongClickObserver(() -> playCharacterDescription(R.raw.mordreddescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.OBERON).addOnLongClickObserver(() -> playCharacterDescription(R.raw.oberondescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MINION0).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MINION1).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MINION2).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-            mAvalonControlGroup.getCharacter(AvalonCharacterName.MINION3).addOnLongClickObserver(() -> playCharacterDescription(R.raw.miniondescription));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private void playCharacterDescription(@RawRes int descriptionId)
-    {
-        if (mGeneralMediaPlayer != null)
-        {
-            mGeneralMediaPlayer.stop();
-        }
-
-        try
-        {
-            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
-            mGeneralMediaPlayer = MediaPlayer.create(this, descriptionId);
-            mGeneralMediaPlayer.start();
-        }
-        catch (IllegalStateException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     public CheckableObserverImageButton[] getCharacterImageButtonArray()
@@ -490,13 +428,8 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         }
     }
 
-    private SoundPool mGeneralSoundPool;
-    private int mClickSoundId;
-
-    private MediaPlayer mGeneralMediaPlayer;
-    private int mGeneralMediaPlayerCurrentLength;
-
     private AvalonControlGroup mAvalonControlGroup;
+    private ClickSoundGenerator mClickSoundGenerator;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;
