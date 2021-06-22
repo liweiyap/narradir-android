@@ -89,7 +89,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         {
             return;
         }
-        mAvalonControlGroup.startCharacterDescriptionMediaPlayer();
+        mAvalonControlGroup.resumeCharacterDescriptionMediaPlayer();
     }
 
     @Override

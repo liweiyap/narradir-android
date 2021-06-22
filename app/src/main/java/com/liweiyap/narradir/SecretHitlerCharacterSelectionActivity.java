@@ -73,7 +73,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         {
             return;
         }
-        mSecretHitlerControlGroup.startCharacterDescriptionMediaPlayer();
+        mSecretHitlerControlGroup.resumeCharacterDescriptionMediaPlayer();
     }
 
     @Override

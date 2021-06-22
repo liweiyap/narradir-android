@@ -1,7 +1,6 @@
 package com.liweiyap.narradir;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -34,9 +33,7 @@ public class SecretHitlerControlGroup
         @NonNull final ObserverImageButton fascist1Button,
         @NonNull final ObserverImageButton fascist2Button)
     {
-        mContext = context;
-
-        mSecretHitlerCharacterArray = new SecretHitlerCharacterArray(
+        mCharacterArray = new SecretHitlerCharacterArray(
             context,
             liberal0Button, liberal1Button, liberal2Button, liberal3Button,
             liberal4Button, liberal5Button,
@@ -49,109 +46,110 @@ public class SecretHitlerControlGroup
         // -----------------------------------------------------------------------------------------
 
         p5Button.addOnClickObserver(() -> {
-            mSecretHitlerCharacterArray.setExpectedGoodTotal(3);
-            mSecretHitlerCharacterArray.setExpectedEvilTotal(2);
+            mCharacterArray.setExpectedGoodTotal(3);
+            mCharacterArray.setExpectedEvilTotal(2);
 
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
 
-            mSecretHitlerCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p5Button.onClick()");
+            mCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p5Button.onClick()");
         });
 
         p6Button.addOnClickObserver(() -> {
-            mSecretHitlerCharacterArray.setExpectedGoodTotal(4);
-            mSecretHitlerCharacterArray.setExpectedEvilTotal(2);
+            mCharacterArray.setExpectedGoodTotal(4);
+            mCharacterArray.setExpectedEvilTotal(2);
 
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
 
-            mSecretHitlerCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p6Button.onClick()");
+            mCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p6Button.onClick()");
         });
 
         p7Button.addOnClickObserver(() -> {
-            mSecretHitlerCharacterArray.setExpectedGoodTotal(4);
-            mSecretHitlerCharacterArray.setExpectedEvilTotal(3);
+            mCharacterArray.setExpectedGoodTotal(4);
+            mCharacterArray.setExpectedEvilTotal(3);
 
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
 
-            mSecretHitlerCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p7Button.onClick()");
+            mCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p7Button.onClick()");
         });
 
         p8Button.addOnClickObserver(() -> {
-            mSecretHitlerCharacterArray.setExpectedGoodTotal(5);
-            mSecretHitlerCharacterArray.setExpectedEvilTotal(3);
+            mCharacterArray.setExpectedGoodTotal(5);
+            mCharacterArray.setExpectedEvilTotal(3);
 
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.INVISIBLE);
 
-            mSecretHitlerCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p8Button.onClick()");
+            mCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p8Button.onClick()");
         });
 
         p9Button.addOnClickObserver(() -> {
-            mSecretHitlerCharacterArray.setExpectedGoodTotal(5);
-            mSecretHitlerCharacterArray.setExpectedEvilTotal(4);
+            mCharacterArray.setExpectedGoodTotal(5);
+            mCharacterArray.setExpectedEvilTotal(4);
 
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.INVISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.VISIBLE);
 
-            mSecretHitlerCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p9Button.onClick()");
+            mCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p9Button.onClick()");
         });
 
         p10Button.addOnClickObserver(() -> {
-            mSecretHitlerCharacterArray.setExpectedGoodTotal(6);
-            mSecretHitlerCharacterArray.setExpectedEvilTotal(4);
+            mCharacterArray.setExpectedGoodTotal(6);
+            mCharacterArray.setExpectedEvilTotal(4);
 
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).setVisibility(View.VISIBLE);
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).setVisibility(View.VISIBLE);
 
-            mSecretHitlerCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p10Button.onClick()");
+            mCharacterArray.checkPlayerComposition("SecretHitlerControlGroup::p10Button.onClick()");
         });
 
         // -----------------------------------------------------------------------------------------
         // initialise MediaPlayer for character descriptions
         // -----------------------------------------------------------------------------------------
 
+        mCharacterDescriptionMediaPlayer = new CharacterDescriptionMediaPlayer(context);
         addCharacterDescriptions();
     }
 
     private void addCharacterDescriptions()
     {
-        if (mSecretHitlerCharacterArray == null)
+        if (mCharacterArray == null)
         {
             throw new RuntimeException("SecretHitlerControlGroup::addCharacterDescriptions(): mSecretHitlerCharacterArray is NULL");
         }
 
         try
         {
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> playCharacterDescription(R.raw.hitlerdescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
-            mSecretHitlerCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.hitlerdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
         }
         catch (Exception e)
         {
@@ -159,34 +157,24 @@ public class SecretHitlerControlGroup
         }
     }
 
-    private void playCharacterDescription(@RawRes int descriptionId)
-    {
-        if (mCharacterDescriptionMediaPlayer != null)
-        {
-            mCharacterDescriptionMediaPlayer.stop();
-        }
-
-        try
-        {
-            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
-            mCharacterDescriptionMediaPlayer = MediaPlayer.create(mContext, descriptionId);
-            mCharacterDescriptionMediaPlayer.start();
-        }
-        catch (IllegalStateException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public void startCharacterDescriptionMediaPlayer()
+    private void resumeCharacterDescriptionMediaPlayer(@RawRes int descriptionId)
     {
         if (mCharacterDescriptionMediaPlayer == null)
         {
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.seekTo(mCharacterDescriptionMediaPlayerCurrentLength);
-        mCharacterDescriptionMediaPlayer.start();
+        mCharacterDescriptionMediaPlayer.play(descriptionId);
+    }
+
+    public void resumeCharacterDescriptionMediaPlayer()
+    {
+        if (mCharacterDescriptionMediaPlayer == null)
+        {
+            return;
+        }
+
+        mCharacterDescriptionMediaPlayer.resume();
     }
 
     public void pauseCharacterDescriptionMediaPlayer()
@@ -197,7 +185,6 @@ public class SecretHitlerControlGroup
         }
 
         mCharacterDescriptionMediaPlayer.pause();
-        mCharacterDescriptionMediaPlayerCurrentLength = mCharacterDescriptionMediaPlayer.getCurrentPosition();
     }
 
     public void stopCharacterDescriptionMediaPlayer()
@@ -217,34 +204,29 @@ public class SecretHitlerControlGroup
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.release();
-        mCharacterDescriptionMediaPlayer = null;
+        mCharacterDescriptionMediaPlayer.free();
     }
 
     public int getExpectedGoodTotal()
     {
-        if (mSecretHitlerCharacterArray == null)
+        if (mCharacterArray == null)
         {
             throw new RuntimeException("AvalonControlGroup::getExpectedGoodTotal(): mCharacterSelectionRules is NULL");
         }
 
-        return mSecretHitlerCharacterArray.getExpectedGoodTotal();
+        return mCharacterArray.getExpectedGoodTotal();
     }
 
     public int getExpectedEvilTotal()
     {
-        if (mSecretHitlerCharacterArray == null)
+        if (mCharacterArray == null)
         {
             throw new RuntimeException("AvalonControlGroup::getExpectedEvilTotal(): mCharacterSelectionRules is NULL");
         }
 
-        return mSecretHitlerCharacterArray.getExpectedEvilTotal();
+        return mCharacterArray.getExpectedEvilTotal();
     }
 
-    private final Context mContext;
-
-    private final SecretHitlerCharacterArray mSecretHitlerCharacterArray;
-
-    private MediaPlayer mCharacterDescriptionMediaPlayer;
-    private int mCharacterDescriptionMediaPlayerCurrentLength;
+    private final SecretHitlerCharacterArray mCharacterArray;
+    private final CharacterDescriptionMediaPlayer mCharacterDescriptionMediaPlayer;
 }
