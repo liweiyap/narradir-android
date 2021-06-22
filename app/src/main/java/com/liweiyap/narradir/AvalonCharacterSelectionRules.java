@@ -12,7 +12,7 @@ import com.liweiyap.narradir.utils.ToastSingleton;
 public class AvalonCharacterSelectionRules
 {
     public AvalonCharacterSelectionRules(
-        @NonNull final Context applicationContext,
+        @NonNull final Context context,
         @NonNull final CheckableObserverImageButton merlinButton,
         @NonNull final CheckableObserverImageButton percivalButton,
         @NonNull final CheckableObserverImageButton loyal0Button,
@@ -30,7 +30,7 @@ public class AvalonCharacterSelectionRules
         @NonNull final CheckableObserverImageButton minion2Button,
         @NonNull final CheckableObserverImageButton minion3Button)
     {
-        mApplicationContext = applicationContext;
+        mContext = context;
 
         mCharacterImageButtonArray[AvalonCharacterName.MERLIN] = merlinButton;
         mCharacterImageButtonArray[AvalonCharacterName.MERLIN].addOnClickObserver(this::runMerlinSelectionRules);
@@ -85,7 +85,7 @@ public class AvalonCharacterSelectionRules
     {
         if ( (idx < AvalonCharacterName.MERLIN) || (idx > AvalonCharacterName.MINION3) )
         {
-            throw new RuntimeException("AvalonCharacterSelectionRules::get(): Invalid index + " + idx);
+            throw new RuntimeException("AvalonCharacterSelectionRules::getCharacter(): Invalid index " + idx);
         }
 
         return mCharacterImageButtonArray[idx];
@@ -131,23 +131,7 @@ public class AvalonCharacterSelectionRules
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.OBERON, 1);
         }
 
-        int actualGoodTotal = getActualGoodTotal();
-        if (actualGoodTotal != mExpectedGoodTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionRules::addMerlinSelectionRules(): " +
-                    "expected good player total is " + mExpectedGoodTotal +
-                    " but actual good player total is " + actualGoodTotal);
-        }
-
-        int actualEvilTotal = getActualEvilTotal();
-        if (actualEvilTotal != mExpectedEvilTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionRules::addMerlinSelectionRules(): " +
-                    "expected evil player total is " + mExpectedEvilTotal +
-                    " but actual evil player total is " + actualEvilTotal);
-        }
+        checkPlayerComposition("AvalonCharacterSelectionRules::addMerlinSelectionRules()");
     }
 
     /**
@@ -201,23 +185,7 @@ public class AvalonCharacterSelectionRules
             }
         }
 
-        int actualGoodTotal = getActualGoodTotal();
-        if (actualGoodTotal != mExpectedGoodTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addPercivalSelectionRules(): " +
-                    "expected good player total is " + mExpectedGoodTotal +
-                    " but actual good player total is " + actualGoodTotal);
-        }
-
-        int actualEvilTotal = getActualEvilTotal();
-        if (actualEvilTotal != mExpectedEvilTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addPercivalSelectionRules(): " +
-                    "expected evil player total is " + mExpectedEvilTotal +
-                    " but actual evil player total is " + actualEvilTotal);
-        }
+        checkPlayerComposition("AvalonCharacterSelectionRules::runPercivalSelectionRules()");
     }
 
     /**
@@ -242,7 +210,7 @@ public class AvalonCharacterSelectionRules
             if (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
             {
                 throw new RuntimeException(
-                    "AvalonCharacterSelectionActivity::addMorganaSelectionRules(): " +
+                    "AvalonCharacterSelectionRules::runMorganaSelectionRules(): " +
                         "Morgana was active in the absence of Percival");
             }
 
@@ -273,23 +241,7 @@ public class AvalonCharacterSelectionRules
             }
         }
 
-        int actualGoodTotal = getActualGoodTotal();
-        if (actualGoodTotal != mExpectedGoodTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addMorganaSelectionRules(): " +
-                    "expected good player total is " + mExpectedGoodTotal +
-                    " but actual good player total is " + actualGoodTotal);
-        }
-
-        int actualEvilTotal = getActualEvilTotal();
-        if (actualEvilTotal != mExpectedEvilTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addMorganaSelectionRules(): " +
-                    "expected evil player total is " + mExpectedEvilTotal +
-                    " but actual evil player total is " + actualEvilTotal);
-        }
+        checkPlayerComposition("AvalonCharacterSelectionRules::runMorganaSelectionRules()");
     }
 
     /**
@@ -317,7 +269,7 @@ public class AvalonCharacterSelectionRules
             if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
             {
                 throw new RuntimeException(
-                    "AvalonCharacterSelectionActivity::addMordredSelectionRules(): " +
+                    "AvalonCharacterSelectionRules::runMordredSelectionRules(): " +
                         "Mordred was active in the absence of Merlin");
             }
 
@@ -354,30 +306,14 @@ public class AvalonCharacterSelectionRules
             }
         }
 
-        int actualGoodTotal = getActualGoodTotal();
-        if (actualGoodTotal != mExpectedGoodTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addMordredSelectionRules(): " +
-                    "expected good player total is " + mExpectedGoodTotal +
-                    " but actual good player total is " + actualGoodTotal);
-        }
-
-        int actualEvilTotal = getActualEvilTotal();
-        if (actualEvilTotal != mExpectedEvilTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addMordredSelectionRules(): " +
-                    "expected evil player total is " + mExpectedEvilTotal +
-                    " but actual evil player total is " + actualEvilTotal);
-        }
+        checkPlayerComposition("AvalonCharacterSelectionRules::runMordredSelectionRules()");
     }
 
     private void runGeneralGoodSelectionRules()
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mApplicationContext, "Loyal cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, "Loyal cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {
@@ -398,30 +334,14 @@ public class AvalonCharacterSelectionRules
             mCharacterImageButtonArray[AvalonCharacterName.OBERON].check();
         }
 
-        int actualGoodTotal = getActualGoodTotal();
-        if (actualGoodTotal != mExpectedGoodTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addOberonSelectionRules(): " +
-                    "expected good player total is " + mExpectedGoodTotal +
-                    " but actual good player total is " + actualGoodTotal);
-        }
-
-        int actualEvilTotal = getActualEvilTotal();
-        if (actualEvilTotal != mExpectedEvilTotal)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::addOberonSelectionRules(): " +
-                    "expected evil player total is " + mExpectedEvilTotal +
-                    " but actual evil player total is " + actualEvilTotal);
-        }
+        checkPlayerComposition("AvalonCharacterSelectionRules::runOberonSelectionRules()");
     }
 
     private void runGeneralEvilSelectionRules()
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mApplicationContext, "Minions cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, "Minions cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {
@@ -454,14 +374,14 @@ public class AvalonCharacterSelectionRules
         if (startIdx > endIdx)
         {
             throw new RuntimeException(
-                "AvalonCharacterSelectionRules::searchAndCheckNewCharacter(): " +
+                "AvalonCharacterSelectionRules::searchAndCheckNewCharacters(): " +
                     "startIdx must be <= endIdx");
         }
 
         if (X < 0)
         {
             throw new RuntimeException(
-                "AvalonCharacterSelectionRules::searchAndCheckNewCharacter(): " +
+                "AvalonCharacterSelectionRules::searchAndCheckNewCharacters(): " +
                     "X must be >= 0");
         }
 
@@ -506,14 +426,14 @@ public class AvalonCharacterSelectionRules
         if (startIdx < endIdx)
         {
             throw new RuntimeException(
-                "AvalonCharacterSelectionRules::searchAndUncheckOldCharacter(): " +
+                "AvalonCharacterSelectionRules::searchAndUncheckOldCharacters(): " +
                     "startIdx must be >= endIdx");
         }
 
         if (X < 0)
         {
             throw new RuntimeException(
-                "AvalonCharacterSelectionRules::searchAndUncheckOldCharacter(): " +
+                "AvalonCharacterSelectionRules::searchAndUncheckOldCharacters(): " +
                     "X must be >= 0");
         }
 
@@ -585,9 +505,35 @@ public class AvalonCharacterSelectionRules
         mExpectedEvilTotal = newExpectedEvilTotal;
     }
 
+    public void checkPlayerComposition(final String callingFuncName)
+    {
+        if (callingFuncName == null)
+        {
+            return;
+        }
+
+        int actualGoodTotal = getActualGoodTotal();
+        if (actualGoodTotal != mExpectedGoodTotal)
+        {
+            throw new RuntimeException(
+                callingFuncName +
+                    ": expected good player total is " + mExpectedGoodTotal +
+                    " but actual good player total is " + actualGoodTotal);
+        }
+
+        int actualEvilTotal = getActualEvilTotal();
+        if (actualEvilTotal != mExpectedEvilTotal)
+        {
+            throw new RuntimeException(
+                callingFuncName +
+                    ": expected evil player total is " + mExpectedEvilTotal +
+                    " but actual evil player total is " + actualEvilTotal);
+        }
+    }
+
     private final CheckableObserverImageButton[] mCharacterImageButtonArray = new CheckableObserverImageButton[AvalonCharacterName.getNumberOfCharacters()];
     private int mExpectedGoodTotal = 3;
     private int mExpectedEvilTotal = 2;
 
-    private final Context mApplicationContext;
+    private final Context mContext;
 }

@@ -370,26 +370,6 @@ public class AvalonControlGroup
         return mCharacterSelectionRules.getCharacterImageButtonArray();
     }
 
-    public int getActualGoodTotal()
-    {
-        if (mCharacterSelectionRules == null)
-        {
-            throw new RuntimeException("AvalonControlGroup::getActualGoodTotal(): mCharacterSelectionRules is NULL");
-        }
-
-        return mCharacterSelectionRules.getActualGoodTotal();
-    }
-
-    public int getActualEvilTotal()
-    {
-        if (mCharacterSelectionRules == null)
-        {
-            throw new RuntimeException("AvalonControlGroup::getActualEvilTotal(): mCharacterSelectionRules is NULL");
-        }
-
-        return mCharacterSelectionRules.getActualEvilTotal();
-    }
-
     public int getExpectedGoodTotal()
     {
         if (mCharacterSelectionRules == null)
@@ -408,6 +388,16 @@ public class AvalonControlGroup
         }
 
         return mCharacterSelectionRules.getExpectedEvilTotal();
+    }
+
+    public void checkPlayerComposition(final String callingFuncName)
+    {
+        if (mCharacterSelectionRules == null)
+        {
+            throw new RuntimeException("AvalonControlGroup::checkPlayerComposition(): mCharacterSelectionRules is NULL");
+        }
+
+        mCharacterSelectionRules.checkPlayerComposition(callingFuncName);
     }
 
     private final Context mContext;

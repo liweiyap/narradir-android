@@ -402,23 +402,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
             mAvalonControlGroup.getCharacter(AvalonCharacterName.OBERON).performClick();
         }
 
-        int actualGoodTotal = mAvalonControlGroup.getActualGoodTotal();
-        if (actualGoodTotal != mAvalonControlGroup.getExpectedGoodTotal())
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::loadPreferences(): " +
-                    "expected good player total is " + mAvalonControlGroup.getExpectedGoodTotal() +
-                    " but actual good player total is " + actualGoodTotal);
-        }
-
-        int actualEvilTotal = mAvalonControlGroup.getActualEvilTotal();
-        if (actualEvilTotal != mAvalonControlGroup.getExpectedEvilTotal())
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::loadPreferences(): " +
-                    "expected evil player total is " + mAvalonControlGroup.getExpectedEvilTotal() +
-                    " but actual evil player total is " + actualEvilTotal);
-        }
+        mAvalonControlGroup.checkPlayerComposition("AvalonCharacterSelectionActivity::loadPreferences()");
 
         if (mAvalonControlGroup.getCharacter(AvalonCharacterName.MERLIN).isChecked() != mAvalonControlGroup.getCharacter(AvalonCharacterName.ASSASSIN).isChecked())
         {
