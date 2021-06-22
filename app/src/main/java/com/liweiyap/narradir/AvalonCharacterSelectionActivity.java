@@ -180,7 +180,10 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
                 mAvalonControlGroup.stopCharacterDescriptionMediaPlayer();
             }
 
-            mClickSoundGenerator.playClickSound();
+            if (mClickSoundGenerator != null)
+            {
+                mClickSoundGenerator.playClickSound();
+            }
         });
     }
 
@@ -420,7 +423,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
 
-    ActivityResultLauncher<Intent> mSettingsHomeActivityResultLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> mSettingsHomeActivityResultLauncher = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(),
         result -> {
             if (result.getResultCode() != Constants.RESULT_OK_SETTINGS_HOME)

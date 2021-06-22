@@ -1,7 +1,6 @@
 package com.liweiyap.narradir;
 
 import android.content.Intent;
-import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -56,23 +55,18 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
-        mBackButton = findViewById(R.id.settingsHomeLayoutBackButton);
-        mBackButton.addOnClickObserver(this::navigateBackwards);
+        CustomTypefaceableObserverButton backButton = findViewById(R.id.settingsHomeLayoutBackButton);
+        backButton.addOnClickObserver(this::navigateBackwards);
 
-        mHelpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
-        mHelpButton.addOnClickObserver(() -> navigateToHelpActivity(mHelpButton));
+        CustomTypefaceableObserverButton helpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
+        helpButton.addOnClickObserver(() -> navigateToHelpActivity(helpButton));
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
             @Override
             public void handleOnBackPressed()
             {
-                if (mBackButton == null)
-                {
-                    return;
-                }
-
-                mBackButton.performClick();
+                backButton.performClick();
             }
         });
 
@@ -80,10 +74,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         // initialise SoundPool for click sound
         // ----------------------------------------------------------------------
 
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(1)
-            .build();
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        mClickSoundGenerator = new ClickSoundGenerator(this);
         addSoundToPlayOnButtonClick();
 
         // ----------------------------------------------------------------------
@@ -107,8 +98,11 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
     {
         super.onDestroy();
 
-        mGeneralSoundPool.release();
-        mGeneralSoundPool = null;
+        if (mClickSoundGenerator == null)
+        {
+            return;
+        }
+        mClickSoundGenerator.freeResources();
     }
 
     @Override
@@ -159,18 +153,18 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout.getEditButton());
         }
 
-        addSoundToPlayOnButtonClick(mBackButton);
-        addSoundToPlayOnButtonClick(mHelpButton);
+        addSoundToPlayOnButtonClick(findViewById(R.id.settingsHomeLayoutBackButton));
+        addSoundToPlayOnButtonClick(findViewById(R.id.settingsHomeLayoutHelpButton));
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
     {
-        if (observerListener == null)
+        if ( (observerListener == null) || (mClickSoundGenerator == null) )
         {
             return;
         }
 
-        observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+        observerListener.addOnClickObserver(() -> mClickSoundGenerator.playClickSound());
     }
 
     private void navigateToSettingsNarrationActivity(@NotNull View view)
@@ -222,14 +216,10 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
     private SettingsLayout mBackgroundSettingsLayout;
     private SettingsLayout mRoleTimerSettingsLayout;
 
-    private CustomTypefaceableObserverButton mBackButton;
-    private CustomTypefaceableObserverButton mHelpButton;
-
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
 
-    private SoundPool mGeneralSoundPool;
-    private int mClickSoundId;
+    private ClickSoundGenerator mClickSoundGenerator;
 }

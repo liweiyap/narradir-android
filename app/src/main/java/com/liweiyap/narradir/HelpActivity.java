@@ -1,7 +1,6 @@
 package com.liweiyap.narradir;
 
 import android.content.Intent;
-import android.media.SoundPool;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -18,27 +17,22 @@ public class HelpActivity extends ActiveFullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        mGeneralBackButton = findViewById(R.id.generalBackButton);
-        mMainButton = findViewById(R.id.mainButton);
+        CustomTypefaceableObserverButton generalBackButton = findViewById(R.id.generalBackButton);
+        CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
-        mGeneralBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
-        mMainButton.addOnClickObserver(this::navigateBackwardsByTwoSteps);
+        generalBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
+        mainButton.addOnClickObserver(this::navigateBackwardsByTwoSteps);
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
             @Override
             public void handleOnBackPressed()
             {
-                if (mGeneralBackButton == null)
-                {
-                    return;
-                }
-
-                mGeneralBackButton.performClick();
+                generalBackButton.performClick();
             }
         });
 
@@ -46,10 +40,7 @@ public class HelpActivity extends ActiveFullScreenPortraitActivity
         // initialise SoundPool for click sound
         // ----------------------------------------------------------------------
 
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(1)
-            .build();
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        mClickSoundGenerator = new ClickSoundGenerator(this);
         addSoundToPlayOnButtonClick();
     }
 
@@ -58,24 +49,27 @@ public class HelpActivity extends ActiveFullScreenPortraitActivity
     {
         super.onDestroy();
 
-        mGeneralSoundPool.release();
-        mGeneralSoundPool = null;
+        if (mClickSoundGenerator == null)
+        {
+            return;
+        }
+        mClickSoundGenerator.freeResources();
     }
 
     private void addSoundToPlayOnButtonClick()
     {
-        addSoundToPlayOnButtonClick(mGeneralBackButton);
-        addSoundToPlayOnButtonClick(mMainButton);
+        addSoundToPlayOnButtonClick(findViewById(R.id.generalBackButton));
+        addSoundToPlayOnButtonClick(findViewById(R.id.mainButton));
     }
 
     private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
     {
-        if (observerListener == null)
+        if ( (observerListener == null) || (mClickSoundGenerator == null) )
         {
             return;
         }
 
-        observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+        observerListener.addOnClickObserver(() -> mClickSoundGenerator.playClickSound());
     }
 
     private void navigateBackwardsByOneStep()
@@ -100,9 +94,5 @@ public class HelpActivity extends ActiveFullScreenPortraitActivity
         finish();
     }
 
-    private SoundPool mGeneralSoundPool;
-    private int mClickSoundId;
-
-    private CustomTypefaceableObserverButton mGeneralBackButton;
-    private CustomTypefaceableObserverButton mMainButton;
+    private ClickSoundGenerator mClickSoundGenerator;
 }

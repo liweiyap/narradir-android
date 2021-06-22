@@ -152,7 +152,10 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
                 mSecretHitlerControlGroup.stopCharacterDescriptionMediaPlayer();
             }
 
-            mClickSoundGenerator.playClickSound();
+            if (mClickSoundGenerator != null)
+            {
+                mClickSoundGenerator.playClickSound();
+            }
         });
     }
 
