@@ -140,16 +140,16 @@ public class SecretHitlerControlGroup
 
         try
         {
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.hitlerdescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> resumeCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.hitlerdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
         }
         catch (Exception e)
         {
@@ -157,7 +157,7 @@ public class SecretHitlerControlGroup
         }
     }
 
-    private void resumeCharacterDescriptionMediaPlayer(@RawRes int descriptionId)
+    private void startCharacterDescriptionMediaPlayer(@RawRes int descriptionId)
     {
         if (mCharacterDescriptionMediaPlayer == null)
         {

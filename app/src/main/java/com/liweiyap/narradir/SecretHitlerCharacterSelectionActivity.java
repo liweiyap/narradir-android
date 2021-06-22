@@ -49,9 +49,9 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         mClickSoundGenerator = new ClickSoundGenerator(this);
         addSoundToPlayOnButtonClick();
 
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
 
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_avalon));
