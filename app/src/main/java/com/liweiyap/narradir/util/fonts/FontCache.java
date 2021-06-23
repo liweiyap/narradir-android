@@ -17,7 +17,7 @@ public final class FontCache
 {
     private FontCache(){}
 
-    private static final ArrayMap<String, Typeface> fontCache = new ArrayMap<>();
+    private static final ArrayMap<String, Typeface> sFontCache = new ArrayMap<>();
 
     public static @Nullable Typeface get(final String assetFontPath, final @NonNull Context context)
     {
@@ -26,7 +26,7 @@ public final class FontCache
             return null;
         }
 
-        Typeface typeface = fontCache.get(assetFontPath);
+        Typeface typeface = sFontCache.get(assetFontPath);
         
         if (typeface == null)
         {
@@ -39,7 +39,7 @@ public final class FontCache
                 return null;
             }
             
-            fontCache.put(assetFontPath, typeface);
+            sFontCache.put(assetFontPath, typeface);
         }
         
         return typeface;
