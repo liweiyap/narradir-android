@@ -3,22 +3,21 @@ package com.liweiyap.narradir;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.RawRes;
 
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.ObserverImageButton;
-import com.liweiyap.narradir.utils.ObserverListener;
-import com.liweiyap.narradir.utils.ToastSingleton;
-import com.liweiyap.narradir.utils.ViewGroupSingleTargetSelector;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.ObserverImageButton;
+import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
+import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,36 +31,53 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection_secrethitler);
 
-        initialiseCharacterImageButtonArray();
+        // -----------------------------------------------------------------------------------------
+        // character image button array, player number selection layout, character selection layouts
+        // -----------------------------------------------------------------------------------------
 
-        // ------------------------------------------------------------
-        // player number selection layout
-        // ------------------------------------------------------------
+        mSecretHitlerControlGroup = new SecretHitlerControlGroup(
+            this,
+            findViewById(R.id.playerNumberSelectionLayout),
+            findViewById(R.id.p5Button), findViewById(R.id.p6Button), findViewById(R.id.p7Button),
+            findViewById(R.id.p8Button), findViewById(R.id.p9Button), findViewById(R.id.p10Button),
+            findViewById(R.id.liberal0Button), findViewById(R.id.liberal1Button), findViewById(R.id.liberal2Button), findViewById(R.id.liberal3Button),
+            findViewById(R.id.liberal4Button), findViewById(R.id.liberal5Button),
+            findViewById(R.id.hitlerButton), findViewById(R.id.fascist0Button), findViewById(R.id.fascist1Button), findViewById(R.id.fascist2Button));
 
-        addSingleTargetSelectionToPlayerNumberSelectionLayout();
-        adaptAvailableCharactersAccordingToPlayerNumber();
         loadPreferences();
 
-        // ------------------------------------------------------------
-        // character selection layouts
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
+        // sounds
+        // -----------------------------------------------------------------------------------------
 
-        /* set up Toast */
-        setUpToast();
-
-        /* click sound */
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(1)
-            .build();
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        mClickSoundGenerator = new ClickSoundGenerator(this);
         addSoundToPlayOnButtonClick();
 
-        /* general MediaPlayer for character descriptions */
-        addCharacterDescriptions();
-
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
-        // ------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
+
+        mSettingsHomeActivityResultObserverListener = new LifecycleActivityResultObserverListener(
+            getActivityResultRegistry(),
+            getString(R.string.secrethitler_to_settingshome_key),
+            result -> {
+                if (result.getResultCode() != Constants.RESULT_OK_SETTINGS_HOME)
+                {
+                    return;
+                }
+
+                Intent data = result.getData();
+                if (data == null)
+                {
+                    return;
+                }
+
+                mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+                mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+                mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+                mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+            });
+        getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
 
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_avalon));
@@ -79,13 +95,11 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         super.onResume();
 
-        if (mGeneralMediaPlayer == null)
+        if (mSecretHitlerControlGroup == null)
         {
             return;
         }
-
-        mGeneralMediaPlayer.seekTo(mGeneralMediaPlayerCurrentLength);
-        mGeneralMediaPlayer.start();
+        mSecretHitlerControlGroup.resumeCharacterDescriptionMediaPlayer();
     }
 
     @Override
@@ -95,12 +109,11 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         savePreferences();  // https://stackoverflow.com/a/32576942/12367873; https://stackoverflow.com/a/14756816/12367873
 
-        if (mGeneralMediaPlayer == null)
+        if (mSecretHitlerControlGroup == null)
         {
             return;
         }
-        mGeneralMediaPlayer.pause();
-        mGeneralMediaPlayerCurrentLength = mGeneralMediaPlayer.getCurrentPosition();
+        mSecretHitlerControlGroup.pauseCharacterDescriptionMediaPlayer();
     }
 
     @Override
@@ -108,239 +121,15 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         super.onDestroy();
 
-        if (mGeneralMediaPlayer != null)
+        if (mSecretHitlerControlGroup != null)
         {
-            mGeneralMediaPlayer.release();
-            mGeneralMediaPlayer = null;
+            mSecretHitlerControlGroup.freeCharacterDescriptionMediaPlayer();
         }
 
-        mGeneralSoundPool.release();
-        mGeneralSoundPool = null;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if ( (requestCode == Constants.REQUEST_SETTINGS_HOME) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
+        if (mClickSoundGenerator != null)
         {
-            mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
-            mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
-            mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-            mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+            mClickSoundGenerator.freeResources();
         }
-    }
-
-    private void initialiseCharacterImageButtonArray()
-    {
-        mCharacterImageButtonArray = new ObserverImageButton[SecretHitlerCharacterName.getNumberOfCharacters()];
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0] = findViewById(R.id.liberal0Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1] = findViewById(R.id.liberal1Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2] = findViewById(R.id.liberal2Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3] = findViewById(R.id.liberal3Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4] = findViewById(R.id.liberal4Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5] = findViewById(R.id.liberal5Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER] = findViewById(R.id.hitlerButton);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0] = findViewById(R.id.fascist0Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1] = findViewById(R.id.fascist1Button);
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2] = findViewById(R.id.fascist2Button);
-    }
-
-    private void addSingleTargetSelectionToPlayerNumberSelectionLayout()
-    {
-        try
-        {
-            ViewGroupSingleTargetSelector.addSingleTargetSelection(findViewById(R.id.playerNumberSelectionLayout));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private void adaptAvailableCharactersAccordingToPlayerNumber()
-    {
-        CustomTypefaceableCheckableObserverButton p5Button = findViewById(R.id.p5Button);
-        CustomTypefaceableCheckableObserverButton p6Button = findViewById(R.id.p6Button);
-        CustomTypefaceableCheckableObserverButton p7Button = findViewById(R.id.p7Button);
-        CustomTypefaceableCheckableObserverButton p8Button = findViewById(R.id.p8Button);
-        CustomTypefaceableCheckableObserverButton p9Button = findViewById(R.id.p9Button);
-        CustomTypefaceableCheckableObserverButton p10Button = findViewById(R.id.p10Button);
-
-        p5Button.addOnClickObserver(() -> {
-            mExpectedGoodTotal = 3;
-            mExpectedEvilTotal = 2;
-
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].setVisibility(View.INVISIBLE);
-
-            int actualGoodTotal = getActualGoodTotal();
-            if (actualGoodTotal != mExpectedGoodTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p5Button.onClick(): " +
-                        "expected good player total is " + mExpectedGoodTotal +
-                        " but actual good player total is " + actualGoodTotal);
-            }
-
-            int actualEvilTotal = getActualEvilTotal();
-            if (actualEvilTotal != mExpectedEvilTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p5Button.onClick(): " +
-                        "expected evil player total is " + mExpectedEvilTotal +
-                        " but actual evil player total is " + actualEvilTotal);
-            }
-        });
-
-        p6Button.addOnClickObserver(() -> {
-            mExpectedGoodTotal = 4;
-            mExpectedEvilTotal = 2;
-
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].setVisibility(View.INVISIBLE);
-
-            int actualGoodTotal = getActualGoodTotal();
-            if (actualGoodTotal != mExpectedGoodTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p6Button.onClick(): " +
-                        "expected good player total is " + mExpectedGoodTotal +
-                        " but actual good player total is " + actualGoodTotal);
-            }
-
-            int actualEvilTotal = getActualEvilTotal();
-            if (actualEvilTotal != mExpectedEvilTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p6Button.onClick(): " +
-                        "expected evil player total is " + mExpectedEvilTotal +
-                        " but actual evil player total is " + actualEvilTotal);
-            }
-        });
-
-        p7Button.addOnClickObserver(() -> {
-            mExpectedGoodTotal = 4;
-            mExpectedEvilTotal = 3;
-
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].setVisibility(View.INVISIBLE);
-
-            int actualGoodTotal = getActualGoodTotal();
-            if (actualGoodTotal != mExpectedGoodTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p7Button.onClick(): " +
-                        "expected good player total is " + mExpectedGoodTotal +
-                        " but actual good player total is " + actualGoodTotal);
-            }
-
-            int actualEvilTotal = getActualEvilTotal();
-            if (actualEvilTotal != mExpectedEvilTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p7Button.onClick(): " +
-                        "expected evil player total is " + mExpectedEvilTotal +
-                        " but actual evil player total is " + actualEvilTotal);
-            }
-        });
-
-        p8Button.addOnClickObserver(() -> {
-            mExpectedGoodTotal = 5;
-            mExpectedEvilTotal = 3;
-
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].setVisibility(View.INVISIBLE);
-
-            int actualGoodTotal = getActualGoodTotal();
-            if (actualGoodTotal != mExpectedGoodTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p8Button.onClick(): " +
-                        "expected good player total is " + mExpectedGoodTotal +
-                        " but actual good player total is " + actualGoodTotal);
-            }
-
-            int actualEvilTotal = getActualEvilTotal();
-            if (actualEvilTotal != mExpectedEvilTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p8Button.onClick(): " +
-                        "expected evil player total is " + mExpectedEvilTotal +
-                        " but actual evil player total is " + actualEvilTotal);
-            }
-        });
-
-        p9Button.addOnClickObserver(() -> {
-            mExpectedGoodTotal = 5;
-            mExpectedEvilTotal = 4;
-
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].setVisibility(View.INVISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].setVisibility(View.VISIBLE);
-
-            int actualGoodTotal = getActualGoodTotal();
-            if (actualGoodTotal != mExpectedGoodTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p9Button.onClick(): " +
-                        "expected good player total is " + mExpectedGoodTotal +
-                        " but actual good player total is " + actualGoodTotal);
-            }
-
-            int actualEvilTotal = getActualEvilTotal();
-            if (actualEvilTotal != mExpectedEvilTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p9Button.onClick(): " +
-                        "expected evil player total is " + mExpectedEvilTotal +
-                        " but actual evil player total is " + actualEvilTotal);
-            }
-        });
-
-        p10Button.addOnClickObserver(() -> {
-            mExpectedGoodTotal = 6;
-            mExpectedEvilTotal = 4;
-
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].setVisibility(View.VISIBLE);
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].setVisibility(View.VISIBLE);
-
-            int actualGoodTotal = getActualGoodTotal();
-            if (actualGoodTotal != mExpectedGoodTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p10Button.onClick(): " +
-                        "expected good player total is " + mExpectedGoodTotal +
-                        " but actual good player total is " + actualGoodTotal);
-            }
-
-            int actualEvilTotal = getActualEvilTotal();
-            if (actualEvilTotal != mExpectedEvilTotal)
-            {
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::p10Button.onClick(): " +
-                        "expected evil player total is " + mExpectedEvilTotal +
-                        " but actual evil player total is " + actualEvilTotal);
-            }
-        });
     }
 
     private void addSoundToPlayOnButtonClick()
@@ -362,7 +151,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         addSoundToPlayOnButtonClick(settingsButton);
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener btn)
+    private void addSoundToPlayOnButtonClick(final ObserverListener btn)
     {
         if (btn == null)
         {
@@ -370,100 +159,19 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         }
 
         btn.addOnClickObserver(() -> {
-            if (mGeneralMediaPlayer != null)
+            if (mSecretHitlerControlGroup != null)
             {
-                mGeneralMediaPlayer.stop();
+                mSecretHitlerControlGroup.stopCharacterDescriptionMediaPlayer();
             }
 
-            mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f);
+            if (mClickSoundGenerator != null)
+            {
+                mClickSoundGenerator.playClickSound();
+            }
         });
     }
 
-    private void addCharacterDescriptions()
-    {
-        try
-        {
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnLongClickObserver(() -> playCharacterDescription(R.raw.liberaldescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnLongClickObserver(() -> playCharacterDescription(R.raw.hitlerdescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
-            mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnLongClickObserver(() -> playCharacterDescription(R.raw.fascistdescription));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private void playCharacterDescription(int descriptionId)
-    {
-        if (mGeneralMediaPlayer != null)
-        {
-            mGeneralMediaPlayer.stop();
-        }
-
-        try
-        {
-            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
-            mGeneralMediaPlayer = MediaPlayer.create(this, descriptionId);
-            mGeneralMediaPlayer.start();
-        }
-        catch (IllegalStateException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private void setUpToast()
-    {
-        final String toastMessage = "Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.";
-
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(() -> ToastSingleton.getInstance().showNewToast(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT));
-    }
-
-    public int getActualGoodTotal()
-    {
-        int actualGoodTotal = 0;
-        for (int idx = SecretHitlerCharacterName.LIBERAL0; idx <= SecretHitlerCharacterName.LIBERAL5; ++idx)
-        {
-            if (mCharacterImageButtonArray[idx].getVisibility() == View.VISIBLE)
-            {
-                ++actualGoodTotal;
-            }
-        }
-
-        return actualGoodTotal;
-    }
-
-    public int getActualEvilTotal()
-    {
-        int actualEvilTotal = 0;
-        for (int idx = SecretHitlerCharacterName.HITLER; idx <= SecretHitlerCharacterName.FASCIST2; ++idx)
-        {
-            if (mCharacterImageButtonArray[idx].getVisibility() == View.VISIBLE)
-            {
-                ++actualEvilTotal;
-            }
-        }
-
-        return actualEvilTotal;
-    }
-
-    private void navigateToAvalonCharacterSelectionActivity(@NotNull View view)
+    private void navigateToAvalonCharacterSelectionActivity(final @NotNull View view)
     {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
@@ -475,11 +183,16 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToPlayIntroductionActivity(@NotNull View view)
+    private void navigateToPlayIntroductionActivity(final @NotNull View view)
     {
+        if (mSecretHitlerControlGroup == null)
+        {
+            throw new RuntimeException("SecretHitlerCharacterSelectionActivity::navigateToPlayIntroductionActivity(): mSecretHitlerControlGroup is NULL");
+        }
+
         ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
 
-        if (mExpectedGoodTotal + mExpectedEvilTotal < 7)
+        if (mSecretHitlerControlGroup.getExpectedGoodTotal() + mSecretHitlerControlGroup.getExpectedEvilTotal() < 7)
         {
             introSegmentArrayList.add(R.raw.secrethitlerintrosegment0small);
             introSegmentArrayList.add(R.raw.secrethitlerintrosegment1small);
@@ -505,14 +218,14 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToSettingsHomeActivity(@NotNull View view)
+    private void navigateToSettingsHomeActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-        startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
+        mSettingsHomeActivityResultObserverListener.launch(intent);
     }
 
     /**
@@ -521,26 +234,36 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
      */
     private void savePreferences()
     {
+        if (mSecretHitlerControlGroup == null)
+        {
+            throw new RuntimeException("SecretHitlerCharacterSelectionActivity::savePreferences(): mSecretHitlerControlGroup is NULL");
+        }
+
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
         sharedPrefEditor.putLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
-        sharedPrefEditor.putInt(getString(R.string.good_player_number_secrethitler_key), mExpectedGoodTotal);
-        sharedPrefEditor.putInt(getString(R.string.evil_player_number_secrethitler_key), mExpectedEvilTotal);
+        sharedPrefEditor.putInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
+        sharedPrefEditor.putInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
         sharedPrefEditor.apply();
     }
 
     private void loadPreferences()
     {
+        if (mSecretHitlerControlGroup == null)
+        {
+            throw new RuntimeException("SecretHitlerCharacterSelectionActivity::loadPreferences(): mSecretHitlerControlGroup is NULL");
+        }
+
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
-        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mExpectedGoodTotal);
-        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mExpectedEvilTotal);
+        int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
+        int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
 
         switch (expectedGoodTotal + expectedEvilTotal)
         {
@@ -575,15 +298,9 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         }
     }
 
-    private SoundPool mGeneralSoundPool;
-    private int mClickSoundId;
-
-    private MediaPlayer mGeneralMediaPlayer;
-    private int mGeneralMediaPlayerCurrentLength;
-
-    private ObserverImageButton[] mCharacterImageButtonArray;
-    private int mExpectedGoodTotal = 3;
-    private int mExpectedEvilTotal = 2;
+    private SecretHitlerControlGroup mSecretHitlerControlGroup;
+    private ClickSoundGenerator mClickSoundGenerator;
+    private LifecycleActivityResultObserverListener mSettingsHomeActivityResultObserverListener;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;

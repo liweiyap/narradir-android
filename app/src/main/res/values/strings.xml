@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Narradir</string>
-    <string name="app_version">1.4</string>
-    <string name="app_name_and_version">Narradir Version 1.4</string>
+    <string name="app_version">2.0</string>
+    <string name="app_name_and_version">Narradir Version 2.0</string>
 
     <string name="game_title_avalon">Avalon</string>
     <string name="game_title_secrethitler">Secret Hitler</string>
@@ -27,6 +27,10 @@
     <string name="is_oberon_checked_key">IS_OBERON_CHECKED</string>
     <string name="is_started_from_avalon_key">IS_STARTED_FROM_AVALON</string>
     <string name="last_selected_game_key">LAST_SELECTED_GAME</string>
+
+    <string name="avalon_to_settingshome_key">AVALON_TO_SETTINGSHOME</string>
+    <string name="secrethitler_to_settingshome_key">SECRETHITLER_TO_SETTINGSHOME</string>
+    <string name="settingshome_to_settingsindividual_key">SETTINGSHOME_TO_SETTINGSINDIVIDUAL</string>
 
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>

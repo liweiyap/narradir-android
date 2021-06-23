@@ -7,7 +7,7 @@
     android:id="@+id/evilCharactersLinearLayoutBottom"
     android:weightSum="4" >
 
-    <com.liweiyap.narradir.utils.CheckableObserverImageButton
+    <com.liweiyap.narradir.ui.CheckableObserverImageButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -23,7 +23,7 @@
         com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
-    <com.liweiyap.narradir.utils.CheckableObserverImageButton
+    <com.liweiyap.narradir.ui.CheckableObserverImageButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -39,7 +39,7 @@
         com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
-    <com.liweiyap.narradir.utils.CheckableObserverImageButton
+    <com.liweiyap.narradir.ui.CheckableObserverImageButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -56,7 +56,7 @@
         com.liweiyap.narradir:uncheckedDrawableId="@null"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
-    <com.liweiyap.narradir.utils.CheckableObserverImageButton
+    <com.liweiyap.narradir.ui.CheckableObserverImageButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

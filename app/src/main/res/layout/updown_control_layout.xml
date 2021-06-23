@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:id="@+id/updownControlLayout">
 
-    <com.liweiyap.narradir.utils.ObserverButton
+    <com.liweiyap.narradir.ui.ObserverButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/up_control_button_text"
@@ -16,7 +16,7 @@
         android:textSize="45sp"
         android:textColor="@android:color/white" />
 
-    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -26,7 +26,7 @@
         android:textSize="30sp"
         android:textColor="@android:color/white" />
 
-    <com.liweiyap.narradir.utils.ObserverButton
+    <com.liweiyap.narradir.ui.ObserverButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/down_control_button_text"
@@ -37,7 +37,7 @@
         android:textSize="45sp"
         android:textColor="@android:color/white" />
 
-    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

@@ -1,16 +1,17 @@
 package com.liweiyap.narradir;
 
 import android.content.Intent;
-import android.media.SoundPool;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.ObserverButton;
-import com.liweiyap.narradir.utils.ObserverListener;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.ObserverButton;
+import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
 {
@@ -21,10 +22,10 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
         setContentView(R.layout.activity_settings_narration);
 
         mVolumeControlLayoutValueTextView = findViewById(R.id.updownControlLayoutValue);
-        mVolumeIncreaseButton = findViewById(R.id.upControlButton);
-        mVolumeDecreaseButton = findViewById(R.id.downControlButton);
-        mGeneralBackButton = findViewById(R.id.generalBackButton);
-        mMainButton = findViewById(R.id.mainButton);
+        ObserverButton volumeIncreaseButton = findViewById(R.id.upControlButton);
+        ObserverButton volumeDecreaseButton = findViewById(R.id.downControlButton);
+        CustomTypefaceableObserverButton generalBackButton = findViewById(R.id.generalBackButton);
+        CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
 
         CustomTypefaceableTextView settingsTitle = findViewById(R.id.settingsTitleTextView);
         settingsTitle.setText(R.string.settings_title_narration);
@@ -44,27 +45,22 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
         // volume control
         // ----------------------------------------------------------------------
 
-        mVolumeIncreaseButton.addOnClickObserver(this::increaseVolume);
-        mVolumeDecreaseButton.addOnClickObserver(this::decreaseVolume);
+        volumeIncreaseButton.addOnClickObserver(this::increaseVolume);
+        volumeDecreaseButton.addOnClickObserver(this::decreaseVolume);
 
         // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
-        mGeneralBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
-        mMainButton.addOnClickObserver(this::navigateBackwardsByTwoSteps);
+        generalBackButton.addOnClickObserver(this::navigateBackwardsByOneStep);
+        mainButton.addOnClickObserver(this::navigateBackwardsByTwoSteps);
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
             @Override
             public void handleOnBackPressed()
             {
-                if (mGeneralBackButton == null)
-                {
-                    return;
-                }
-
-                mGeneralBackButton.performClick();
+                generalBackButton.performClick();
             }
         });
 
@@ -72,10 +68,7 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
         // initialise SoundPool for click sound
         // ----------------------------------------------------------------------
 
-        mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(1)
-            .build();
-        mClickSoundId = mGeneralSoundPool.load(this, R.raw.clicksound, 1);
+        mClickSoundGenerator = new ClickSoundGenerator(this);
         addSoundToPlayOnButtonClick();
     }
 
@@ -84,26 +77,29 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
     {
         super.onDestroy();
 
-        mGeneralSoundPool.release();
-        mGeneralSoundPool = null;
+        if (mClickSoundGenerator == null)
+        {
+            return;
+        }
+        mClickSoundGenerator.freeResources();
     }
 
     private void addSoundToPlayOnButtonClick()
     {
-        addSoundToPlayOnButtonClick(mGeneralBackButton);
-        addSoundToPlayOnButtonClick(mMainButton);
-        addSoundToPlayOnButtonClick(mVolumeIncreaseButton);
-        addSoundToPlayOnButtonClick(mVolumeDecreaseButton);
+        addSoundToPlayOnButtonClick(findViewById(R.id.generalBackButton));
+        addSoundToPlayOnButtonClick(findViewById(R.id.mainButton));
+        addSoundToPlayOnButtonClick(findViewById(R.id.upControlButton));
+        addSoundToPlayOnButtonClick(findViewById(R.id.downControlButton));
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
+    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener)
     {
-        if (observerListener == null)
+        if ( (observerListener == null) || (mClickSoundGenerator == null) )
         {
             return;
         }
 
-        observerListener.addOnClickObserver(() -> mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 1, 0, 1f));
+        observerListener.addOnClickObserver(() -> mClickSoundGenerator.playClickSound());
     }
 
     private void displayVolume()
@@ -152,15 +148,9 @@ public class SettingsNarrationActivity extends ActiveFullScreenPortraitActivity
         finish();
     }
 
-    private SoundPool mGeneralSoundPool;
-    private int mClickSoundId;
+    private ClickSoundGenerator mClickSoundGenerator;
 
     private float mNarrationVolume = 1f;
 
     private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
-    private ObserverButton mVolumeIncreaseButton;
-    private ObserverButton mVolumeDecreaseButton;
-
-    private CustomTypefaceableObserverButton mGeneralBackButton;
-    private CustomTypefaceableObserverButton mMainButton;
 }

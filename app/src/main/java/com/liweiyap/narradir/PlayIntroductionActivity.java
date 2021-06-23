@@ -21,11 +21,13 @@ import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
 import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SilenceMediaSource;
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.MediaSourceCreator;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.utils.fonts.StrokedCustomTypefaceableTextView;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView;
+import com.liweiyap.narradir.util.audio.ExoPlayerMediaSourceCreator;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -103,7 +105,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             @RawRes int segment = mIntroSegmentArrayList.get(idx);
 
-            ProgressiveMediaSource mediaSource = MediaSourceCreator.createProgressiveMediaSourceFromResId(this, segment, mMp3ExtractorFactory);
+            ProgressiveMediaSource mediaSource = ExoPlayerMediaSourceCreator.createProgressiveMediaSourceFromResId(this, segment, mMp3ExtractorFactory);
             if (mediaSource != null)
             {
                 mIntroSegmentPlayer.addMediaSource(mediaSource);
@@ -130,13 +132,13 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                     mIntroSegmentPlayer.getMediaItemCount() + " media sources.");
         }
 
-        mIntroSegmentPlayer.addListener(new Player.EventListener()
+        mIntroSegmentPlayer.addListener(new Player.Listener()
         {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onPositionDiscontinuity(@Player.DiscontinuityReason int reason)
+            public void onPositionDiscontinuity(Player.@NotNull PositionInfo oldPosition, Player.@NotNull PositionInfo newPosition, @Player.DiscontinuityReason int reason)
             {
-                if (reason != Player.DISCONTINUITY_REASON_PERIOD_TRANSITION)
+                if (reason != Player.DISCONTINUITY_REASON_AUTO_TRANSITION)
                 {
                     return;
                 }
@@ -152,18 +154,10 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                     if ( (canPauseManuallyAtEnd(mIntroSegmentArrayList.get(newWindowIdx/2))) &&
                          (mPauseDurationInMilliSecs != mMinPauseDurationInMilliSecs) )
                     {
-                        String text;
-
-                        if (mPauseDurationInMilliSecs == 1000)
-                        {
-                            text = "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " second)";
-                        }
-                        else
-                        {
-                            text = "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " seconds)";
-                        }
-
-                        mCurrentDisplayedIntroSegmentTextView.setText(text);
+                        mCurrentDisplayedIntroSegmentTextView.setText(
+                            (mPauseDurationInMilliSecs == 1000) ?
+                                "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " second)" :
+                                "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " seconds)");
                     }
                 }
             }
@@ -227,14 +221,22 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     protected void onResume()
     {
         super.onResume();
-        play();
+
+        if (mIsPlaying)
+        {
+            play();
+        }
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        pause();
+
+        if (mIsPlaying)
+        {
+            pause();
+        }
     }
 
     @Override
@@ -255,6 +257,13 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     private void play()
     {
         mIntroSegmentPlayer.setPlayWhenReady(true);
+
+        if (mIsFirstCall)
+        {
+            mIsFirstCall = false;
+            return;
+        }
+
         mBackgroundStreamId = mGeneralSoundPool.play(mBackgroundSoundId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f);
     }
 
@@ -417,6 +426,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     private int mClickSoundId;
 
     private boolean mIsPlaying;
+    private boolean mIsFirstCall = true;
 
     private ImageView mCurrentDisplayedCharacterImageView;
     private CustomTypefaceableTextView mCurrentDisplayedIntroSegmentTextView;
