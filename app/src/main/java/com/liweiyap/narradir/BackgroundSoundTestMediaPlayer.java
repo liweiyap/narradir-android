@@ -6,14 +6,14 @@ import android.media.MediaPlayer;
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 
-public class CharacterDescriptionMediaPlayer
+public class BackgroundSoundTestMediaPlayer
 {
-    public CharacterDescriptionMediaPlayer(@NonNull Context context)
+    public BackgroundSoundTestMediaPlayer(@NonNull Context context)
     {
         mContext = context;
     }
 
-    public void play(@RawRes int resId)
+    public void play(@RawRes int resId, float volume)
     {
         if (mMediaPlayer != null)
         {
@@ -22,8 +22,9 @@ public class CharacterDescriptionMediaPlayer
 
         try
         {
-            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
             mMediaPlayer = MediaPlayer.create(mContext, resId);
+            mMediaPlayer.setLooping(true);
+            mMediaPlayer.setVolume(volume, volume);
             mMediaPlayer.start();
         }
         catch (IllegalStateException e)
@@ -39,8 +40,10 @@ public class CharacterDescriptionMediaPlayer
             return;
         }
 
-        mMediaPlayer.seekTo(mMediaPlayerCurrentLength);
-        mMediaPlayer.start();
+        if (mIsPlaying)
+        {
+            mMediaPlayer.start();
+        }
     }
 
     public void pause()
@@ -50,8 +53,8 @@ public class CharacterDescriptionMediaPlayer
             return;
         }
 
+        mIsPlaying = mMediaPlayer.isPlaying();
         mMediaPlayer.pause();
-        mMediaPlayerCurrentLength = mMediaPlayer.getCurrentPosition();
     }
 
     public void stop()
@@ -78,5 +81,5 @@ public class CharacterDescriptionMediaPlayer
     private final Context mContext;
 
     private MediaPlayer mMediaPlayer;
-    private int mMediaPlayerCurrentLength;
+    private boolean mIsPlaying;
 }
