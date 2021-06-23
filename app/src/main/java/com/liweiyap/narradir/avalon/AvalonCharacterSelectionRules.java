@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
 import com.liweiyap.narradir.ui.ToastSingleton;
 
-public class AvalonCharacterSelectionRules
+class AvalonCharacterSelectionRules
 {
     public AvalonCharacterSelectionRules(
         @NonNull final Context context,

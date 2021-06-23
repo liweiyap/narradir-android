@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ToastSingleton;
 
-public class SecretHitlerCharacterArray
+class SecretHitlerCharacterArray
 {
     public SecretHitlerCharacterArray(
         @NonNull final Context context,
