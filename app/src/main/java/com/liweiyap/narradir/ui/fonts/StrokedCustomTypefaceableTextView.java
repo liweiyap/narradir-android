@@ -1,5 +1,6 @@
 package com.liweiyap.narradir.ui.fonts;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -99,7 +100,7 @@ public class StrokedCustomTypefaceableTextView
             return;
         }
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StrokedTextAttrs);
+        @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StrokedTextAttrs);
         mStrokeColor = typedArray.getColor(R.styleable.StrokedTextAttrs_textStrokeColor, getCurrentTextColor());
         mStrokeWidth = typedArray.getFloat(R.styleable.StrokedTextAttrs_textStrokeWidth, 0);
         typedArray.recycle();
