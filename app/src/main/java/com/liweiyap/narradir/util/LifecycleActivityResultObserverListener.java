@@ -35,7 +35,7 @@ public class LifecycleActivityResultObserverListener implements DefaultLifecycle
 
     public void launch(final Intent intent)
     {
-        if (intent == null)
+        if ( (intent == null) || (mActivityResultLauncher == null) )
         {
             return;
         }
