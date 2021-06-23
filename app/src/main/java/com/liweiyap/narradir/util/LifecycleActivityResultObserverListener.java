@@ -27,6 +27,7 @@ public class LifecycleActivityResultObserverListener implements DefaultLifecycle
         mCallback = callback;
     }
 
+    @Override
     public void onCreate(@NonNull LifecycleOwner owner)
     {
         mActivityResultLauncher = mRegistry.register(mCallbackKey, owner, new ActivityResultContracts.StartActivityForResult(), mCallback);
