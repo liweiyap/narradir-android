@@ -49,7 +49,7 @@ public class ObserverImageButton
     }
 
     @Override
-    public void addOnClickObserver(Observer observer)
+    public void addOnClickObserver(final Observer observer)
     {
         mOnClickObservers.add(observer);
     }
@@ -61,7 +61,7 @@ public class ObserverImageButton
     }
 
     @Override
-    public void addOnLongClickObserver(Observer observer)
+    public void addOnLongClickObserver(final Observer observer)
     {
         mOnLongClickObservers.add(observer);
     }

@@ -139,7 +139,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick(findViewById(R.id.downControlButton));
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
+    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener)
     {
         if (observerListener == null)
         {
@@ -160,7 +160,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     }
 
     @SuppressLint("NonConstantResourceId")
-    private void selectBackgroundSound(@RawRes int resId)
+    private void selectBackgroundSound(final @RawRes int resId)
     {
         CustomTypefaceableCheckableObserverButton btn;
 
@@ -266,7 +266,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundwolves));
     }
 
-    private void playBackgroundSound(@RawRes int soundId)
+    private void playBackgroundSound(final @RawRes int soundId)
     {
         if (mBackgroundSoundTestMediaPlayer == null)
         {

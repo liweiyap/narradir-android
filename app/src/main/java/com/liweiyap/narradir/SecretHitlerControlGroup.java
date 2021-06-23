@@ -164,7 +164,7 @@ public class SecretHitlerControlGroup
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.play(descriptionId);
+        mCharacterDescriptionMediaPlayer.play(descriptionId, 1f);
     }
 
     public void resumeCharacterDescriptionMediaPlayer()

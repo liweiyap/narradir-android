@@ -139,7 +139,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         addSoundToPlayOnButtonClick(settingsButton);
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener btn)
+    private void addSoundToPlayOnButtonClick(final ObserverListener btn)
     {
         if (btn == null)
         {
@@ -159,7 +159,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         });
     }
 
-    private void navigateToAvalonCharacterSelectionActivity(@NotNull View view)
+    private void navigateToAvalonCharacterSelectionActivity(final @NotNull View view)
     {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
@@ -171,7 +171,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToPlayIntroductionActivity(@NotNull View view)
+    private void navigateToPlayIntroductionActivity(final @NotNull View view)
     {
         if (mSecretHitlerControlGroup == null)
         {
@@ -206,7 +206,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToSettingsHomeActivity(@NotNull View view)
+    private void navigateToSettingsHomeActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);

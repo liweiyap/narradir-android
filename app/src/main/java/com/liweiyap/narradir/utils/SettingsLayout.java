@@ -34,8 +34,13 @@ public class SettingsLayout extends LinearLayout
      *
      * @param key String that serves as the new title
      */
-    public void setKey(String key)
+    public void setKey(final String key)
     {
+        if (key == null)
+        {
+            return;
+        }
+
         CustomTypefaceableTextView keyTextView = findViewById(R.id.keyTextView);
         if (keyTextView != null)
         {
@@ -49,8 +54,13 @@ public class SettingsLayout extends LinearLayout
      *
      * @param value String that serves as the new subheading
      */
-    public void setValue(String value)
+    public void setValue(final String value)
     {
+        if (value == null)
+        {
+            return;
+        }
+
         CustomTypefaceableTextView valueTextView = findViewById(R.id.valueTextView);
         if (valueTextView != null)
         {

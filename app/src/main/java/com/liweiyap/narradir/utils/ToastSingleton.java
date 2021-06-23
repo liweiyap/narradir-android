@@ -19,7 +19,7 @@ public class ToastSingleton
         return sInstance;
     }
 
-    public void showNewToast(@NonNull Context context, final String message, final int duration) throws RuntimeException
+    public void showNewToast(final @NonNull Context context, final String message, final int duration) throws RuntimeException
     {
         if ( !((duration == Toast.LENGTH_SHORT) || (duration == Toast.LENGTH_LONG)) )
         {

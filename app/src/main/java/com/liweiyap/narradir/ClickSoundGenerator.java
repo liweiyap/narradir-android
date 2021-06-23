@@ -7,12 +7,12 @@ import androidx.annotation.NonNull;
 
 public class ClickSoundGenerator
 {
-    public ClickSoundGenerator(@NonNull Context context)
+    public ClickSoundGenerator(final @NonNull Context context)
     {
         allocateResources(context);
     }
 
-    public void allocateResources(@NonNull Context context)
+    public void allocateResources(final @NonNull Context context)
     {
         mSoundPool = new SoundPool.Builder()
             .setMaxStreams(1)

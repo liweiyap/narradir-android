@@ -9,7 +9,7 @@ import androidx.annotation.RawRes;
 public class BackgroundSoundDictionary
 {
     @SuppressLint("NonConstantResourceId")
-    public static String getNameStringFromResId(@NonNull Context context, @RawRes int resId)
+    public static String getNameStringFromResId(final @NonNull Context context, final @RawRes int resId)
     {
         switch (resId)
         {

@@ -8,12 +8,12 @@ import androidx.annotation.RawRes;
 
 public class BackgroundSoundTestMediaPlayer
 {
-    public BackgroundSoundTestMediaPlayer(@NonNull Context context)
+    public BackgroundSoundTestMediaPlayer(final @NonNull Context context)
     {
         mContext = context;
     }
 
-    public void play(@RawRes int resId, float volume)
+    public void play(final @RawRes int resId, final float volume)
     {
         if (mMediaPlayer != null)
         {

@@ -8,12 +8,12 @@ import androidx.annotation.RawRes;
 
 public class CharacterDescriptionMediaPlayer
 {
-    public CharacterDescriptionMediaPlayer(@NonNull Context context)
+    public CharacterDescriptionMediaPlayer(final @NonNull Context context)
     {
         mContext = context;
     }
 
-    public void play(@RawRes int resId)
+    public void play(final @RawRes int resId, final float volume)
     {
         if (mMediaPlayer != null)
         {
@@ -24,6 +24,7 @@ public class CharacterDescriptionMediaPlayer
         {
             // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
             mMediaPlayer = MediaPlayer.create(mContext, resId);
+            mMediaPlayer.setVolume(volume, volume);
             mMediaPlayer.start();
         }
         catch (IllegalStateException e)

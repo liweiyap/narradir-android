@@ -157,7 +157,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick(findViewById(R.id.settingsHomeLayoutHelpButton));
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
+    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener)
     {
         if ( (observerListener == null) || (mClickSoundGenerator == null) )
         {
@@ -167,14 +167,14 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         observerListener.addOnClickObserver(() -> mClickSoundGenerator.playClickSound());
     }
 
-    private void navigateToSettingsNarrationActivity(@NotNull View view)
+    private void navigateToSettingsNarrationActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsNarrationActivity.class);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);
     }
 
-    private void navigateToSettingsBackgroundActivity(@NotNull View view)
+    private void navigateToSettingsBackgroundActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
         intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
@@ -182,14 +182,14 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);
     }
 
-    private void navigateToSettingsRoleTimerActivity(@NotNull View view)
+    private void navigateToSettingsRoleTimerActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsRoleTimerActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);
     }
 
-    private void navigateToHelpActivity(@NotNull View view)
+    private void navigateToHelpActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), HelpActivity.class);
         startActivityForResult(intent, Constants.REQUEST_SETTINGS_NEW);

@@ -62,7 +62,7 @@ public class HelpActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick(findViewById(R.id.mainButton));
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
+    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener)
     {
         if ( (observerListener == null) || (mClickSoundGenerator == null) )
         {

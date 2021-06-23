@@ -90,7 +90,7 @@ public class SettingsRoleTimerActivity extends ActiveFullScreenPortraitActivity
         addSoundToPlayOnButtonClick(findViewById(R.id.downControlButton));
     }
 
-    private void addSoundToPlayOnButtonClick(ObserverListener observerListener)
+    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener)
     {
         if ( (observerListener == null) || (mClickSoundGenerator == null) )
         {

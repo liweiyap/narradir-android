@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class MediaSourceCreator
 {
-    public static @Nullable ProgressiveMediaSource createProgressiveMediaSourceFromResId(@NonNull Context context, @RawRes int resId, ExtractorsFactory extractorsFactory)
+    public static @Nullable ProgressiveMediaSource createProgressiveMediaSourceFromResId(final @NonNull Context context, final @RawRes int resId, final ExtractorsFactory extractorsFactory)
     {
         if (extractorsFactory == null)
         {

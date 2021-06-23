@@ -3,6 +3,7 @@ package com.liweiyap.narradir.utils.fonts;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import androidx.annotation.NonNull;
 import androidx.collection.ArrayMap;
 
 import org.jetbrains.annotations.Nullable;
@@ -16,8 +17,13 @@ public class FontCache
 {
     private static final ArrayMap<String, Typeface> fontCache = new ArrayMap<>();
 
-    public static @Nullable Typeface get(String assetFontPath, Context context)
+    public static @Nullable Typeface get(final String assetFontPath, final @NonNull Context context)
     {
+        if (assetFontPath == null)
+        {
+            return null;
+        }
+
         Typeface typeface = fontCache.get(assetFontPath);
         
         if (typeface == null)

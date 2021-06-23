@@ -286,14 +286,14 @@ public class AvalonControlGroup
         }
     }
 
-    private void startCharacterDescriptionMediaPlayer(@RawRes int descriptionId)
+    private void startCharacterDescriptionMediaPlayer(final @RawRes int descriptionId)
     {
         if (mCharacterDescriptionMediaPlayer == null)
         {
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.play(descriptionId);
+        mCharacterDescriptionMediaPlayer.play(descriptionId, 1f);
     }
 
     public void resumeCharacterDescriptionMediaPlayer()
