@@ -8,13 +8,16 @@ import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RawRes;
 
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.ObserverButton;
-import com.liweiyap.narradir.utils.ObserverListener;
-import com.liweiyap.narradir.utils.ViewGroupSingleTargetSelector;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.ObserverButton;
+import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
+import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
 {

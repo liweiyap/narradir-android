@@ -21,11 +21,11 @@ import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
 import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SilenceMediaSource;
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.MediaSourceCreator;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.utils.fonts.StrokedCustomTypefaceableTextView;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView;
+import com.liweiyap.narradir.util.audio.ExoPlayerMediaSourceCreator;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -105,7 +105,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             @RawRes int segment = mIntroSegmentArrayList.get(idx);
 
-            ProgressiveMediaSource mediaSource = MediaSourceCreator.createProgressiveMediaSourceFromResId(this, segment, mMp3ExtractorFactory);
+            ProgressiveMediaSource mediaSource = ExoPlayerMediaSourceCreator.createProgressiveMediaSourceFromResId(this, segment, mMp3ExtractorFactory);
             if (mediaSource != null)
             {
                 mIntroSegmentPlayer.addMediaSource(mediaSource);

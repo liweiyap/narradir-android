@@ -6,7 +6,7 @@
     android:id="@+id/settingsHomeLayoutNavBar"
     android:weightSum="2" >
 
-    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -22,7 +22,7 @@
         android:background="@drawable/capsule"
         style="@style/ArkhamBoldTypefacedTextViewStyle" />
 
-    <com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

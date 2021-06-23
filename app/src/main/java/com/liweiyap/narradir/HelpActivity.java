@@ -5,9 +5,11 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.ObserverListener;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
+import com.liweiyap.narradir.util.Constants;
 
 public class HelpActivity extends ActiveFullScreenPortraitActivity
 {

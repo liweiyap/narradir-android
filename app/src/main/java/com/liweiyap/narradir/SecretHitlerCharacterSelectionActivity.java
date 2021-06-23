@@ -9,11 +9,14 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.RawRes;
 
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.ObserverImageButton;
-import com.liweiyap.narradir.utils.ObserverListener;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.ObserverImageButton;
+import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
 

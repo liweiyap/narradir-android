@@ -11,12 +11,16 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RawRes;
 
-import com.liweiyap.narradir.utils.ActiveFullScreenPortraitActivity;
-import com.liweiyap.narradir.utils.CheckableObserverImageButton;
-import com.liweiyap.narradir.utils.ObserverImageButton;
-import com.liweiyap.narradir.utils.ObserverListener;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableCheckableObserverButton;
-import com.liweiyap.narradir.utils.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.avalon.AvalonCharacterName;
+import com.liweiyap.narradir.avalon.AvalonControlGroup;
+import com.liweiyap.narradir.ui.CheckableObserverImageButton;
+import com.liweiyap.narradir.ui.ObserverImageButton;
+import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
+import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
 
