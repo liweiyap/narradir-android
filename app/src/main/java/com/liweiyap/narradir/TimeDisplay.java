@@ -5,8 +5,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class TimeDisplay
+public final class TimeDisplay
 {
+    private TimeDisplay(){}
+
     public static @NotNull String fromMilliseconds(final long msec)
     {
         return String.format(

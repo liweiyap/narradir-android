@@ -16,8 +16,10 @@ import com.google.android.exoplayer2.util.Assertions;
 
 import org.jetbrains.annotations.Nullable;
 
-public class MediaSourceCreator
+public final class MediaSourceCreator
 {
+    private MediaSourceCreator(){}
+
     public static @Nullable ProgressiveMediaSource createProgressiveMediaSourceFromResId(final @NonNull Context context, final @RawRes int resId, final ExtractorsFactory extractorsFactory)
     {
         if (extractorsFactory == null)

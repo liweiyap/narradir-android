@@ -3,8 +3,10 @@ package com.liweiyap.narradir.utils;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ViewGroupSingleTargetSelector
+public final class ViewGroupSingleTargetSelector
 {
+    private ViewGroupSingleTargetSelector(){}
+
     public static void addSingleTargetSelection(final ViewGroup viewGroup) throws RuntimeException
     {
         if (viewGroup == null)

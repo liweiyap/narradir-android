@@ -3,8 +3,10 @@ package com.liweiyap.narradir;
 /**
  * https://stackoverflow.com/questions/8157755/how-to-convert-enum-value-to-int
  */
-public class SecretHitlerCharacterName
+public final class SecretHitlerCharacterName
 {
+    private SecretHitlerCharacterName(){}
+
     static final int LIBERAL0 = 0;
     static final int LIBERAL1 = 1;
     static final int LIBERAL2 = 2;

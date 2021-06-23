@@ -8,8 +8,10 @@ import android.widget.TextView;
 
 import com.liweiyap.narradir.R;
 
-public class CustomFontSetter
+public final class CustomFontSetter
 {
+    private CustomFontSetter(){}
+
     /**
      * Sets a font on a TextView based on the custom assetFontPath attribute.
      * If the custom assetFontPath attribute isn't found in the attributes, nothing happens.

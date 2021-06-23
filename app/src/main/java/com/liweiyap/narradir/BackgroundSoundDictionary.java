@@ -6,8 +6,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 
-public class BackgroundSoundDictionary
+public final class BackgroundSoundDictionary
 {
+    private BackgroundSoundDictionary(){}
+
     @SuppressLint("NonConstantResourceId")
     public static String getNameStringFromResId(final @NonNull Context context, final @RawRes int resId)
     {

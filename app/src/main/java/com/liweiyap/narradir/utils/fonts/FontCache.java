@@ -13,8 +13,10 @@ import org.jetbrains.annotations.Nullable;
  *  - avoid memory leaks on older handsets (https://issuetracker.google.com/issues/36919609)
  *  - increase execution speed at run time, since it's not super fast to read from assets all the time.
  */
-public class FontCache
+public final class FontCache
 {
+    private FontCache(){}
+
     private static final ArrayMap<String, Typeface> fontCache = new ArrayMap<>();
 
     public static @Nullable Typeface get(final String assetFontPath, final @NonNull Context context)

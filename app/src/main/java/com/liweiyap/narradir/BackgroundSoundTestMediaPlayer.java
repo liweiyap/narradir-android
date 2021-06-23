@@ -6,13 +6,14 @@ import android.media.MediaPlayer;
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 
-public class BackgroundSoundTestMediaPlayer
+public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
 {
     public BackgroundSoundTestMediaPlayer(final @NonNull Context context)
     {
         mContext = context;
     }
 
+    @Override
     public void play(final @RawRes int resId, final float volume)
     {
         if (mMediaPlayer != null)
@@ -33,6 +34,7 @@ public class BackgroundSoundTestMediaPlayer
         }
     }
 
+    @Override
     public void resume()
     {
         if (mMediaPlayer == null)
@@ -46,6 +48,7 @@ public class BackgroundSoundTestMediaPlayer
         }
     }
 
+    @Override
     public void pause()
     {
         if (mMediaPlayer == null)
@@ -57,6 +60,7 @@ public class BackgroundSoundTestMediaPlayer
         mMediaPlayer.pause();
     }
 
+    @Override
     public void stop()
     {
         if (mMediaPlayer == null)
@@ -67,6 +71,7 @@ public class BackgroundSoundTestMediaPlayer
         mMediaPlayer.stop();
     }
 
+    @Override
     public void free()
     {
         if (mMediaPlayer == null)

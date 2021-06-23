@@ -1,7 +1,9 @@
 package com.liweiyap.narradir;
 
-public class Constants
+public final class Constants
 {
+    private Constants(){}
+
     static final int GAME_AVALON = 0;
     static final int GAME_SECRETHITLER = 1;
 

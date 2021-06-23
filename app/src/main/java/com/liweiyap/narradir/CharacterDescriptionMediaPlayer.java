@@ -6,13 +6,14 @@ import android.media.MediaPlayer;
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 
-public class CharacterDescriptionMediaPlayer
+public class CharacterDescriptionMediaPlayer implements MediaPlayerController
 {
     public CharacterDescriptionMediaPlayer(final @NonNull Context context)
     {
         mContext = context;
     }
 
+    @Override
     public void play(final @RawRes int resId, final float volume)
     {
         if (mMediaPlayer != null)
@@ -33,6 +34,7 @@ public class CharacterDescriptionMediaPlayer
         }
     }
 
+    @Override
     public void resume()
     {
         if (mMediaPlayer == null)
@@ -44,6 +46,7 @@ public class CharacterDescriptionMediaPlayer
         mMediaPlayer.start();
     }
 
+    @Override
     public void pause()
     {
         if (mMediaPlayer == null)
@@ -55,6 +58,7 @@ public class CharacterDescriptionMediaPlayer
         mMediaPlayerCurrentLength = mMediaPlayer.getCurrentPosition();
     }
 
+    @Override
     public void stop()
     {
         if (mMediaPlayer == null)
@@ -65,6 +69,7 @@ public class CharacterDescriptionMediaPlayer
         mMediaPlayer.stop();
     }
 
+    @Override
     public void free()
     {
         if (mMediaPlayer == null)
