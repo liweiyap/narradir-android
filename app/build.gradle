@@ -29,7 +29,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            // https://developer.android.com/studio/build/shrink-code
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
