@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.avalon.AvalonCharacterName;
@@ -20,6 +18,7 @@ import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
@@ -77,6 +76,28 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         // navigation bar (of activity, not of phone)
         // -----------------------------------------------------------------------------------------
 
+        mSettingsHomeActivityResultObserverListener = new LifecycleActivityResultObserverListener(
+            getActivityResultRegistry(),
+            getString(R.string.avalon_to_settingshome_key),
+            result -> {
+                if (result.getResultCode() != Constants.RESULT_OK_SETTINGS_HOME)
+                {
+                    return;
+                }
+
+                Intent data = result.getData();
+                if (data == null)
+                {
+                    return;
+                }
+
+                mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+                mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+                mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+                mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+            });
+        getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
+
         CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
         playButton.addOnClickObserver(() -> navigateToPlayIntroductionActivity(playButton));
 
@@ -125,20 +146,6 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
             mClickSoundGenerator.freeResources();
         }
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-//    {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if ( (requestCode == Constants.REQUEST_SETTINGS_HOME) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
-//        {
-//            mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
-//            mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
-//            mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-//            mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-//        }
-//    }
 
     private void addSoundToPlayOnButtonClick()
     {
@@ -277,8 +284,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-//        startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
-        mSettingsHomeActivityResultLauncher.launch(intent);
+        mSettingsHomeActivityResultObserverListener.launch(intent);
     }
 
     /**
@@ -421,29 +427,10 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
     private AvalonControlGroup mAvalonControlGroup;
     private ClickSoundGenerator mClickSoundGenerator;
+    private LifecycleActivityResultObserverListener mSettingsHomeActivityResultObserverListener;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
-
-    private final ActivityResultLauncher<Intent> mSettingsHomeActivityResultLauncher = registerForActivityResult(
-        new ActivityResultContracts.StartActivityForResult(),
-        result -> {
-            if (result.getResultCode() != Constants.RESULT_OK_SETTINGS_HOME)
-            {
-                return;
-            }
-
-            Intent data = result.getData();
-            if (data == null)
-            {
-                return;
-            }
-
-            mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
-            mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
-            mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-            mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-        });
 }

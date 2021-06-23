@@ -16,6 +16,7 @@ import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
@@ -55,6 +56,28 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         // -----------------------------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // -----------------------------------------------------------------------------------------
+
+        mSettingsHomeActivityResultObserverListener = new LifecycleActivityResultObserverListener(
+            getActivityResultRegistry(),
+            getString(R.string.secrethitler_to_settingshome_key),
+            result -> {
+                if (result.getResultCode() != Constants.RESULT_OK_SETTINGS_HOME)
+                {
+                    return;
+                }
+
+                Intent data = result.getData();
+                if (data == null)
+                {
+                    return;
+                }
+
+                mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+                mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+                mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+                mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+            });
+        getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
 
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_avalon));
@@ -106,20 +129,6 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         if (mClickSoundGenerator != null)
         {
             mClickSoundGenerator.freeResources();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if ( (requestCode == Constants.REQUEST_SETTINGS_HOME) && (resultCode == Constants.RESULT_OK_SETTINGS_HOME) )
-        {
-            mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
-            mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
-            mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-            mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         }
     }
 
@@ -216,7 +225,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-        startActivityForResult(intent, Constants.REQUEST_SETTINGS_HOME);
+        mSettingsHomeActivityResultObserverListener.launch(intent);
     }
 
     /**
@@ -291,6 +300,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
     private SecretHitlerControlGroup mSecretHitlerControlGroup;
     private ClickSoundGenerator mClickSoundGenerator;
+    private LifecycleActivityResultObserverListener mSettingsHomeActivityResultObserverListener;
 
     private long mPauseDurationInMilliSecs = 5000;
     private @RawRes int mBackgroundSoundRawResId;
