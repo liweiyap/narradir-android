@@ -1,6 +1,5 @@
 package com.liweiyap.narradir;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -16,6 +15,7 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.audio.BackgroundSoundDictionary;
 import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
@@ -162,76 +162,22 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         });
     }
 
-    @SuppressLint("NonConstantResourceId")
     private void selectBackgroundSound(final @RawRes int resId)
     {
-        CustomTypefaceableCheckableObserverButton btn;
+        final int selectorButtonId = BackgroundSoundDictionary.getSelectorButtonIdFromSoundResId(resId);
+        final CustomTypefaceableCheckableObserverButton selectorButton = findViewById(selectorButtonId);
 
-        switch (resId)
+        if (selectorButton == null)
         {
-            case R.raw.backgroundcards:
-                btn = findViewById(R.id.backgroundSoundCardsButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
-            case R.raw.backgroundcrickets:
-                btn = findViewById(R.id.backgroundSoundCricketsButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
-            case R.raw.backgroundfireplace:
-                btn = findViewById(R.id.backgroundSoundFireplaceButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
-            case R.raw.backgroundrain:
-                btn = findViewById(R.id.backgroundSoundRainButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
-            case R.raw.backgroundrainforest:
-                btn = findViewById(R.id.backgroundSoundRainforestButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
-            case R.raw.backgroundrainstorm:
-                btn = findViewById(R.id.backgroundSoundRainstormButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
-            case R.raw.backgroundwolves:
-                btn = findViewById(R.id.backgroundSoundWolvesButton);
-                if (btn != null)
-                {
-                    btn.performClick();
-                }
-                return;
+            return;
         }
 
-        btn = findViewById(R.id.backgroundSoundNoneButton);
-        if (btn != null)
-        {
-            btn.performClick();
-        }
+        selectorButton.performClick();
     }
 
     private void addBackgroundSoundSetters()
     {
-        CustomTypefaceableCheckableObserverButton btn;
-
-        btn = findViewById(R.id.backgroundSoundNoneButton);
+        CustomTypefaceableCheckableObserverButton btn = findViewById(R.id.backgroundSoundNoneButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = 0);
         btn.addOnLongClickObserver(() -> {
             if (mBackgroundSoundTestMediaPlayer != null)
@@ -240,33 +186,27 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
             }
         });
 
-        btn = findViewById(R.id.backgroundSoundCardsButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundcards);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcards));
+        addBackgroundSoundSetter(R.raw.backgroundcards);
+        addBackgroundSoundSetter(R.raw.backgroundcrickets);
+        addBackgroundSoundSetter(R.raw.backgroundfireplace);
+        addBackgroundSoundSetter(R.raw.backgroundrain);
+        addBackgroundSoundSetter(R.raw.backgroundrainforest);
+        addBackgroundSoundSetter(R.raw.backgroundrainstorm);
+        addBackgroundSoundSetter(R.raw.backgroundwolves);
+    }
 
-        btn = findViewById(R.id.backgroundSoundCricketsButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundcrickets);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcrickets));
+    private void addBackgroundSoundSetter(final @RawRes int resId)
+    {
+        final int selectorButtonId = BackgroundSoundDictionary.getSelectorButtonIdFromSoundResId(resId);
+        final CustomTypefaceableCheckableObserverButton selectorButton = findViewById(selectorButtonId);
 
-        btn = findViewById(R.id.backgroundSoundFireplaceButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundfireplace);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundfireplace));
+        if ( (selectorButton == null) || (selectorButtonId == R.id.backgroundSoundNoneButton) )
+        {
+            return;
+        }
 
-        btn = findViewById(R.id.backgroundSoundRainButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundrain);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrain));
-
-        btn = findViewById(R.id.backgroundSoundRainforestButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundrainforest);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainforest));
-
-        btn = findViewById(R.id.backgroundSoundRainstormButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundrainstorm);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainstorm));
-
-        btn = findViewById(R.id.backgroundSoundWolvesButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = R.raw.backgroundwolves);
-        btn.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundwolves));
+        selectorButton.addOnClickObserver(() -> mBackgroundSoundRawResId = resId);
+        selectorButton.addOnLongClickObserver(() -> playBackgroundSound(resId));
     }
 
     private void playBackgroundSound(final @RawRes int soundId)

@@ -35,4 +35,28 @@ public final class BackgroundSoundDictionary
 
         return context.getString(R.string.backgroundsound_none);
     }
+
+    @SuppressLint("NonConstantResourceId")
+    public static int getSelectorButtonIdFromSoundResId(final @RawRes int resId)
+    {
+        switch (resId)
+        {
+            case R.raw.backgroundcards:
+                return R.id.backgroundSoundCardsButton;
+            case R.raw.backgroundcrickets:
+                return R.id.backgroundSoundCricketsButton;
+            case R.raw.backgroundfireplace:
+                return R.id.backgroundSoundFireplaceButton;
+            case R.raw.backgroundrain:
+                return R.id.backgroundSoundRainButton;
+            case R.raw.backgroundrainforest:
+                return R.id.backgroundSoundRainforestButton;
+            case R.raw.backgroundrainstorm:
+                return R.id.backgroundSoundRainstormButton;
+            case R.raw.backgroundwolves:
+                return R.id.backgroundSoundWolvesButton;
+        }
+
+        return R.id.backgroundSoundNoneButton;
+    }
 }
