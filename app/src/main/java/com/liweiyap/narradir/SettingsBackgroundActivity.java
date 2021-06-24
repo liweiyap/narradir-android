@@ -180,10 +180,11 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         CustomTypefaceableCheckableObserverButton btn = findViewById(R.id.backgroundSoundNoneButton);
         btn.addOnClickObserver(() -> mBackgroundSoundRawResId = 0);
         btn.addOnLongClickObserver(() -> {
-            if (mBackgroundSoundTestMediaPlayer != null)
+            if (mBackgroundSoundTestMediaPlayer == null)
             {
-                mBackgroundSoundTestMediaPlayer.stop();
+                return;
             }
+            mBackgroundSoundTestMediaPlayer.stop();
         });
 
         addBackgroundSoundSetter(R.raw.backgroundcards);

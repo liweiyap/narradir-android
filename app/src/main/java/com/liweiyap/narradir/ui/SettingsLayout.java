@@ -42,10 +42,11 @@ public class SettingsLayout extends LinearLayout
         }
 
         CustomTypefaceableTextView keyTextView = findViewById(R.id.keyTextView);
-        if (keyTextView != null)
+        if (keyTextView == null)
         {
-            keyTextView.setText(key);
+            return;
         }
+        keyTextView.setText(key);
     }
 
     /**
@@ -62,10 +63,11 @@ public class SettingsLayout extends LinearLayout
         }
 
         CustomTypefaceableTextView valueTextView = findViewById(R.id.valueTextView);
-        if (valueTextView != null)
+        if (valueTextView == null)
         {
-            valueTextView.setText(value);
+            return;
         }
+        valueTextView.setText(value);
     }
 
     /**

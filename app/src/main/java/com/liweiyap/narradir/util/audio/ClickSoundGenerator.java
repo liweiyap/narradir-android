@@ -38,6 +38,7 @@ public class ClickSoundGenerator
         {
             return;
         }
+
         mSoundPool.release();
         mSoundPool = null;
     }

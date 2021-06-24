@@ -188,13 +188,25 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
             mAudioPlayer.freeResources();
         }
 
-        mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-        mCurrentDisplayedIntroSegmentTextView.setText("");
+        if (mCurrentDisplayedCharacterImageView != null)
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+        }
+
+        if (mCurrentDisplayedIntroSegmentTextView != null)
+        {
+            mCurrentDisplayedIntroSegmentTextView.setText("");
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
     private void switchCurrentDisplayedCharacterImage(@RawRes final int resId)
     {
+        if (mCurrentDisplayedCharacterImageView == null)
+        {
+            return;
+        }
+
         switch (resId)
         {
             case R.raw.avalonintrosegment1nooberon:
@@ -230,6 +242,11 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     @SuppressLint("NonConstantResourceId")
     private void switchCurrentDisplayedIntroSegmentTextView(@RawRes final int resId)
     {
+        if (mCurrentDisplayedIntroSegmentTextView == null)
+        {
+            return;
+        }
+
         @StringRes final int subtitleId = IntroSegmentDictionary.getSubtitleResIdFromIntroSegmentResId(resId);
 
         if (subtitleId == 0)
