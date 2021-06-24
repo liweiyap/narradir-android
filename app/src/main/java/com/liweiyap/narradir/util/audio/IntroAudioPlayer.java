@@ -33,7 +33,7 @@ public class IntroAudioPlayer
     {
         allocateResources(
             context,
-            introSegmentArrayList, Math.max(pauseDurationInMilliSecs, IntroAudioPlayer.sMinPauseDurationInMilliSecs), narrationVolume,
+            introSegmentArrayList, pauseDurationInMilliSecs, narrationVolume,
             backgroundSoundRawResId, backgroundSoundVolume);
     }
 
@@ -49,7 +49,7 @@ public class IntroAudioPlayer
         initSoundPool(context, backgroundSoundRawResId, backgroundSoundVolume);
 
         // initialise and prepare ExoPlayer for intro segments
-        prepareExoPlayer(context, introSegmentArrayList, pauseDurationInMilliSecs, narrationVolume);
+        prepareExoPlayer(context, introSegmentArrayList, Math.max(pauseDurationInMilliSecs, IntroAudioPlayer.sMinPauseDurationInMilliSecs), narrationVolume);
     }
 
     private void initSoundPool(final @NonNull Context context, final @RawRes int backgroundSoundRawResId, final float backgroundSoundVolume)
