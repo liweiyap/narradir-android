@@ -119,14 +119,10 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         pauseButton.addOnClickObserver(() -> {
             mAudioPlayer.playClickSound();
 
-            if (mAudioPlayer.isPlayingIntro())
-            {
-                pauseButton.setText(R.string.pause_button_text_state_inactive);
-            }
-            else
-            {
-                pauseButton.setText(R.string.pause_button_text_state_active);
-            }
+            pauseButton.setText(
+                mAudioPlayer.isPlayingIntro() ?
+                    R.string.pause_button_text_state_inactive :
+                    R.string.pause_button_text_state_active);
 
             mAudioPlayer.toggle(mBackgroundSoundVolume);
         });

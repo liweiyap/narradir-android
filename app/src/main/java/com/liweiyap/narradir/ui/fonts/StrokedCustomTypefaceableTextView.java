@@ -56,27 +56,26 @@ public class StrokedCustomTypefaceableTextView
     @Override
     protected void onDraw(Canvas canvas)
     {
-        if (mStrokeWidth > 0)
-        {
-            mIsDrawing = true;
-
-            Paint p = getPaint();
-            p.setStyle(Paint.Style.FILL);
-            super.onDraw(canvas);
-
-            int currentTextColor = getCurrentTextColor();
-            p.setStyle(Paint.Style.STROKE);
-            p.setStrokeWidth(mStrokeWidth);
-            setTextColor(mStrokeColor);
-            super.onDraw(canvas);
-
-            setTextColor(currentTextColor);
-            mIsDrawing = false;
-        }
-        else
+        if (mStrokeWidth <= 0)
         {
             super.onDraw(canvas);
+            return;
         }
+
+        mIsDrawing = true;
+
+        Paint p = getPaint();
+        p.setStyle(Paint.Style.FILL);
+        super.onDraw(canvas);
+
+        int currentTextColor = getCurrentTextColor();
+        p.setStyle(Paint.Style.STROKE);
+        p.setStrokeWidth(mStrokeWidth);
+        setTextColor(mStrokeColor);
+        super.onDraw(canvas);
+
+        setTextColor(currentTextColor);
+        mIsDrawing = false;
     }
 
     @Override
