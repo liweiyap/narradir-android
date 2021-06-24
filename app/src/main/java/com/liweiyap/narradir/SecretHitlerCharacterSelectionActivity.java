@@ -17,6 +17,7 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
+import com.liweiyap.narradir.util.PlayerNumberDictionary;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
@@ -265,37 +266,14 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
         int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
 
-        switch (expectedGoodTotal + expectedEvilTotal)
+        final int playerNumberButtonId = PlayerNumberDictionary.getSelectorButtonIdFromPlayerNumber(expectedGoodTotal + expectedEvilTotal);
+        if (playerNumberButtonId == 0)
         {
-            case 5:
-                CustomTypefaceableCheckableObserverButton p5Button = findViewById(R.id.p5Button);
-                p5Button.performClick();
-                break;
-            case 6:
-                CustomTypefaceableCheckableObserverButton p6Button = findViewById(R.id.p6Button);
-                p6Button.performClick();
-                break;
-            case 7:
-                CustomTypefaceableCheckableObserverButton p7Button = findViewById(R.id.p7Button);
-                p7Button.performClick();
-                break;
-            case 8:
-                CustomTypefaceableCheckableObserverButton p8Button = findViewById(R.id.p8Button);
-                p8Button.performClick();
-                break;
-            case 9:
-                CustomTypefaceableCheckableObserverButton p9Button = findViewById(R.id.p9Button);
-                p9Button.performClick();
-                break;
-            case 10:
-                CustomTypefaceableCheckableObserverButton p10Button = findViewById(R.id.p10Button);
-                p10Button.performClick();
-                break;
-            default:
-                throw new RuntimeException(
-                    "SecretHitlerCharacterSelectionActivity::loadPreferences(): " +
-                        "Invalid no of players: " + (expectedGoodTotal + expectedEvilTotal));
+            throw new RuntimeException(
+                "SecretHitlerCharacterSelectionActivity::loadPreferences(): " +
+                    "Invalid no of players: " + (expectedGoodTotal + expectedEvilTotal));
         }
+        findViewById(playerNumberButtonId).performClick();
     }
 
     private SecretHitlerControlGroup mSecretHitlerControlGroup;

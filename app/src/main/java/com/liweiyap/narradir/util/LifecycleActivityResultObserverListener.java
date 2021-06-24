@@ -27,6 +27,7 @@ public class LifecycleActivityResultObserverListener implements DefaultLifecycle
         mCallback = callback;
     }
 
+    @Override
     public void onCreate(@NonNull LifecycleOwner owner)
     {
         mActivityResultLauncher = mRegistry.register(mCallbackKey, owner, new ActivityResultContracts.StartActivityForResult(), mCallback);
@@ -34,7 +35,7 @@ public class LifecycleActivityResultObserverListener implements DefaultLifecycle
 
     public void launch(final Intent intent)
     {
-        if (intent == null)
+        if ( (intent == null) || (mActivityResultLauncher == null) )
         {
             return;
         }
