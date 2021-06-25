@@ -119,14 +119,10 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         pauseButton.addOnClickObserver(() -> {
             mAudioPlayer.playClickSound();
 
-            if (mAudioPlayer.isPlayingIntro())
-            {
-                pauseButton.setText(R.string.pause_button_text_state_inactive);
-            }
-            else
-            {
-                pauseButton.setText(R.string.pause_button_text_state_active);
-            }
+            pauseButton.setText(
+                mAudioPlayer.isPlayingIntro() ?
+                    R.string.pause_button_text_state_inactive :
+                    R.string.pause_button_text_state_active);
 
             mAudioPlayer.toggle(mBackgroundSoundVolume);
         });
@@ -192,13 +188,25 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
             mAudioPlayer.freeResources();
         }
 
-        mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-        mCurrentDisplayedIntroSegmentTextView.setText("");
+        if (mCurrentDisplayedCharacterImageView != null)
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+        }
+
+        if (mCurrentDisplayedIntroSegmentTextView != null)
+        {
+            mCurrentDisplayedIntroSegmentTextView.setText("");
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
     private void switchCurrentDisplayedCharacterImage(@RawRes final int resId)
     {
+        if (mCurrentDisplayedCharacterImageView == null)
+        {
+            return;
+        }
+
         switch (resId)
         {
             case R.raw.avalonintrosegment1nooberon:
@@ -234,6 +242,11 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     @SuppressLint("NonConstantResourceId")
     private void switchCurrentDisplayedIntroSegmentTextView(@RawRes final int resId)
     {
+        if (mCurrentDisplayedIntroSegmentTextView == null)
+        {
+            return;
+        }
+
         @StringRes final int subtitleId = IntroSegmentDictionary.getSubtitleResIdFromIntroSegmentResId(resId);
 
         if (subtitleId == 0)
