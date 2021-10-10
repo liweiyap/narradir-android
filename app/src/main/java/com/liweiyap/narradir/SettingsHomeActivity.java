@@ -216,7 +216,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
     private void navigateToAuthorWebsite()
     {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://liweiyap.github.io"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liweiyap.github.io"));
         startActivity(browserIntent);
     }
 

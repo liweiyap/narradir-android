@@ -14,7 +14,6 @@ import com.google.android.exoplayer2.Player;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView;
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer;
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary;
 
@@ -46,18 +45,8 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
 
         boolean isStartedFromAvalon = intent.getBooleanExtra(getString(R.string.is_started_from_avalon_key), true);
-        StrokedCustomTypefaceableTextView gameTitleAvalonTextView = findViewById(R.id.gameTitleAvalonTextView);
-        StrokedCustomTypefaceableTextView gameTitleSecretHitlerTextView = findViewById(R.id.gameTitleSecretHitlerTextView);
-        if (isStartedFromAvalon)
-        {
-            gameTitleAvalonTextView.setVisibility(View.VISIBLE);
-            gameTitleSecretHitlerTextView.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
-            gameTitleAvalonTextView.setVisibility(View.INVISIBLE);
-            gameTitleSecretHitlerTextView.setVisibility(View.VISIBLE);
-        }
+        findViewById(R.id.gameTitleAvalonTextView).setVisibility(isStartedFromAvalon ? View.VISIBLE : View.INVISIBLE);
+        findViewById(R.id.gameTitleSecretHitlerTextView).setVisibility(isStartedFromAvalon ? View.INVISIBLE : View.VISIBLE);
 
         // handle edge case of mPauseDurationInMilliSecs passed in as 0
         mPauseDurationInMilliSecs = Math.max(mPauseDurationInMilliSecs, IntroAudioPlayer.sMinPauseDurationInMilliSecs);
