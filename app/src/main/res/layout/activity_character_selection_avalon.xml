@@ -20,7 +20,7 @@
             layout="@layout/game_title_avalon_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 
@@ -59,16 +59,25 @@
         android:layout_height="0dp"
         android:layout_weight="1.5" />
 
+    <!-- force a default alignment to bottom -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7" >
 
-        <include
-            layout="@layout/game_hint_textview"
+        <ScrollView
+            android:fadeScrollbars="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            tools:ignore="UselessParent" >
+
+            <include
+                layout="@layout/game_hint_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
 
     </RelativeLayout>
 

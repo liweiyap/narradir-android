@@ -28,4 +28,16 @@
         <item name="android:textSize">50sp</item>
         <item name="android:textColor">@color/yuma</item>
     </style>
+
+    <style name="GameHintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="GameHintStyleAvalon" parent="GameHintStyleBase">
+        <item name="android:text">@string/game_hint_avalon</item>
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>
