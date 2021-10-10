@@ -29,6 +29,13 @@
         <item name="android:textColor">@color/yuma</item>
     </style>
 
+    <style name="GameTitleStyleSecretHitler" parent="GameTitleStyleBase">
+        <item name="textStrokeColor">@color/acadia</item>
+        <item name="android:text">@string/game_title_secrethitler</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/oasis</item>
+    </style>
+
     <style name="GameHintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center_horizontal</item>
