@@ -4,13 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.RawRes;
-import androidx.core.widget.TextViewCompat;
 
 import com.liweiyap.narradir.avalon.AvalonCharacterName;
 import com.liweiyap.narradir.avalon.AvalonControlGroup;
@@ -18,9 +15,9 @@ import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.PlayerNumberDictionary;
@@ -109,14 +106,8 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
         settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
 
-        CustomTypefaceableTextView gameHintTextView = findViewById(R.id.gameHintTextView);
-        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
-            (TextView) gameHintTextView,
-            TextViewCompat.getAutoSizeMinTextSize((TextView) gameHintTextView),
-            TextViewCompat.getAutoSizeMinTextSize((TextView) gameHintTextView) + 1,
-            TextViewCompat.getAutoSizeStepGranularity((TextView) gameHintTextView),
-            TypedValue.COMPLEX_UNIT_PX
-        );
+        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.gameHintTextView));
+        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
     }
 
     @Override

@@ -4,4 +4,8 @@
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">14sp</item>
     </style>
+
+    <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+    </style>
 </resources>

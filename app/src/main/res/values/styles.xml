@@ -69,4 +69,16 @@
         <item name="checkedDrawableId">@drawable/psh_button_checked_background</item>
         <item name="uncheckedDrawableId">@drawable/psh_button_unchecked_background</item>
     </style>
+
+    <style name="GameSwitcherStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/game_switcher_button_background</item>
+    </style>
+
+    <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+    </style>
 </resources>
