@@ -13,4 +13,19 @@
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">16sp</item>
     </style>
+
+    <style name="SettingsLayoutKeyStyleAutosized" parent="SettingsLayoutKeyStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">19sp</item>
+    </style>
+
+    <style name="SettingsLayoutValueStyleAutosized" parent="SettingsLayoutValueStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">14sp</item>
+    </style>
+
+    <style name="SettingsLayoutEditButtonStyleAutosized" parent="SettingsLayoutEditButtonStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
 </resources>

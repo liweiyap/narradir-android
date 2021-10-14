@@ -106,4 +106,47 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
+
+    <style name="SettingsLayoutKeyStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:id">@id/keyTextView</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">start</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="SettingsLayoutKeyStyleAutosized" parent="SettingsLayoutKeyStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">19sp</item>
+    </style>
+
+    <style name="SettingsLayoutValueStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:id">@id/valueTextView</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:gravity">start</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="SettingsLayoutValueStyleAutosized" parent="SettingsLayoutValueStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">14sp</item>
+    </style>
+
+    <style name="SettingsLayoutEditButtonStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:id">@id/editButton</item>
+        <item name="android:text">@string/edit_button_text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/edit_button_background</item>
+    </style>
+
+    <style name="SettingsLayoutEditButtonStyleAutosized" parent="SettingsLayoutEditButtonStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
 </resources>
