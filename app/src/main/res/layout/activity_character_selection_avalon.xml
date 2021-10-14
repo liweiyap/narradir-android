@@ -66,11 +66,11 @@
         android:layout_weight="0.7" >
 
         <ScrollView
-            android:fadeScrollbars="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            tools:ignore="UselessParent" >
+            android:fadeScrollbars="false"
+            tools:ignore="UselessParent">
 
             <include
                 layout="@layout/game_hint_textview"
