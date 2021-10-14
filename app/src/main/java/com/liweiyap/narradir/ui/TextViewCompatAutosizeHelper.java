@@ -10,7 +10,7 @@ public final class TextViewCompatAutosizeHelper
     private TextViewCompatAutosizeHelper(){}
 
     /**
-     * Especially useful if textSize happens to be equal to autoSizeMinTextSize (12 sp at the time of writing)
+     * Especially useful if textSize happens to be equal to or even less than autoSizeMinTextSize (12 sp at the time of writing)
      */
     public static void minimiseAutoSizeTextSizeRange(final TextView textView)
     {
