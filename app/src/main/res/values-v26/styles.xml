@@ -2,10 +2,15 @@
 <resources>
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">14sp</item>
+        <item name="android:autoSizeMaxTextSize">16sp</item>
     </style>
 
     <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="NavBarCapsuleStyleAutosized" parent="NavBarCapsuleStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">16sp</item>
     </style>
 </resources>
