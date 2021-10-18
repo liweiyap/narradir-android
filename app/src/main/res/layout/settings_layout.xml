@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 style="@style/SettingsLayoutKeyStyleAutosized"
                 tools:text="@string/dummy_placeholder_text" />
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginTop="5dp"
                 style="@style/SettingsLayoutValueStyleAutosized"
                 tools:text="@string/dummy_placeholder_text" />
