@@ -1,5 +1,6 @@
 package com.liweiyap.narradir.ui;
 
+import android.os.Build;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -17,6 +18,21 @@ public final class TextViewCompatAutosizeHelper
         if (textView == null)
         {
             return;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            if (textView.getAutoSizeTextType() != TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (TextViewCompat.getAutoSizeTextType(textView) != TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+            {
+                return;
+            }
         }
 
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
