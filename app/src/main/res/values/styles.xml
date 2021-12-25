@@ -92,6 +92,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:background">@drawable/capsule</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="NavBarCapsuleStyleAutosized" parent="NavBarCapsuleStyleBase">
