@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="GameTitleStyleAvalonAutosized" parent="GameTitleStyleAvalon">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">50sp</item>
+    </style>
+
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">16sp</item>

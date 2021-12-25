@@ -16,11 +16,11 @@
         android:layout_height="0dp"
         android:layout_weight="1" >
 
-        <include
-            layout="@layout/game_title_avalon_textview"
+        <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
+            android:id="@+id/gameTitleAvalonTextView"
+            style="@style/GameTitleStyleAvalonAutosized" />
 
     </RelativeLayout>
 
