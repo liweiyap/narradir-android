@@ -16,18 +16,19 @@
         android:layout_height="0dp"
         android:layout_weight="1" >
 
-        <include
-            layout="@layout/game_title_avalon_textview"
+        <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/gameTitleAvalonTextView"
+            style="@style/GameTitleStyleAvalonAutosized"
             android:visibility="invisible" />
 
-        <include
-            layout="@layout/game_title_secrethitler_textview"
+        <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/gameTitleAvalonTextView"
+            android:id="@+id/gameTitleSecretHitlerTextView"
+            style="@style/GameTitleStyleSecretHitlerAutosized"
             android:visibility="invisible" />
 
     </RelativeLayout>
@@ -37,16 +38,16 @@
         android:layout_height="0dp"
         android:layout_weight="3.5"
         android:minWidth="200dp"
+        android:padding="2dp"
         android:id="@+id/currentDisplayedCharacterImageView"
         android:contentDescription="@string/current_displayed_character_contentdescription" />
 
-    <include
-        layout="@layout/current_displayed_introsegment_textview"
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_weight="4.5" />
+        android:layout_weight="4.5"
+        android:id="@+id/currentDisplayedIntroSegmentTextView"
+        style="@style/CurrentDisplayedIntroSegmentStyleAutosized" />
 
     <include
         layout="@layout/activity_play_introduction_navbar"

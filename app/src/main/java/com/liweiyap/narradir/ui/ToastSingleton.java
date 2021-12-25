@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-public class ToastSingleton
+public final class ToastSingleton
 {
     private ToastSingleton(){}
 

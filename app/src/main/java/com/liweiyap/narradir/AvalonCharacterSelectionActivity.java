@@ -15,6 +15,7 @@ import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
@@ -104,6 +105,13 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
         ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
         settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
+
+        // -----------------------------------------------------------------------------------------
+        // auto-sizing TextViews
+        // -----------------------------------------------------------------------------------------
+
+        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.gameHintTextView));
+        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
     }
 
     @Override

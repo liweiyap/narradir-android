@@ -14,4 +14,178 @@
     <style name="ArkhamBoldTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
         <item name="assetFontPath">fonts/Arkham_bold.TTF</item>
     </style>
+
+    <style name="GameTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="textStrokeWidth">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="GameTitleStyleAvalon" parent="GameTitleStyleBase">
+        <item name="textStrokeColor">@color/go_ben</item>
+        <item name="android:text">@string/game_title_avalon</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:textColor">@color/yuma</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="GameTitleStyleAvalonAutosized" parent="GameTitleStyleAvalon">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">50sp</item>
+    </style>
+
+    <style name="GameTitleStyleSecretHitler" parent="GameTitleStyleBase">
+        <item name="textStrokeColor">@color/acadia</item>
+        <item name="android:text">@string/game_title_secrethitler</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/oasis</item>
+    </style>
+
+    <style name="GameTitleStyleSecretHitlerAutosized" parent="GameTitleStyleSecretHitler">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">35sp</item>
+    </style>
+
+    <style name="GameHintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="GameHintStyleAvalon" parent="GameHintStyleBase">
+        <item name="android:text">@string/game_hint_avalon</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="GameHintStyleAvalonAutosized" parent="GameHintStyleAvalon">
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="PlayerNumberSelectorStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+
+    <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="PlayerNumberSelectorStyleSecretHitler" parent="PlayerNumberSelectorStyleAutosized">
+        <item name="android:textColor">@color/acadia</item>
+        <item name="checkedDrawableId">@drawable/psh_button_checked_background</item>
+        <item name="uncheckedDrawableId">@drawable/psh_button_unchecked_background</item>
+    </style>
+
+    <style name="GameSwitcherStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/game_switcher_button_background</item>
+    </style>
+
+    <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="NavBarCapsuleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:background">@drawable/capsule</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="NavBarCapsuleStyleAutosized" parent="NavBarCapsuleStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="CurrentDisplayedIntroSegmentStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:breakStrategy">simple</item>  <!-- might cause commas to be at start of new line though -->
+        <item name="android:hyphenationFrequency">none</item>  <!-- for consistency with Android 29 and above; improves TextView performance because 70% of the time taken for text measurement is spent on hyphenation -->
+    </style>
+
+    <style name="CurrentDisplayedIntroSegmentStyleAutosized" parent="CurrentDisplayedIntroSegmentStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">25sp</item>
+    </style>
+
+    <style name="SettingsLayoutKeyStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:id">@id/keyTextView</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">start</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="SettingsLayoutKeyStyleAutosized" parent="SettingsLayoutKeyStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">19sp</item>
+    </style>
+
+    <style name="SettingsLayoutValueStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:id">@id/valueTextView</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:gravity">start</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="SettingsLayoutValueStyleAutosized" parent="SettingsLayoutValueStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">14sp</item>
+    </style>
+
+    <style name="SettingsLayoutEditButtonStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:id">@id/editButton</item>
+        <item name="android:text">@string/edit_button_text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/edit_button_background</item>
+    </style>
+
+    <style name="SettingsLayoutEditButtonStyleAutosized" parent="SettingsLayoutEditButtonStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="AuthorWebsiteStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:text">@string/author_website</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+    </style>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liweiyap.narradir.ui.SettingsLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="0dp"
@@ -24,16 +25,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                style="@style/ArkhamBoldTypefacedTextViewStyle"
-                android:id="@+id/keyTextView"
-                android:text="@string/dummy_placeholder_text"
-                android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:textAllCaps="true"
-                android:gravity="start"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="0dp" />
+                style="@style/SettingsLayoutKeyStyleAutosized"
+                tools:text="@string/dummy_placeholder_text" />
 
         </RelativeLayout>
 
@@ -47,15 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginTop="5dp"
-                style="@style/ArkhamBoldTypefacedTextViewStyle"
-                android:id="@+id/valueTextView"
-                android:text="@string/dummy_placeholder_text"
-                android:textSize="14sp"
-                android:textColor="@color/yellow"
-                android:gravity="start"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="0dp" />
+                style="@style/SettingsLayoutValueStyleAutosized"
+                tools:text="@string/dummy_placeholder_text" />
 
         </RelativeLayout>
 
@@ -67,11 +57,6 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:layout_marginEnd="10dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:id="@+id/editButton"
-        android:text="@string/edit_button_text"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/edit_button_background" />
+        style="@style/SettingsLayoutEditButtonStyleAutosized" />
 
 </com.liweiyap.narradir.ui.SettingsLayout>

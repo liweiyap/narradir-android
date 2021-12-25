@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settingsHomeLayout"
     android:orientation="vertical"
     android:gravity="center_horizontal"
@@ -51,18 +52,23 @@
         android:layout_weight="1"
         android:id="@+id/authorInfoLayout"
         android:orientation="horizontal"
-        android:weightSum="5" >
+        android:weightSum="25" >
 
-        <include
-            layout="@layout/author_website_textview"
+        <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3" />
+            android:layout_height="wrap_content"
+            android:layout_weight="18"
+            android:layout_marginStart="5dp"
+            android:maxLines="2"
+            android:scrollHorizontally="true"
+            android:id="@+id/authorWebsiteTextView"
+            style="@style/AuthorWebsiteStyleAutosized"
+            tools:text="" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="7"
             android:src="@drawable/ic_logo"
             android:contentDescription="@string/author_logo_contentdescription" />
 
