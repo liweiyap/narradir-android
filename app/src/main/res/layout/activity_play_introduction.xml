@@ -42,13 +42,12 @@
         android:id="@+id/currentDisplayedCharacterImageView"
         android:contentDescription="@string/current_displayed_character_contentdescription" />
 
-    <include
-        layout="@layout/current_displayed_introsegment_textview"
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_weight="4.5" />
+        android:layout_weight="4.5"
+        android:id="@+id/currentDisplayedIntroSegmentTextView"
+        style="@style/CurrentDisplayedIntroSegmentStyleAutosized" />
 
     <include
         layout="@layout/activity_play_introduction_navbar"
