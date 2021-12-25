@@ -5,6 +5,11 @@
         <item name="android:autoSizeMaxTextSize">50sp</item>
     </style>
 
+    <style name="GameTitleStyleSecretHitlerAutosized" parent="GameTitleStyleSecretHitler">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+    </style>
+
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">16sp</item>

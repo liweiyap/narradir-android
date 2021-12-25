@@ -42,6 +42,11 @@
         <item name="android:textColor">@color/oasis</item>
     </style>
 
+    <style name="GameTitleStyleSecretHitlerAutosized" parent="GameTitleStyleSecretHitler">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">35sp</item>
+    </style>
+
     <style name="GameHintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center_horizontal</item>

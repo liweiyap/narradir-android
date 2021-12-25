@@ -23,11 +23,12 @@
             style="@style/GameTitleStyleAvalonAutosized"
             android:visibility="invisible" />
 
-        <include
-            layout="@layout/game_title_secrethitler_textview"
+        <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/gameTitleAvalonTextView"
+            android:id="@+id/gameTitleSecretHitlerTextView"
+            style="@style/GameTitleStyleSecretHitlerAutosized"
             android:visibility="invisible" />
 
     </RelativeLayout>
