@@ -106,6 +106,10 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
         settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
 
+        // -----------------------------------------------------------------------------------------
+        // auto-sizing TextViews
+        // -----------------------------------------------------------------------------------------
+
         TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.gameHintTextView));
         TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
     }
