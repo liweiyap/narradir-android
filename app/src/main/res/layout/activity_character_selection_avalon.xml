@@ -11,6 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AvalonCharacterSelectionActivity">
 
+    <!-- force a default alignment to bottom -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -72,10 +73,12 @@
             android:fadeScrollbars="false"
             tools:ignore="UselessParent">
 
-            <include
-                layout="@layout/game_hint_textview"
+            <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/gameHintTextView"
+                style="@style/GameHintStyleAvalonAutosized"
+                tools:ignore="SmallSp" />
 
         </ScrollView>
 
