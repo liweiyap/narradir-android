@@ -16,11 +16,12 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <include
-        layout="@layout/settings_title_textview"
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:id="@+id/settingsTitleTextView"
+        style="@style/SettingsTitleStyleAutosized" />
 
     <include
         layout="@layout/updown_control_layout"
