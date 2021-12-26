@@ -53,6 +53,16 @@
         <item name="android:autoSizeMaxTextSize">35sp</item>
     </style>
 
+    <style name="ControlKeyStyleAutosized" parent="ControlKeyStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">45sp</item>
+    </style>
+
+    <style name="ControlTextStyleAutosized" parent="ControlTextStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">30sp</item>
+    </style>
+
     <style name="BackgroundSoundSelectorStyleAutosized" parent="BackgroundSoundSelectorStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">18sp</item>

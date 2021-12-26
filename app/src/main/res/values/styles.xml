@@ -190,6 +190,53 @@
         <item name="autoSizeMaxTextSize">35sp</item>
     </style>
 
+    <style name="ControlKeyStyleBase" parent="@android:style/Widget.TextView">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ControlKeyStyleAutosized" parent="ControlKeyStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">45sp</item>
+    </style>
+
+    <style name="ControlUpStyle" parent="ControlKeyStyleAutosized">
+        <item name="android:text">@string/up_control_button_text</item>
+        <item name="android:background">@drawable/control_button_up_background</item>
+        <item name="android:id">@id/upControlButton</item>
+        <item name="android:contentDescription">@string/up_button_contentdescription</item>
+    </style>
+
+    <style name="ControlDownStyle" parent="ControlKeyStyleAutosized">
+        <item name="android:text">@string/down_control_button_text</item>
+        <item name="android:background">@drawable/control_button_down_background</item>
+        <item name="android:id">@id/downControlButton</item>
+        <item name="android:contentDescription">@string/down_button_contentdescription</item>
+    </style>
+
+    <style name="ControlTextStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="ControlTextStyleAutosized" parent="ControlTextStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">30sp</item>
+    </style>
+
+    <style name="ControlValueStyle" parent="ControlTextStyleAutosized">
+        <item name="android:text">@string/updown_control_layout_default_value</item>
+        <item name="android:id">@id/updownControlLayoutValue</item>
+    </style>
+
+    <style name="ControlLabelStyle" parent="ControlTextStyleAutosized">
+        <item name="android:text">@string/updown_control_layout_default_label</item>
+        <item name="android:id">@id/updownControlLayoutLabel</item>
+    </style>
+
     <style name="BackgroundSoundSelectorStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:textAllCaps">true</item>
         <item name="android:layout_margin">5dp</item>

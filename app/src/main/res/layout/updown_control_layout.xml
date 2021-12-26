@@ -8,43 +8,21 @@
     <com.liweiyap.narradir.ui.ObserverButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/up_control_button_text"
-        android:background="@drawable/control_button_up_background"
-        android:id="@+id/upControlButton"
-        android:contentDescription="@string/up_button_contentdescription"
-        android:layout_margin="5dp"
-        android:textSize="45sp"
-        android:textColor="@android:color/white" />
+        style="@style/ControlUpStyle" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/updown_control_layout_default_value"
-        android:id="@+id/updownControlLayoutValue"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="30sp"
-        android:textColor="@android:color/white" />
+        style="@style/ControlValueStyle" />
 
     <com.liweiyap.narradir.ui.ObserverButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/down_control_button_text"
-        android:background="@drawable/control_button_down_background"
-        android:id="@+id/downControlButton"
-        android:contentDescription="@string/down_button_contentdescription"
-        android:layout_margin="5dp"
-        android:textSize="45sp"
-        android:textColor="@android:color/white" />
+        style="@style/ControlDownStyle" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/updown_control_layout_default_label"
-        android:id="@+id/updownControlLayoutLabel"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="30sp"
-        android:textColor="@android:color/white" />
+        style="@style/ControlLabelStyle" />
 
 </LinearLayout>
