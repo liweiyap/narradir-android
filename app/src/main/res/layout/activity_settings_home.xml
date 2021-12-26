@@ -63,7 +63,7 @@
             android:scrollHorizontally="true"
             android:id="@+id/authorWebsiteTextView"
             style="@style/AuthorWebsiteStyleAutosized"
-            tools:text="" />
+            tools:text="@string/dummy_placeholder_text" />
 
         <ImageView
             android:layout_width="0dp"
