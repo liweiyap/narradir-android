@@ -3,4 +3,9 @@
     <item type="id" name="keyTextView"/>
     <item type="id" name="valueTextView"/>
     <item type="id" name="editButton"/>
+
+    <item type="id" name="upControlButton"/>
+    <item type="id" name="updownControlLayoutValue"/>
+    <item type="id" name="downControlButton"/>
+    <item type="id" name="updownControlLayoutLabel"/>
 </resources>
