@@ -280,4 +280,24 @@
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">25sp</item>
     </style>
+
+    <style name="HelpTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="HelpParagraphStyle" parent="HelpTextStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="HelpSubheadingStyle" parent="HelpTextStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HelpSubsubheadingStyle" parent="HelpTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
