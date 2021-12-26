@@ -13,13 +13,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundNoneButton"
         android:text="@string/backgroundsound_none"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -28,13 +22,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundCardsButton"
         android:text="@string/backgroundsound_cards"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -43,13 +31,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundCricketsButton"
         android:text="@string/backgroundsound_crickets"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -58,13 +40,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundFireplaceButton"
         android:text="@string/backgroundsound_fireplace"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -73,13 +49,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundRainButton"
         android:text="@string/backgroundsound_rain"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -88,13 +58,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundRainforestButton"
         android:text="@string/backgroundsound_rainforest"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -103,13 +67,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundRainstormButton"
         android:text="@string/backgroundsound_rainstorm"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -118,13 +76,7 @@
         android:layout_weight="1"
         android:id="@+id/backgroundSoundWolvesButton"
         android:text="@string/backgroundsound_wolves"
-        android:textAllCaps="true"
-        android:layout_margin="5dp"
-        style="@style/ArkhamBoldTypefacedTextViewStyle"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/settings_layout_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/settings_layout_unchecked_background"
+        style="@style/BackgroundSoundSelectorStyleAutosized"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
 </LinearLayout>
