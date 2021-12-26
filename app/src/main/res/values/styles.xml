@@ -188,4 +188,18 @@
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
         <item name="autoSizeTextType">uniform</item>
     </style>
+
+    <style name="AppMetadataStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:text">@string/app_name_and_version</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="AppMetadataStyleAutosized" parent="AppMetadataStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">25sp</item>
+    </style>
 </resources>

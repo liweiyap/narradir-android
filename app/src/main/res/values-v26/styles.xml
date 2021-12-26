@@ -51,4 +51,9 @@
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
     </style>
+
+    <style name="AppMetadataStyleAutosized" parent="AppMetadataStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">25sp</item>
+    </style>
 </resources>
