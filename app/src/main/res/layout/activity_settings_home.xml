@@ -58,9 +58,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="18"
-            android:layout_marginStart="5dp"
-            android:maxLines="2"
-            android:scrollHorizontally="true"
             android:id="@+id/authorWebsiteTextView"
             style="@style/AuthorWebsiteStyleAutosized" />
 
