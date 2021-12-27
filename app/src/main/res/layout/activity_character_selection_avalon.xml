@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- android:orientation is already one of the attributes in @style/ActivityLayout but we write it again to get rid of the Suspicious0dp warning -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/avalonCharacterSelectionLayout"
     android:weightSum="10"
     style="@style/ActivityLayout"
+    android:orientation="vertical"
     tools:context=".AvalonCharacterSelectionActivity">
 
     <!-- force a default alignment to bottom -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:ignore="Suspicious0dp">
+        android:layout_weight="1">
 
         <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
             android:layout_width="match_parent"
@@ -26,22 +27,19 @@
         layout="@layout/player_number_selection_avalon_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:ignore="Suspicious0dp" />
+        android:layout_weight="1" />
 
     <include
         layout="@layout/good_characters_avalon_linear_layout_top"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
-        tools:ignore="Suspicious0dp" />
+        android:layout_weight="1.5" />
 
     <include
         layout="@layout/good_characters_avalon_linear_layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
-        tools:ignore="Suspicious0dp" />
+        android:layout_weight="1.5" />
 
     <Space
         android:layout_width="match_parent"
