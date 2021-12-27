@@ -11,6 +11,7 @@ import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -72,20 +73,33 @@ public class ActiveFullScreenPortraitActivity extends AppCompatActivity
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
         {
-            // https://stackoverflow.com/questions/62643517/immersive-fullscreen-on-android-11
-            getWindow().setDecorFitsSystemWindows(false);
-            WindowInsetsController controller = getWindow().getInsetsController();
+            makeFullScreenSinceApi29();
+        }
+        else
+        {
+            makeFullScreenPreApi29();
+        }
+    }
 
-            if (controller == null)
-            {
-                return;
-            }
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    protected void makeFullScreenSinceApi29()
+    {
+        // https://stackoverflow.com/questions/62643517/immersive-fullscreen-on-android-11
+        getWindow().setDecorFitsSystemWindows(false);
+        WindowInsetsController controller = getWindow().getInsetsController();
 
-            controller.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
-            controller.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        if (controller == null)
+        {
             return;
         }
 
+        controller.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
+        controller.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+    }
+
+    @SuppressWarnings("deprecation")
+    protected void makeFullScreenPreApi29()
+    {
         // make the below show-/hide-changes temporary
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(
