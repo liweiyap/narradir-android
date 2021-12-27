@@ -40,7 +40,6 @@ public final class TextViewCompatAutosizeHelper
             TextViewCompat.getAutoSizeMinTextSize(textView),
             TextViewCompat.getAutoSizeMinTextSize(textView) + 1,
             TextViewCompat.getAutoSizeStepGranularity(textView),
-            TypedValue.COMPLEX_UNIT_PX
-        );
+            TypedValue.COMPLEX_UNIT_PX);
     }
 }
