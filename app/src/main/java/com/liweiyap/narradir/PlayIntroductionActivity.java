@@ -71,7 +71,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                     return;
                 }
 
-                int newWindowIdx = mAudioPlayer.getExoPlayerCurrentWindowIndex();
+                int newWindowIdx = mAudioPlayer.getExoPlayerCurrentMediaItemIndex();
                 if (newWindowIdx % 2 == 0)
                 {
                     switchCurrentDisplayedCharacterImage(introSegmentArrayList.get(newWindowIdx/2));

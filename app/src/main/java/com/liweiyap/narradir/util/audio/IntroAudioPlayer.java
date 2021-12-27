@@ -129,7 +129,7 @@ public class IntroAudioPlayer
         mIntroSegmentPlayer.addListener(listener);
     }
 
-    public int getExoPlayerCurrentWindowIndex()
+    public int getExoPlayerCurrentMediaItemIndex()
     {
         if (mIntroSegmentPlayer == null)
         {
