@@ -1,274 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_intro_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_intro_para1"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_intro_para2"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0_para1"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0_para2"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0_para3"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0_para4"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading0_para5"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_para1"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_subsubheading0"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubsubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_subsubheading0_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_subsubheading1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubsubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_subsubheading1_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_subsubheading2"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubsubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading1_subsubheading2_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading2"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading2_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading2_para1"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading2_para2"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para1"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para2"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para3"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para4"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para5"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para6"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para7"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para8"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para9"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading3_para10"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading4"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        style="@style/HelpSubheadingStyle" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/help_subheading4_para0"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
+        style="@style/HelpParagraphStyle" />
 
 </LinearLayout>

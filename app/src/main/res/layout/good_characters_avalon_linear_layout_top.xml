@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:com.liweiyap.narradir="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
+    style="@style/RowLayoutStyleDefault"
     android:id="@+id/goodCharactersLinearLayoutTop"
     android:weightSum="4" >
 
@@ -13,14 +12,11 @@
         android:layout_weight="1"
         android:id="@+id/merlinButton"
         android:contentDescription="@string/merlin_button_contentdescription"
-        android:scaleType="fitXY"
         android:src="@drawable/merlin_unchecked"
-        android:padding="2dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="5dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@null"
+        style="@style/CharacterImageStyleAvalon"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
     <com.liweiyap.narradir.ui.CheckableObserverImageButton
@@ -29,14 +25,11 @@
         android:layout_weight="1"
         android:id="@+id/percivalButton"
         android:contentDescription="@string/percival_button_contentdescription"
-        android:scaleType="fitXY"
         android:src="@drawable/percival_unchecked"
-        android:padding="2dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@null"
+        style="@style/CharacterImageStyleAvalon"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.CheckableObserverImageButton
@@ -45,14 +38,11 @@
         android:layout_weight="1"
         android:id="@+id/loyal0Button"
         android:contentDescription="@string/loyal_button_contentdescription"
-        android:scaleType="fitXY"
         android:src="@drawable/loyal0_unchecked"
-        android:padding="2dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@null"
+        style="@style/CharacterImageStyleAvalon"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
     <com.liweiyap.narradir.ui.CheckableObserverImageButton
@@ -61,14 +51,11 @@
         android:layout_weight="1"
         android:id="@+id/loyal1Button"
         android:contentDescription="@string/loyal_button_contentdescription"
-        android:scaleType="fitXY"
         android:src="@drawable/loyal1_unchecked"
-        android:padding="2dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="10dp"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/blank_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@null"
+        style="@style/CharacterImageStyleAvalon"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
 </LinearLayout>

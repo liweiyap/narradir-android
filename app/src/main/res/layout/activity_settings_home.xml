@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settingsHomeLayout"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="@drawable/bermudagrey_grunge_background"
     android:weightSum="10"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    style="@style/ActivityLayoutStyle"
     tools:context=".SettingsHomeActivity">
 
     <Space
@@ -22,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:layout_margin="5dp"
+        style="@style/SettingsLayoutStyle"
         android:id="@+id/narrationSettingsLayout" />
 
     <include
@@ -30,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:layout_margin="5dp"
+        style="@style/SettingsLayoutStyle"
         android:id="@+id/backgroundSettingsLayout" />
 
     <include
@@ -38,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:layout_margin="5dp"
+        style="@style/SettingsLayoutStyle"
         android:id="@+id/roleTimerSettingsLayout" />
 
     <Space
@@ -58,9 +53,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="18"
-            android:layout_marginStart="5dp"
-            android:maxLines="2"
-            android:scrollHorizontally="true"
             android:id="@+id/authorWebsiteTextView"
             style="@style/AuthorWebsiteStyleAutosized" />
 

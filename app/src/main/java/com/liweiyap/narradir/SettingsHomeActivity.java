@@ -14,7 +14,6 @@ import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.SettingsLayout;
 import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.TimeDisplay;
@@ -130,7 +129,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         // navigation to external web browser
         // ----------------------------------------------------------------------
 
-        CustomTypefaceableTextView authorInfoLayout = findViewById(R.id.authorWebsiteTextView);
+        LinearLayout authorInfoLayout = findViewById(R.id.authorInfoLayout);
         authorInfoLayout.setOnClickListener(view -> navigateToAuthorWebsite());
 
         // -----------------------------------------------------------------------------------------

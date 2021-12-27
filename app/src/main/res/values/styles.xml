@@ -7,6 +7,31 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="ActivityLayoutStyle" parent="@android:style/Widget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/bermudagrey_grunge_background</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="RowLayoutStyleDefault" parent="@android:style/Widget">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ColumnLayoutStyleDefault" parent="@android:style/Widget">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="SettingsLayoutStyle" parent="@android:style/Widget">
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
     <style name="ArkhamRegTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
         <item name="assetFontPath">fonts/Arkham_reg.TTF</item>
     </style>
@@ -83,6 +108,34 @@
         <item name="android:textColor">@color/acadia</item>
         <item name="checkedDrawableId">@drawable/psh_button_checked_background</item>
         <item name="uncheckedDrawableId">@drawable/psh_button_unchecked_background</item>
+    </style>
+
+    <style name="CharacterImageStyleBase" parent="@android:style/Widget.ImageButton">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="CharacterImageStyleAvalon" parent="CharacterImageStyleBase">
+        <item name="checkedDrawableId">@drawable/blank_checked_background</item>
+        <item name="uncheckedDrawableId">@null</item>
+    </style>
+
+    <style name="CharacterImageStyleSecretHitlerLiberal" parent="CharacterImageStyleBase">
+        <item name="android:contentDescription">@string/liberal_button_contentdescription</item>
+        <item name="android:src">@drawable/ic_liberal</item>
+        <item name="android:background">@drawable/liberal_background</item>
+    </style>
+
+    <style name="CharacterImageStyleSecretHitlerHitler" parent="CharacterImageStyleBase">
+        <item name="android:contentDescription">@string/hitler_button_contentdescription</item>
+        <item name="android:src">@drawable/ic_hitler</item>
+        <item name="android:background">@drawable/fascist_background</item>
+    </style>
+
+    <style name="CharacterImageStyleSecretHitlerFascist" parent="CharacterImageStyleBase">
+        <item name="android:contentDescription">@string/fascist_button_contentdescription</item>
+        <item name="android:src">@drawable/ic_fascist</item>
+        <item name="android:background">@drawable/fascist_background</item>
     </style>
 
     <style name="GameSwitcherStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
@@ -261,6 +314,8 @@
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:maxLines">2</item>
     </style>
 
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
@@ -279,5 +334,25 @@
     <style name="AppMetadataStyleAutosized" parent="AppMetadataStyleBase">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">25sp</item>
+    </style>
+
+    <style name="HelpTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="HelpParagraphStyle" parent="HelpTextStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="HelpSubheadingStyle" parent="HelpTextStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HelpSubsubheadingStyle" parent="HelpTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

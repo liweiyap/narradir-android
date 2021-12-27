@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- android:orientation is already one of the attributes in @style/ActivityLayout but we write it again to get rid of the Suspicious0dp warning -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/playIntroLayout"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="@drawable/bermudagrey_grunge_background"
     android:weightSum="10"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    style="@style/ActivityLayoutStyle"
+    android:orientation="vertical"
     tools:context=".PlayIntroductionActivity">
 
     <RelativeLayout
