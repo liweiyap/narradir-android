@@ -6,15 +6,16 @@ import android.media.SoundPool;
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Renderer;
 import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.MediaCodecAudioRenderer;
 import com.google.android.exoplayer2.extractor.Extractor;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
 import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SilenceMediaSource;
 import com.liweiyap.narradir.R;
@@ -82,7 +83,7 @@ public class IntroAudioPlayer
             new Mp3Extractor()
         };
 
-        mIntroSegmentPlayer = new SimpleExoPlayer.Builder(context, audioOnlyRenderersFactory, ExtractorsFactory.EMPTY).build();
+        mIntroSegmentPlayer = new ExoPlayer.Builder(context, audioOnlyRenderersFactory, new DefaultMediaSourceFactory(context, ExtractorsFactory.EMPTY)).build();
         for (int idx = 0; idx < introSegmentArrayList.size(); ++idx)
         {
             @RawRes int segment = introSegmentArrayList.get(idx);
@@ -109,7 +110,7 @@ public class IntroAudioPlayer
         {
             throw new RuntimeException(
                 "IntroAudioPlayer::prepareExoPlayer(): " +
-                    "Invalid no of MediaSources for SimpleExoPlayer; " +
+                    "Invalid no of MediaSources for ExoPlayer; " +
                     introSegmentArrayList.size() + " segments but " +
                     mIntroSegmentPlayer.getMediaItemCount() + " media sources.");
         }
@@ -135,7 +136,7 @@ public class IntroAudioPlayer
             return 0;
         }
 
-        return mIntroSegmentPlayer.getCurrentWindowIndex();
+        return mIntroSegmentPlayer.getCurrentMediaItemIndex();
     }
 
     public void playClickSound()
@@ -215,7 +216,7 @@ public class IntroAudioPlayer
 
     public static final long sMinPauseDurationInMilliSecs = 500;
 
-    private SimpleExoPlayer mIntroSegmentPlayer;
+    private ExoPlayer mIntroSegmentPlayer;
 
     private SoundPool mGeneralSoundPool;
     private int mBackgroundSoundId;
