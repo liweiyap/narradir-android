@@ -16,6 +16,12 @@
         <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
     </style>
 
+    <style name="NavBarLayout" parent="@android:style/Widget">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="ArkhamRegTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
         <item name="assetFontPath">fonts/Arkham_reg.TTF</item>
     </style>
