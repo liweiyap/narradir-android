@@ -28,6 +28,10 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="SettingsLayoutStyle" parent="@android:style/Widget">
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
     <style name="ArkhamRegTypefacedTextViewStyle" parent="@android:style/Widget.TextView">
         <item name="assetFontPath">fonts/Arkham_reg.TTF</item>
     </style>
