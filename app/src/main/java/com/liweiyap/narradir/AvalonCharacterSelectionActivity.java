@@ -34,6 +34,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection_avalon);
 
+        // initialise early in case savePreferences() is called early
         mBackgroundSoundName = getString(R.string.backgroundsound_none);
 
         // -----------------------------------------------------------------------------------------

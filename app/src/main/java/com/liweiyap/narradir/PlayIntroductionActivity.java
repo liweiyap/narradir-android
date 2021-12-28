@@ -29,8 +29,6 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_introduction);
 
-        mBackgroundSoundName = getString(R.string.backgroundsound_none);
-
         mCurrentDisplayedCharacterImageView = findViewById(R.id.currentDisplayedCharacterImageView);
         mCurrentDisplayedIntroSegmentTextView = findViewById(R.id.currentDisplayedIntroSegmentTextView);
 

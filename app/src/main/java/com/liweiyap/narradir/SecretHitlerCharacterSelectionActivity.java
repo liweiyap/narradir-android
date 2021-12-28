@@ -32,6 +32,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection_secrethitler);
 
+        // initialise early in case savePreferences() is called early
         mBackgroundSoundName = getString(R.string.backgroundsound_none);
 
         // -----------------------------------------------------------------------------------------

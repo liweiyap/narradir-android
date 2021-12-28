@@ -2,13 +2,13 @@ package com.liweiyap.narradir.util;
 
 import android.content.Intent;
 
-import org.jetbrains.annotations.NotNull;
+import androidx.annotation.NonNull;
 
 public final class IntentHelper
 {
     private IntentHelper(){}
 
-    public static @NotNull String getStringExtra(final Intent intent, final String name, final @NotNull String defaultValue)
+    public static @NonNull String getStringExtra(final Intent intent, final String name, final @NonNull String defaultValue)
     {
         if (intent == null)
         {

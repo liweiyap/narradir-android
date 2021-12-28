@@ -29,8 +29,6 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_home);
 
-        mBackgroundSoundName = getString(R.string.backgroundsound_none);
-
         // ----------------------------------------------------------------------
         // receive data from previous Activity
         // ----------------------------------------------------------------------
@@ -101,7 +99,10 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
                 mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-                mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+
+                // Do not use `getString(R.string.backgroundsound_none)`, or value will be accidentally overwritten when navigating backwards not from SettingsBackgroundActivity.
+                // We have already made use of IntentHelper earlier in `onCreate()` to make sure that the value is non-null.
+                mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), mBackgroundSoundName);
 
                 if (result.getResultCode() == Constants.RESULT_OK_SETTINGS_TWOSTEPS)
                 {

@@ -28,8 +28,6 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_background);
 
-        mBackgroundSoundName = getString(R.string.backgroundsound_none);
-
         mVolumeControlLayoutValueTextView = findViewById(R.id.updownControlLayoutValue);
         ObserverButton volumeIncreaseButton = findViewById(R.id.upControlButton);
         ObserverButton volumeDecreaseButton = findViewById(R.id.downControlButton);
