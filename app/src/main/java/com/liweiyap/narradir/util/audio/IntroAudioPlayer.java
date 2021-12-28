@@ -61,7 +61,7 @@ public class IntroAudioPlayer
 
         mClickSoundId = mGeneralSoundPool.load(context, R.raw.clicksound, 1);
 
-        Integer loadedBackgroundSound = loadBackgroundSound(context, backgroundSoundName);
+        final Integer loadedBackgroundSound = loadBackgroundSound(context, backgroundSoundName);
         if (loadedBackgroundSound == null)
         {
             return;
