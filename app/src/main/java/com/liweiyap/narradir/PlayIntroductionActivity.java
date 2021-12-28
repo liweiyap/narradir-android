@@ -14,6 +14,7 @@ import com.google.android.exoplayer2.Player;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer;
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary;
 
@@ -29,6 +30,8 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_introduction);
 
+        mBackgroundSoundName = getString(R.string.backgroundsound_none);
+
         mCurrentDisplayedCharacterImageView = findViewById(R.id.currentDisplayedCharacterImageView);
         mCurrentDisplayedIntroSegmentTextView = findViewById(R.id.currentDisplayedIntroSegmentTextView);
 
@@ -40,9 +43,9 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
 
         final ArrayList<Integer> introSegmentArrayList = intent.getIntegerArrayListExtra(getString(R.string.intro_segments_key));
         mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
 
         boolean isStartedFromAvalon = intent.getBooleanExtra(getString(R.string.is_started_from_avalon_key), true);
         findViewById(R.id.gameTitleAvalonTextView).setVisibility(isStartedFromAvalon ? View.VISIBLE : View.INVISIBLE);
@@ -58,7 +61,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         mAudioPlayer = new IntroAudioPlayer(
             this,
             introSegmentArrayList, mPauseDurationInMilliSecs, mNarrationVolume,
-            mBackgroundSoundRawResId, mBackgroundSoundVolume);
+            mBackgroundSoundName, mBackgroundSoundVolume);
 
         mAudioPlayer.addExoPlayerListener(new Player.Listener()
         {
@@ -251,9 +254,9 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
     private IntroAudioPlayer mAudioPlayer;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
+    private String mBackgroundSoundName;
 
     private ImageView mCurrentDisplayedCharacterImageView;
     private CustomTypefaceableTextView mCurrentDisplayedIntroSegmentTextView;

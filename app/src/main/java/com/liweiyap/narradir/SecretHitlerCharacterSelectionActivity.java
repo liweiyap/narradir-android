@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.RawRes;
-
 import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverImageButton;
@@ -17,6 +15,7 @@ import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.PlayerNumberDictionary;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
@@ -32,6 +31,8 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection_secrethitler);
+
+        mBackgroundSoundName = getString(R.string.backgroundsound_none);
 
         // -----------------------------------------------------------------------------------------
         // character image button array, player number selection layout, character selection layouts
@@ -74,10 +75,10 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
                     return;
                 }
 
-                mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
                 mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+                mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
             });
         getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
 
@@ -214,7 +215,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
         intent.putIntegerArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         intent.putExtra(getString(R.string.is_started_from_avalon_key), false);
@@ -225,7 +226,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         mSettingsHomeActivityResultObserverListener.launch(intent);
@@ -244,8 +245,9 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
+        sharedPrefEditor.remove(getString(R.string.background_sound_key));  // may be removed in future
         sharedPrefEditor.putLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        sharedPrefEditor.putString(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
         sharedPrefEditor.putInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
@@ -262,9 +264,9 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
+        mBackgroundSoundName = sharedPref.getString(getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
         int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
         int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
 
@@ -283,7 +285,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
     private LifecycleActivityResultObserverListener mSettingsHomeActivityResultObserverListener;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
+    private String mBackgroundSoundName;
 }

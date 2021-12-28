@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
@@ -15,7 +16,7 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.Constants;
-import com.liweiyap.narradir.util.audio.BackgroundSoundDictionary;
+import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
@@ -26,6 +27,8 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_background);
+
+        mBackgroundSoundName = getString(R.string.backgroundsound_none);
 
         mVolumeControlLayoutValueTextView = findViewById(R.id.updownControlLayoutValue);
         ObserverButton volumeIncreaseButton = findViewById(R.id.upControlButton);
@@ -47,11 +50,11 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
 
         Intent intent = getIntent();
 
-        mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), 0);
         mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
+        mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
 
         mBackgroundSoundTestMediaPlayer = new BackgroundSoundTestMediaPlayer(this);
-        selectBackgroundSound(mBackgroundSoundRawResId);
+        selectBackgroundSound(mBackgroundSoundName);
         addBackgroundSoundSetters();
 
         displayVolume();
@@ -162,52 +165,77 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         });
     }
 
-    private void selectBackgroundSound(final @RawRes int resId)
+    private void selectBackgroundSound(final @NonNull String backgroundSoundName)
     {
-        final int selectorButtonId = BackgroundSoundDictionary.getSelectorButtonIdFromSoundResId(resId);
-        final CustomTypefaceableCheckableObserverButton selectorButton = findViewById(selectorButtonId);
-
-        if (selectorButton == null)
+        // does not look elegant but it's safe because resource ID integers are non-constant from Gradle version >4.
+        if (backgroundSoundName.equals(getString(R.string.backgroundsound_cards)))
         {
-            return;
+            findViewById(R.id.backgroundSoundCardsButton).performClick();
         }
-
-        selectorButton.performClick();
+        else if (backgroundSoundName.equals(getString(R.string.backgroundsound_crickets)))
+        {
+            findViewById(R.id.backgroundSoundCricketsButton).performClick();
+        }
+        else if (backgroundSoundName.equals(getString(R.string.backgroundsound_fireplace)))
+        {
+            findViewById(R.id.backgroundSoundFireplaceButton).performClick();
+        }
+        else if (backgroundSoundName.equals(getString(R.string.backgroundsound_rain)))
+        {
+            findViewById(R.id.backgroundSoundRainButton).performClick();
+        }
+        else if (backgroundSoundName.equals(getString(R.string.backgroundsound_rainforest)))
+        {
+            findViewById(R.id.backgroundSoundRainforestButton).performClick();
+        }
+        else if (backgroundSoundName.equals(getString(R.string.backgroundsound_rainstorm)))
+        {
+            findViewById(R.id.backgroundSoundRainstormButton).performClick();
+        }
+        else if (backgroundSoundName.equals(getString(R.string.backgroundsound_wolves)))
+        {
+            findViewById(R.id.backgroundSoundWolvesButton).performClick();
+        }
+        else
+        {
+            findViewById(R.id.backgroundSoundNoneButton).performClick();
+        }
     }
 
     private void addBackgroundSoundSetters()
     {
-        CustomTypefaceableCheckableObserverButton btn = findViewById(R.id.backgroundSoundNoneButton);
-        btn.addOnClickObserver(() -> mBackgroundSoundRawResId = 0);
-        btn.addOnLongClickObserver(() -> {
+        final CustomTypefaceableCheckableObserverButton backgroundSoundNoneButton = findViewById(R.id.backgroundSoundNoneButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundCardsButton = findViewById(R.id.backgroundSoundCardsButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundCricketsButton = findViewById(R.id.backgroundSoundCricketsButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundFireplaceButton = findViewById(R.id.backgroundSoundFireplaceButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundRainButton = findViewById(R.id.backgroundSoundRainButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundRainforestButton = findViewById(R.id.backgroundSoundRainforestButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundRainstormButton = findViewById(R.id.backgroundSoundRainstormButton);
+        final CustomTypefaceableCheckableObserverButton backgroundSoundWolvesButton = findViewById(R.id.backgroundSoundWolvesButton);
+
+        backgroundSoundNoneButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_none));
+        backgroundSoundCardsButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_cards));
+        backgroundSoundCricketsButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_crickets));
+        backgroundSoundFireplaceButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_fireplace));
+        backgroundSoundRainButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rain));
+        backgroundSoundRainforestButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rainforest));
+        backgroundSoundRainstormButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rainstorm));
+        backgroundSoundWolvesButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_wolves));
+
+        backgroundSoundCardsButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcards));
+        backgroundSoundCricketsButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcrickets));
+        backgroundSoundFireplaceButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundfireplace));
+        backgroundSoundRainButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrain));
+        backgroundSoundRainforestButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainforest));
+        backgroundSoundRainstormButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainstorm));
+        backgroundSoundWolvesButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundwolves));
+        backgroundSoundNoneButton.addOnLongClickObserver(() -> {
             if (mBackgroundSoundTestMediaPlayer == null)
             {
                 return;
             }
             mBackgroundSoundTestMediaPlayer.stop();
         });
-
-        addBackgroundSoundSetter(R.raw.backgroundcards);
-        addBackgroundSoundSetter(R.raw.backgroundcrickets);
-        addBackgroundSoundSetter(R.raw.backgroundfireplace);
-        addBackgroundSoundSetter(R.raw.backgroundrain);
-        addBackgroundSoundSetter(R.raw.backgroundrainforest);
-        addBackgroundSoundSetter(R.raw.backgroundrainstorm);
-        addBackgroundSoundSetter(R.raw.backgroundwolves);
-    }
-
-    private void addBackgroundSoundSetter(final @RawRes int resId)
-    {
-        final int selectorButtonId = BackgroundSoundDictionary.getSelectorButtonIdFromSoundResId(resId);
-        final CustomTypefaceableCheckableObserverButton selectorButton = findViewById(selectorButtonId);
-
-        if ( (selectorButton == null) || (selectorButtonId == R.id.backgroundSoundNoneButton) )
-        {
-            return;
-        }
-
-        selectorButton.addOnClickObserver(() -> mBackgroundSoundRawResId = resId);
-        selectorButton.addOnLongClickObserver(() -> playBackgroundSound(resId));
     }
 
     private void playBackgroundSound(final @RawRes int soundId)
@@ -245,7 +273,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByOneStep()
     {
         Intent intent = new Intent();
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         setResult(Constants.RESULT_OK_SETTINGS_ONESTEP, intent);
         finish();
@@ -262,7 +290,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwardsByTwoSteps()
     {
         Intent intent = new Intent();
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         setResult(Constants.RESULT_OK_SETTINGS_TWOSTEPS, intent);
         finish();
@@ -271,8 +299,8 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
     private ClickSoundGenerator mClickSoundGenerator;
 
     private BackgroundSoundTestMediaPlayer mBackgroundSoundTestMediaPlayer;
-    private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
+    private String mBackgroundSoundName;
 
     private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
 }

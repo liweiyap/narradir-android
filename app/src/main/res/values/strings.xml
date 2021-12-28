@@ -16,6 +16,7 @@
     <string name="background_sound_key">BACKGROUND_SOUND</string>
     <string name="background_volume_key">BACKGROUND_VOLUME</string>
     <string name="narration_volume_key">NARRATION_VOLUME</string>
+    <string name="background_sound_name_key">BACKGROUND_SOUND_NAME</string>
     <string name="good_player_number_avalon_key">GOOD_PLAYER_NUMBER_AVALON</string>
     <string name="evil_player_number_avalon_key">EVIL_PLAYER_NUMBER_AVALON</string>
     <string name="good_player_number_secrethitler_key">GOOD_PLAYER_NUMBER_SECRETHITLER</string>

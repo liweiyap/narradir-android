@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.SoundPool;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 
 import com.google.android.exoplayer2.ExoPlayer;
@@ -29,13 +30,13 @@ public class IntroAudioPlayer
         final ArrayList<Integer> introSegmentArrayList,
         final long pauseDurationInMilliSecs,
         final float narrationVolume,
-        final @RawRes int backgroundSoundRawResId,
+        final String backgroundSoundName,
         final float backgroundSoundVolume)
     {
         allocateResources(
             context,
             introSegmentArrayList, pauseDurationInMilliSecs, narrationVolume,
-            backgroundSoundRawResId, backgroundSoundVolume);
+            backgroundSoundName, backgroundSoundVolume);
     }
 
     public void allocateResources(
@@ -43,17 +44,17 @@ public class IntroAudioPlayer
         final ArrayList<Integer> introSegmentArrayList,
         final long pauseDurationInMilliSecs,
         final float narrationVolume,
-        final @RawRes int backgroundSoundRawResId,
+        final String backgroundSoundName,
         final float backgroundSoundVolume)
     {
         // initialise SoundPool for background noise and click sound
-        initSoundPool(context, backgroundSoundRawResId, backgroundSoundVolume);
+        initSoundPool(context, backgroundSoundName, backgroundSoundVolume);
 
         // initialise and prepare ExoPlayer for intro segments
         prepareExoPlayer(context, introSegmentArrayList, Math.max(pauseDurationInMilliSecs, IntroAudioPlayer.sMinPauseDurationInMilliSecs), narrationVolume);
     }
 
-    private void initSoundPool(final @NonNull Context context, final @RawRes int backgroundSoundRawResId, final float backgroundSoundVolume)
+    private void initSoundPool(final @NonNull Context context, final @NonNull String backgroundSoundName, final float backgroundSoundVolume)
     {
         mGeneralSoundPool = new SoundPool.Builder()
             .setMaxStreams(2)
@@ -61,19 +62,58 @@ public class IntroAudioPlayer
 
         mClickSoundId = mGeneralSoundPool.load(context, R.raw.clicksound, 1);
 
-        if (backgroundSoundRawResId != 0)
+        Integer loadedBackgroundSound = loadBackgroundSound(context, backgroundSoundName);
+        if (loadedBackgroundSound == null)
         {
-            mBackgroundSoundId = mGeneralSoundPool.load(context, backgroundSoundRawResId, 1);
-            mGeneralSoundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
-                if ((sampleId == mBackgroundSoundId) && (status == 0))
-                {
-                    mBackgroundStreamId = soundPool.play(sampleId, backgroundSoundVolume, backgroundSoundVolume, 1, -1, 1f);
-                }
-            });
+            return;
         }
+
+        mBackgroundSoundId = loadedBackgroundSound;
+        mGeneralSoundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
+            if ((sampleId == mBackgroundSoundId) && (status == 0))
+            {
+                mBackgroundStreamId = soundPool.play(sampleId, backgroundSoundVolume, backgroundSoundVolume, 1, -1, 1f);
+            }
+        });
     }
 
-    private void prepareExoPlayer(final @NonNull Context context, final ArrayList<Integer> introSegmentArrayList, final long pauseDurationInMilliSecs, final float narrationVolume)
+    private @Nullable Integer loadBackgroundSound(final @NonNull Context context, final @NonNull String backgroundSoundName)
+    {
+        // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
+        // the sound ID that is itself loaded and returned should still be constant; there's no indication otherwise in the Android documentation.
+        if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_cards)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundcards, 1);
+        }
+        else if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_crickets)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundcrickets, 1);
+        }
+        else if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_fireplace)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundfireplace, 1);
+        }
+        else if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_rain)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundrain, 1);
+        }
+        else if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_rainforest)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundrainforest, 1);
+        }
+        else if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_rainstorm)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundrainstorm, 1);
+        }
+        else if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_wolves)))
+        {
+            return mGeneralSoundPool.load(context, R.raw.backgroundwolves, 1);
+        }
+
+        return null;
+    }
+
+    private void prepareExoPlayer(final @NonNull Context context, final @NonNull ArrayList<Integer> introSegmentArrayList, final long pauseDurationInMilliSecs, final float narrationVolume)
     {
         final RenderersFactory audioOnlyRenderersFactory = (handler, videoListener, audioListener, textOutput, metadataOutput) -> new Renderer[] {
             new MediaCodecAudioRenderer(context, MediaCodecSelector.DEFAULT, handler, audioListener)
