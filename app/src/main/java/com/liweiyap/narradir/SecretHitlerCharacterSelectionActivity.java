@@ -194,26 +194,26 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
             throw new RuntimeException("SecretHitlerCharacterSelectionActivity::navigateToPlayIntroductionActivity(): mSecretHitlerControlGroup is NULL");
         }
 
-        ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
+        ArrayList<String> introSegmentArrayList = new ArrayList<>();
 
         if (mSecretHitlerControlGroup.getExpectedGoodTotal() + mSecretHitlerControlGroup.getExpectedEvilTotal() < 7)
         {
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment0small);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment1small);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment2small);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment3small);
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment0small_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment1small_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment2small_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment3small_key));
         }
         else
         {
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment0large);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment1large);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment2large);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment3large);
-            introSegmentArrayList.add(R.raw.secrethitlerintrosegment4large);
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment0large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment1large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment2large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment3large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment4large_key));
         }
 
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
-        intent.putIntegerArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
+        intent.putStringArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
@@ -245,7 +245,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
-        sharedPrefEditor.remove(getString(R.string.background_sound_key));  // may be removed in future
+        sharedPrefEditor.remove(getString(R.string.background_sound_key));  // this line may be removed in future
         sharedPrefEditor.putLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         sharedPrefEditor.putString(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);

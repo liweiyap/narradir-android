@@ -5,7 +5,6 @@ import android.media.SoundPool;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
@@ -27,7 +26,7 @@ public class IntroAudioPlayer
 {
     public IntroAudioPlayer(
         final @NonNull Context context,
-        final ArrayList<Integer> introSegmentArrayList,
+        final ArrayList<String> introSegmentArrayList,
         final long pauseDurationInMilliSecs,
         final float narrationVolume,
         final String backgroundSoundName,
@@ -41,7 +40,7 @@ public class IntroAudioPlayer
 
     public void allocateResources(
         final @NonNull Context context,
-        final ArrayList<Integer> introSegmentArrayList,
+        final ArrayList<String> introSegmentArrayList,
         final long pauseDurationInMilliSecs,
         final float narrationVolume,
         final String backgroundSoundName,
@@ -113,7 +112,7 @@ public class IntroAudioPlayer
         return null;
     }
 
-    private void prepareExoPlayer(final @NonNull Context context, final @NonNull ArrayList<Integer> introSegmentArrayList, final long pauseDurationInMilliSecs, final float narrationVolume)
+    private void prepareExoPlayer(final @NonNull Context context, final @NonNull ArrayList<String> introSegmentArrayList, final long pauseDurationInMilliSecs, final float narrationVolume)
     {
         final RenderersFactory audioOnlyRenderersFactory = (handler, videoListener, audioListener, textOutput, metadataOutput) -> new Renderer[] {
             new MediaCodecAudioRenderer(context, MediaCodecSelector.DEFAULT, handler, audioListener)
@@ -126,9 +125,9 @@ public class IntroAudioPlayer
         mIntroSegmentPlayer = new ExoPlayer.Builder(context, audioOnlyRenderersFactory, new DefaultMediaSourceFactory(context, ExtractorsFactory.EMPTY)).build();
         for (int idx = 0; idx < introSegmentArrayList.size(); ++idx)
         {
-            @RawRes int segment = introSegmentArrayList.get(idx);
+            final String segment = introSegmentArrayList.get(idx);
 
-            ProgressiveMediaSource mediaSource = ExoPlayerMediaSourceCreator.createProgressiveMediaSourceFromResId(context, segment, mp3ExtractorFactory);
+            ProgressiveMediaSource mediaSource = ExoPlayerMediaSourceCreator.createProgressiveMediaSourceFromRes(context, segment, mp3ExtractorFactory);
             if (mediaSource != null)
             {
                 mIntroSegmentPlayer.addMediaSource(mediaSource);
@@ -139,7 +138,7 @@ public class IntroAudioPlayer
                 }
 
                 SilenceMediaSource silence = new SilenceMediaSource(
-                    IntroSegmentDictionary.canPauseManuallyAtEnd(segment) ?
+                    IntroSegmentDictionary.canPauseManuallyAtEnd(context, segment) ?
                         pauseDurationInMilliSecs * 1000 :
                         sMinPauseDurationInMilliSecs * 1000);
                 mIntroSegmentPlayer.addMediaSource(silence);

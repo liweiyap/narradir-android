@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Narradir</string>
     <string name="app_version">2.0</string>
     <string name="app_name_and_version">Narradir Version 2.0</string>
@@ -158,6 +158,31 @@
     <string name="p10_button_contentdescription">Click to select 10-player mode.</string>
     <string name="up_button_contentdescription">Click to increase.</string>
     <string name="down_button_contentdescription">Click to decrease.</string>
+
+    <string name="avalonintrosegment0_key">AV_SEG_0</string>
+    <string name="avalonintrosegment1nooberon_key" tools:ignore="Typos">AV_SEG_1_NOOBERON</string>
+    <string name="avalonintrosegment1withoberon_key" tools:ignore="Typos">AV_SEG_1_WITHOBERON</string>
+    <string name="avalonintrosegment2_key">AV_SEG_2</string>
+    <string name="avalonintrosegment3nomerlin_key">AV_SEG_3_NOMERLIN</string>
+    <string name="avalonintrosegment3nomordred_key">AV_SEG_3_NOMORDRED</string>
+    <string name="avalonintrosegment3withmordred_key">AV_SEG_3_WITHMORDRED</string>
+    <string name="avalonintrosegment4_key">AV_SEG_4</string>
+    <string name="avalonintrosegment5nopercival_key">AV_SEG_5_NOPERCIVAL</string>
+    <string name="avalonintrosegment5withpercivalnomorgana_key">AV_SEG_5_WITHPERCIVALNOMORGANA</string>
+    <string name="avalonintrosegment5withpercivalwithmorgana_key">AV_SEG_5_WITHPERCIVALWITHMORGANA</string>
+    <string name="avalonintrosegment6withpercivalnomorgana_key">AV_SEG_6_WITHPERCIVALNOMORGANA</string>
+    <string name="avalonintrosegment6withpercivalwithmorgana_key">AV_SEG_6_WITHPERCIVALWITHMORGANA</string>
+    <string name="avalonintrosegment7_key">AV_SEG_7</string>
+
+    <string name="secrethitlerintrosegment0small_key">SH_SEG_0_S</string>
+    <string name="secrethitlerintrosegment1small_key" tools:ignore="Typos">SH_SEG_1_S</string>
+    <string name="secrethitlerintrosegment2small_key">SH_SEG_2_S</string>
+    <string name="secrethitlerintrosegment3small_key">SH_SEG_3_S</string>
+    <string name="secrethitlerintrosegment0large_key">SH_SEG_0_L</string>
+    <string name="secrethitlerintrosegment1large_key" tools:ignore="Typos">SH_SEG_1_L</string>
+    <string name="secrethitlerintrosegment2large_key">SH_SEG_2_L</string>
+    <string name="secrethitlerintrosegment3large_key">SH_SEG_3_L</string>
+    <string name="secrethitlerintrosegment4large_key">SH_SEG_4_L</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>
