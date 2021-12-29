@@ -1,6 +1,6 @@
 package com.liweiyap.narradir.util;
 
-import org.jetbrains.annotations.NotNull;
+import androidx.annotation.NonNull;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -9,7 +9,7 @@ public final class TimeDisplay
 {
     private TimeDisplay(){}
 
-    public static @NotNull String fromMilliseconds(final long msec)
+    public static @NonNull String fromMilliseconds(final long msec)
     {
         return String.format(
             Locale.ENGLISH,

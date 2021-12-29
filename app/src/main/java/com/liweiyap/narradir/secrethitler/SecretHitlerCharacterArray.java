@@ -28,34 +28,20 @@ class SecretHitlerCharacterArray
         mContext = context;
 
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0] = liberal0Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1] = liberal1Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2] = liberal2Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3] = liberal3Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL3].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4] = liberal4Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL4].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5] = liberal5Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL5].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER] = hitlerButton;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.HITLER].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0] = fascist0Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1] = fascist1Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1].addOnClickObserver(this::showNewToast);
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2] = fascist2Button;
-        mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2].addOnClickObserver(this::showNewToast);
+
+        for (ObserverImageButton btn : mCharacterImageButtonArray)
+        {
+            btn.addOnClickObserver(this::showNewToast);
+        }
     }
 
     public ObserverImageButton getCharacter(final int idx)
