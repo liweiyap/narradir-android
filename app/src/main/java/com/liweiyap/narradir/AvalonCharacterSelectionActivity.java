@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.RawRes;
-
 import com.liweiyap.narradir.avalon.AvalonCharacterName;
 import com.liweiyap.narradir.avalon.AvalonControlGroup;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
@@ -19,6 +17,7 @@ import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.PlayerNumberDictionary;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
@@ -34,6 +33,9 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection_avalon);
+
+        // initialise early in case savePreferences() is called early
+        mBackgroundSoundName = getString(R.string.backgroundsound_none);
 
         // -----------------------------------------------------------------------------------------
         // Avalon is the default game but another game might have been the last selected.
@@ -93,10 +95,10 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
                     return;
                 }
 
-                mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
                 mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+                mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
             });
         getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
 
@@ -236,50 +238,50 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
             throw new RuntimeException("AvalonCharacterSelectionActivity::navigateToPlayIntroductionActivity(): mAvalonControlGroup is NULL");
         }
 
-        ArrayList<Integer> introSegmentArrayList = new ArrayList<>();
+        ArrayList<String> introSegmentArrayList = new ArrayList<>();
 
-        introSegmentArrayList.add(R.raw.avalonintrosegment0);
+        introSegmentArrayList.add(getString(R.string.avalonintrosegment0_key));
 
-        introSegmentArrayList.add(mAvalonControlGroup.getCharacter(AvalonCharacterName.OBERON).isChecked() ?
-            R.raw.avalonintrosegment1withoberon :
-            R.raw.avalonintrosegment1nooberon);
+        introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.OBERON).isChecked() ?
+            R.string.avalonintrosegment1withoberon_key :
+            R.string.avalonintrosegment1nooberon_key));
 
-        introSegmentArrayList.add(R.raw.avalonintrosegment2);
+        introSegmentArrayList.add(getString(R.string.avalonintrosegment2_key));
 
         if (mAvalonControlGroup.getCharacter(AvalonCharacterName.MERLIN).isChecked())
         {
-            introSegmentArrayList.add(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORDRED).isChecked() ?
-                R.raw.avalonintrosegment3withmordred :
-                R.raw.avalonintrosegment3nomordred);
+            introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORDRED).isChecked() ?
+                R.string.avalonintrosegment3withmordred_key :
+                R.string.avalonintrosegment3nomordred_key));
 
-            introSegmentArrayList.add(R.raw.avalonintrosegment4);
+            introSegmentArrayList.add(getString(R.string.avalonintrosegment4_key));
 
             if (mAvalonControlGroup.getCharacter(AvalonCharacterName.PERCIVAL).isChecked())
             {
-                introSegmentArrayList.add(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked() ?
-                    R.raw.avalonintrosegment5withpercivalwithmorgana :
-                    R.raw.avalonintrosegment5withpercivalnomorgana);
+                introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked() ?
+                    R.string.avalonintrosegment5withpercivalwithmorgana_key :
+                    R.string.avalonintrosegment5withpercivalnomorgana_key));
 
-                introSegmentArrayList.add(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked() ?
-                    R.raw.avalonintrosegment6withpercivalwithmorgana :
-                    R.raw.avalonintrosegment6withpercivalnomorgana);
+                introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked() ?
+                    R.string.avalonintrosegment6withpercivalwithmorgana_key :
+                    R.string.avalonintrosegment6withpercivalnomorgana_key));
 
-                introSegmentArrayList.add(R.raw.avalonintrosegment7);
+                introSegmentArrayList.add(getString(R.string.avalonintrosegment7_key));
             }
             else
             {
-                introSegmentArrayList.add(R.raw.avalonintrosegment5nopercival);
+                introSegmentArrayList.add(getString(R.string.avalonintrosegment5nopercival_key));
             }
         }
         else
         {
-            introSegmentArrayList.add(R.raw.avalonintrosegment3nomerlin);
+            introSegmentArrayList.add(getString(R.string.avalonintrosegment3nomerlin_key));
         }
 
         Intent intent = new Intent(view.getContext(), PlayIntroductionActivity.class);
-        intent.putIntegerArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
+        intent.putStringArrayListExtra(getString(R.string.intro_segments_key), introSegmentArrayList);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         intent.putExtra(getString(R.string.is_started_from_avalon_key), true);
@@ -290,7 +292,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         mSettingsHomeActivityResultObserverListener.launch(intent);
@@ -309,8 +311,9 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
+        sharedPrefEditor.remove(getString(R.string.background_sound_key));  // this line may be removed in future
         sharedPrefEditor.putLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        sharedPrefEditor.putInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        sharedPrefEditor.putString(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
         sharedPrefEditor.putInt(getString(R.string.good_player_number_avalon_key), mAvalonControlGroup.getExpectedGoodTotal());
@@ -335,9 +338,9 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         mPauseDurationInMilliSecs = sharedPref.getLong(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        mBackgroundSoundRawResId = sharedPref.getInt(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
+        mBackgroundSoundName = sharedPref.getString(getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
 
         if (mAvalonControlGroup == null)
         {
@@ -416,7 +419,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
     private LifecycleActivityResultObserverListener mSettingsHomeActivityResultObserverListener;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
+    private String mBackgroundSoundName;
 }

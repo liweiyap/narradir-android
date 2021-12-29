@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverListener;
@@ -15,9 +14,9 @@ import com.liweiyap.narradir.ui.SettingsLayout;
 import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
+import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.TimeDisplay;
-import com.liweiyap.narradir.util.audio.BackgroundSoundDictionary;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,9 +36,9 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         Intent intent = getIntent();
 
         mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), 5000);
-        mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), 0);
         mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
         mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), 1f);
+        mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
 
         // ----------------------------------------------------------------------
         // set key and value of each individual SettingsLayout
@@ -51,7 +50,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 
         mBackgroundSettingsLayout = findViewById(R.id.backgroundSettingsLayout);
         mBackgroundSettingsLayout.setKey(getString(R.string.settings_title_background));
-        mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
+        mBackgroundSettingsLayout.setValue(mBackgroundSoundName + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
 
         mRoleTimerSettingsLayout = findViewById(R.id.roleTimerSettingsLayout);
         mRoleTimerSettingsLayout.setKey(getString(R.string.settings_title_roletimer));
@@ -98,15 +97,18 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
                 }
 
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-                mBackgroundSoundRawResId = data.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
                 mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+
+                // Do not use `getString(R.string.backgroundsound_none)`, or value will be accidentally overwritten when navigating backwards not from SettingsBackgroundActivity.
+                // We have already made use of IntentHelper earlier in `onCreate()` to make sure that the value is non-null.
+                mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), mBackgroundSoundName);
 
                 if (result.getResultCode() == Constants.RESULT_OK_SETTINGS_TWOSTEPS)
                 {
                     Intent newIntent = new Intent();
                     newIntent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-                    newIntent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+                    newIntent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
                     newIntent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                     newIntent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
                     setResult(Constants.RESULT_OK_SETTINGS_HOME, newIntent);
@@ -115,7 +117,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
                 else if (result.getResultCode() == Constants.RESULT_OK_SETTINGS_ONESTEP)
                 {
                     mNarrationSettingsLayout.setValue("Vol " + Math.round(mNarrationVolume * 10));
-                    mBackgroundSettingsLayout.setValue(BackgroundSoundDictionary.getNameStringFromResId(this, mBackgroundSoundRawResId) + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
+                    mBackgroundSettingsLayout.setValue(mBackgroundSoundName + ", Vol " + Math.round(mBackgroundSoundVolume * 10));
                     mRoleTimerSettingsLayout.setValue(TimeDisplay.fromMilliseconds(mPauseDurationInMilliSecs));
                 }
             });
@@ -192,7 +194,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
     private void navigateToSettingsBackgroundActivity(final @NotNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
@@ -213,7 +215,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
     private void navigateBackwards()
     {
         Intent intent = new Intent();
-        intent.putExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
+        intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
@@ -232,9 +234,9 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
     private SettingsLayout mRoleTimerSettingsLayout;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
+    private String mBackgroundSoundName;
 
     private ClickSoundGenerator mClickSoundGenerator;
     private LifecycleActivityResultObserverListener mSettingsIndividualActivityResultObserverListener;

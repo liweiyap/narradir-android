@@ -1,9 +1,8 @@
 package com.liweiyap.narradir.util.audio;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 
-import androidx.annotation.RawRes;
-import androidx.annotation.StringRes;
+import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
 
@@ -11,79 +10,121 @@ public final class IntroSegmentDictionary
 {
     private IntroSegmentDictionary(){}
 
-    @SuppressLint("NonConstantResourceId")
-    public static boolean canPauseManuallyAtEnd(@RawRes final int resId)
+    public static boolean canPauseManuallyAtEnd(final Context context, final String resName)
     {
-        switch (resId)
-        {
-            case R.raw.avalonintrosegment1nooberon:
-            case R.raw.avalonintrosegment1withoberon:
-            case R.raw.avalonintrosegment3nomordred:
-            case R.raw.avalonintrosegment3withmordred:
-            case R.raw.avalonintrosegment5withpercivalnomorgana:
-            case R.raw.avalonintrosegment5withpercivalwithmorgana:
-            case R.raw.secrethitlerintrosegment1small:
-            case R.raw.secrethitlerintrosegment1large:
-            case R.raw.secrethitlerintrosegment2large:
-                return true;
-            default:
-                return false;
-        }
+        return (context != null)
+            && (resName != null)
+            && ( resName.equals(context.getString(R.string.avalonintrosegment1nooberon_key))
+            || resName.equals(context.getString(R.string.avalonintrosegment1withoberon_key))
+            || resName.equals(context.getString(R.string.avalonintrosegment3nomordred_key))
+            || resName.equals(context.getString(R.string.avalonintrosegment3withmordred_key))
+            || resName.equals(context.getString(R.string.avalonintrosegment5withpercivalnomorgana_key))
+            || resName.equals(context.getString(R.string.avalonintrosegment5withpercivalwithmorgana_key))
+            || resName.equals(context.getString(R.string.secrethitlerintrosegment1small_key))
+            || resName.equals(context.getString(R.string.secrethitlerintrosegment1large_key))
+            || resName.equals(context.getString(R.string.secrethitlerintrosegment2large_key)) );
     }
 
-    @SuppressLint("NonConstantResourceId")
-    public static @StringRes int getSubtitleResIdFromIntroSegmentResId(@RawRes final int resId)
+    public static @Nullable String getSubtitleFromIntroSegmentRes(final Context context, final String resName)
     {
-        switch (resId)
+        if ((context == null) || (resName == null))
         {
-            case R.raw.avalonintrosegment0:
-                return R.string.avalonintrosegment0_text;
-            case R.raw.avalonintrosegment1nooberon:
-                return R.string.avalonintrosegment1nooberon_text;
-            case R.raw.avalonintrosegment1withoberon:
-                return R.string.avalonintrosegment1withoberon_text;
-            case R.raw.avalonintrosegment2:
-                return R.string.avalonintrosegment2_text;
-            case R.raw.avalonintrosegment3nomerlin:
-                return R.string.avalonintrosegment3nomerlin_text;
-            case R.raw.avalonintrosegment3nomordred:
-                return R.string.avalonintrosegment3nomordred_text;
-            case R.raw.avalonintrosegment3withmordred:
-                return R.string.avalonintrosegment3withmordred_text;
-            case R.raw.avalonintrosegment4:
-                return R.string.avalonintrosegment4_text;
-            case R.raw.avalonintrosegment5nopercival:
-                return R.string.avalonintrosegment5nopercival_text;
-            case R.raw.avalonintrosegment5withpercivalnomorgana:
-                return R.string.avalonintrosegment5withpercivalnomorgana_text;
-            case R.raw.avalonintrosegment5withpercivalwithmorgana:
-                return R.string.avalonintrosegment5withpercivalwithmorgana_text;
-            case R.raw.avalonintrosegment6withpercivalnomorgana:
-                return R.string.avalonintrosegment6withpercivalnomorgana_text;
-            case R.raw.avalonintrosegment6withpercivalwithmorgana:
-                return R.string.avalonintrosegment6withpercivalwithmorgana_text;
-            case R.raw.avalonintrosegment7:
-                return R.string.avalonintrosegment7_text;
-            case R.raw.secrethitlerintrosegment0small:
-                return R.string.secrethitlerintrosegment0small_text;
-            case R.raw.secrethitlerintrosegment1small:
-                return R.string.secrethitlerintrosegment1small_text;
-            case R.raw.secrethitlerintrosegment2small:
-                return R.string.secrethitlerintrosegment2small_text;
-            case R.raw.secrethitlerintrosegment3small:
-                return R.string.secrethitlerintrosegment3small_text;
-            case R.raw.secrethitlerintrosegment0large:
-                return R.string.secrethitlerintrosegment0large_text;
-            case R.raw.secrethitlerintrosegment1large:
-                return R.string.secrethitlerintrosegment1large_text;
-            case R.raw.secrethitlerintrosegment2large:
-                return R.string.secrethitlerintrosegment2large_text;
-            case R.raw.secrethitlerintrosegment3large:
-                return R.string.secrethitlerintrosegment3large_text;
-            case R.raw.secrethitlerintrosegment4large:
-                return R.string.secrethitlerintrosegment4large_text;
+            return null;
         }
 
-        return 0;
+        if (resName.equals(context.getString(R.string.avalonintrosegment0_key)))
+        {
+            return context.getString(R.string.avalonintrosegment0_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment1nooberon_key)))
+        {
+            return context.getString(R.string.avalonintrosegment1nooberon_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment1withoberon_key)))
+        {
+            return context.getString(R.string.avalonintrosegment1withoberon_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment2_key)))
+        {
+            return context.getString(R.string.avalonintrosegment2_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment3nomerlin_key)))
+        {
+            return context.getString(R.string.avalonintrosegment3nomerlin_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment3nomordred_key)))
+        {
+            return context.getString(R.string.avalonintrosegment3nomordred_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment3withmordred_key)))
+        {
+            return context.getString(R.string.avalonintrosegment3withmordred_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment4_key)))
+        {
+            return context.getString(R.string.avalonintrosegment4_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment5nopercival_key)))
+        {
+            return context.getString(R.string.avalonintrosegment5nopercival_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment5withpercivalnomorgana_key)))
+        {
+            return context.getString(R.string.avalonintrosegment5withpercivalnomorgana_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment5withpercivalwithmorgana_key)))
+        {
+            return context.getString(R.string.avalonintrosegment5withpercivalwithmorgana_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment6withpercivalnomorgana_key)))
+        {
+            return context.getString(R.string.avalonintrosegment6withpercivalnomorgana_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment6withpercivalwithmorgana_key)))
+        {
+            return context.getString(R.string.avalonintrosegment6withpercivalwithmorgana_text);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment7_key)))
+        {
+            return context.getString(R.string.avalonintrosegment7_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment0small_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment0small_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment1small_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment1small_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment2small_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment2small_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment3small_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment3small_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment0large_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment0large_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment1large_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment1large_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment2large_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment2large_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment3large_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment3large_text);
+        }
+        else if (resName.equals(context.getString(R.string.secrethitlerintrosegment4large_key)))
+        {
+            return context.getString(R.string.secrethitlerintrosegment4large_text);
+        }
+
+        return null;
     }
 }

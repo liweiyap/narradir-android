@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.RawRes;
-import androidx.annotation.StringRes;
+import androidx.annotation.NonNull;
 
 import com.google.android.exoplayer2.Player;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
+import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer;
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary;
 
@@ -38,11 +38,11 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
 
         Intent intent = getIntent();
 
-        final ArrayList<Integer> introSegmentArrayList = intent.getIntegerArrayListExtra(getString(R.string.intro_segments_key));
+        final ArrayList<String> introSegmentArrayList = intent.getStringArrayListExtra(getString(R.string.intro_segments_key));
         mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        mBackgroundSoundRawResId = intent.getIntExtra(getString(R.string.background_sound_key), mBackgroundSoundRawResId);
         mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
 
         boolean isStartedFromAvalon = intent.getBooleanExtra(getString(R.string.is_started_from_avalon_key), true);
         findViewById(R.id.gameTitleAvalonTextView).setVisibility(isStartedFromAvalon ? View.VISIBLE : View.INVISIBLE);
@@ -58,7 +58,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         mAudioPlayer = new IntroAudioPlayer(
             this,
             introSegmentArrayList, mPauseDurationInMilliSecs, mNarrationVolume,
-            mBackgroundSoundRawResId, mBackgroundSoundVolume);
+            mBackgroundSoundName, mBackgroundSoundVolume);
 
         mAudioPlayer.addExoPlayerListener(new Player.Listener()
         {
@@ -71,7 +71,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                     return;
                 }
 
-                int newWindowIdx = mAudioPlayer.getExoPlayerCurrentWindowIndex();
+                int newWindowIdx = mAudioPlayer.getExoPlayerCurrentMediaItemIndex();
                 if (newWindowIdx % 2 == 0)
                 {
                     switchCurrentDisplayedCharacterImage(introSegmentArrayList.get(newWindowIdx/2));
@@ -79,8 +79,8 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                 }
                 else
                 {
-                    if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(introSegmentArrayList.get(newWindowIdx/2))) &&
-                        (mPauseDurationInMilliSecs != IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
+                    if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(PlayIntroductionActivity.this, introSegmentArrayList.get(newWindowIdx/2))) &&
+                         (mPauseDurationInMilliSecs != IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
                     {
                         mCurrentDisplayedIntroSegmentTextView.setText(
                             (mPauseDurationInMilliSecs == 1000) ?
@@ -188,72 +188,100 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         }
     }
 
-    @SuppressLint("NonConstantResourceId")
-    private void switchCurrentDisplayedCharacterImage(@RawRes final int resId)
+    private void switchCurrentDisplayedCharacterImage(final @NonNull String resName)
     {
         if (mCurrentDisplayedCharacterImageView == null)
         {
             return;
         }
 
-        switch (resId)
+        // does not look elegant but it's safe because resource ID integers are non-constant from Gradle version >4.
+        if (resName.equals(getString(R.string.avalonintrosegment1nooberon_key)))
         {
-            case R.raw.avalonintrosegment1nooberon:
-            case R.raw.avalonintrosegment1withoberon:
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.teamevil);
-                return;
-            case R.raw.avalonintrosegment3nomordred:
-            case R.raw.avalonintrosegment3withmordred:
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.merlin_unchecked_unlabelled);
-                return;
-            case R.raw.avalonintrosegment5withpercivalnomorgana:
-            case R.raw.avalonintrosegment5withpercivalwithmorgana:
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
-                return;
-            case R.raw.secrethitlerintrosegment1small:
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_teamfascists);
-                mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
-                return;
-            case R.raw.secrethitlerintrosegment1large:
-                mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_fascist);
-                mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
-                return;
-            case R.raw.avalonintrosegment3nomerlin:
-            case R.raw.avalonintrosegment5nopercival:
-            case R.raw.avalonintrosegment7:
-            case R.raw.secrethitlerintrosegment3small:
-            case R.raw.secrethitlerintrosegment4large:
-                mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-                mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.teamevil);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment1withoberon_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.teamevil);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment3nomordred_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.merlin_unchecked_unlabelled);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment3withmordred_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.merlin_unchecked_unlabelled);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment5withpercivalnomorgana_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment5withpercivalwithmorgana_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.percival_unchecked_unlabelled);
+        }
+        else if (resName.equals(getString(R.string.secrethitlerintrosegment1small_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_teamfascists);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
+        }
+        else if (resName.equals(getString(R.string.secrethitlerintrosegment1large_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageResource(R.drawable.ic_fascist);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(R.drawable.fascist_background);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment3nomerlin_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment5nopercival_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+        }
+        else if (resName.equals(getString(R.string.avalonintrosegment7_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+        }
+        else if (resName.equals(getString(R.string.secrethitlerintrosegment3small_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+        }
+        else if (resName.equals(getString(R.string.secrethitlerintrosegment4large_key)))
+        {
+            mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
         }
     }
 
-    @SuppressLint("NonConstantResourceId")
-    private void switchCurrentDisplayedIntroSegmentTextView(@RawRes final int resId)
+    private void switchCurrentDisplayedIntroSegmentTextView(final @NonNull String resName)
     {
         if (mCurrentDisplayedIntroSegmentTextView == null)
         {
             return;
         }
 
-        @StringRes final int subtitleId = IntroSegmentDictionary.getSubtitleResIdFromIntroSegmentResId(resId);
+        final String subtitle = IntroSegmentDictionary.getSubtitleFromIntroSegmentRes(this, resName);
 
-        if (subtitleId == 0)
+        if (subtitle == null)
         {
             throw new RuntimeException(
                 "PlayIntroductionActivity::switchCurrentDisplayedIntroSegmentTextView(): " +
-                "Invalid introduction segment resource ID " + resId);
+                "Invalid introduction segment resource name " + resName);
         }
 
-        mCurrentDisplayedIntroSegmentTextView.setText(subtitleId);
+        mCurrentDisplayedIntroSegmentTextView.setText(subtitle);
     }
 
     private IntroAudioPlayer mAudioPlayer;
 
     private long mPauseDurationInMilliSecs = 5000;
-    private @RawRes int mBackgroundSoundRawResId = 0;
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
+    private String mBackgroundSoundName;
 
     private ImageView mCurrentDisplayedCharacterImageView;
     private CustomTypefaceableTextView mCurrentDisplayedIntroSegmentTextView;

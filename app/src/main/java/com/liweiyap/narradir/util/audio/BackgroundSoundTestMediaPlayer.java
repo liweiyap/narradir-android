@@ -4,7 +4,9 @@ import android.content.Context;
 import android.media.MediaPlayer;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RawRes;
+import androidx.annotation.Nullable;
+
+import com.liweiyap.narradir.R;
 
 public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
 {
@@ -14,16 +16,26 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
     }
 
     @Override
-    public void play(final @RawRes int resId, final float volume)
+    public void play(final String res, final float volume)
     {
         if (mMediaPlayer != null)
         {
             mMediaPlayer.stop();
         }
 
+        if (res == null)
+        {
+            return;
+        }
+
         try
         {
-            mMediaPlayer = MediaPlayer.create(mContext, resId);
+            mMediaPlayer = create(res);
+            if (mMediaPlayer == null)
+            {
+                return;
+            }
+
             mMediaPlayer.setLooping(true);
             mMediaPlayer.setVolume(volume, volume);
             mMediaPlayer.start();
@@ -81,6 +93,42 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
 
         mMediaPlayer.release();
         mMediaPlayer = null;
+    }
+
+    private @Nullable MediaPlayer create(final @NonNull String res)
+    {
+        // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
+        // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
+        if (res.equals(mContext.getString(R.string.backgroundsound_cards)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundcards);
+        }
+        else if (res.equals(mContext.getString(R.string.backgroundsound_crickets)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundcrickets);
+        }
+        else if (res.equals(mContext.getString(R.string.backgroundsound_fireplace)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundfireplace);
+        }
+        else if (res.equals(mContext.getString(R.string.backgroundsound_rain)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundrain);
+        }
+        else if (res.equals(mContext.getString(R.string.backgroundsound_rainforest)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundrainforest);
+        }
+        else if (res.equals(mContext.getString(R.string.backgroundsound_rainstorm)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundrainstorm);
+        }
+        else if (res.equals(mContext.getString(R.string.backgroundsound_wolves)))
+        {
+            return MediaPlayer.create(mContext, R.raw.backgroundwolves);
+        }
+
+        return null;
     }
 
     private final Context mContext;
