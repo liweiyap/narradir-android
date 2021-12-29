@@ -74,6 +74,11 @@
     <string name="secrethitlerintrosegment3large_text">HITLER, put your thumb away. FASCISTS, close your eyes.</string>
     <string name="secrethitlerintrosegment4large_text">EVERYONE, wake up.</string>
 
+    <plurals name="pauseduration_text">  <!-- note: some languages are special, e.g. 2, 3, 4, 11, 12, 13, 14, 102 (see: https://developer.android.com/guide/topics/resources/string-resource#Plurals) -->
+        <item quantity="one">(PAUSE for %d second)</item>
+        <item quantity="other">(PAUSE for %d seconds)</item>
+    </plurals>
+
     <string name="edit_button_text">Edit</string>
 
     <string name="author_website">App Creator:\nliweiyap.github.io</string>
