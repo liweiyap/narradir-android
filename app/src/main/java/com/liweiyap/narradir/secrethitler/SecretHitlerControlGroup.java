@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.ObserverImageButton;
@@ -130,10 +129,10 @@ public class SecretHitlerControlGroup
         // -----------------------------------------------------------------------------------------
 
         mCharacterDescriptionMediaPlayer = new CharacterDescriptionMediaPlayer(context);
-        addCharacterDescriptions();
+        addCharacterDescriptions(context);
     }
 
-    private void addCharacterDescriptions()
+    private void addCharacterDescriptions(final @NonNull Context context)
     {
         if (mCharacterArray == null)
         {
@@ -142,16 +141,16 @@ public class SecretHitlerControlGroup
 
         try
         {
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.liberaldescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.hitlerdescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(R.raw.fascistdescription));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.hitlerdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.fascistdescription_key)));
         }
         catch (Exception e)
         {
@@ -159,14 +158,14 @@ public class SecretHitlerControlGroup
         }
     }
 
-    private void startCharacterDescriptionMediaPlayer(@RawRes int descriptionId)
+    private void startCharacterDescriptionMediaPlayer(final @NonNull String description)
     {
         if (mCharacterDescriptionMediaPlayer == null)
         {
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.play(descriptionId, 1f);
+        mCharacterDescriptionMediaPlayer.play(description, 1f);
     }
 
     public void resumeCharacterDescriptionMediaPlayer()

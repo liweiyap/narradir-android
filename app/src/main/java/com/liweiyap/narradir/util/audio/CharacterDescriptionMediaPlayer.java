@@ -4,7 +4,9 @@ import android.content.Context;
 import android.media.MediaPlayer;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RawRes;
+import androidx.annotation.Nullable;
+
+import com.liweiyap.narradir.R;
 
 public class CharacterDescriptionMediaPlayer implements MediaPlayerController
 {
@@ -14,17 +16,26 @@ public class CharacterDescriptionMediaPlayer implements MediaPlayerController
     }
 
     @Override
-    public void play(final @RawRes int resId, final float volume)
+    public void play(final String res, final float volume)
     {
         if (mMediaPlayer != null)
         {
             mMediaPlayer.stop();
         }
 
+        if (res == null)
+        {
+            return;
+        }
+
         try
         {
-            // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
-            mMediaPlayer = MediaPlayer.create(mContext, resId);
+            mMediaPlayer = create(res);
+            if (mMediaPlayer == null)
+            {
+                return;
+            }
+
             mMediaPlayer.setVolume(volume, volume);
             mMediaPlayer.start();
         }
@@ -79,6 +90,58 @@ public class CharacterDescriptionMediaPlayer implements MediaPlayerController
 
         mMediaPlayer.release();
         mMediaPlayer = null;
+    }
+
+    private @Nullable MediaPlayer create(final @NonNull String res)
+    {
+        // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
+        // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
+        if (res.equals(mContext.getString(R.string.merlindescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.merlindescription);
+        }
+        else if (res.equals(mContext.getString(R.string.percivaldescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.percivaldescription);
+        }
+        else if (res.equals(mContext.getString(R.string.loyaldescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.loyaldescription);
+        }
+        else if (res.equals(mContext.getString(R.string.assassindescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.assassindescription);
+        }
+        else if (res.equals(mContext.getString(R.string.morganadescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.morganadescription);
+        }
+        else if (res.equals(mContext.getString(R.string.mordreddescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.mordreddescription);
+        }
+        else if (res.equals(mContext.getString(R.string.oberondescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.oberondescription);
+        }
+        else if (res.equals(mContext.getString(R.string.miniondescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.miniondescription);
+        }
+        else if (res.equals(mContext.getString(R.string.liberaldescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.liberaldescription);
+        }
+        else if (res.equals(mContext.getString(R.string.hitlerdescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.hitlerdescription);
+        }
+        else if (res.equals(mContext.getString(R.string.fascistdescription_key)))
+        {
+            return MediaPlayer.create(mContext, R.raw.fascistdescription);
+        }
+
+        return null;
     }
 
     private final Context mContext;

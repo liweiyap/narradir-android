@@ -184,5 +184,18 @@
     <string name="secrethitlerintrosegment3large_key">SH_SEG_3_L</string>
     <string name="secrethitlerintrosegment4large_key">SH_SEG_4_L</string>
 
+    <string name="merlindescription_key">D_MERLIN</string>
+    <string name="percivaldescription_key">D_PERCIVAL</string>
+    <string name="loyaldescription_key">D_LOYAL</string>
+    <string name="assassindescription_key">D_ASSASSIN</string>
+    <string name="morganadescription_key">D_MORGANA</string>
+    <string name="mordreddescription_key">D_MORDRED</string>
+    <string name="oberondescription_key">D_OBERON</string>
+    <string name="miniondescription_key">D_MINION</string>
+
+    <string name="liberaldescription_key">D_LIBERAL</string>
+    <string name="hitlerdescription_key">D_HITLER</string>
+    <string name="fascistdescription_key">D_FASCIST</string>
+
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>

@@ -6,7 +6,6 @@ import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.RawRes;
 
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverButton;
@@ -220,13 +219,13 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         backgroundSoundRainstormButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rainstorm));
         backgroundSoundWolvesButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_wolves));
 
-        backgroundSoundCardsButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcards));
-        backgroundSoundCricketsButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundcrickets));
-        backgroundSoundFireplaceButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundfireplace));
-        backgroundSoundRainButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrain));
-        backgroundSoundRainforestButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainforest));
-        backgroundSoundRainstormButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundrainstorm));
-        backgroundSoundWolvesButton.addOnLongClickObserver(() -> playBackgroundSound(R.raw.backgroundwolves));
+        backgroundSoundCardsButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_cards)));
+        backgroundSoundCricketsButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_crickets)));
+        backgroundSoundFireplaceButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_fireplace)));
+        backgroundSoundRainButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_rain)));
+        backgroundSoundRainforestButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_rainforest)));
+        backgroundSoundRainstormButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_rainstorm)));
+        backgroundSoundWolvesButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_wolves)));
         backgroundSoundNoneButton.addOnLongClickObserver(() -> {
             if (mBackgroundSoundTestMediaPlayer == null)
             {
@@ -236,14 +235,14 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         });
     }
 
-    private void playBackgroundSound(final @RawRes int soundId)
+    private void playBackgroundSound(final @NonNull String sound)
     {
         if (mBackgroundSoundTestMediaPlayer == null)
         {
             return;
         }
 
-        mBackgroundSoundTestMediaPlayer.play(soundId, mBackgroundSoundVolume);
+        mBackgroundSoundTestMediaPlayer.play(sound, mBackgroundSoundVolume);
     }
 
     private void displayVolume()
