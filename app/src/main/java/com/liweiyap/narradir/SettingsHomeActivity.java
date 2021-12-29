@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverListener;
@@ -18,8 +19,6 @@ import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.TimeDisplay;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
-
-import org.jetbrains.annotations.NotNull;
 
 public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
 {
@@ -184,14 +183,14 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         observerListener.addOnClickObserver(() -> mClickSoundGenerator.playClickSound());
     }
 
-    private void navigateToSettingsNarrationActivity(final @NotNull View view)
+    private void navigateToSettingsNarrationActivity(final @NonNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsNarrationActivity.class);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 
-    private void navigateToSettingsBackgroundActivity(final @NotNull View view)
+    private void navigateToSettingsBackgroundActivity(final @NonNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
@@ -199,14 +198,14 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 
-    private void navigateToSettingsRoleTimerActivity(final @NotNull View view)
+    private void navigateToSettingsRoleTimerActivity(final @NonNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsRoleTimerActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 
-    private void navigateToHelpActivity(final @NotNull View view)
+    private void navigateToHelpActivity(final @NonNull View view)
     {
         Intent intent = new Intent(view.getContext(), HelpActivity.class);
         mSettingsIndividualActivityResultObserverListener.launch(intent);

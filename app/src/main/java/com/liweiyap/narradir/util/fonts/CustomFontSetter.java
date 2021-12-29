@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.liweiyap.narradir.R;
 
 public final class CustomFontSetter
@@ -18,7 +20,7 @@ public final class CustomFontSetter
      * Can also be used on Buttons, because Button extends (is a subclass of) TextView.
      * Context required for getAssets() function.
      */
-    public static void setCustomFont(final TextView textView, final @org.jetbrains.annotations.NotNull Context context, final AttributeSet attrs)
+    public static void setCustomFont(final TextView textView, final @NonNull Context context, final AttributeSet attrs)
     {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFont);
         String assetFontPath = typedArray.getString(R.styleable.CustomFont_assetFontPath);
@@ -29,7 +31,7 @@ public final class CustomFontSetter
     /**
      * Sets a font on a TextView
      */
-    public static void setCustomFont(final TextView textView, final String assetFontPath, final @org.jetbrains.annotations.NotNull Context context)
+    public static void setCustomFont(final TextView textView, final String assetFontPath, final @NonNull Context context)
     {
         if ( (assetFontPath == null) || (textView == null) )
         {

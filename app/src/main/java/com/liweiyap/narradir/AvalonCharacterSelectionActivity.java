@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+
 import com.liweiyap.narradir.avalon.AvalonCharacterName;
 import com.liweiyap.narradir.avalon.AvalonControlGroup;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
@@ -21,8 +23,6 @@ import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.PlayerNumberDictionary;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -219,7 +219,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         return mAvalonControlGroup.getCharacterImageButtonArray();
     }
 
-    private void navigateToSecretHitlerCharacterSelectionActivity(final @NotNull View view)
+    private void navigateToSecretHitlerCharacterSelectionActivity(final @NonNull View view)
     {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sharedPrefEditor = sharedPref.edit();
@@ -231,7 +231,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToPlayIntroductionActivity(final @NotNull View view)
+    private void navigateToPlayIntroductionActivity(final @NonNull View view)
     {
         if (mAvalonControlGroup == null)
         {
@@ -288,7 +288,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         view.getContext().startActivity(intent);
     }
 
-    private void navigateToSettingsHomeActivity(final @NotNull View view)
+    private void navigateToSettingsHomeActivity(final @NonNull View view)
     {
         Intent intent = new Intent(view.getContext(), SettingsHomeActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
