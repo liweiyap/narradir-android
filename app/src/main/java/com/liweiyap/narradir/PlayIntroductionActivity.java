@@ -1,6 +1,5 @@
 package com.liweiyap.narradir;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +61,6 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
 
         mAudioPlayer.addExoPlayerListener(new Player.Listener()
         {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onPositionDiscontinuity(Player.@NotNull PositionInfo oldPosition, Player.@NotNull PositionInfo newPosition, @Player.DiscontinuityReason int reason)
             {
@@ -82,10 +80,8 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                     if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(PlayIntroductionActivity.this, introSegmentArrayList.get(newWindowIdx/2))) &&
                          (mPauseDurationInMilliSecs != IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
                     {
-                        mCurrentDisplayedIntroSegmentTextView.setText(
-                            (mPauseDurationInMilliSecs == 1000) ?
-                                "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " second)" :
-                                "(PAUSE for " + mPauseDurationInMilliSecs/1000 + " seconds)");
+                        // this long to int conversion is safe for the current (values/1000) that we have but this may change in future
+                        mCurrentDisplayedIntroSegmentTextView.setText(getResources().getQuantityString(R.plurals.pauseduration_text, (int) (mPauseDurationInMilliSecs/1000), mPauseDurationInMilliSecs/1000));
                     }
                 }
             }

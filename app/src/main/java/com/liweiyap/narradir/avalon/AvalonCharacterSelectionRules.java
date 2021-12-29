@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
 import com.liweiyap.narradir.ui.ToastSingleton;
 
@@ -313,7 +314,7 @@ class AvalonCharacterSelectionRules
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mContext, "Loyal cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_loyal_toastmsg), Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {
@@ -341,7 +342,7 @@ class AvalonCharacterSelectionRules
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mContext, "Minions cannot be manually selected or deselected.", Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_minion_toastmsg), Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {

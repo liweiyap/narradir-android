@@ -33,6 +33,10 @@
     <string name="secrethitler_to_settingshome_key">SECRETHITLER_TO_SETTINGSHOME</string>
     <string name="settingshome_to_settingsindividual_key">SETTINGSHOME_TO_SETTINGSINDIVIDUAL</string>
 
+    <string name="avalon_loyal_toastmsg">Loyal cannot be manually selected or deselected.</string>
+    <string name="avalon_minion_toastmsg">Minions cannot be manually selected or deselected.</string>
+    <string name="secrethitler_all_toastmsg">Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.</string>
+
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
     <string name="p7_button_text">7P</string>
@@ -73,6 +77,11 @@
     <string name="secrethitlerintrosegment2large_text">HITLER, stick out your thumb, so that the Fascists can see who you are.</string>
     <string name="secrethitlerintrosegment3large_text">HITLER, put your thumb away. FASCISTS, close your eyes.</string>
     <string name="secrethitlerintrosegment4large_text">EVERYONE, wake up.</string>
+
+    <plurals name="pauseduration_text">  <!-- note: some languages are special, e.g. 2, 3, 4, 11, 12, 13, 14, 102 (see: https://developer.android.com/guide/topics/resources/string-resource#Plurals) -->
+        <item quantity="one">(PAUSE for %d second)</item>
+        <item quantity="other">(PAUSE for %d seconds)</item>
+    </plurals>
 
     <string name="edit_button_text">Edit</string>
 
@@ -133,7 +142,7 @@
     <string name="help_subheading3_para8">The overall app design was inspired by the One Night Ultimate Werewolf app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.\n</string>
     <string name="help_subheading3_para9">The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, and Li-Toong Yap for their generous help in the internal testing of the app and in providing valuable feedback.\n</string>
     <string name="help_subheading3_para10">The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.\n</string>
-    <string name="help_subheading4">Why the name \"Narradir\"?</string>
+    <string name="help_subheading4">Why the name \"Narradir\"\?</string>
     <string name="help_subheading4_para0">The name is a portmanteau of \"narrator\" and \"Nadir\", which is the last name of Abed, one of the main characters of the American television sitcom \"Community\". In one episode involving delicious chicken fingers, Abed narrated a good chunk of the story line, as if \"in a mafia movie\" (his own words). In two other episodes featuring Dungeons &amp; Dragons, Abed was the Dungeon Master, whose tasks include narration. The launcher icon of the app is also a reference to the school logo of Greendale Community College, which is the main setting of this sitcom.</string>
 
     <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
