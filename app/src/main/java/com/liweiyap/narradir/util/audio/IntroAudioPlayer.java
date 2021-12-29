@@ -128,21 +128,23 @@ public class IntroAudioPlayer
             final String segment = introSegmentArrayList.get(idx);
 
             ProgressiveMediaSource mediaSource = ExoPlayerMediaSourceCreator.createProgressiveMediaSourceFromRes(context, segment, mp3ExtractorFactory);
-            if (mediaSource != null)
+            if (mediaSource == null)
             {
-                mIntroSegmentPlayer.addMediaSource(mediaSource);
-
-                if (idx == introSegmentArrayList.size() - 1)
-                {
-                    break;
-                }
-
-                SilenceMediaSource silence = new SilenceMediaSource(
-                    IntroSegmentDictionary.canPauseManuallyAtEnd(context, segment) ?
-                        pauseDurationInMilliSecs * 1000 :
-                        sMinPauseDurationInMilliSecs * 1000);
-                mIntroSegmentPlayer.addMediaSource(silence);
+                continue;
             }
+
+            mIntroSegmentPlayer.addMediaSource(mediaSource);
+
+            if (idx == introSegmentArrayList.size() - 1)
+            {
+                break;
+            }
+
+            SilenceMediaSource silence = new SilenceMediaSource(
+                IntroSegmentDictionary.canPauseManuallyAtEnd(context, segment) ?
+                    pauseDurationInMilliSecs * 1000 :
+                    sMinPauseDurationInMilliSecs * 1000);
+            mIntroSegmentPlayer.addMediaSource(silence);
         }
 
         if (mIntroSegmentPlayer.getMediaItemCount() != 2 * introSegmentArrayList.size() - 1)

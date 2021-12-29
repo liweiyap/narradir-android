@@ -3,7 +3,6 @@ package com.liweiyap.narradir.util.audio;
 import android.content.Context;
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.MediaItem;
@@ -20,10 +19,9 @@ public final class ExoPlayerMediaSourceCreator
 {
     private ExoPlayerMediaSourceCreator(){}
 
-    public static @Nullable
-    ProgressiveMediaSource createProgressiveMediaSourceFromRes(final @NonNull Context context, final @NonNull String resName, final ExtractorsFactory extractorsFactory)
+    public static @Nullable ProgressiveMediaSource createProgressiveMediaSourceFromRes(final Context context, final String resName, final ExtractorsFactory extractorsFactory)
     {
-        if (extractorsFactory == null)
+        if ((context == null) || (resName == null) || (extractorsFactory == null))
         {
             return null;
         }
@@ -53,8 +51,13 @@ public final class ExoPlayerMediaSourceCreator
         return null;
     }
 
-    private static @Nullable Uri buildRawResourceUri(final @NonNull Context context, final @NonNull String resName)
+    private static @Nullable Uri buildRawResourceUri(final Context context, final String resName)
     {
+        if ((context == null) || (resName == null))
+        {
+            return null;
+        }
+
         // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
         // I think that the URI that is itself loaded and returned wouldn't be non-constant, right??
         if (resName.equals(context.getString(R.string.avalonintrosegment0_key)))

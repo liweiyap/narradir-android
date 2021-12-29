@@ -2,7 +2,6 @@ package com.liweiyap.narradir.util.audio;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
@@ -11,9 +10,11 @@ public final class IntroSegmentDictionary
 {
     private IntroSegmentDictionary(){}
 
-    public static boolean canPauseManuallyAtEnd(final @NonNull Context context, final @NonNull String resName)
+    public static boolean canPauseManuallyAtEnd(final Context context, final String resName)
     {
-        return ( resName.equals(context.getString(R.string.avalonintrosegment1nooberon_key))
+        return (context != null)
+            && (resName != null)
+            && ( resName.equals(context.getString(R.string.avalonintrosegment1nooberon_key))
             || resName.equals(context.getString(R.string.avalonintrosegment1withoberon_key))
             || resName.equals(context.getString(R.string.avalonintrosegment3nomordred_key))
             || resName.equals(context.getString(R.string.avalonintrosegment3withmordred_key))
@@ -24,8 +25,13 @@ public final class IntroSegmentDictionary
             || resName.equals(context.getString(R.string.secrethitlerintrosegment2large_key)) );
     }
 
-    public static @Nullable String getSubtitleFromIntroSegmentRes(final @NonNull Context context, final @NonNull String resName)
+    public static @Nullable String getSubtitleFromIntroSegmentRes(final Context context, final String resName)
     {
+        if ((context == null) || (resName == null))
+        {
+            return null;
+        }
+
         if (resName.equals(context.getString(R.string.avalonintrosegment0_key)))
         {
             return context.getString(R.string.avalonintrosegment0_text);
