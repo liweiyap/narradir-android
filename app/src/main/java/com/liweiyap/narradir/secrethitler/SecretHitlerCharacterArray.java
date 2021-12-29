@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ToastSingleton;
 
@@ -74,11 +75,9 @@ class SecretHitlerCharacterArray
 
     private void showNewToast()
     {
-        final String toastMessage = "Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.";
-
         try
         {
-            ToastSingleton.getInstance().showNewToast(mContext, toastMessage, Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.secrethitler_all_toastmsg), Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {

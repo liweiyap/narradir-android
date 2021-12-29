@@ -33,6 +33,10 @@
     <string name="secrethitler_to_settingshome_key">SECRETHITLER_TO_SETTINGSHOME</string>
     <string name="settingshome_to_settingsindividual_key">SETTINGSHOME_TO_SETTINGSINDIVIDUAL</string>
 
+    <string name="avalon_loyal_toastmsg">Loyal cannot be manually selected or deselected.</string>
+    <string name="avalon_minion_toastmsg">Minions cannot be manually selected or deselected.</string>
+    <string name="secrethitler_all_toastmsg">Characters in Secret Hitler cannot be manually selected or deselected. Use the player number selection buttons above instead.</string>
+
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
     <string name="p7_button_text">7P</string>
