@@ -1,29 +1,53 @@
 package com.liweiyap.narradir.util;
 
+import android.content.Context;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.liweiyap.narradir.R;
+import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 
 public final class PlayerNumberDictionary
 {
     private PlayerNumberDictionary(){}
 
-    public static int getSelectorButtonIdFromPlayerNumber(final int playerNumber)
+    // more verbose than previously but it's safe because resource ID integers are non-constant from Gradle version >4.
+    public static void selectPlayerNumberButton(final Context context, final int playerNumber, final String callingFuncName) throws RuntimeException
     {
+        if (context == null)
+        {
+            return;
+        }
+
+        CustomTypefaceableCheckableObserverButton selectorButton;
+
         switch (playerNumber)
         {
             case 5:
-                return R.id.p5Button;
+                selectorButton = ((AppCompatActivity) context).findViewById(R.id.p5Button);
+                break;
             case 6:
-                return R.id.p6Button;
+                selectorButton = ((AppCompatActivity) context).findViewById(R.id.p6Button);
+                break;
             case 7:
-                return R.id.p7Button;
+                selectorButton = ((AppCompatActivity) context).findViewById(R.id.p7Button);
+                break;
             case 8:
-                return R.id.p8Button;
+                selectorButton = ((AppCompatActivity) context).findViewById(R.id.p8Button);
+                break;
             case 9:
-                return R.id.p9Button;
+                selectorButton = ((AppCompatActivity) context).findViewById(R.id.p9Button);
+                break;
             case 10:
-                return R.id.p10Button;
+                selectorButton = ((AppCompatActivity) context).findViewById(R.id.p10Button);
+                break;
+            default:
+                throw new RuntimeException(callingFuncName + ": Invalid no of players: " + playerNumber);
         }
 
-        return 0;
+        if (selectorButton != null)
+        {
+            selectorButton.performClick();
+        }
     }
 }

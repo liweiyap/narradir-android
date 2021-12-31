@@ -360,14 +360,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         boolean isMordredChecked = sharedPref.getBoolean(getString(R.string.is_mordred_checked_key), false);
         boolean isOberonChecked = sharedPref.getBoolean(getString(R.string.is_oberon_checked_key), false);
 
-        final int playerNumberButtonId = PlayerNumberDictionary.getSelectorButtonIdFromPlayerNumber(expectedGoodTotal + expectedEvilTotal);
-        if (playerNumberButtonId == 0)
-        {
-            throw new RuntimeException(
-                "AvalonCharacterSelectionActivity::loadPreferences(): " +
-                    "Invalid no of players: " + (expectedGoodTotal + expectedEvilTotal));
-        }
-        findViewById(playerNumberButtonId).performClick();
+        PlayerNumberDictionary.selectPlayerNumberButton(this, expectedGoodTotal + expectedEvilTotal, "AvalonCharacterSelectionActivity::loadPreferences()");
 
         // default: Merlin is checked
         // saved preferences: if Merlin is not checked
