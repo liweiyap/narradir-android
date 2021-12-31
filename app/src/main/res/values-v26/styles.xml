@@ -12,6 +12,7 @@
 
     <style name="GameHintStyleAvalonAutosized" parent="GameHintStyleAvalon">
         <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">10sp</item>
     </style>
 
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
@@ -21,6 +22,7 @@
 
     <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">12sp</item>
     </style>
 
     <style name="NavBarCapsuleStyleAutosized" parent="NavBarCapsuleStyleBase">
@@ -70,6 +72,7 @@
 
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">12sp</item>
     </style>
 
     <style name="AppMetadataStyleAutosized" parent="AppMetadataStyleBase">
