@@ -26,22 +26,25 @@ public final class FontCache
             return null;
         }
 
-        Typeface typeface = sFontCache.get(assetFontPath);
-        
-        if (typeface == null)
+        synchronized (sFontCache)
         {
-            try
+            Typeface typeface = sFontCache.get(assetFontPath);
+
+            if (typeface == null)
             {
-                typeface = Typeface.createFromAsset(context.getAssets(), assetFontPath);
+                try
+                {
+                    typeface = Typeface.createFromAsset(context.getAssets(), assetFontPath);
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+
+                sFontCache.put(assetFontPath, typeface);
             }
-            catch (Exception e)
-            {
-                return null;
-            }
-            
-            sFontCache.put(assetFontPath, typeface);
+
+            return typeface;
         }
-        
-        return typeface;
     }
 }
