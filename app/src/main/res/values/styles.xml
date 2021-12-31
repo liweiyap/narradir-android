@@ -86,6 +86,7 @@
 
     <style name="GameHintStyleAvalonAutosized" parent="GameHintStyleAvalon">
         <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">10sp</item>
     </style>
 
     <style name="PlayerNumberSelectorStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
@@ -148,6 +149,7 @@
 
     <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
         <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">12sp</item>
     </style>
 
     <style name="NavBarCapsuleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
@@ -320,6 +322,7 @@
 
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
         <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">12sp</item>
     </style>
 
     <style name="AppMetadataStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
