@@ -314,7 +314,7 @@ class AvalonCharacterSelectionRules
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_loyal_toastmsg), Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_loyal_notification), Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {
@@ -342,7 +342,7 @@ class AvalonCharacterSelectionRules
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_minion_toastmsg), Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_minion_notification), Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {

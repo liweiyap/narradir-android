@@ -63,7 +63,7 @@ class SecretHitlerCharacterArray
     {
         try
         {
-            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.secrethitler_all_toastmsg), Toast.LENGTH_SHORT);
+            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.secrethitler_all_notification), Toast.LENGTH_SHORT);
         }
         catch (Exception e)
         {
