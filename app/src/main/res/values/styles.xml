@@ -174,7 +174,7 @@
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:breakStrategy">simple</item>  <!-- might cause commas to be at start of new line though -->
-        <item name="android:hyphenationFrequency">none</item>  <!-- for consistency with Android 29 and above; improves TextView performance because 70% of the time taken for text measurement is spent on hyphenation -->
+        <item name="android:hyphenationFrequency">none</item>  <!-- for consistency with API level >= 29; improves TextView performance because 70% of the time taken for text measurement is spent on hyphenation -->
     </style>
 
     <style name="CurrentDisplayedIntroSegmentStyleAutosized" parent="CurrentDisplayedIntroSegmentStyleBase">
