@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="GameTitleStyleAvalonAutosized" parent="GameTitleStyleAvalon">
+    <style name="GameTitleStyleAutosized" parent="GameTitleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">50sp</item>
-    </style>
-
-    <style name="GameTitleStyleSecretHitlerAutosized" parent="GameTitleStyleSecretHitler">
-        <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">35sp</item>
     </style>
 
     <style name="GameHintStyleAvalonAutosized" parent="GameHintStyleAvalon">
