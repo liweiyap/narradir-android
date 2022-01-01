@@ -70,12 +70,12 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
                 }
 
                 int newWindowIdx = mAudioPlayer.getExoPlayerCurrentMediaItemIndex();
-                if (newWindowIdx % 2 == 0)
+                if ((newWindowIdx & 1) == 0)  // if even
                 {
                     switchCurrentDisplayedCharacterImage(introSegmentArrayList.get(newWindowIdx/2));
                     switchCurrentDisplayedIntroSegmentTextView(introSegmentArrayList.get(newWindowIdx/2));
                 }
-                else
+                else  // if odd
                 {
                     if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(PlayIntroductionActivity.this, introSegmentArrayList.get(newWindowIdx/2))) &&
                          (mPauseDurationInMilliSecs != IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
