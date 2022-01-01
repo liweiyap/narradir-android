@@ -18,15 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/gameTitleAvalonTextView"
-            style="@style/GameTitleStyleAvalonAutosized"
+            style="@style/GameTitleStyleAvalon"
             android:visibility="invisible" />
 
         <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/gameTitleAvalonTextView"
             android:id="@+id/gameTitleSecretHitlerTextView"
-            style="@style/GameTitleStyleSecretHitlerAutosized"
+            style="@style/GameTitleStyleSecretHitler"
             android:visibility="invisible" />
 
     </RelativeLayout>

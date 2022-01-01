@@ -271,14 +271,7 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
         int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
         int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
 
-        final int playerNumberButtonId = PlayerNumberDictionary.getSelectorButtonIdFromPlayerNumber(expectedGoodTotal + expectedEvilTotal);
-        if (playerNumberButtonId == 0)
-        {
-            throw new RuntimeException(
-                "SecretHitlerCharacterSelectionActivity::loadPreferences(): " +
-                    "Invalid no of players: " + (expectedGoodTotal + expectedEvilTotal));
-        }
-        findViewById(playerNumberButtonId).performClick();
+        PlayerNumberDictionary.selectPlayerNumberButton(this, expectedGoodTotal + expectedEvilTotal, "SecretHitlerCharacterSelectionActivity::loadPreferences()");
     }
 
     private SecretHitlerControlGroup mSecretHitlerControlGroup;

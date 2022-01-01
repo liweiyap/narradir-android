@@ -43,33 +43,29 @@
     <style name="GameTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="textStrokeWidth">2</item>
         <item name="android:gravity">center</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:paddingTop">5dp</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
-    </style>
-
-    <style name="GameTitleStyleAvalon" parent="GameTitleStyleBase">
-        <item name="textStrokeColor">@color/go_ben</item>
-        <item name="android:text">@string/game_title_avalon</item>
-        <item name="android:textSize">50sp</item>
-        <item name="android:textColor">@color/yuma</item>
         <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:maxLines">1</item>
     </style>
 
-    <style name="GameTitleStyleAvalonAutosized" parent="GameTitleStyleAvalon">
+    <style name="GameTitleStyleAutosized" parent="GameTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">50sp</item>
     </style>
 
-    <style name="GameTitleStyleSecretHitler" parent="GameTitleStyleBase">
-        <item name="textStrokeColor">@color/acadia</item>
-        <item name="android:text">@string/game_title_secrethitler</item>
-        <item name="android:textSize">35sp</item>
-        <item name="android:textColor">@color/oasis</item>
+    <style name="GameTitleStyleAvalon" parent="GameTitleStyleAutosized">
+        <item name="textStrokeColor">@color/go_ben</item>
+        <item name="android:text">@string/game_title_avalon</item>
+        <item name="android:textColor">@color/yuma</item>
     </style>
 
-    <style name="GameTitleStyleSecretHitlerAutosized" parent="GameTitleStyleSecretHitler">
-        <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">35sp</item>
+    <style name="GameTitleStyleSecretHitler" parent="GameTitleStyleAutosized">
+        <item name="textStrokeColor">@color/acadia</item>
+        <item name="android:text">@string/game_title_secrethitler</item>
+        <item name="android:textColor">@color/oasis</item>
     </style>
 
     <style name="GameHintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
@@ -179,7 +175,7 @@
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:breakStrategy">simple</item>  <!-- might cause commas to be at start of new line though -->
-        <item name="android:hyphenationFrequency">none</item>  <!-- for consistency with Android 29 and above; improves TextView performance because 70% of the time taken for text measurement is spent on hyphenation -->
+        <item name="android:hyphenationFrequency">none</item>  <!-- for consistency with API level >= 29; improves TextView performance because 70% of the time taken for text measurement is spent on hyphenation -->
     </style>
 
     <style name="CurrentDisplayedIntroSegmentStyleAutosized" parent="CurrentDisplayedIntroSegmentStyleBase">
@@ -330,6 +326,7 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center</item>
+        <item name="android:paddingTop">5dp</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
