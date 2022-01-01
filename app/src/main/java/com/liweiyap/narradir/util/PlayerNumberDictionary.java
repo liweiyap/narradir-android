@@ -14,7 +14,7 @@ public final class PlayerNumberDictionary
     // more verbose than previously but it's safe because resource ID integers are non-constant from Gradle version >4.
     public static void selectPlayerNumberButton(final Context context, final int playerNumber, final String callingFuncName) throws RuntimeException
     {
-        if (context == null)
+        if (!(context instanceof AppCompatActivity))
         {
             return;
         }
