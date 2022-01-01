@@ -48,6 +48,7 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
         <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="GameTitleStyleAutosized" parent="GameTitleStyleBase">
@@ -325,6 +326,7 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center</item>
+        <item name="android:paddingTop">5dp</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
