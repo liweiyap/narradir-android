@@ -1,19 +1,14 @@
 package com.liweiyap.narradir.secrethitler;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.ObserverImageButton;
-import com.liweiyap.narradir.ui.ToastSingleton;
 
 class SecretHitlerCharacterArray
 {
     public SecretHitlerCharacterArray(
-        @NonNull final Context context,
         @NonNull final ObserverImageButton liberal0Button,
         @NonNull final ObserverImageButton liberal1Button,
         @NonNull final ObserverImageButton liberal2Button,
@@ -25,8 +20,6 @@ class SecretHitlerCharacterArray
         @NonNull final ObserverImageButton fascist1Button,
         @NonNull final ObserverImageButton fascist2Button)
     {
-        mContext = context;
-
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL0] = liberal0Button;
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL1] = liberal1Button;
         mCharacterImageButtonArray[SecretHitlerCharacterName.LIBERAL2] = liberal2Button;
@@ -37,11 +30,6 @@ class SecretHitlerCharacterArray
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST0] = fascist0Button;
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST1] = fascist1Button;
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2] = fascist2Button;
-
-        for (ObserverImageButton btn : mCharacterImageButtonArray)
-        {
-            btn.addOnClickObserver(this::showNewToast);
-        }
     }
 
     public ObserverImageButton getCharacter(final int idx)
@@ -57,18 +45,6 @@ class SecretHitlerCharacterArray
     public ObserverImageButton[] getCharacterImageButtonArray()
     {
         return mCharacterImageButtonArray;
-    }
-
-    private void showNewToast()
-    {
-        try
-        {
-            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.secrethitler_all_notification), Toast.LENGTH_SHORT);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     public int getActualGoodTotal()
@@ -148,6 +124,4 @@ class SecretHitlerCharacterArray
     private final ObserverImageButton[] mCharacterImageButtonArray = new ObserverImageButton[SecretHitlerCharacterName.getNumberOfCharacters()];
     private int mExpectedGoodTotal = 3;
     private int mExpectedEvilTotal = 2;
-
-    private final Context mContext;
 }
