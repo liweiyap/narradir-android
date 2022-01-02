@@ -1,91 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- android:orientation is already one of the attributes in @style/ActivityLayout but we write it again to get rid of the Suspicious0dp warning -->
-<LinearLayout
+<!-- CoordinatorLayout as the root layout to activate dismiss-by-swipe capability of Snackbars -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/avalonCharacterSelectionLayout"
-    android:weightSum="10"
-    style="@style/ActivityLayoutStyle"
-    android:orientation="vertical"
-    tools:context=".AvalonCharacterSelectionActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- force a default alignment to bottom -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <!-- android:orientation is already one of the attributes in @style/ActivityLayout but we write it again to get rid of the Suspicious0dp warning -->
+    <LinearLayout
+        android:id="@+id/avalonCharacterSelectionLayout"
+        android:weightSum="10"
+        style="@style/ActivityLayoutStyle"
+        android:orientation="vertical"
+        tools:context=".AvalonCharacterSelectionActivity">
 
-        <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
+        <!-- force a default alignment to bottom -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/gameTitleAvalonTextView"
-            style="@style/GameTitleStyleAvalon" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    </RelativeLayout>
-
-    <include
-        layout="@layout/player_number_selection_avalon_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <include
-        layout="@layout/good_characters_avalon_linear_layout_top"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5" />
-
-    <include
-        layout="@layout/good_characters_avalon_linear_layout_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3" />
-
-    <include
-        layout="@layout/evil_characters_avalon_linear_layout_top"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5" />
-
-    <include
-        layout="@layout/evil_characters_avalon_linear_layout_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5" />
-
-    <!-- force a default alignment to bottom -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.7" >
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:fadeScrollbars="false"
-            tools:ignore="UselessParent">
-
-            <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
+            <com.liweiyap.narradir.ui.fonts.StrokedCustomTypefaceableTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/gameHintTextView"
-                style="@style/GameHintStyleAvalonAutosized"
-                tools:ignore="SmallSp" />
+                android:id="@+id/gameTitleAvalonTextView"
+                style="@style/GameTitleStyleAvalon" />
 
-        </ScrollView>
+        </RelativeLayout>
 
-    </RelativeLayout>
+        <include
+            layout="@layout/player_number_selection_avalon_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    <include
-        layout="@layout/activity_character_selection_navbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <include
+            layout="@layout/good_characters_avalon_linear_layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5" />
 
-</LinearLayout>
+        <include
+            layout="@layout/good_characters_avalon_linear_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3" />
+
+        <include
+            layout="@layout/evil_characters_avalon_linear_layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5" />
+
+        <include
+            layout="@layout/evil_characters_avalon_linear_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5" />
+
+        <!-- force a default alignment to bottom -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fadeScrollbars="false"
+                tools:ignore="UselessParent">
+
+                <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
+                    android:id="@+id/gameHintTextView"
+                    style="@style/GameHintStyleAvalonAutosized"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="SmallSp" />
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <include
+            layout="@layout/activity_character_selection_navbar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

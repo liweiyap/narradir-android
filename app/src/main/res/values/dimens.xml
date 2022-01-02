@@ -2,4 +2,9 @@
 <resources>
     <dimen name="activity_horizontal_margin">0dp</dimen>
     <dimen name="activity_vertical_margin">0dp</dimen>
+
+    <!-- alternative to: https://stackoverflow.com/a/54177574/12367873 -->
+    <!-- on my personal device, the size of "OK" should be < 58 dp, but other phones might use different fonts, so give some leeway. -->
+    <!-- 40% of @dimen/design_snackbar_action_inline_max_width is 51.2 dp -->
+    <dimen name="narradir_design_snackbar_action_inline_max_width">48dp</dimen>
 </resources>

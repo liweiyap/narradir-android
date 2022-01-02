@@ -5,12 +5,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.ObserverImageButton;
+import com.liweiyap.narradir.ui.SnackbarWrapper;
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.util.SnackbarBuilderFlag;
 import com.liweiyap.narradir.util.audio.CharacterDescriptionMediaPlayer;
+
+import java.util.EnumSet;
 
 public class SecretHitlerControlGroup
 {
@@ -34,11 +40,15 @@ public class SecretHitlerControlGroup
         @NonNull final ObserverImageButton fascist1Button,
         @NonNull final ObserverImageButton fascist2Button)
     {
+        mContext = context;
+
         mCharacterArray = new SecretHitlerCharacterArray(
-            context,
             liberal0Button, liberal1Button, liberal2Button, liberal3Button,
             liberal4Button, liberal5Button,
             hitlerButton, fascist0Button, fascist1Button, fascist2Button);
+
+        mSnackbar = new SnackbarWrapper(context);
+        addSnackbarMessages();
 
         ViewGroupSingleTargetSelector.addSingleTargetSelection(playerNumberSelectionLayout);
 
@@ -129,28 +139,33 @@ public class SecretHitlerControlGroup
         // -----------------------------------------------------------------------------------------
 
         mCharacterDescriptionMediaPlayer = new CharacterDescriptionMediaPlayer(context);
-        addCharacterDescriptions(context);
+        addCharacterDescriptions();
     }
 
-    private void addCharacterDescriptions(final @NonNull Context context)
+    private void addCharacterDescriptions()
     {
         if (mCharacterArray == null)
         {
-            throw new RuntimeException("SecretHitlerControlGroup::addCharacterDescriptions(): mSecretHitlerCharacterArray is NULL");
+            throw new RuntimeException("SecretHitlerControlGroup::addCharacterDescriptions(): mCharacterArray is NULL");
+        }
+
+        if (mContext == null)
+        {
+            return;
         }
 
         try
         {
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.hitlerdescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.fascistdescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.fascistdescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.hitlerdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.fascistdescription_key)));
         }
         catch (Exception e)
         {
@@ -208,11 +223,50 @@ public class SecretHitlerControlGroup
         mCharacterDescriptionMediaPlayer.free();
     }
 
+    public void addSnackbarMessages()
+    {
+        if (mCharacterArray == null)
+        {
+            throw new RuntimeException("SecretHitlerControlGroup::addSnackbarMessages(): mCharacterArray is NULL");
+        }
+
+        if (mContext == null)
+        {
+            return;
+        }
+
+        for (ObserverImageButton btn : mCharacterArray.getCharacterImageButtonArray())
+        {
+            btn.addOnClickObserver(this::showSnackbar);
+        }
+    }
+
+    private void showSnackbar()
+    {
+        if (!(mContext instanceof AppCompatActivity))
+        {
+            return;
+        }
+
+        try
+        {
+            mSnackbar.show(
+                ((AppCompatActivity) mContext).findViewById(R.id.characterSelectionLayoutNavBar),
+                mContext.getString(R.string.secrethitler_all_notification),
+                BaseTransientBottomBar.LENGTH_SHORT,
+                EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public int getExpectedGoodTotal()
     {
         if (mCharacterArray == null)
         {
-            throw new RuntimeException("AvalonControlGroup::getExpectedGoodTotal(): mCharacterSelectionRules is NULL");
+            throw new RuntimeException("SecretHitlerControlGroup::getExpectedGoodTotal(): mCharacterArray is NULL");
         }
 
         return mCharacterArray.getExpectedGoodTotal();
@@ -222,7 +276,7 @@ public class SecretHitlerControlGroup
     {
         if (mCharacterArray == null)
         {
-            throw new RuntimeException("AvalonControlGroup::getExpectedEvilTotal(): mCharacterSelectionRules is NULL");
+            throw new RuntimeException("SecretHitlerControlGroup::getExpectedEvilTotal(): mCharacterArray is NULL");
         }
 
         return mCharacterArray.getExpectedEvilTotal();
@@ -230,4 +284,7 @@ public class SecretHitlerControlGroup
 
     private final SecretHitlerCharacterArray mCharacterArray;
     private final CharacterDescriptionMediaPlayer mCharacterDescriptionMediaPlayer;
+    private final SnackbarWrapper mSnackbar;
+
+    private final Context mContext;
 }

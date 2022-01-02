@@ -5,13 +5,19 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
+import com.liweiyap.narradir.ui.SnackbarWrapper;
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
+import com.liweiyap.narradir.util.SnackbarBuilderFlag;
 import com.liweiyap.narradir.util.audio.CharacterDescriptionMediaPlayer;
+
+import java.util.EnumSet;
 
 public class AvalonControlGroup
 {
@@ -41,12 +47,16 @@ public class AvalonControlGroup
         @NonNull final CheckableObserverImageButton minion2Button,
         @NonNull final CheckableObserverImageButton minion3Button)
     {
+        mContext = context;
+
         mCharacterSelectionRules = new AvalonCharacterSelectionRules(
-            context,
             merlinButton, percivalButton, loyal0Button, loyal1Button,
             loyal2Button, loyal3Button, loyal4Button, loyal5Button,
             assassinButton, morganaButton, mordredButton, oberonButton,
             minion0Button, minion1Button, minion2Button, minion3Button);
+
+        mSnackbar = new SnackbarWrapper(context);
+        addSnackbarMessages();
 
         ViewGroupSingleTargetSelector.addSingleTargetSelection(playerNumberSelectionLayout);
 
@@ -179,7 +189,7 @@ public class AvalonControlGroup
         // -----------------------------------------------------------------------------------------
 
         mCharacterDescriptionMediaPlayer = new CharacterDescriptionMediaPlayer(context);
-        addCharacterDescriptions(context);
+        addCharacterDescriptions();
     }
 
     private void playerNumberSelectionLayoutChecker(final int newPlayerNumber)
@@ -255,31 +265,36 @@ public class AvalonControlGroup
         return new Pair<>(null, null);  // quick and dirty fix
     }
 
-    private void addCharacterDescriptions(final @NonNull Context context)
+    private void addCharacterDescriptions()
     {
         if (mCharacterSelectionRules == null)
         {
             throw new RuntimeException("AvalonControlGroup::addCharacterDescriptions(): mCharacterSelectionRules is NULL");
         }
 
+        if (mContext == null)
+        {
+            return;
+        }
+
         try
         {
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MERLIN).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.merlindescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.PERCIVAL).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.percivaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.loyaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.loyaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.loyaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.loyaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.loyaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.loyaldescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.ASSASSIN).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.assassindescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MORGANA).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.morganadescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MORDRED).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.mordreddescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.OBERON).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.oberondescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.miniondescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.miniondescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.miniondescription_key)));
-            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(context.getString(R.string.miniondescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MERLIN).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.merlindescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.PERCIVAL).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.percivaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.loyaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.loyaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.loyaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.loyaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.loyaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.loyaldescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.ASSASSIN).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.assassindescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MORGANA).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.morganadescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MORDRED).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.mordreddescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.OBERON).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.oberondescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.miniondescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.miniondescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.miniondescription_key)));
+            mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.miniondescription_key)));
         }
         catch (Exception e)
         {
@@ -337,6 +352,51 @@ public class AvalonControlGroup
         mCharacterDescriptionMediaPlayer.free();
     }
 
+    public void addSnackbarMessages()
+    {
+        if (mCharacterSelectionRules == null)
+        {
+            throw new RuntimeException("AvalonControlGroup::addSnackbarMessages(): mCharacterSelectionRules is NULL");
+        }
+
+        if (mContext == null)
+        {
+            return;
+        }
+
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL0).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL1).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL2).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL3).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL4).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL5).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION0).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION1).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION2).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
+        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION3).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
+    }
+
+    private void showSnackbar(final String message)
+    {
+        if (!(mContext instanceof AppCompatActivity))
+        {
+            return;
+        }
+
+        try
+        {
+            mSnackbar.show(
+                ((AppCompatActivity) mContext).findViewById(R.id.characterSelectionLayoutNavBar),
+                message,
+                BaseTransientBottomBar.LENGTH_SHORT,
+                EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public CheckableObserverImageButton getCharacter(final int idx)
     {
         if (mCharacterSelectionRules == null)
@@ -389,4 +449,7 @@ public class AvalonControlGroup
 
     private final AvalonCharacterSelectionRules mCharacterSelectionRules;
     private final CharacterDescriptionMediaPlayer mCharacterDescriptionMediaPlayer;
+    private final SnackbarWrapper mSnackbar;
+
+    private final Context mContext;
 }
