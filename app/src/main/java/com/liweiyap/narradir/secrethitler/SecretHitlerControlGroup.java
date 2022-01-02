@@ -230,11 +230,6 @@ public class SecretHitlerControlGroup
             throw new RuntimeException("SecretHitlerControlGroup::addSnackbarMessages(): mCharacterArray is NULL");
         }
 
-        if (mContext == null)
-        {
-            return;
-        }
-
         for (ObserverImageButton btn : mCharacterArray.getCharacterImageButtonArray())
         {
             btn.addOnClickObserver(this::showSnackbar);

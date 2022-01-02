@@ -364,16 +364,15 @@ public class AvalonControlGroup
             return;
         }
 
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL0).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL1).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL2).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL3).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL4).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.LOYAL5).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION0).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION1).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION2).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
-        mCharacterSelectionRules.getCharacter(AvalonCharacterName.MINION3).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
+        for (int idx = AvalonCharacterName.LOYAL0; idx <= AvalonCharacterName.LOYAL5; ++idx)
+        {
+            mCharacterSelectionRules.getCharacter(idx).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_loyal_notification)));
+        }
+
+        for (int idx = AvalonCharacterName.MINION0; idx <= AvalonCharacterName.MINION3; ++idx)
+        {
+            mCharacterSelectionRules.getCharacter(idx).addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.avalon_minion_notification)));
+        }
     }
 
     private void showSnackbar(final String message)
