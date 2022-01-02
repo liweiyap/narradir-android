@@ -7,150 +7,150 @@
 
     <TextView
         android:text="@string/help_intro_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_intro_para1"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_intro_para2"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0"
-        style="@style/HelpSubheadingStyle" />
+        style="@style/HelpSubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0_para1"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0_para2"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0_para3"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0_para4"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading0_para5"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1"
-        style="@style/HelpSubheadingStyle" />
+        style="@style/HelpSubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_para1"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_subsubheading0"
-        style="@style/HelpSubsubheadingStyle" />
+        style="@style/HelpSubsubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_subsubheading0_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_subsubheading1"
-        style="@style/HelpSubsubheadingStyle" />
+        style="@style/HelpSubsubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_subsubheading1_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_subsubheading2"
-        style="@style/HelpSubsubheadingStyle" />
+        style="@style/HelpSubsubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading1_subsubheading2_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading2"
-        style="@style/HelpSubheadingStyle" />
+        style="@style/HelpSubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading2_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading2_para1"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading2_para2"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3"
-        style="@style/HelpSubheadingStyle" />
+        style="@style/HelpSubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para1"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para2"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para3"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para4"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para5"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para6"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para7"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para8"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para9"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading3_para10"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading4"
-        style="@style/HelpSubheadingStyle" />
+        style="@style/HelpSubheadingStyleAutosized" />
 
     <TextView
         android:text="@string/help_subheading4_para0"
-        style="@style/HelpParagraphStyle" />
+        style="@style/HelpParagraphStyleAutosized" />
 
 </LinearLayout>

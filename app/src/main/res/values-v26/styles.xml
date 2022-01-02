@@ -74,4 +74,19 @@
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">25sp</item>
     </style>
+
+    <style name="HelpParagraphStyleAutosized" parent="HelpParagraphStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="HelpSubheadingStyleAutosized" parent="HelpSubheadingStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">25sp</item>
+    </style>
+
+    <style name="HelpSubsubheadingStyleAutosized" parent="HelpSubsubheadingStyleBase">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">18sp</item>
+    </style>
 </resources>
