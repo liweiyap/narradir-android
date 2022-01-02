@@ -1,19 +1,14 @@
 package com.liweiyap.narradir.avalon;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
-import com.liweiyap.narradir.ui.ToastSingleton;
 
 class AvalonCharacterSelectionRules
 {
     public AvalonCharacterSelectionRules(
-        @NonNull final Context context,
         @NonNull final CheckableObserverImageButton merlinButton,
         @NonNull final CheckableObserverImageButton percivalButton,
         @NonNull final CheckableObserverImageButton loyal0Button,
@@ -31,55 +26,29 @@ class AvalonCharacterSelectionRules
         @NonNull final CheckableObserverImageButton minion2Button,
         @NonNull final CheckableObserverImageButton minion3Button)
     {
-        mContext = context;
-
         mCharacterImageButtonArray[AvalonCharacterName.MERLIN] = merlinButton;
-        mCharacterImageButtonArray[AvalonCharacterName.MERLIN].addOnClickObserver(this::runMerlinSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL] = percivalButton;
-        mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].addOnClickObserver(this::runPercivalSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.LOYAL0] = loyal0Button;
-        mCharacterImageButtonArray[AvalonCharacterName.LOYAL0].addOnClickObserver(this::runGeneralGoodSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.LOYAL1] = loyal1Button;
-        mCharacterImageButtonArray[AvalonCharacterName.LOYAL1].addOnClickObserver(this::runGeneralGoodSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.LOYAL2] = loyal2Button;
-        mCharacterImageButtonArray[AvalonCharacterName.LOYAL2].addOnClickObserver(this::runGeneralGoodSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.LOYAL3] = loyal3Button;
-        mCharacterImageButtonArray[AvalonCharacterName.LOYAL3].addOnClickObserver(this::runGeneralGoodSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.LOYAL4] = loyal4Button;
-        mCharacterImageButtonArray[AvalonCharacterName.LOYAL4].addOnClickObserver(this::runGeneralGoodSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.LOYAL5] = loyal5Button;
-        mCharacterImageButtonArray[AvalonCharacterName.LOYAL5].addOnClickObserver(this::runGeneralGoodSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN] = assassinButton;
-        mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].addOnClickObserver(this::runMerlinSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.MORGANA] = morganaButton;
-        mCharacterImageButtonArray[AvalonCharacterName.MORGANA].addOnClickObserver(this::runMorganaSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.MORDRED] = mordredButton;
-        mCharacterImageButtonArray[AvalonCharacterName.MORDRED].addOnClickObserver(this::runMordredSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.OBERON] = oberonButton;
-        mCharacterImageButtonArray[AvalonCharacterName.OBERON].addOnClickObserver(this::runOberonSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.MINION0] = minion0Button;
-        mCharacterImageButtonArray[AvalonCharacterName.MINION0].addOnClickObserver(this::runGeneralEvilSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.MINION1] = minion1Button;
-        mCharacterImageButtonArray[AvalonCharacterName.MINION1].addOnClickObserver(this::runGeneralEvilSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.MINION2] = minion2Button;
-        mCharacterImageButtonArray[AvalonCharacterName.MINION2].addOnClickObserver(this::runGeneralEvilSelectionRules);
-
         mCharacterImageButtonArray[AvalonCharacterName.MINION3] = minion3Button;
-        mCharacterImageButtonArray[AvalonCharacterName.MINION3].addOnClickObserver(this::runGeneralEvilSelectionRules);
+
+        mCharacterImageButtonArray[AvalonCharacterName.MERLIN].addOnClickObserver(this::runMerlinSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].addOnClickObserver(this::runPercivalSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].addOnClickObserver(this::runMerlinSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MORGANA].addOnClickObserver(this::runMorganaSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.MORDRED].addOnClickObserver(this::runMordredSelectionRules);
+        mCharacterImageButtonArray[AvalonCharacterName.OBERON].addOnClickObserver(this::runOberonSelectionRules);
     }
 
     public CheckableObserverImageButton getCharacter(final int idx)
@@ -277,7 +246,7 @@ class AvalonCharacterSelectionRules
             mCharacterImageButtonArray[AvalonCharacterName.MORDRED].uncheck();
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
+                 (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
             {
                 if (mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
                 {
@@ -310,18 +279,6 @@ class AvalonCharacterSelectionRules
         checkPlayerComposition("AvalonCharacterSelectionRules::runMordredSelectionRules()");
     }
 
-    private void runGeneralGoodSelectionRules()
-    {
-        try
-        {
-            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_loyal_notification), Toast.LENGTH_SHORT);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     private void runOberonSelectionRules()
     {
         if (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked())
@@ -336,18 +293,6 @@ class AvalonCharacterSelectionRules
         }
 
         checkPlayerComposition("AvalonCharacterSelectionRules::runOberonSelectionRules()");
-    }
-
-    private void runGeneralEvilSelectionRules()
-    {
-        try
-        {
-            ToastSingleton.getInstance().showNewToast(mContext, mContext.getString(R.string.avalon_minion_notification), Toast.LENGTH_SHORT);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -535,6 +480,4 @@ class AvalonCharacterSelectionRules
     private final CheckableObserverImageButton[] mCharacterImageButtonArray = new CheckableObserverImageButton[AvalonCharacterName.getNumberOfCharacters()];
     private int mExpectedGoodTotal = 3;
     private int mExpectedEvilTotal = 2;
-
-    private final Context mContext;
 }
