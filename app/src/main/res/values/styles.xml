@@ -342,17 +342,32 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="HelpParagraphStyle" parent="HelpTextStyle">
+    <style name="HelpParagraphStyleBase" parent="HelpTextStyle">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="HelpSubheadingStyle" parent="HelpTextStyle">
+    <style name="HelpParagraphStyleAutosized" parent="HelpParagraphStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="HelpSubheadingStyleBase" parent="HelpTextStyle">
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="HelpSubsubheadingStyle" parent="HelpTextStyle">
+    <style name="HelpSubheadingStyleAutosized" parent="HelpSubheadingStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">25sp</item>
+    </style>
+
+    <style name="HelpSubsubheadingStyleBase" parent="HelpTextStyle">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HelpSubsubheadingStyleAutosized" parent="HelpSubsubheadingStyleBase">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">18sp</item>
     </style>
 </resources>
