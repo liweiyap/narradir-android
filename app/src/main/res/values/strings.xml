@@ -86,6 +86,8 @@
         <item quantity="other">(PAUSE for %d seconds)</item>
     </plurals>
 
+    <string name="settings_page_title">Settings</string>
+
     <string name="edit_button_text">Edit</string>
 
     <string name="author_website">App Creator:\nliweiyap.github.io</string>

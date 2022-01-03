@@ -7,10 +7,12 @@
     style="@style/ActivityLayoutStyle"
     tools:context=".SettingsNarrationActivity">
 
-    <Space
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="@string/settings_page_title"
+        style="@style/NonStartingActivityTitleStyleAutosized" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"

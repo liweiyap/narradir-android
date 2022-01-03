@@ -324,8 +324,7 @@
         <item name="autoSizeMinTextSize">12sp</item>
     </style>
 
-    <style name="AppMetadataStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
-        <item name="android:text">@string/app_name_and_version</item>
+    <style name="NonStartingActivityTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center</item>
@@ -334,7 +333,7 @@
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
 
-    <style name="AppMetadataStyleAutosized" parent="AppMetadataStyleBase">
+    <style name="NonStartingActivityTitleStyleAutosized" parent="NonStartingActivityTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">25sp</item>
     </style>
