@@ -18,7 +18,7 @@
         layout="@layout/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.75"
         style="@style/SettingsLayoutStyle"
         android:id="@+id/narrationSettingsLayout" />
 
@@ -26,7 +26,7 @@
         layout="@layout/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.75"
         style="@style/SettingsLayoutStyle"
         android:id="@+id/backgroundSettingsLayout" />
 
@@ -34,9 +34,14 @@
         layout="@layout/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.75"
         style="@style/SettingsLayoutStyle"
         android:id="@+id/roleTimerSettingsLayout" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.375" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,6 +66,11 @@
             android:contentDescription="@string/author_logo_contentdescription" />
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.375" />
 
     <include
         layout="@layout/privacy_layout"
