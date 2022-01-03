@@ -20,7 +20,7 @@
         <item name="android:autoSizeMinTextSize">12sp</item>
     </style>
 
-    <style name="NavBarCapsuleStyleAutosized" parent="NavBarCapsuleStyleBase">
+    <style name="CapsuleStyleAutosized" parent="CapsuleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">16sp</item>
     </style>

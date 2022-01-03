@@ -36,11 +36,6 @@
         style="@style/SettingsLayoutStyle"
         android:id="@+id/roleTimerSettingsLayout" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -65,10 +60,11 @@
 
     </LinearLayout>
 
-    <Space
+    <include
+        layout="@layout/privacy_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="1" />
 
     <include
         layout="@layout/activity_settings_home_navbar"

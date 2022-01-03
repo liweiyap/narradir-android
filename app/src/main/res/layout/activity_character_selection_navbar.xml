@@ -23,7 +23,7 @@
         android:text="@string/play_button_text"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        style="@style/NavBarCapsuleStyleAutosized" />
+        style="@style/NavBarCapsuleStyle" />
 
     <RelativeLayout
         android:layout_width="0dp"

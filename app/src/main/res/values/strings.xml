@@ -54,6 +54,7 @@
     <string name="back_button_text">◀ BACK</string>
     <string name="help_button_text">HELP</string>
     <string name="main_button_text">MAIN</string>
+    <string name="privacy_button_text">PRIVACY POLICY</string>
 
     <string name="avalonintrosegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
     <string name="avalonintrosegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
