@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.SettingsLayout;
-import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
+import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.IntentHelper;
@@ -140,7 +140,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         // auto-sizing TextViews
         // -----------------------------------------------------------------------------------------
 
-        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.authorWebsiteTextView));
+        TextViewAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.authorWebsiteTextView));
     }
 
     @Override
