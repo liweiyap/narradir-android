@@ -13,4 +13,8 @@ public final class Constants
     public static final int REQUEST_SETTINGS_NEW = 200;
     public static final int RESULT_OK_SETTINGS_ONESTEP = 201;
     public static final int RESULT_OK_SETTINGS_TWOSTEPS = 202;
+
+    public static final int GUIDANCE_NULL = 300;
+    public static final int GUIDANCE_HELP = 301;
+    public static final int GUIDANCE_PRIVACY = 302;
 }

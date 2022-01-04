@@ -12,13 +12,34 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
-public class PrivacyActivity extends ActiveFullScreenPortraitActivity
+public class GuidanceActivity extends ActiveFullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy);
+
+        // ----------------------------------------------------------------------
+        // receive data from previous Activity
+        // ----------------------------------------------------------------------
+
+        Intent intent = getIntent();
+
+        int activityType = intent.getIntExtra(getString(R.string.guidance_activity_type_key), Constants.GUIDANCE_NULL);
+        if (activityType == Constants.GUIDANCE_NULL)
+        {
+            throw new RuntimeException(
+                "GuidanceActivity::onCreate(): " +
+                    "Programming error: incorrect activityType (" + activityType + ")");
+        }
+        else if (activityType == Constants.GUIDANCE_HELP)
+        {
+            setContentView(R.layout.activity_guidance_help);
+        }
+        else if (activityType == Constants.GUIDANCE_PRIVACY)
+        {
+            setContentView(R.layout.activity_guidance_privacy);
+        }
 
         HtmlHelper.setText(findViewById(R.id.pvcy_subheading0_subsubheading0_list0), getString(R.string.privacy_subheading0_subsubheading0_list0));
         HtmlHelper.setText(findViewById(R.id.pvcy_subheading2_subsubheading0_list0), getString(R.string.privacy_subheading2_subsubheading0_list0));
