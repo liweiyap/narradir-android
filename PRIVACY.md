@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Li-Wei Yap built the Narradir app as a Free app. This SERVICE is provided by Li-Wei Yap at no cost and is intended for use as is.
+Li-Wei Yap built the Narradir app (an Avalon/Secret Hitler Narrator app) as a Free app. This SERVICE is provided by Li-Wei Yap at no cost and is intended for use as is.
 
 The terms used in this Privacy Policy have the same meanings as in my Terms and Conditions, which is accessible [here](https://github.com/liweiyap/narradir-android/blob/main/TERMS-AND-CONDITIONS.md) unless otherwise defined in this Privacy Policy.
 
@@ -22,9 +22,9 @@ I want to inform you that whenever you use my Service, in a case of an error in 
 
 ## Links to Other Sites
 
-This Service contains a link to my [personal website](https://liweiyap.github.io/). If you click on the link, you will be directed to that site. Whilst I do not collect, use, or share any of your Personal Information on my website either, the website is hosted on GitHub Pages. In addition, the website contains icons from JSDELIVR and Font Awesome, as well as fonts from Google Fonts. Please note that GitHub, JSDELIVR, Font Awesome, and Google Fonts may collect User Personal Information from visitors to my website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the Website and the Service.
+This Service contains a link to my [personal website](https://liweiyap.github.io/). If you click on the link, you will be directed to that site. Whilst I do not collect, use, or share any of your Personal Information on my website either, the website is hosted on GitHub Pages. In addition, the website contains icons from JSDELIVR and Font Awesome, as well as fonts from Google Fonts. Please note that GitHub, JSDELIVR, Font Awesome, and Google Fonts may collect User Personal Information from visitors to my website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the website.
 
-Link to privacy policy of other sites
+Links to privacy policy of these other sites
 
 *   [GitHub Pages](https://docs.github.com/en/github/site-policy/github-privacy-statement)
 *   [JSDELIVR](https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net)
@@ -33,7 +33,7 @@ Link to privacy policy of other sites
 
 ## Children’s Privacy
 
-Please refer to the respective Children's Privacy Policies of Google Play Services and GitHub Pages.
+Please refer to the respective Children's Privacy Policies of Google Play Services, GitHub Pages, and JSDELIVR.
 
 *   [Google Play Services](https://families.google.com/intl/en-GB/familylink/privacy/child-policy/)
 *   [GitHub Pages](https://docs.github.com/en/github/site-policy/github-privacy-statement#what-information-github-does-not-collect)
@@ -47,7 +47,7 @@ This policy is effective as of 11 April 2021.
 
 ## Contact Me
 
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at liweiyap@gmail.com.
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at <a href="mailto:liweiyap@gmail.com">liweiyap [AT] gmail [DOT] com</a>.
 
 ## Acknowledgements
 
