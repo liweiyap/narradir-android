@@ -78,6 +78,11 @@ public class IntroAudioPlayer
 
     private @Nullable Integer loadBackgroundSound(final @NonNull Context context, final @NonNull String backgroundSoundName)
     {
+        if (mGeneralSoundPool == null)
+        {
+            return null;
+        }
+
         // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
         // the sound ID that is itself loaded and returned should still be constant; there's no indication otherwise in the Android documentation.
         if (backgroundSoundName.equals(context.getString(R.string.backgroundsound_cards)))
