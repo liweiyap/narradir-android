@@ -7,16 +7,18 @@
     style="@style/ActivityLayoutStyle"
     tools:context=".SettingsHomeActivity">
 
-    <Space
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="@string/settings_page_title"
+        style="@style/NonStartingActivityTitleStyleAutosized" />
 
     <include
         layout="@layout/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.75"
         style="@style/SettingsLayoutStyle"
         android:id="@+id/narrationSettingsLayout" />
 
@@ -24,7 +26,7 @@
         layout="@layout/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.75"
         style="@style/SettingsLayoutStyle"
         android:id="@+id/backgroundSettingsLayout" />
 
@@ -32,14 +34,14 @@
         layout="@layout/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.75"
         style="@style/SettingsLayoutStyle"
         android:id="@+id/roleTimerSettingsLayout" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.375" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,7 +70,13 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.375" />
+
+    <include
+        layout="@layout/privacy_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <include
         layout="@layout/activity_settings_home_navbar"

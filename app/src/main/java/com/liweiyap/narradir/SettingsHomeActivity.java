@@ -59,6 +59,9 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
+        CustomTypefaceableObserverButton privacyButton = findViewById(R.id.privacyButton);
+        privacyButton.addOnClickObserver(() -> navigateToPrivacyActivity(privacyButton));
+
         CustomTypefaceableObserverButton backButton = findViewById(R.id.settingsHomeLayoutBackButton);
         backButton.addOnClickObserver(this::navigateBackwards);
 
@@ -169,6 +172,7 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
             addSoundToPlayOnButtonClick(mRoleTimerSettingsLayout.getEditButton());
         }
 
+        addSoundToPlayOnButtonClick(findViewById(R.id.privacyButton));
         addSoundToPlayOnButtonClick(findViewById(R.id.settingsHomeLayoutBackButton));
         addSoundToPlayOnButtonClick(findViewById(R.id.settingsHomeLayoutHelpButton));
     }
@@ -202,6 +206,12 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
     {
         Intent intent = new Intent(view.getContext(), SettingsRoleTimerActivity.class);
         intent.putExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        mSettingsIndividualActivityResultObserverListener.launch(intent);
+    }
+
+    private void navigateToPrivacyActivity(final @NonNull View view)
+    {
+        Intent intent = new Intent(view.getContext(), PrivacyActivity.class);
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 

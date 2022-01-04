@@ -27,6 +27,7 @@
         <activity android:name=".SettingsNarrationActivity" android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".SettingsBackgroundActivity" android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".SettingsRoleTimerActivity" android:configChanges="orientation|screenSize|screenLayout" />
+        <activity android:name=".PrivacyActivity" android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".HelpActivity" android:configChanges="orientation|screenSize|screenLayout" />
     </application>
 

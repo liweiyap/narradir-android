@@ -145,7 +145,7 @@ class AvalonCharacterSelectionRules
             }
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                (!mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked()) )
+                 (!mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked()) )
             {
                 if (!mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
                 {
@@ -187,7 +187,7 @@ class AvalonCharacterSelectionRules
             mCharacterImageButtonArray[AvalonCharacterName.MORGANA].uncheck();
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
+                 (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
             {
                 if (mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked())
                 {
@@ -270,7 +270,7 @@ class AvalonCharacterSelectionRules
             }
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-                (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
+                 (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
             {
                 mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].performClick();
             }
@@ -334,8 +334,8 @@ class AvalonCharacterSelectionRules
         int currIdx = startIdx;
         int charactersToCheck = X;
         while ( (currIdx <= endIdx) &&
-            (mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE) &&
-            (charactersToCheck > 0) )
+                (mCharacterImageButtonArray[currIdx].getVisibility() == View.VISIBLE) &&
+                (charactersToCheck > 0) )
         {
             if (!mCharacterImageButtonArray[currIdx].isChecked())
             {

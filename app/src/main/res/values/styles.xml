@@ -148,10 +148,7 @@
         <item name="autoSizeMinTextSize">12sp</item>
     </style>
 
-    <style name="NavBarCapsuleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
+    <style name="CapsuleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">16sp</item>
@@ -161,9 +158,15 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="NavBarCapsuleStyleAutosized" parent="NavBarCapsuleStyleBase">
+    <style name="CapsuleStyleAutosized" parent="CapsuleStyleBase">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="NavBarCapsuleStyle" parent="CapsuleStyleAutosized">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="CurrentDisplayedIntroSegmentStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
@@ -321,8 +324,7 @@
         <item name="autoSizeMinTextSize">12sp</item>
     </style>
 
-    <style name="AppMetadataStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
-        <item name="android:text">@string/app_name_and_version</item>
+    <style name="NonStartingActivityTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center</item>
@@ -331,7 +333,7 @@
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
 
-    <style name="AppMetadataStyleAutosized" parent="AppMetadataStyleBase">
+    <style name="NonStartingActivityTitleStyleAutosized" parent="NonStartingActivityTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">25sp</item>
     </style>
@@ -349,6 +351,10 @@
     <style name="HelpParagraphStyleAutosized" parent="HelpParagraphStyleBase">
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMaxTextSize">16sp</item>
+    </style>
+
+    <style name="HelpListStyle" parent="HelpParagraphStyleAutosized">
+        <item name="android:layout_marginStart">10dp</item>
     </style>
 
     <style name="HelpSubheadingStyleBase" parent="HelpTextStyle">
