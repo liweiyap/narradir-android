@@ -28,7 +28,7 @@ These terms and conditions are effective as of 2021-04-11.
 
 ## Contact Me
 
-If you have any questions or suggestions about my Terms and Conditions, do not hesitate to contact me at liweiyap@gmail.com.
+If you have any questions or suggestions about my Terms and Conditions, do not hesitate to contact me at <a href="mailto:liweiyap@gmail.com">liweiyap [AT] gmail [DOT] com</a>.
 
 ## Acknowledgements
 
