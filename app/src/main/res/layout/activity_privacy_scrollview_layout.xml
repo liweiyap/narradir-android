@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="@string/privacy_intro_para0"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading0"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading0_para0"
+        android:textStyle="bold"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading0_para1"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading0_para2"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading0_subsubheading0"
+        style="@style/HelpSubsubheadingStyleAutosized" />
+
+    <TextView
+        android:id="@+id/pvcy_subheading0_subsubheading0_list0"
+        android:linksClickable="true"
+        style="@style/HelpListStyle" />
+
+    <TextView
+        android:text="@string/privacy_subheading1"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading1_para0"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading2"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading2_para0"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading2_subsubheading0"
+        style="@style/HelpSubsubheadingStyleAutosized" />
+
+    <TextView
+        android:id="@+id/pvcy_subheading2_subsubheading0_list0"
+        android:linksClickable="true"
+        style="@style/HelpListStyle" />
+
+    <TextView
+        android:text="@string/privacy_subheading3"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading3_subsubheading0"
+        style="@style/HelpSubsubheadingStyleAutosized" />
+
+    <TextView
+        android:id="@+id/pvcy_subheading3_subsubheading0_list0"
+        android:linksClickable="true"
+        style="@style/HelpListStyle" />
+
+    <TextView
+        android:text="@string/privacy_subheading4"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading4_para0"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading4_para1"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading5"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:id="@+id/pvcy_subheading5_para0"
+        android:linksClickable="true"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading6"
+        style="@style/HelpSubheadingStyleAutosized" />
+
+    <TextView
+        android:text="@string/privacy_subheading6_para0"
+        style="@style/HelpParagraphStyleAutosized" />
+
+</LinearLayout>

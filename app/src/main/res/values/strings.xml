@@ -150,6 +150,59 @@
     <string name="help_subheading4">Why the name \"Narradir\"\?</string>
     <string name="help_subheading4_para0">The name is a portmanteau of \"narrator\" and \"Nadir\", which is the last name of Abed, one of the main characters of the American television sitcom \"Community\". In one episode involving delicious chicken fingers, Abed narrated a good chunk of the story line, as if \"in a mafia movie\" (his own words). In two other episodes featuring Dungeons &amp; Dragons, Abed was the Dungeon Master, whose tasks include narration. The launcher icon of the app is also a reference to the school logo of Greendale Community College, which is the main setting of this sitcom.</string>
 
+    <string name="privacy_title">Privacy Policy</string>
+
+    <string name="privacy_intro_para0">Li-Wei Yap built the Narradir app (an Avalon/Secret Hitler Narrator app) as a Free app. This SERVICE is provided by Li-Wei Yap at no cost and is intended for use as is.\n</string>
+    <string name="privacy_subheading0">Personal information collection and use</string>
+    <string name="privacy_subheading0_para0">I do not collect, use, or share your Personal Information, period.\n</string>
+    <string name="privacy_subheading0_para1">I physically can\'t. I have nowhere to store it. I don\'t even have a server database to store it. So even if Kim Jong-un asked nicely to see your data, I wouldn\'t have anything to show him.\n</string>
+    <string name="privacy_subheading0_para2">Nonetheless, the app does use third party services that may collect information used to identify you.\n</string>
+    <string name="privacy_subheading0_subsubheading0">Link to privacy policy of third party service providers used by the app</string>
+    <string name="privacy_subheading0_subsubheading0_list0">
+        <![CDATA[
+        <ul>
+            <li><a href=\"https://www.google.com/policies/privacy\">Google Play Services</a></li>
+        </ul>
+        ]]>
+    </string>
+    <string name="privacy_subheading1">Log data</string>
+    <string name="privacy_subheading1_para0">I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.\n</string>
+    <string name="privacy_subheading2">Links to other sites</string>
+    <string name="privacy_subheading2_para0">This Service contains a link to my personal website. If you click on the link, you will be directed to that site. Whilst I do not collect, use, or share any of your Personal Information on my website either, the website is hosted on GitHub Pages. In addition, the website contains icons from JSDELIVR and Font Awesome, as well as fonts from Google Fonts. Please note that GitHub, JSDELIVR, Font Awesome, and Google Fonts may collect User Personal Information from visitors to my website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the website.\n</string>
+    <string name="privacy_subheading2_subsubheading0">Links to privacy policy of these other sites</string>
+    <string name="privacy_subheading2_subsubheading0_list0">
+        <![CDATA[
+        <ul>
+            <li><a href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\">GitHub Pages</a></li>
+            <li><a href=\"https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net\">JSDELIVR</a></li>
+            <li><a href=\"https://fontawesome.com/privacy\">Font Awesome</a></li>
+            <li><a href=\"https://developers.google.com/fonts/faq#:~:text=the%20web%20faster.-,What%20does%20using%20the%20Google%20Fonts%20API%20mean%20for%20the,to%20the%20Google%20Fonts%20API.\">Google Fonts</a></li>
+        </ul>
+        ]]>
+    </string>
+    <string name="privacy_subheading3">Children\'s privacy</string>
+    <string name="privacy_subheading3_subsubheading0">Please refer to the respective Children\'s Privacy Policies of Google Play Services, GitHub Pages, and JSDELIVR.</string>
+    <string name="privacy_subheading3_subsubheading0_list0">
+        <![CDATA[
+        <ul>
+            <li><a href=\"https://families.google.com/intl/en-GB/familylink/privacy/child-policy\">Google Play Services</a></li>
+            <li><a href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement#what-information-github-does-not-collect\">GitHub Pages</a></li>
+            <li><a href=\"https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net\">JSDELIVR</a></li>
+        </ul>
+        ]]>
+    </string>
+    <string name="privacy_subheading4">Changes to this Privacy Policy</string>
+    <string name="privacy_subheading4_para0">I may update my Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.\n</string>
+    <string name="privacy_subheading4_para1">This policy is effective as of 11 April 2021.\n</string>
+    <string name="privacy_subheading5">Contact me</string>
+    <string name="privacy_subheading5_para0">
+        <![CDATA[
+        <p>If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at <a href=\"mailto:liweiyap@gmail.com\">liweiyap [AT] gmail [DOT] com</a>.</p>
+        ]]>
+    </string>
+    <string name="privacy_subheading6">Acknowledgements</string>
+    <string name="privacy_subheading6_para0">This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator, which was created by Nishant Srivastava and others.</string>
+
     <string name="current_displayed_character_contentdescription">Character to be displayed during the reading of the current segment of the introduction.</string>
     <string name="author_logo_contentdescription">Personal logo of author of code.</string>
     <string name="merlin_button_contentdescription">Click on Merlin to select or deselect him. If Merlin is deselected, then Percival, Assassin, Morgana, and Mordred are auto-deselected.</string>

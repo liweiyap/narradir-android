@@ -353,6 +353,10 @@
         <item name="autoSizeMaxTextSize">16sp</item>
     </style>
 
+    <style name="HelpListStyle" parent="HelpParagraphStyleAutosized">
+        <item name="android:layout_marginStart">10dp</item>
+    </style>
+
     <style name="HelpSubheadingStyleBase" parent="HelpTextStyle">
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
