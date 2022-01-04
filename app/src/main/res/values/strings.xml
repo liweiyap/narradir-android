@@ -12,8 +12,9 @@
     <string name="shared_preferences_key">SHARED_PREFERENCES_KEY</string>
 
     <string name="intro_segments_key">INTRO_SEGMENTS</string>
+    <string name="guidance_activity_type_key">GUIDANCE_ACTIVITY_TYPE</string>
     <string name="pause_duration_key">PAUSE_DURATION</string>
-    <string name="background_sound_key">BACKGROUND_SOUND</string>
+    <string name="background_sound_key">BACKGROUND_SOUND</string>  <!-- {@deprecated Use background_sound_name_key instead.} -->
     <string name="background_volume_key">BACKGROUND_VOLUME</string>
     <string name="narration_volume_key">NARRATION_VOLUME</string>
     <string name="background_sound_name_key">BACKGROUND_SOUND_NAME</string>

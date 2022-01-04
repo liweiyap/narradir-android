@@ -60,13 +60,13 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         CustomTypefaceableObserverButton privacyButton = findViewById(R.id.privacyButton);
-        privacyButton.addOnClickObserver(() -> navigateToPrivacyActivity(privacyButton));
+        privacyButton.addOnClickObserver(() -> navigateToGuidanceActivity(privacyButton, Constants.GUIDANCE_PRIVACY));
 
         CustomTypefaceableObserverButton backButton = findViewById(R.id.settingsHomeLayoutBackButton);
         backButton.addOnClickObserver(this::navigateBackwards);
 
         CustomTypefaceableObserverButton helpButton = findViewById(R.id.settingsHomeLayoutHelpButton);
-        helpButton.addOnClickObserver(() -> navigateToHelpActivity(helpButton));
+        helpButton.addOnClickObserver(() -> navigateToGuidanceActivity(helpButton, Constants.GUIDANCE_HELP));
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
         {
@@ -209,15 +209,10 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 
-    private void navigateToPrivacyActivity(final @NonNull View view)
+    private void navigateToGuidanceActivity(final @NonNull View view, final int guidanceActivityType)
     {
-        Intent intent = new Intent(view.getContext(), PrivacyActivity.class);
-        mSettingsIndividualActivityResultObserverListener.launch(intent);
-    }
-
-    private void navigateToHelpActivity(final @NonNull View view)
-    {
-        Intent intent = new Intent(view.getContext(), HelpActivity.class);
+        Intent intent = new Intent(view.getContext(), GuidanceActivity.class);
+        intent.putExtra(getString(R.string.guidance_activity_type_key), guidanceActivityType);
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 
