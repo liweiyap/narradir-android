@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.liweiyap.narradir.R;
 import com.liweiyap.narradir.ui.Checkable;
@@ -66,8 +67,8 @@ public class CustomTypefaceableCheckableObserverButton
         }
 
         @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableDrawableIds);
-        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, ID_NULL);
-        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, ID_NULL);
+        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, ResourcesCompat.ID_NULL);
+        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, ResourcesCompat.ID_NULL);
         mIsChecked = typedArray.getBoolean(R.styleable.CheckableDrawableIds_defaultCheckedState, false);
         typedArray.recycle();
 
@@ -150,6 +151,5 @@ public class CustomTypefaceableCheckableObserverButton
 
     private int mCheckedDrawableId;
     private int mUncheckedDrawableId;
-    private final int ID_NULL = 0;
     private boolean mIsChecked = false;
 }

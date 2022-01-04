@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.exoplayer2.Player;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
@@ -229,27 +230,27 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         else if (resName.equals(getString(R.string.avalonintrosegment3nomerlin_key)))
         {
             mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(ResourcesCompat.ID_NULL);
         }
         else if (resName.equals(getString(R.string.avalonintrosegment5nopercival_key)))
         {
             mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(ResourcesCompat.ID_NULL);
         }
         else if (resName.equals(getString(R.string.avalonintrosegment7_key)))
         {
             mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(ResourcesCompat.ID_NULL);
         }
         else if (resName.equals(getString(R.string.secrethitlerintrosegment3small_key)))
         {
             mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(ResourcesCompat.ID_NULL);
         }
         else if (resName.equals(getString(R.string.secrethitlerintrosegment4large_key)))
         {
             mCurrentDisplayedCharacterImageView.setImageDrawable(null);
-            mCurrentDisplayedCharacterImageView.setBackgroundResource(0);
+            mCurrentDisplayedCharacterImageView.setBackgroundResource(ResourcesCompat.ID_NULL);
         }
     }
 
