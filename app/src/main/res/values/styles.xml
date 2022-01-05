@@ -103,8 +103,7 @@
 
     <style name="PlayerNumberSelectorStyleSecretHitler" parent="PlayerNumberSelectorStyleAutosized">
         <item name="android:textColor">@color/acadia</item>
-        <item name="checkedDrawableId">@drawable/psh_button_checked_background</item>
-        <item name="uncheckedDrawableId">@drawable/psh_button_unchecked_background</item>
+        <item name="android:background">@drawable/psh_button_selector</item>
     </style>
 
     <style name="CharacterImageStyleBase" parent="@android:style/Widget.ImageButton">
@@ -295,8 +294,7 @@
         <item name="android:layout_margin">5dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="checkedDrawableId">@drawable/settings_layout_checked_background</item>
-        <item name="uncheckedDrawableId">@drawable/settings_layout_unchecked_background</item>
+        <item name="android:background">@drawable/settings_layout_selector</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
     </style>

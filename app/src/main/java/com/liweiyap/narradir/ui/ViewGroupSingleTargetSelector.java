@@ -2,6 +2,7 @@ package com.liweiyap.narradir.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Checkable;
 
 public final class ViewGroupSingleTargetSelector
 {
@@ -36,13 +37,13 @@ public final class ViewGroupSingleTargetSelector
 
             int i = childIdx;
             ((ObserverListener) view).addOnClickObserver(() -> {
-                ((Checkable) view).check();
+                ((Checkable) view).setChecked(true);
                 for (int j = 0; j < viewGroup.getChildCount(); ++j)
                 {
                     if (i != j)
                     {
                         View tmp = viewGroup.getChildAt(j);
-                        ((Checkable) tmp).uncheck();
+                        ((Checkable) tmp).setChecked(false);
                     }
                 }
             });
