@@ -6,9 +6,9 @@ import android.widget.TextView;
 
 import androidx.core.widget.TextViewCompat;
 
-public final class TextViewCompatAutosizeHelper
+public final class TextViewAutosizeHelper
 {
-    private TextViewCompatAutosizeHelper(){}
+    private TextViewAutosizeHelper(){}
 
     /**
      * Programmatically sets the autoSizeMaxTextSize of a TextView to prevent it from getting too big when auto-sized according to user preferences,

@@ -14,8 +14,7 @@
         android:textColor="@android:color/black"
         android:layout_marginStart="5dp"
         style="@style/PlayerNumberSelectorStyleAutosized"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/p5_button_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/p5_button_unchecked_background"
+        android:background="@drawable/p5_button_selector"
         com.liweiyap.narradir:defaultCheckedState="true" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -25,8 +24,7 @@
         android:textColor="@android:color/black"
         android:alpha="0.5"
         style="@style/PlayerNumberSelectorStyleAutosized"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/p6_button_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/p6_button_unchecked_background"
+        android:background="@drawable/p6_button_selector"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -36,8 +34,7 @@
         android:textColor="@android:color/black"
         android:alpha="0.5"
         style="@style/PlayerNumberSelectorStyleAutosized"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/p7_button_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/p7_button_unchecked_background"
+        android:background="@drawable/p7_button_selector"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -47,8 +44,7 @@
         android:textColor="@android:color/black"
         android:alpha="0.5"
         style="@style/PlayerNumberSelectorStyleAutosized"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/p8_button_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/p8_button_unchecked_background"
+        android:background="@drawable/p8_button_selector"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -58,8 +54,7 @@
         android:textColor="@android:color/white"
         android:alpha="0.5"
         style="@style/PlayerNumberSelectorStyleAutosized"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/p9_button_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/p9_button_unchecked_background"
+        android:background="@drawable/p9_button_selector"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
@@ -69,8 +64,7 @@
         android:textColor="@android:color/white"
         android:alpha="0.5"
         style="@style/PlayerNumberSelectorStyleAutosized"
-        com.liweiyap.narradir:checkedDrawableId="@drawable/p10_button_checked_background"
-        com.liweiyap.narradir:uncheckedDrawableId="@drawable/p10_button_unchecked_background"
+        android:background="@drawable/p10_button_selector"
         com.liweiyap.narradir:defaultCheckedState="false" />
 
 </LinearLayout>

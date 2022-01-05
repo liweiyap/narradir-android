@@ -15,7 +15,7 @@ import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
-import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
+import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
@@ -112,8 +112,8 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
         // auto-sizing TextViews
         // -----------------------------------------------------------------------------------------
 
-        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.gameHintTextView));
-        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
+        TextViewAutosizeHelper.minimiseAutoSizeTextSizeRange(findViewById(R.id.gameHintTextView));
+        TextViewAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
     }
 
     @Override

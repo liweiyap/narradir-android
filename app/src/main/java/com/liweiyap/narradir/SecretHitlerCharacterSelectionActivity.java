@@ -13,7 +13,7 @@ import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
 import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
-import com.liweiyap.narradir.ui.TextViewCompatAutosizeHelper;
+import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
@@ -85,7 +85,6 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         CustomTypefaceableObserverButton gameSwitcherButton = findViewById(R.id.characterSelectionLayoutGameSwitcherButton);
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_avalon));
-        TextViewCompatAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
         gameSwitcherButton.addOnClickObserver(() -> navigateToAvalonCharacterSelectionActivity(gameSwitcherButton));
 
         CustomTypefaceableObserverButton playButton = findViewById(R.id.characterSelectionLayoutPlayButton);
@@ -93,6 +92,12 @@ public class SecretHitlerCharacterSelectionActivity extends ActiveFullScreenPort
 
         ObserverImageButton settingsButton = findViewById(R.id.characterSelectionLayoutSettingsButton);
         settingsButton.addOnClickObserver(() -> navigateToSettingsHomeActivity(settingsButton));
+
+        // -----------------------------------------------------------------------------------------
+        // auto-sizing TextViews
+        // -----------------------------------------------------------------------------------------
+
+        TextViewAutosizeHelper.minimiseAutoSizeTextSizeRange(gameSwitcherButton);
     }
 
     @Override

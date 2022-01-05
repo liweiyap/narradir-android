@@ -4,13 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.widget.Checkable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
-import com.liweiyap.narradir.ui.Checkable;
 
+/**
+ * See: https://stackoverflow.com/a/34074176/12367873
+ */
 public class CustomTypefaceableCheckableObserverButton
     extends CustomTypefaceableObserverButton
     implements Checkable
@@ -18,116 +21,59 @@ public class CustomTypefaceableCheckableObserverButton
     public CustomTypefaceableCheckableObserverButton(@NonNull Context context)
     {
         super(context);
-        init();
+        init(context, null);
     }
 
     public CustomTypefaceableCheckableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs)
     {
         super(context, attrs);
-        setDrawableIds(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public CustomTypefaceableCheckableObserverButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
-        setDrawableIds(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public CustomTypefaceableCheckableObserverButton(@NonNull Context context, final String assetFontPath)
     {
         super(context, assetFontPath);
-        init();
+        init(context, null);
     }
 
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, final int checkedDrawableId, final int uncheckedDrawableId)
+    /**
+     * Toggles background based on the selector that we set in XML
+     */
+    @Override
+    public int[] onCreateDrawableState(int extraSpace)
     {
-        super(context);
-        setCheckedDrawableId(checkedDrawableId);
-        setUncheckedDrawableId(uncheckedDrawableId);
-        init();
-    }
-
-    public CustomTypefaceableCheckableObserverButton(@NonNull Context context, final String assetFontPath, final int checkedDrawableId, final int uncheckedDrawableId)
-    {
-        super(context, assetFontPath);
-        setCheckedDrawableId(checkedDrawableId);
-        setUncheckedDrawableId(uncheckedDrawableId);
-        init();
+        final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
+        if (isChecked())
+        {
+            mergeDrawableStates(drawableState, CHECKED_STATE_SET);
+        }
+        return drawableState;
     }
 
     @Override
-    public void setDrawableIds(final Context context, final AttributeSet attrs)
+    public void setChecked(boolean checked)
     {
-        if (attrs == null)
+        setAlpha(checked ? 1.f : 0.5f);
+
+        if (mIsChecked == checked)
         {
             return;
         }
 
-        @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableDrawableIds);
-        int checkedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_checkedDrawableId, ID_NULL);
-        int uncheckedDrawableId = typedArray.getResourceId(R.styleable.CheckableDrawableIds_uncheckedDrawableId, ID_NULL);
-        mIsChecked = typedArray.getBoolean(R.styleable.CheckableDrawableIds_defaultCheckedState, false);
-        typedArray.recycle();
-
-        setCheckedDrawableId(checkedDrawableId);
-        setUncheckedDrawableId(uncheckedDrawableId);
-    }
-
-    @Override
-    public void setCheckedDrawableId(final int drawableId)
-    {
-        mCheckedDrawableId = drawableId;
-    }
-
-    @Override
-    public void setUncheckedDrawableId(final int drawableId)
-    {
-        mUncheckedDrawableId = drawableId;
-    }
-
-    @Override
-    public void check()
-    {
-        mIsChecked = true;
-        setAlpha(1.f);
-        try
-        {
-            setBackgroundResource(mCheckedDrawableId);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void uncheck()
-    {
-        mIsChecked = false;
-        setAlpha(0.5f);
-        try
-        {
-            setBackgroundResource(mUncheckedDrawableId);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        mIsChecked = checked;
+        refreshDrawableState();
     }
 
     @Override
     public void toggle()
     {
-        if (mIsChecked)
-        {
-            uncheck();
-        }
-        else
-        {
-            check();
-        }
+        setChecked(!mIsChecked);
     }
 
     @Override
@@ -136,20 +82,21 @@ public class CustomTypefaceableCheckableObserverButton
         return mIsChecked;
     }
 
-    private void init()
+    private void init(final Context context, final AttributeSet attrs)
     {
-        if (mIsChecked)
+        if (attrs != null)
         {
-            check();
+            @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableInitHelper);
+            mIsChecked = typedArray.getBoolean(R.styleable.CheckableInitHelper_defaultCheckedState, false);
+            typedArray.recycle();
         }
-        else
-        {
-            uncheck();
-        }
+
+        setChecked(mIsChecked);
     }
 
-    private int mCheckedDrawableId;
-    private int mUncheckedDrawableId;
-    private final int ID_NULL = 0;
     private boolean mIsChecked = false;
+
+    private static final int[] CHECKED_STATE_SET = {
+        android.R.attr.state_checked
+    };
 }
