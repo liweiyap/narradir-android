@@ -113,8 +113,7 @@
     </style>
 
     <style name="CharacterImageStyleAvalon" parent="CharacterImageStyleBase">
-        <item name="checkedDrawableId">@drawable/blank_checked_background</item>
-        <item name="uncheckedDrawableId">@null</item>
+        <item name="android:background">@drawable/avalon_selector</item>
     </style>
 
     <style name="CharacterImageStyleSecretHitlerLiberal" parent="CharacterImageStyleBase">

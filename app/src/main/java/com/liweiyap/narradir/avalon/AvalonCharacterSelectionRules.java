@@ -88,20 +88,20 @@ class AvalonCharacterSelectionRules
                 mCharacterImageButtonArray[AvalonCharacterName.MORDRED].performClick();
             }
 
-            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].uncheck();
-            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].setChecked(false);
+            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].setChecked(false);
             checkNewLoyal();
             checkNewMinion();
         }
         else
         {
-            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].check();
-            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].check();
+            mCharacterImageButtonArray[AvalonCharacterName.MERLIN].setChecked(true);
+            mCharacterImageButtonArray[AvalonCharacterName.ASSASSIN].setChecked(true);
             uncheckOldLoyal();
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.OBERON, 1);
         }
 
-        checkPlayerComposition("AvalonCharacterSelectionRules::addMerlinSelectionRules()");
+        checkPlayerComposition("AvalonCharacterSelectionRules::runMerlinSelectionRules()");
     }
 
     /**
@@ -125,18 +125,18 @@ class AvalonCharacterSelectionRules
     {
         if (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
         {
-            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].setChecked(false);
             checkNewLoyal();
 
             if (mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
             {
                 checkNewMinion();
             }
-            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].setChecked(false);
         }
         else
         {
-            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].check();
+            mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].setChecked(true);
             uncheckOldLoyal();
 
             if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
@@ -151,7 +151,7 @@ class AvalonCharacterSelectionRules
                 {
                     searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORDRED, 1);
                 }
-                mCharacterImageButtonArray[AvalonCharacterName.MORGANA].check();
+                mCharacterImageButtonArray[AvalonCharacterName.MORGANA].setChecked(true);
             }
         }
 
@@ -184,7 +184,7 @@ class AvalonCharacterSelectionRules
                         "Morgana was active in the absence of Percival");
             }
 
-            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].setChecked(false);
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
@@ -193,7 +193,7 @@ class AvalonCharacterSelectionRules
                 {
                     checkNewMinion();
                 }
-                mCharacterImageButtonArray[AvalonCharacterName.MORDRED].check();
+                mCharacterImageButtonArray[AvalonCharacterName.MORDRED].setChecked(true);
             }
             else
             {
@@ -202,7 +202,7 @@ class AvalonCharacterSelectionRules
         }
         else
         {
-            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].check();
+            mCharacterImageButtonArray[AvalonCharacterName.MORGANA].setChecked(true);
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORDRED, 1);
 
             if (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
@@ -243,7 +243,7 @@ class AvalonCharacterSelectionRules
                         "Mordred was active in the absence of Merlin");
             }
 
-            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].setChecked(false);
 
             if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
@@ -252,7 +252,7 @@ class AvalonCharacterSelectionRules
                 {
                     checkNewMinion();
                 }
-                mCharacterImageButtonArray[AvalonCharacterName.MORGANA].check();
+                mCharacterImageButtonArray[AvalonCharacterName.MORGANA].setChecked(true);
             }
             else
             {
@@ -262,7 +262,7 @@ class AvalonCharacterSelectionRules
         else
         {
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1);
-            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].check();
+            mCharacterImageButtonArray[AvalonCharacterName.MORDRED].setChecked(true);
 
             if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
             {
@@ -283,13 +283,13 @@ class AvalonCharacterSelectionRules
     {
         if (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked())
         {
-            mCharacterImageButtonArray[AvalonCharacterName.OBERON].uncheck();
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].setChecked(false);
             searchAndCheckNewCharacters(AvalonCharacterName.MINION0, AvalonCharacterName.MINION3, 1);
         }
         else
         {
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1);
-            mCharacterImageButtonArray[AvalonCharacterName.OBERON].check();
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].setChecked(true);
         }
 
         checkPlayerComposition("AvalonCharacterSelectionRules::runOberonSelectionRules()");
@@ -339,7 +339,7 @@ class AvalonCharacterSelectionRules
         {
             if (!mCharacterImageButtonArray[currIdx].isChecked())
             {
-                mCharacterImageButtonArray[currIdx].check();
+                mCharacterImageButtonArray[currIdx].setChecked(true);
                 --charactersToCheck;
             }
 
@@ -395,7 +395,7 @@ class AvalonCharacterSelectionRules
 
             if (mCharacterImageButtonArray[currIdx].isChecked())
             {
-                mCharacterImageButtonArray[currIdx].uncheck();
+                mCharacterImageButtonArray[currIdx].setChecked(false);
                 --charactersToUncheck;
             }
 
