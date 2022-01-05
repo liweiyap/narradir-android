@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -39,14 +40,14 @@ public class StrokedCustomTypefaceableTextView
         super(context, assetFontPath);
     }
 
-    public StrokedCustomTypefaceableTextView(@NonNull Context context, final int strokeColour, final float strokeWidth)
+    public StrokedCustomTypefaceableTextView(@NonNull Context context, final @ColorInt int strokeColour, final float strokeWidth)
     {
         super(context);
         setStrokeColor(strokeColour);
         setStrokeWidth(strokeWidth);
     }
 
-    public StrokedCustomTypefaceableTextView(@NonNull Context context, final String assetFontPath, final int strokeColour, final float strokeWidth)
+    public StrokedCustomTypefaceableTextView(@NonNull Context context, final String assetFontPath, final @ColorInt int strokeColour, final float strokeWidth)
     {
         super(context, assetFontPath);
         setStrokeColor(strokeColour);
@@ -109,7 +110,7 @@ public class StrokedCustomTypefaceableTextView
     }
 
     @Override
-    public void setStrokeColor(final int color)
+    public void setStrokeColor(final @ColorInt int color)
     {
         mStrokeColor = color;
     }
@@ -142,7 +143,9 @@ public class StrokedCustomTypefaceableTextView
         return (int) (dp * scale + 0.5f);
     }
 
-    private int mStrokeColor = getCurrentTextColor();
+    // should be safe to be stored as an int; it represents a packed color int, AARRGGBB. If applied to an int array, every element in the array represents a color integer.
+    // Hence, it's not a resource ID (R.color.); it's already been converted from said resource ID. We even use TypedArray::getColor() instead of TypedArray::getInt()
+    private @ColorInt int mStrokeColor = getCurrentTextColor();
     private float mStrokeWidth = 0;
     private boolean mIsDrawing;
 }

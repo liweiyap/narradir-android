@@ -22,6 +22,11 @@ public final class CustomFontSetter
      */
     public static void setCustomFont(final TextView textView, final @NonNull Context context, final AttributeSet attrs)
     {
+        if (attrs == null)
+        {
+            return;
+        }
+
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFont);
         String assetFontPath = typedArray.getString(R.styleable.CustomFont_assetFontPath);
         setCustomFont(textView, assetFontPath, context);
