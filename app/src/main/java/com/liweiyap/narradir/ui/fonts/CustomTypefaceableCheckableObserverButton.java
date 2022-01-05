@@ -82,7 +82,7 @@ public class CustomTypefaceableCheckableObserverButton
         return mIsChecked;
     }
 
-    private void init(final Context context, final AttributeSet attrs)
+    private void init(final @NonNull Context context, final @Nullable AttributeSet attrs)
     {
         if (attrs != null)
         {
