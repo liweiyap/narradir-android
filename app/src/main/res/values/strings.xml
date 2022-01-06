@@ -134,7 +134,7 @@
     <string name="help_subheading1_subsubheading2_para0">This timer determines the length of the pause during the action of the roles that wake up at night, namely: Merlin, Percival, the Agents of Evil (except Oberon), Hitler, and/or the Fascists).\n</string>
     <string name="help_subheading2">Tips</string>
     <string name="help_subheading2_para0">Tap and hold the image of each character to learn his/her role in the game.\n</string>
-    <string name="help_subheading2_para1">When the app is active on any screen, it prevents your device from going to sleep. If playing for extended periods of time, you should plug in your device or change the brightness to a low setting.\n</string>
+    <string name="help_subheading2_para1">When the app is active on the narration screen, as well as at any time an audio track is being played, the app prevents your device from going to sleep. If playing for extended periods of time, you should plug in your device or change the brightness to a low setting.\n</string>
     <string name="help_subheading2_para2">Notifications (calls, mail, messages, etc.) may interrupt the playback of the app, depending on how your notifications are set up.\n</string>
     <string name="help_subheading3">Credits</string>
     <string name="help_subheading3_para0">This app was developed by Li-Wei Yap. The code within this app is Copyright © 2021 Li-Wei Yap and licensed under the GNU General Public Licence v3.0. The code may not be reproduced without citation.\n</string>

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
-import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.SettingsLayout;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
@@ -20,7 +20,7 @@ import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.TimeDisplay;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
-public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
+public class SettingsHomeActivity extends FullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,6 +56,14 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
         mRoleTimerSettingsLayout.setValue(TimeDisplay.fromMilliseconds(mPauseDurationInMilliSecs));
 
         // ----------------------------------------------------------------------
+        // initialise SoundPool for click sound
+        // (important: initialise before navigation)
+        // ----------------------------------------------------------------------
+
+        mClickSoundGenerator = new ClickSoundGenerator(this);
+        addSoundToPlayOnButtonClick();
+
+        // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
@@ -76,13 +84,6 @@ public class SettingsHomeActivity extends ActiveFullScreenPortraitActivity
                 backButton.performClick();
             }
         });
-
-        // ----------------------------------------------------------------------
-        // initialise SoundPool for click sound
-        // ----------------------------------------------------------------------
-
-        mClickSoundGenerator = new ClickSoundGenerator(this);
-        addSoundToPlayOnButtonClick();
 
         // ----------------------------------------------------------------------
         // navigation from background sound selection layout itself
