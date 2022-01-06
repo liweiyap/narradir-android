@@ -100,6 +100,7 @@ public class AvalonCharacterSelectionActivity extends FullScreenPortraitActivity
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
                 mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+                mDoHideBackgroundSoundHint = data.getBooleanExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
             });
         getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
 
@@ -296,6 +297,7 @@ public class AvalonCharacterSelectionActivity extends FullScreenPortraitActivity
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        intent.putExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         mSettingsHomeActivityResultObserverListener.launch(intent);
     }
 
@@ -317,6 +319,7 @@ public class AvalonCharacterSelectionActivity extends FullScreenPortraitActivity
         sharedPrefEditor.putString(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
+        sharedPrefEditor.putBoolean(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         sharedPrefEditor.putInt(getString(R.string.good_player_number_avalon_key), mAvalonControlGroup.getExpectedGoodTotal());
         sharedPrefEditor.putInt(getString(R.string.evil_player_number_avalon_key), mAvalonControlGroup.getExpectedEvilTotal());
 
@@ -342,6 +345,7 @@ public class AvalonCharacterSelectionActivity extends FullScreenPortraitActivity
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
         mBackgroundSoundName = sharedPref.getString(getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+        mDoHideBackgroundSoundHint = sharedPref.getBoolean(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
 
         if (mAvalonControlGroup == null)
         {
@@ -416,4 +420,5 @@ public class AvalonCharacterSelectionActivity extends FullScreenPortraitActivity
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
     private String mBackgroundSoundName;
+    private boolean mDoHideBackgroundSoundHint = false;
 }

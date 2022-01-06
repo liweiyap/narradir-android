@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/RowLayoutStyleDefault"
-    android:id="@+id/settingsHomeLayoutNavBar"
+    android:id="@+id/nonStartingActivityLayoutNavBar"
     android:weightSum="2" >
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton

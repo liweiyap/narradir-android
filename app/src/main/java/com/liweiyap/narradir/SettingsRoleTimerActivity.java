@@ -38,7 +38,7 @@ public class SettingsRoleTimerActivity extends FullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         Intent intent = getIntent();
-        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), 5000);
+        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
         displayPauseDuration();
 
         // ----------------------------------------------------------------------
