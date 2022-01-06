@@ -68,14 +68,14 @@
         <item name="android:textColor">@color/oasis</item>
     </style>
 
-    <style name="GameHintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
+    <style name="HintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
 
-    <style name="GameHintStyleAvalon" parent="GameHintStyleBase">
+    <style name="GameHintStyleAvalon" parent="HintStyleBase">
         <item name="android:text">@string/game_hint_avalon</item>
         <item name="android:textSize">10sp</item>
     </style>
