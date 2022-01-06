@@ -93,7 +93,7 @@ public class CharacterDescriptionMediaPlayer implements MediaPlayerController
     }
 
     @Override
-    public void setVolume(float volume)
+    public void setVolume(final float volume)
     {
         if (mMediaPlayer == null)
         {
