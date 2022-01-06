@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.liweiyap.narradir">
 
     <application
         android:name=".NarradirApplication"
         android:allowBackup="true"
-        android:fullBackupContent="@xml/my_backup_rules"
+        android:fullBackupContent="@xml/googledrive_backup_rules"
+        android:dataExtractionRules="@xml/googledrive_backup_rules_v31"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:largeHeap="true"
         android:hardwareAccelerated="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="s">
         <activity android:name=".AvalonCharacterSelectionActivity" android:configChanges="orientation|screenSize|screenLayout"
             android:exported="true">
             <intent-filter>
