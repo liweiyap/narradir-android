@@ -37,7 +37,7 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
             }
 
             mMediaPlayer.setLooping(true);
-            mMediaPlayer.setVolume(volume, volume);
+            setVolume(volume);
             mMediaPlayer.start();
         }
         catch (IllegalStateException e)
@@ -93,6 +93,17 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
 
         mMediaPlayer.release();
         mMediaPlayer = null;
+    }
+
+    @Override
+    public void setVolume(final float volume)
+    {
+        if (mMediaPlayer == null)
+        {
+            return;
+        }
+
+        mMediaPlayer.setVolume(volume, volume);
     }
 
     private @Nullable MediaPlayer create(final @NonNull String res)
