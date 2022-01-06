@@ -16,7 +16,7 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
     }
 
     @Override
-    public void play(final String res, final float volume)
+    public void play(final String res, final float volume, final MediaPlayer.OnCompletionListener listener)
     {
         if (mMediaPlayer != null)
         {
@@ -38,6 +38,7 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
 
             mMediaPlayer.setLooping(true);
             setVolume(volume);
+            mMediaPlayer.setOnCompletionListener(listener);
             mMediaPlayer.start();
         }
         catch (IllegalStateException e)
@@ -80,6 +81,7 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
             return;
         }
 
+        mMediaPlayer.setOnCompletionListener(null);
         mMediaPlayer.stop();
     }
 

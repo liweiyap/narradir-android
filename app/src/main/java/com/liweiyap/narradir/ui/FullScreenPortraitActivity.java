@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * https://stackoverflow.com/questions/31198923/preventing-android-navigation-and-action-bars-from-appearing-when-switching-acti
  * https://stackoverflow.com/questions/34394916/why-navigation-bar-is-appearing-in-fullscreen-apps-when-clicked-on-popup-menu
  */
-public class ActiveFullScreenPortraitActivity extends AppCompatActivity
+public class FullScreenPortraitActivity extends AppCompatActivity
 {
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -27,7 +27,6 @@ public class ActiveFullScreenPortraitActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override

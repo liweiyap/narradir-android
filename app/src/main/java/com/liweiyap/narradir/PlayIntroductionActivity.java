@@ -3,6 +3,7 @@ package com.liweiyap.narradir;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -10,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.exoplayer2.Player;
-import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.IntentHelper;
@@ -21,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
+public class PlayIntroductionActivity extends FullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -130,6 +131,7 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         switchCurrentDisplayedIntroSegmentTextView(introSegmentArrayList.get(0));
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
@@ -183,6 +185,8 @@ public class PlayIntroductionActivity extends ActiveFullScreenPortraitActivity
         {
             mCurrentDisplayedIntroSegmentTextView.setText("");
         }
+
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void switchCurrentDisplayedCharacterImage(final @NonNull String resName)

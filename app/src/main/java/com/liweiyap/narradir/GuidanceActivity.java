@@ -5,14 +5,14 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.HtmlHelper;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
-public class GuidanceActivity extends ActiveFullScreenPortraitActivity
+public class GuidanceActivity extends FullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,6 +50,14 @@ public class GuidanceActivity extends ActiveFullScreenPortraitActivity
         CustomTypefaceableObserverButton mainButton = findViewById(R.id.mainButton);
 
         // ----------------------------------------------------------------------
+        // initialise SoundPool for click sound
+        // (important: initialise before navigation)
+        // ----------------------------------------------------------------------
+
+        mClickSoundGenerator = new ClickSoundGenerator(this);
+        addSoundToPlayOnButtonClick();
+
+        // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
@@ -64,13 +72,6 @@ public class GuidanceActivity extends ActiveFullScreenPortraitActivity
                 generalBackButton.performClick();
             }
         });
-
-        // ----------------------------------------------------------------------
-        // initialise SoundPool for click sound
-        // ----------------------------------------------------------------------
-
-        mClickSoundGenerator = new ClickSoundGenerator(this);
-        addSoundToPlayOnButtonClick();
     }
 
     @Override

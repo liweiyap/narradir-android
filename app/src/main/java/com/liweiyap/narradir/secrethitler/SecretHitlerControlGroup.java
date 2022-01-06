@@ -2,6 +2,7 @@ package com.liweiyap.narradir.secrethitler;
 
 import android.content.Context;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -175,12 +176,13 @@ public class SecretHitlerControlGroup
 
     private void startCharacterDescriptionMediaPlayer(final @NonNull String description)
     {
-        if (mCharacterDescriptionMediaPlayer == null)
+        if ( (!(mContext instanceof AppCompatActivity)) || (mCharacterDescriptionMediaPlayer == null) )
         {
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.play(description, 1f);
+        mCharacterDescriptionMediaPlayer.play(description, 1f, mp -> ((AppCompatActivity) mContext).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON));
+        ((AppCompatActivity) mContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void resumeCharacterDescriptionMediaPlayer()
@@ -205,12 +207,13 @@ public class SecretHitlerControlGroup
 
     public void stopCharacterDescriptionMediaPlayer()
     {
-        if (mCharacterDescriptionMediaPlayer == null)
+        if ( (!(mContext instanceof AppCompatActivity)) || (mCharacterDescriptionMediaPlayer == null) )
         {
             return;
         }
 
         mCharacterDescriptionMediaPlayer.stop();
+        ((AppCompatActivity) mContext).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void freeCharacterDescriptionMediaPlayer()

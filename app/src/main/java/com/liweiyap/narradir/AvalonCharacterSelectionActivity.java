@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.liweiyap.narradir.avalon.AvalonCharacterName;
 import com.liweiyap.narradir.avalon.AvalonControlGroup;
-import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.CheckableObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
@@ -26,7 +26,7 @@ import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import java.util.ArrayList;
 
-public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitActivity
+public class AvalonCharacterSelectionActivity extends FullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,6 +71,7 @@ public class AvalonCharacterSelectionActivity extends ActiveFullScreenPortraitAc
 
         // -----------------------------------------------------------------------------------------
         // sounds
+        // (important: initialise before navigation)
         // -----------------------------------------------------------------------------------------
 
         mClickSoundGenerator = new ClickSoundGenerator(this);

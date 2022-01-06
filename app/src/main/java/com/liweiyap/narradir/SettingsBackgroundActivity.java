@@ -2,12 +2,13 @@ package com.liweiyap.narradir;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
-import com.liweiyap.narradir.ui.ActiveFullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverButton;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
@@ -19,7 +20,7 @@ import com.liweiyap.narradir.util.IntentHelper;
 import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
-public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
+public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,6 +65,15 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         volumeDecreaseButton.addOnClickObserver(this::decreaseVolume);
 
         // ----------------------------------------------------------------------
+        // initialise SoundPool for click sound
+        // (important: should be initialised after volume control to prevent race condition with setting volume!!!)
+        // (important: initialise before navigation bar)
+        // ----------------------------------------------------------------------
+
+        mClickSoundGenerator = new ClickSoundGenerator(this);
+        addSoundToPlayOnButtonClick();
+
+        // ----------------------------------------------------------------------
         // navigation bar (of activity, not of phone)
         // ----------------------------------------------------------------------
 
@@ -78,14 +88,6 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
                 generalBackButton.performClick();
             }
         });
-
-        // ----------------------------------------------------------------------
-        // initialise SoundPool for click sound
-        // (important: should be initialised last to prevent race condition with setting volume!!!)
-        // ----------------------------------------------------------------------
-
-        mClickSoundGenerator = new ClickSoundGenerator(this);
-        addSoundToPlayOnButtonClick();
     }
 
     @Override
@@ -159,7 +161,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
                 }
                 else
                 {
-                    mBackgroundSoundTestMediaPlayer.stop();
+                    stopBackgroundSound();
                 }
             }
 
@@ -234,13 +236,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         backgroundSoundRainforestButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_rainforest)));
         backgroundSoundRainstormButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_rainstorm)));
         backgroundSoundWolvesButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_wolves)));
-        backgroundSoundNoneButton.addOnLongClickObserver(() -> {
-            if (mBackgroundSoundTestMediaPlayer == null)
-            {
-                return;
-            }
-            mBackgroundSoundTestMediaPlayer.stop();
-        });
+        backgroundSoundNoneButton.addOnLongClickObserver(this::stopBackgroundSound);
     }
 
     private void selectBackgroundSound(final @NonNull String sound)
@@ -255,7 +251,19 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
             return;
         }
 
-        mBackgroundSoundTestMediaPlayer.play(sound, mBackgroundSoundVolume);
+        mBackgroundSoundTestMediaPlayer.play(sound, mBackgroundSoundVolume, null);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private void stopBackgroundSound()
+    {
+        if (mBackgroundSoundTestMediaPlayer == null)
+        {
+            return;
+        }
+
+        mBackgroundSoundTestMediaPlayer.stop();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void displayVolume()
