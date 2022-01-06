@@ -7,4 +7,5 @@ public interface MediaPlayerController
     void pause();
     void stop();
     void free();
+    void setVolume(final float volume);
 }

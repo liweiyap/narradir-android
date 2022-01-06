@@ -51,7 +51,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
 
         mBackgroundSoundTestMediaPlayer = new BackgroundSoundTestMediaPlayer(this);
-        selectBackgroundSound(mBackgroundSoundName);
+        initBackgroundSound(mBackgroundSoundName);
         addBackgroundSoundSetters();
 
         displayVolume();
@@ -81,6 +81,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
 
         // ----------------------------------------------------------------------
         // initialise SoundPool for click sound
+        // (important: should be initialised last to prevent race condition with setting volume!!!)
         // ----------------------------------------------------------------------
 
         mClickSoundGenerator = new ClickSoundGenerator(this);
@@ -133,16 +134,16 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         for (int childIdx = 0; childIdx < backgroundSoundSelectionLayout.getChildCount(); ++childIdx)
         {
             CustomTypefaceableCheckableObserverButton btn = (CustomTypefaceableCheckableObserverButton) backgroundSoundSelectionLayout.getChildAt(childIdx);
-            addSoundToPlayOnButtonClick(btn);
+            addSoundToPlayOnButtonClick(btn, false);
         }
 
-        addSoundToPlayOnButtonClick(findViewById(R.id.generalBackButton));
-        addSoundToPlayOnButtonClick(findViewById(R.id.mainButton));
-        addSoundToPlayOnButtonClick(findViewById(R.id.upControlButton));
-        addSoundToPlayOnButtonClick(findViewById(R.id.downControlButton));
+        addSoundToPlayOnButtonClick(findViewById(R.id.generalBackButton), false);
+        addSoundToPlayOnButtonClick(findViewById(R.id.mainButton), false);
+        addSoundToPlayOnButtonClick(findViewById(R.id.upControlButton), true);
+        addSoundToPlayOnButtonClick(findViewById(R.id.downControlButton), true);
     }
 
-    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener)
+    private void addSoundToPlayOnButtonClick(final ObserverListener observerListener, final boolean isVolumeControl)
     {
         if (observerListener == null)
         {
@@ -152,7 +153,14 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         observerListener.addOnClickObserver(() -> {
             if (mBackgroundSoundTestMediaPlayer != null)
             {
-                mBackgroundSoundTestMediaPlayer.stop();
+                if (isVolumeControl)
+                {
+                    mBackgroundSoundTestMediaPlayer.setVolume(mBackgroundSoundVolume);
+                }
+                else
+                {
+                    mBackgroundSoundTestMediaPlayer.stop();
+                }
             }
 
             if (mClickSoundGenerator != null)
@@ -162,7 +170,7 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         });
     }
 
-    private void selectBackgroundSound(final @NonNull String backgroundSoundName)
+    private void initBackgroundSound(final @NonNull String backgroundSoundName)
     {
         // does not look elegant but it's safe because resource ID integers are non-constant from Gradle version >4.
         if (backgroundSoundName.equals(getString(R.string.backgroundsound_cards)))
@@ -210,14 +218,14 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
         final CustomTypefaceableCheckableObserverButton backgroundSoundRainstormButton = findViewById(R.id.backgroundSoundRainstormButton);
         final CustomTypefaceableCheckableObserverButton backgroundSoundWolvesButton = findViewById(R.id.backgroundSoundWolvesButton);
 
-        backgroundSoundNoneButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_none));
-        backgroundSoundCardsButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_cards));
-        backgroundSoundCricketsButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_crickets));
-        backgroundSoundFireplaceButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_fireplace));
-        backgroundSoundRainButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rain));
-        backgroundSoundRainforestButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rainforest));
-        backgroundSoundRainstormButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_rainstorm));
-        backgroundSoundWolvesButton.addOnClickObserver(() -> mBackgroundSoundName = getString(R.string.backgroundsound_wolves));
+        backgroundSoundNoneButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_none)));
+        backgroundSoundCardsButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_cards)));
+        backgroundSoundCricketsButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_crickets)));
+        backgroundSoundFireplaceButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_fireplace)));
+        backgroundSoundRainButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_rain)));
+        backgroundSoundRainforestButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_rainforest)));
+        backgroundSoundRainstormButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_rainstorm)));
+        backgroundSoundWolvesButton.addOnClickObserver(() -> selectBackgroundSound(getString(R.string.backgroundsound_wolves)));
 
         backgroundSoundCardsButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_cards)));
         backgroundSoundCricketsButton.addOnLongClickObserver(() -> playBackgroundSound(getString(R.string.backgroundsound_crickets)));
@@ -233,6 +241,11 @@ public class SettingsBackgroundActivity extends ActiveFullScreenPortraitActivity
             }
             mBackgroundSoundTestMediaPlayer.stop();
         });
+    }
+
+    private void selectBackgroundSound(final @NonNull String sound)
+    {
+        mBackgroundSoundName = sound;
     }
 
     private void playBackgroundSound(final @NonNull String sound)
