@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<!-- CoordinatorLayout as the root layout to activate dismiss-by-swipe capability of Snackbars -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/settingsBackgroundLayout"
-    android:weightSum="10"
-    style="@style/ActivityLayoutStyle"
-    tools:context=".SettingsBackgroundActivity">
-
-    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/settings_page_title"
-        style="@style/NonStartingActivityTitleStyleAutosized" />
-
-    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/settingsTitleTextView"
-        style="@style/SettingsTitleStyleAutosized" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:baselineAligned="false">
+        android:id="@+id/settingsBackgroundLayout"
+        android:weightSum="10"
+        style="@style/ActivityLayoutStyle"
+        tools:context=".SettingsBackgroundActivity">
 
-        <include
-            layout="@layout/background_sound_selection_layout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3" />
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:text="@string/settings_page_title"
+            style="@style/NonStartingActivityTitleStyleAutosized" />
+
+        <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/settingsTitleTextView"
+            style="@style/SettingsTitleStyleAutosized" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:baselineAligned="false">
 
             <include
-                layout="@layout/updown_control_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                layout="@layout/background_sound_selection_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3" />
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <include
+                    layout="@layout/updown_control_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/non_activity_starting_navbar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
-    <include
-        layout="@layout/non_activity_starting_navbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
