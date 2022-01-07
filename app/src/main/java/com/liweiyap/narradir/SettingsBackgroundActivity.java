@@ -9,7 +9,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenActivity;
 import com.liweiyap.narradir.ui.ObserverButton;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.SnackbarWrapper;
@@ -25,7 +25,7 @@ import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import java.util.EnumSet;
 
-public class SettingsBackgroundActivity extends FullScreenPortraitActivity
+public class SettingsBackgroundActivity extends FullScreenActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.exoplayer2.Player;
-import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenActivity;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.IntentHelper;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class PlayIntroductionActivity extends FullScreenPortraitActivity
+public class PlayIntroductionActivity extends FullScreenActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

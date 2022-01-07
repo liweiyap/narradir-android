@@ -1,7 +1,5 @@
 package com.liweiyap.narradir.ui;
 
-import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +17,12 @@ import androidx.appcompat.app.AppCompatActivity;
  * https://stackoverflow.com/questions/31198923/preventing-android-navigation-and-action-bars-from-appearing-when-switching-acti
  * https://stackoverflow.com/questions/34394916/why-navigation-bar-is-appearing-in-fullscreen-apps-when-clicked-on-popup-menu
  */
-public class FullScreenPortraitActivity extends AppCompatActivity
+public class FullScreenActivity extends AppCompatActivity
 {
-    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override

@@ -16,21 +16,24 @@
         android:hardwareAccelerated="false"
         android:theme="@style/AppTheme"
         tools:targetApi="s">
-        <activity android:name=".AvalonCharacterSelectionActivity" android:configChanges="orientation|screenSize|screenLayout"
-            android:exported="true">
+        <!-- declare screenOrientation here rather than in the code so that it's in portrait from the get-go. Otherwise, in tablets as well as in some phones like HUAWEI YAL-L21 (Android 10) (see: https://stackoverflow.com/a/50616559/12367873), -->
+        <!-- the app might be in landscape mode for a short period of time before switching to portait mode. -->
+        <activity android:name=".AvalonCharacterSelectionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecretHitlerCharacterSelectionActivity" android:configChanges="orientation|screenSize|screenLayout" />
-        <activity android:name=".PlayIntroductionActivity" android:configChanges="orientation|screenSize|screenLayout" />
-        <activity android:name=".SettingsHomeActivity" android:configChanges="orientation|screenSize|screenLayout" />
-        <activity android:name=".SettingsNarrationActivity" android:configChanges="orientation|screenSize|screenLayout" />
-        <activity android:name=".SettingsBackgroundActivity" android:configChanges="orientation|screenSize|screenLayout" />
-        <activity android:name=".SettingsRoleTimerActivity" android:configChanges="orientation|screenSize|screenLayout" />
-        <activity android:name=".GuidanceActivity" android:configChanges="orientation|screenSize|screenLayout" />
+        <activity android:name=".SecretHitlerCharacterSelectionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".PlayIntroductionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".SettingsHomeActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".SettingsNarrationActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".SettingsBackgroundActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".SettingsRoleTimerActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".GuidanceActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

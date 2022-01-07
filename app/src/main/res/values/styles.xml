@@ -5,6 +5,13 @@
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@null</item>
+
+        <!-- force full screen before Activity::setContentView() (e.g. in Samsung Galaxy A32). see: https://stackoverflow.com/a/2868052/12367873 -->
+        <!-- akin to calling `requestWindowFeature(Window.FEATURE_NO_TITLE); getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);` in Activity::onCreate() -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="ActivityLayoutStyle" parent="@android:style/Widget">
