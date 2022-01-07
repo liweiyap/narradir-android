@@ -5,10 +5,12 @@ import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.liweiyap.narradir.R;
+import com.liweiyap.narradir.util.Observer;
 import com.liweiyap.narradir.util.SnackbarBuilderFlag;
 
 import java.util.EnumSet;
@@ -20,7 +22,7 @@ public class SnackbarWrapper
         mMaxInlineActionWidth = context.getResources().getDimensionPixelSize(R.dimen.narradir_design_snackbar_action_inline_max_width);
     }
 
-    public void show(final @NonNull View view, final @NonNull String message, final int duration, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
+    public void show(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable Observer actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
     {
         if (!isValidSnackbarDuration(duration))
         {
@@ -36,10 +38,10 @@ public class SnackbarWrapper
             return;
         }
 
-        showNewSnackbar(view, message, duration, flags);
+        showNewSnackbar(view, message, duration, actionMessage, actionCallback, flags);
     }
 
-    private void showNewSnackbar(final @NonNull View view, final @NonNull String message, final int duration, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
+    private void showNewSnackbar(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable Observer actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
     {
         mSnackbar = Snackbar.make(view, message, duration);
 
@@ -51,7 +53,16 @@ public class SnackbarWrapper
         if (flags.contains(SnackbarBuilderFlag.ACTION_DISMISSABLE))
         {
             mSnackbar.setMaxInlineActionWidth(mMaxInlineActionWidth);
-            mSnackbar.setAction(R.string.positive_button_text, v -> mSnackbar.dismiss());
+            if (actionMessage != null)
+            {
+                mSnackbar.setAction(actionMessage, v -> {
+                    dismissOldSnackbar();
+                    if (actionCallback != null)
+                    {
+                        actionCallback.update();
+                    }
+                });
+            }
         }
 
         mSnackbar.show();

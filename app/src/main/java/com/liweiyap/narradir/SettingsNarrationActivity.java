@@ -38,7 +38,7 @@ public class SettingsNarrationActivity extends FullScreenPortraitActivity
         // ----------------------------------------------------------------------
 
         Intent intent = getIntent();
-        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), 1f);
+        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         displayVolume();
 
         // ----------------------------------------------------------------------

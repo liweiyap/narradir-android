@@ -391,6 +391,8 @@ public class AvalonControlGroup
                 ((AppCompatActivity) mContext).findViewById(R.id.characterSelectionLayoutNavBar),
                 message,
                 BaseTransientBottomBar.LENGTH_SHORT,
+                mContext.getString(R.string.positive_button_text),
+                null,
                 EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
         }
         catch (Exception e)

@@ -81,6 +81,7 @@ public class SecretHitlerCharacterSelectionActivity extends FullScreenPortraitAc
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
                 mBackgroundSoundName = IntentHelper.getStringExtra(data, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+                mDoHideBackgroundSoundHint = data.getBooleanExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
             });
         getLifecycle().addObserver(mSettingsHomeActivityResultObserverListener);
 
@@ -236,6 +237,7 @@ public class SecretHitlerCharacterSelectionActivity extends FullScreenPortraitAc
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         intent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+        intent.putExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         mSettingsHomeActivityResultObserverListener.launch(intent);
     }
 
@@ -257,6 +259,7 @@ public class SecretHitlerCharacterSelectionActivity extends FullScreenPortraitAc
         sharedPrefEditor.putString(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         sharedPrefEditor.putFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         sharedPrefEditor.putFloat(getString(R.string.narration_volume_key), mNarrationVolume);
+        sharedPrefEditor.putBoolean(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         sharedPrefEditor.putInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
         sharedPrefEditor.putInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
         sharedPrefEditor.apply();
@@ -274,6 +277,7 @@ public class SecretHitlerCharacterSelectionActivity extends FullScreenPortraitAc
         mBackgroundSoundVolume = sharedPref.getFloat(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mNarrationVolume = sharedPref.getFloat(getString(R.string.narration_volume_key), mNarrationVolume);
         mBackgroundSoundName = sharedPref.getString(getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+        mDoHideBackgroundSoundHint = sharedPref.getBoolean(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         int expectedGoodTotal = sharedPref.getInt(getString(R.string.good_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedGoodTotal());
         int expectedEvilTotal = sharedPref.getInt(getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerControlGroup.getExpectedEvilTotal());
 
@@ -288,4 +292,5 @@ public class SecretHitlerCharacterSelectionActivity extends FullScreenPortraitAc
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
     private String mBackgroundSoundName;
+    private boolean mDoHideBackgroundSoundHint = false;
 }

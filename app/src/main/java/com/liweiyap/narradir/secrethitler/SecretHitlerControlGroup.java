@@ -252,6 +252,8 @@ public class SecretHitlerControlGroup
                 ((AppCompatActivity) mContext).findViewById(R.id.characterSelectionLayoutNavBar),
                 mContext.getString(R.string.secrethitler_all_notification),
                 BaseTransientBottomBar.LENGTH_SHORT,
+                mContext.getString(R.string.positive_button_text),
+                null,
                 EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
         }
         catch (Exception e)

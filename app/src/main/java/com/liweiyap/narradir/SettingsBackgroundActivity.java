@@ -8,17 +8,22 @@ import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
 import com.liweiyap.narradir.ui.ObserverButton;
 import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.SnackbarWrapper;
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.Constants;
 import com.liweiyap.narradir.util.IntentHelper;
+import com.liweiyap.narradir.util.SnackbarBuilderFlag;
 import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
+
+import java.util.EnumSet;
 
 public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 {
@@ -27,6 +32,8 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_background);
+
+        mSnackbar = new SnackbarWrapper(this);
 
         mVolumeControlLayoutValueTextView = findViewById(R.id.updownControlLayoutValue);
         ObserverButton volumeIncreaseButton = findViewById(R.id.upControlButton);
@@ -48,8 +55,9 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
         Intent intent = getIntent();
 
-        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
+        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
         mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+        mDoHideBackgroundSoundHint = intent.getBooleanExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
 
         mBackgroundSoundTestMediaPlayer = new BackgroundSoundTestMediaPlayer(this);
         initBackgroundSound(mBackgroundSoundName);
@@ -253,6 +261,7 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
 
         mBackgroundSoundTestMediaPlayer.play(sound, mBackgroundSoundVolume, null);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        showSnackbar();
     }
 
     private void stopBackgroundSound()
@@ -282,6 +291,29 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         displayVolume();
     }
 
+    private void showSnackbar()
+    {
+        if (mDoHideBackgroundSoundHint)
+        {
+            return;
+        }
+
+        try
+        {
+            mSnackbar.show(
+                findViewById(R.id.nonStartingActivityLayoutNavBar),
+                getString(R.string.backgroundsound_mute_notification),
+                BaseTransientBottomBar.LENGTH_SHORT,
+                getString(R.string.acknowledge_button_text),
+                () -> mDoHideBackgroundSoundHint = true,
+                EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     private void decreaseVolume()
     {
         mBackgroundSoundVolume = Math.max(0f, mBackgroundSoundVolume - 0.1f);
@@ -293,6 +325,7 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         Intent intent = new Intent();
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         setResult(Constants.RESULT_OK_SETTINGS_ONESTEP, intent);
         finish();
     }
@@ -310,15 +343,18 @@ public class SettingsBackgroundActivity extends FullScreenPortraitActivity
         Intent intent = new Intent();
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         setResult(Constants.RESULT_OK_SETTINGS_TWOSTEPS, intent);
         finish();
     }
 
     private ClickSoundGenerator mClickSoundGenerator;
+    private SnackbarWrapper mSnackbar;
 
     private BackgroundSoundTestMediaPlayer mBackgroundSoundTestMediaPlayer;
     private float mBackgroundSoundVolume = 1f;
     private String mBackgroundSoundName;
+    private boolean mDoHideBackgroundSoundHint = false;
 
     private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
 }

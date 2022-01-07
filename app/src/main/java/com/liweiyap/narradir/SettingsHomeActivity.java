@@ -34,10 +34,11 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
 
         Intent intent = getIntent();
 
-        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), 5000);
-        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), 1f);
-        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), 1f);
+        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
+        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
         mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+        mDoHideBackgroundSoundHint = intent.getBooleanExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
 
         // ----------------------------------------------------------------------
         // set key and value of each individual SettingsLayout
@@ -102,6 +103,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
                 mPauseDurationInMilliSecs = data.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
                 mBackgroundSoundVolume = data.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                 mNarrationVolume = data.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+                mDoHideBackgroundSoundHint = data.getBooleanExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
 
                 // Do not use `getString(R.string.backgroundsound_none)`, or value will be accidentally overwritten when navigating backwards not from SettingsBackgroundActivity.
                 // We have already made use of IntentHelper earlier in `onCreate()` to make sure that the value is non-null.
@@ -114,6 +116,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
                     newIntent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
                     newIntent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
                     newIntent.putExtra(getString(R.string.narration_volume_key), mNarrationVolume);
+                    newIntent.putExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
                     setResult(Constants.RESULT_OK_SETTINGS_HOME, newIntent);
                     finish();
                 }
@@ -200,6 +203,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
         Intent intent = new Intent(view.getContext(), SettingsBackgroundActivity.class);
         intent.putExtra(getString(R.string.background_sound_name_key), mBackgroundSoundName);
         intent.putExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
+        intent.putExtra(getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint);
         mSettingsIndividualActivityResultObserverListener.launch(intent);
     }
 
@@ -242,6 +246,7 @@ public class SettingsHomeActivity extends FullScreenPortraitActivity
     private float mBackgroundSoundVolume = 1f;
     private float mNarrationVolume = 1f;
     private String mBackgroundSoundName;
+    private boolean mDoHideBackgroundSoundHint = false;
 
     private ClickSoundGenerator mClickSoundGenerator;
     private LifecycleActivityResultObserverListener mSettingsIndividualActivityResultObserverListener;
