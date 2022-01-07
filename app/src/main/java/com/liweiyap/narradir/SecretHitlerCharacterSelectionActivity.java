@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 
 import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
-import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenActivity;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
@@ -24,7 +24,7 @@ import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
 import java.util.ArrayList;
 
-public class SecretHitlerCharacterSelectionActivity extends FullScreenPortraitActivity
+public class SecretHitlerCharacterSelectionActivity extends FullScreenActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
-import com.liweiyap.narradir.ui.FullScreenPortraitActivity;
+import com.liweiyap.narradir.ui.FullScreenActivity;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.SettingsLayout;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
@@ -20,7 +20,7 @@ import com.liweiyap.narradir.util.LifecycleActivityResultObserverListener;
 import com.liweiyap.narradir.util.TimeDisplay;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
-public class SettingsHomeActivity extends FullScreenPortraitActivity
+public class SettingsHomeActivity extends FullScreenActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
