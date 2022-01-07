@@ -3,6 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.liweiyap.narradir">
 
+    <!-- not restricting supports-screens here because apparently setting android:largeScreens or android:xlargeScreens to false will enable screen compatibility mode, which will often cause artifacts such as blurring and pixelation in your UI -->
+    <!-- (see: https://developer.android.com/guide/topics/manifest/supports-screens-element#compat-mode) -->
+
+    <!-- also not restricting compatible-screens. -->
+    <!-- "But we strongly recommend you avoid using this because any combination of size and density that you do not specify is considered a screen configuration with which your app is not compatible." -->
+    <!-- "So using this element makes it easy to block your app from lots of devices that your app actually can support." -->
+    <!-- (see: https://developer.android.com/guide/practices/screens-distribution.html#FilteringHansetApps) -->
+
+    <!-- so until we have time to make changes to adapt to screen sizes and foldables, we'll just have to manually adjust the list of excluded devices on the Google Developer Console -->
+    <!-- (see: https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes) -->
+    <!-- (see: https://developer.android.com/guide/topics/large-screens/make-apps-fold-aware) -->
+
     <application
         android:name=".NarradirApplication"
         android:allowBackup="true"
