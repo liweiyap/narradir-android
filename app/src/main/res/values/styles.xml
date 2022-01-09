@@ -1,6 +1,12 @@
 <resources>
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/bermuda_grey</item>
+        <item name="colorPrimary">@color/kashmir_blue</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/yellow</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+        <item name="colorSurface">@color/elephant</item>
+        <item name="colorOnSurface">@android:color/white</item>
+
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowDisablePreview">true</item>
@@ -19,7 +25,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:background">@drawable/bermudagrey_grunge_background</item>
+        <item name="android:background">@drawable/grunge_background_kashmirblue</item>
         <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
     </style>
 
@@ -64,9 +70,9 @@
     </style>
 
     <style name="GameTitleStyleAvalon" parent="GameTitleStyleAutosized">
-        <item name="textStrokeColor">@color/go_ben</item>
+        <item name="textStrokeColor">@color/birch</item>
         <item name="android:text">@string/game_title_avalon</item>
-        <item name="android:textColor">@color/yuma</item>
+        <item name="android:textColor">@color/portafino</item>
     </style>
 
     <style name="GameTitleStyleSecretHitler" parent="GameTitleStyleAutosized">
@@ -98,6 +104,7 @@
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:layout_marginEnd">5dp</item>
+        <item name="alphaUnchecked">0.6</item>
     </style>
 
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
@@ -117,6 +124,7 @@
 
     <style name="CharacterImageStyleAvalon" parent="CharacterImageStyleBase">
         <item name="android:background">@drawable/avalon_selector</item>
+        <item name="alphaUnchecked">0.55</item>
     </style>
 
     <style name="CharacterImageStyleSecretHitlerLiberal" parent="CharacterImageStyleBase">
@@ -301,6 +309,7 @@
         <item name="android:background">@drawable/settings_layout_selector</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
+        <item name="alphaUnchecked">0.5</item>
     </style>
 
     <style name="BackgroundSoundSelectorStyleAutosized" parent="BackgroundSoundSelectorStyleBase">
