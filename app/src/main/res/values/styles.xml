@@ -82,7 +82,7 @@
     </style>
 
     <style name="HintStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
@@ -149,7 +149,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/game_switcher_button_background</item>
     </style>
 
@@ -162,7 +162,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:background">@drawable/capsule</item>
         <item name="android:maxLines">1</item>
@@ -181,7 +181,7 @@
 
     <style name="CurrentDisplayedIntroSegmentStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
         <item name="android:textSize">25sp</item>
-        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
@@ -199,7 +199,7 @@
     <style name="SettingsLayoutKeyStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:id">@id/keyTextView</item>
         <item name="android:textSize">19sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">start</item>
         <item name="android:maxLines">1</item>
@@ -215,7 +215,7 @@
     <style name="SettingsLayoutValueStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:id">@id/valueTextView</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:gravity">start</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
@@ -242,7 +242,7 @@
     <style name="SettingsTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:text">@string/dummy_placeholder_text</item>
         <item name="android:textSize">35sp</item>
-        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
@@ -257,7 +257,7 @@
     <style name="ControlKeyStyleBase" parent="@android:style/Widget.TextView">
         <item name="android:layout_margin">5dp</item>
         <item name="android:textSize">45sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="ControlKeyStyleAutosized" parent="ControlKeyStyleBase">
@@ -282,7 +282,7 @@
     <style name="ControlTextStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:gravity">center</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:maxLines">1</item>
     </style>
 
@@ -305,7 +305,7 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/settings_layout_selector</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
@@ -320,7 +320,7 @@
     <style name="AuthorWebsiteStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:text">@string/author_website</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
@@ -336,7 +336,7 @@
 
     <style name="NonStartingActivityTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:textSize">25sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:includeFontPadding">false</item>
@@ -351,7 +351,7 @@
     <style name="HelpTextStyle" parent="@android:style/Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="HelpParagraphStyleBase" parent="HelpTextStyle">
