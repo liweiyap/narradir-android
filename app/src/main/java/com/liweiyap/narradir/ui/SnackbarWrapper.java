@@ -68,7 +68,7 @@ public class SnackbarWrapper
         mSnackbar.show();
     }
 
-    private void dismissOldSnackbar()
+    public void dismissOldSnackbar()
     {
         if (mSnackbar == null)
         {

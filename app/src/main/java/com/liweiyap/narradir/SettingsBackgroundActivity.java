@@ -273,6 +273,7 @@ public class SettingsBackgroundActivity extends FullScreenActivity
 
         mBackgroundSoundTestMediaPlayer.stop();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        dismissSnackbar();
     }
 
     private void displayVolume()
@@ -307,6 +308,18 @@ public class SettingsBackgroundActivity extends FullScreenActivity
                 getString(R.string.acknowledge_button_text),
                 () -> mDoHideBackgroundSoundHint = true,
                 EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void dismissSnackbar()
+    {
+        try
+        {
+            mSnackbar.dismissOldSnackbar();
         }
         catch (Exception e)
         {
