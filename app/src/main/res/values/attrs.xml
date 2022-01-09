@@ -12,5 +12,6 @@
     <!-- Seems like android:state_checked does nothing during initialisation in XML? -->
     <declare-styleable name="CheckableInitHelper">
         <attr name="defaultCheckedState" format="boolean"/>
+        <attr name="alphaUnchecked" format="float"/>
     </declare-styleable>
 </resources>
