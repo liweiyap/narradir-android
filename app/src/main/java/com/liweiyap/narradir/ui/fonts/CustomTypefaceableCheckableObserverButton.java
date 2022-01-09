@@ -59,7 +59,7 @@ public class CustomTypefaceableCheckableObserverButton
     @Override
     public void setChecked(boolean checked)
     {
-        setAlpha(checked ? 1.f : 0.5f);
+        setAlpha(checked ? 1.f : mAlphaUnchecked);
 
         if (mIsChecked == checked)
         {
@@ -88,6 +88,7 @@ public class CustomTypefaceableCheckableObserverButton
         {
             @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableInitHelper);
             mIsChecked = typedArray.getBoolean(R.styleable.CheckableInitHelper_defaultCheckedState, false);
+            mAlphaUnchecked = typedArray.getFloat(R.styleable.CheckableInitHelper_alphaUnchecked, 0.5f);
             typedArray.recycle();
         }
 
@@ -95,6 +96,7 @@ public class CustomTypefaceableCheckableObserverButton
     }
 
     private boolean mIsChecked = false;
+    private float mAlphaUnchecked = 0.5f;
 
     private static final int[] CHECKED_STATE_SET = {
         android.R.attr.state_checked
