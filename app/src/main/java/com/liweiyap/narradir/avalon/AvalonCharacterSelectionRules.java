@@ -282,6 +282,8 @@ class AvalonCharacterSelectionRules
     /**
      * For games of 5, add either Morgana or Mordred when playing with Percival.
      * This means that, in 5-player mode, you can have either Percival or Oberon but never both at the same time.
+     * This could happen accidentally if we select Percival in 5-player mode, and then select Oberon immediately,
+     * which causes Morgana/Mordred to be deselected, but Percival is still selected.
      *
      * If Oberon is selected:
      *  - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
