@@ -7,7 +7,7 @@
     <string name="game_title_secrethitler">Secret Hitler</string>
     <string name="game_switcher_button_avalon">Avalon</string>
     <string name="game_switcher_button_secrethitler">Secret\nHitler</string>
-    <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin.</string>
+    <string name="game_hint_avalon">You cannot have Morgana without Percival, or Percival/Assassin/Morgana/Mordred without Merlin. In 5-player mode, you also cannot have Percival without either Morgana or Mordred.</string>
 
     <string name="shared_preferences_key">SHARED_PREFERENCES_KEY</string>
 
