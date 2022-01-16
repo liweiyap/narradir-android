@@ -260,11 +260,13 @@ public class AvalonCharacterSelectionActivity extends FullScreenActivity
 
             if (mAvalonControlGroup.getCharacter(AvalonCharacterName.PERCIVAL).isChecked())
             {
-                introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked() ?
+                final boolean isMorganaChecked = mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked();
+
+                introSegmentArrayList.add(getString(isMorganaChecked ?
                     R.string.avalonintrosegment5withpercivalwithmorgana_key :
                     R.string.avalonintrosegment5withpercivalnomorgana_key));
 
-                introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked() ?
+                introSegmentArrayList.add(getString(isMorganaChecked ?
                     R.string.avalonintrosegment6withpercivalwithmorgana_key :
                     R.string.avalonintrosegment6withpercivalnomorgana_key));
 
