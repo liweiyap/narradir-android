@@ -279,6 +279,13 @@ class AvalonCharacterSelectionRules
         checkPlayerComposition("AvalonCharacterSelectionRules::runMordredSelectionRules()");
     }
 
+    /**
+     * For games of 5, add either Morgana or Mordred when playing with Percival.
+     * This means that, in 5-player mode, you can have either Percival or Oberon but never both at the same time.
+     *
+     * If Oberon is selected:
+     *  - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
+     */
     private void runOberonSelectionRules()
     {
         if (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked())
@@ -288,6 +295,12 @@ class AvalonCharacterSelectionRules
         }
         else
         {
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
+                 (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) )
+            {
+                mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].performClick();
+            }
+
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1);
             mCharacterImageButtonArray[AvalonCharacterName.OBERON].setChecked(true);
         }
