@@ -12,8 +12,8 @@ android {
         applicationId "com.liweiyap.narradir"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 8
-        versionName "2.0"
+        versionCode 9
+        versionName "3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,7 +48,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'com.google.android.exoplayer:exoplayer-core:2.16.1'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
     testImplementation 'junit:junit:4.13.2'

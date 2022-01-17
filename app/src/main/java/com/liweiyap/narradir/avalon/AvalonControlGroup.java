@@ -236,6 +236,7 @@ public class AvalonControlGroup
         // update old values to new values
         mCharacterSelectionRules.setExpectedGoodTotal(newExpectedGoodTotal);
         mCharacterSelectionRules.setExpectedEvilTotal(newExpectedEvilTotal);
+        mCharacterSelectionRules.onPlayerNumberChange();
     }
 
     private Pair<Integer, Integer> getPlayerComposition(final int playerNumber)
