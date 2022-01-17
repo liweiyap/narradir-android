@@ -285,6 +285,10 @@ class AvalonCharacterSelectionRules
      * This could happen accidentally if we select Percival in 5-player mode, and then select Oberon immediately,
      * which causes Morgana/Mordred to be deselected, but Percival is still selected.
      *
+     * This could also happen accidentally if Percival and Oberon are both already selected in non-5 player mode,
+     * and then the player number is changed externally.
+     * For this, we rely on a separate function (called onPlayerNumberChange()).
+     *
      * If Oberon is selected:
      *  - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
      */
@@ -308,6 +312,25 @@ class AvalonCharacterSelectionRules
         }
 
         checkPlayerComposition("AvalonCharacterSelectionRules::runOberonSelectionRules()");
+    }
+
+    /**
+     * For games of 5, add either Morgana or Mordred when playing with Percival.
+     * This means that, in 5-player mode, you can have either Percival or Oberon but never both at the same time.
+     * This could happen accidentally if Percival and Oberon are both already selected in non-5 player mode,
+     * and then the player number is changed externally.
+     *
+     * If Oberon is selected:
+     *  - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
+     */
+    public void onPlayerNumberChange()
+    {
+        if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
+             (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) &&
+             (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked()) )
+        {
+            mCharacterImageButtonArray[AvalonCharacterName.OBERON].performClick();
+        }
     }
 
     /**
