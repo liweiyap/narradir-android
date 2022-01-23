@@ -87,8 +87,8 @@ public class CustomTypefaceableCheckableObserverButton
         if (attrs != null)
         {
             @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CheckableInitHelper);
-            mIsChecked = typedArray.getBoolean(R.styleable.CheckableInitHelper_defaultCheckedState, false);
-            mAlphaUnchecked = typedArray.getFloat(R.styleable.CheckableInitHelper_alphaUnchecked, 0.5f);
+            mIsChecked = typedArray.getBoolean(R.styleable.CheckableInitHelper_defaultCheckedState, mIsChecked);
+            mAlphaUnchecked = typedArray.getFloat(R.styleable.CheckableInitHelper_alphaUnchecked, mAlphaUnchecked);
             typedArray.recycle();
         }
 

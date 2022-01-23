@@ -101,8 +101,8 @@ public class StrokedCustomTypefaceableTextView
         }
 
         @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StrokedTextAttrs);
-        mStrokeColor = typedArray.getColor(R.styleable.StrokedTextAttrs_textStrokeColor, getCurrentTextColor());
-        mStrokeWidth = typedArray.getFloat(R.styleable.StrokedTextAttrs_textStrokeWidth, 0);
+        mStrokeColor = typedArray.getColor(R.styleable.StrokedTextAttrs_textStrokeColor, mStrokeColor);
+        mStrokeWidth = typedArray.getFloat(R.styleable.StrokedTextAttrs_textStrokeWidth, mStrokeWidth);
         typedArray.recycle();
 
         setStrokeColor(mStrokeColor);
