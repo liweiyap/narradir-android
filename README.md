@@ -59,7 +59,7 @@ The voice of the narrator is _en-US-Wavenet-B_ from the [Text-to-Speech API](htt
 
 The cards background sound was taken from the YouTube Audio library. The rest of the background sounds were taken from [SoundBible.com](https://soundbible.com/). The [crickets](https://soundbible.com/295-Summer-Crickets-Chirping.html) background sound was recorded anonymously. The [fireplace](https://soundbible.com/2178-Crackling-Fireplace.html) background sound was recorded by Daniel Simion. The [rain](https://soundbible.com/2065-Rain-Inside-House.html) background sound was recorded by Mark DiAngelo. The [rainforest](https://soundbible.com/1818-Rainforest-Ambience.html) background sound was recorded by glorysunz. The [rainstorm](https://soundbible.com/907-Distant-Thunder.html) background sound was recorded by Mike Koenig. The [wolves](https://soundbible.com/277-Medium-Pack-Of-Wolves-Howling.html) background sound was recorded by fws.gov.
 
-The overall app design was inspired by the [_One Night Ultimate Werewolf_](https://play.google.com/store/apps/details?id=com.mobieos.karan.Wolf_Android14_11_13&hl=en_SG&gl=US) app by Bezier Games, Inc., Ted Alspach, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.
+The overall app design was inspired by the [_One Night Ultimate Werewolf_](https://play.google.com/store/apps/details?id=com.mobieos.karan.Wolf_Android14_11_13&hl=en_SG&gl=US) app by Bezier Games, Inc., Ted Alspach, Andre Infante, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.
 
 The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, and Li-Toong Yap for their generous help in the internal testing of the app and in providing valuable feedback.
 
