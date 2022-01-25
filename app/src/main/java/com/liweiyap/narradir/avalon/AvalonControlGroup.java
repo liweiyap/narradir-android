@@ -236,6 +236,8 @@ public class AvalonControlGroup
         // update old values to new values
         mCharacterSelectionRules.setExpectedGoodTotal(newExpectedGoodTotal);
         mCharacterSelectionRules.setExpectedEvilTotal(newExpectedEvilTotal);
+
+        // callback for externally-driven selection rules
         mCharacterSelectionRules.onPlayerNumberChange();
     }
 

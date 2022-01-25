@@ -9,9 +9,8 @@
         <attr name="textStrokeWidth" format="float"/>
     </declare-styleable>
 
-    <!-- Seems like android:state_checked does nothing during initialisation in XML? -->
     <declare-styleable name="CheckableInitHelper">
-        <attr name="defaultCheckedState" format="boolean"/>
+        <attr name="defaultCheckedState" format="boolean"/>  <!-- Seems like android:state_checked does nothing during initialisation in XML? -->
         <attr name="alphaUnchecked" format="float"/>
     </declare-styleable>
 </resources>
