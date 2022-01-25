@@ -12,7 +12,9 @@ public final class TimeDisplay
     public static @NonNull String fromMilliseconds(final long msec)
     {
         return String.format(
-            Locale.ENGLISH,
+            // guaranteed to be available on all devices, has no surprising special cases, and tends to be most efficient due to its frequency of use
+            // (https://developer.android.com/reference/java/util/Locale.html#default_locale)
+            Locale.US,
             "%02d:%02d",
             TimeUnit.MILLISECONDS.toMinutes(msec) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(msec)),
             TimeUnit.MILLISECONDS.toSeconds(msec) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(msec))
