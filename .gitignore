@@ -21,4 +21,5 @@ gcloud-**.txt
 /app/src/main/res/raw/backgroundcrickets.mp3
 
 keystore.properties
+upload_certificate.pem
 /app/release/**
