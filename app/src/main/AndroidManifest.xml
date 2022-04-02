@@ -15,6 +15,10 @@
     <!-- (see: https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes) -->
     <!-- (see: https://developer.android.com/guide/topics/large-screens/make-apps-fold-aware) -->
 
+
+    <!-- Warning: if android:allowBackup="true", then during Auto Backup, the base-class Application is launched instead of NarradirApplication. -->
+    <!-- Any calls to getApplicationContext() would cause a crash during Auto Backup. At the moment, there are no such calls, but once there are, we should set android:allowBackup="false" -->
+    <!-- (see: https://medium.com/@pablobaxter/what-happened-to-my-subclass-android-application-924c91bafcac) -->
     <application
         android:name=".NarradirApplication"
         android:allowBackup="true"
