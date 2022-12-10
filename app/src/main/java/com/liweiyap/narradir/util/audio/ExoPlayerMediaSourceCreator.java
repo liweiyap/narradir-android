@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
-import com.google.android.exoplayer2.source.MediaSourceFactory;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
@@ -40,7 +40,7 @@ public final class ExoPlayerMediaSourceCreator
 
             Assertions.checkNotNull(dataSource.getUri());
             MediaItem mediaItem = MediaItem.fromUri(dataSource.getUri());
-            MediaSourceFactory mediaSourceFactory = new DefaultMediaSourceFactory(context, extractorsFactory);
+            MediaSource.Factory mediaSourceFactory = new DefaultMediaSourceFactory(context, extractorsFactory);
             return (ProgressiveMediaSource) mediaSourceFactory.createMediaSource(mediaItem);
         }
         catch (RawResourceDataSource.RawResourceDataSourceException e)
