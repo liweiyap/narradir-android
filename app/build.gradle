@@ -50,7 +50,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
     implementation 'com.google.android.material:material:1.7.0'
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
