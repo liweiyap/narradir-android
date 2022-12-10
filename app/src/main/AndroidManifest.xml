@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.liweiyap.narradir">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- not restricting supports-screens here because apparently setting android:largeScreens or android:xlargeScreens to false will enable screen compatibility mode, which will often cause artifacts such as blurring and pixelation in your UI -->
     <!-- (see: https://developer.android.com/guide/topics/manifest/supports-screens-element#compat-mode) -->
