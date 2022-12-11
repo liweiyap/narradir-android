@@ -18,4 +18,9 @@
     <dimen name="help_paragraph_font_size">22sp</dimen>
     <dimen name="help_subheading_font_size">35sp</dimen>
     <dimen name="help_subsubheading_font_size">25sp</dimen>
+
+    <dimen name="current_displayed_character_image_width_min">280dp</dimen>
+    <dimen name="settings_button_dim_min">56dp</dimen>
+    <dimen name="settings_button_padding">10dp</dimen>
+    <dimen name="border_default">3dp</dimen>
 </resources>
