@@ -2,91 +2,91 @@
 <resources>
     <style name="GameTitleStyleAutosized" parent="GameTitleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">50sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/game_title_font_size</item>
     </style>
 
     <style name="GameHintStyleAvalonAutosized" parent="GameHintStyleAvalon">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">10sp</item>
+        <item name="android:autoSizeMinTextSize">@dimen/game_hint_font_size</item>
     </style>
 
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">15sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/player_number_selector_font_size</item>
     </style>
 
     <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">12sp</item>
+        <item name="android:autoSizeMinTextSize">@dimen/game_switcher_font_size</item>
     </style>
 
     <style name="CapsuleStyleAutosized" parent="CapsuleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">16sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/capsule_font_size</item>
     </style>
 
     <style name="CurrentDisplayedIntroSegmentStyleAutosized" parent="CurrentDisplayedIntroSegmentStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/current_displayed_intro_segment_font_size</item>
     </style>
 
     <style name="SettingsLayoutKeyStyleAutosized" parent="SettingsLayoutKeyStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">19sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/settings_layout_key_font_size</item>
     </style>
 
     <style name="SettingsLayoutValueStyleAutosized" parent="SettingsLayoutValueStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">14sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/settings_layout_value_font_size</item>
     </style>
 
     <style name="SettingsLayoutEditButtonStyleAutosized" parent="SettingsLayoutEditButtonStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">16sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/settings_layout_edit_button_font_size</item>
     </style>
 
     <style name="SettingsTitleStyleAutosized" parent="SettingsTitleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/settings_title_font_size</item>
     </style>
 
     <style name="ControlKeyStyleAutosized" parent="ControlKeyStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">45sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/control_key_font_size</item>
     </style>
 
     <style name="ControlTextStyleAutosized" parent="ControlTextStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">30sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/control_text_font_size</item>
     </style>
 
     <style name="BackgroundSoundSelectorStyleAutosized" parent="BackgroundSoundSelectorStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">18sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/background_sound_selector_font_size</item>
     </style>
 
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">12sp</item>
+        <item name="android:autoSizeMinTextSize">@dimen/author_website_font_size</item>
     </style>
 
     <style name="NonStartingActivityTitleStyleAutosized" parent="NonStartingActivityTitleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/non_starting_activity_title_font_size</item>
     </style>
 
     <style name="HelpParagraphStyleAutosized" parent="HelpParagraphStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">16sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/help_paragraph_font_size</item>
     </style>
 
     <style name="HelpSubheadingStyleAutosized" parent="HelpSubheadingStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/help_subheading_font_size</item>
     </style>
 
     <style name="HelpSubsubheadingStyleAutosized" parent="HelpSubsubheadingStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">18sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/help_subsubheading_font_size</item>
     </style>
 </resources>
