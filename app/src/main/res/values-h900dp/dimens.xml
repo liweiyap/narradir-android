@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="game_title_font_size">70sp</dimen>
+    <dimen name="game_hint_font_size">14sp</dimen>
+    <dimen name="player_number_selector_font_size">21sp</dimen>
+    <dimen name="game_switcher_font_size">17sp</dimen>
+    <dimen name="capsule_font_size">22sp</dimen>
+    <dimen name="current_displayed_intro_segment_font_size">35sp</dimen>
+    <dimen name="settings_layout_key_font_size">26sp</dimen>
+    <dimen name="settings_layout_value_font_size">19sp</dimen>
+    <dimen name="settings_layout_edit_button_font_size">22sp</dimen>
+    <dimen name="settings_title_font_size">49sp</dimen>
+    <dimen name="control_key_font_size">63sp</dimen>
+    <dimen name="control_text_font_size">42sp</dimen>
+    <dimen name="background_sound_selector_font_size">25sp</dimen>
+    <dimen name="author_website_font_size">17sp</dimen>
+    <dimen name="non_starting_activity_title_font_size">35sp</dimen>
+    <dimen name="help_paragraph_font_size">22sp</dimen>
+    <dimen name="help_subheading_font_size">35sp</dimen>
+    <dimen name="help_subsubheading_font_size">25sp</dimen>
+
+    <dimen name="current_displayed_character_image_width_min">280dp</dimen>
+    <dimen name="settings_button_dim_min">56dp</dimen>
+    <dimen name="settings_button_padding">10dp</dimen>
+    <dimen name="border_default">3dp</dimen>
+</resources>

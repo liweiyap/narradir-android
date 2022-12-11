@@ -38,8 +38,8 @@
             android:id="@+id/characterSelectionLayoutSettingsButton"
             android:contentDescription="@string/settings_button_contentdescription"
             android:src="@drawable/ic_gear"
-            android:minHeight="40dp"
-            android:minWidth="40dp"
+            android:minHeight="@dimen/settings_button_dim_min"
+            android:minWidth="@dimen/settings_button_dim_min"
             android:scaleType="fitCenter"
             android:background="@drawable/settings_button_background" />
 

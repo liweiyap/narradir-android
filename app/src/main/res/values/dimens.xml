@@ -7,4 +7,28 @@
     <!-- on my personal device, the size of "OK" should be < 58 dp, but other phones might use different fonts, so give some leeway. -->
     <!-- 40% of @dimen/design_snackbar_action_inline_max_width is 51.2 dp -->
     <dimen name="narradir_design_snackbar_action_inline_max_width">48dp</dimen>
+
+    <dimen name="game_title_font_size">50sp</dimen>
+    <dimen name="game_hint_font_size">10sp</dimen>
+    <dimen name="player_number_selector_font_size">15sp</dimen>
+    <dimen name="game_switcher_font_size">12sp</dimen>
+    <dimen name="capsule_font_size">16sp</dimen>
+    <dimen name="current_displayed_intro_segment_font_size">25sp</dimen>
+    <dimen name="settings_layout_key_font_size">19sp</dimen>
+    <dimen name="settings_layout_value_font_size">14sp</dimen>
+    <dimen name="settings_layout_edit_button_font_size">16sp</dimen>
+    <dimen name="settings_title_font_size">35sp</dimen>
+    <dimen name="control_key_font_size">45sp</dimen>
+    <dimen name="control_text_font_size">30sp</dimen>
+    <dimen name="background_sound_selector_font_size">18sp</dimen>
+    <dimen name="author_website_font_size">12sp</dimen>
+    <dimen name="non_starting_activity_title_font_size">25sp</dimen>
+    <dimen name="help_paragraph_font_size">16sp</dimen>
+    <dimen name="help_subheading_font_size">25sp</dimen>
+    <dimen name="help_subsubheading_font_size">18sp</dimen>
+
+    <dimen name="current_displayed_character_image_width_min">200dp</dimen>
+    <dimen name="settings_button_dim_min">40dp</dimen>
+    <dimen name="settings_button_padding">7dp</dimen>
+    <dimen name="border_default">2dp</dimen>
 </resources>

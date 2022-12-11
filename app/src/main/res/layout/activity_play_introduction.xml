@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="3.5"
-        android:minWidth="200dp"
+        android:minWidth="@dimen/current_displayed_character_image_width_min"
         android:padding="2dp"
         android:id="@+id/currentDisplayedCharacterImageView"
         android:contentDescription="@string/current_displayed_character_contentdescription" />

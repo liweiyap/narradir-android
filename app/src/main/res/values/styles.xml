@@ -56,7 +56,7 @@
     <style name="GameTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="textStrokeWidth">2</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">@dimen/game_title_font_size</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
@@ -66,7 +66,7 @@
 
     <style name="GameTitleStyleAutosized" parent="GameTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">50sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/game_title_font_size</item>
     </style>
 
     <style name="GameTitleStyleAvalon" parent="GameTitleStyleAutosized">
@@ -86,21 +86,23 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
     </style>
 
     <style name="GameHintStyleAvalon" parent="HintStyleBase">
         <item name="android:text">@string/game_hint_avalon</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/game_hint_font_size</item>
     </style>
 
     <style name="GameHintStyleAvalonAutosized" parent="GameHintStyleAvalon">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMinTextSize">10sp</item>
+        <item name="autoSizeMinTextSize">@dimen/game_hint_font_size</item>
     </style>
 
     <style name="PlayerNumberSelectorStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:gravity">center</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/player_number_selector_font_size</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:layout_marginEnd">5dp</item>
@@ -109,7 +111,7 @@
 
     <style name="PlayerNumberSelectorStyleAutosized" parent="PlayerNumberSelectorStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">15sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/player_number_selector_font_size</item>
     </style>
 
     <style name="PlayerNumberSelectorStyleSecretHitler" parent="PlayerNumberSelectorStyleAutosized">
@@ -148,20 +150,20 @@
     <style name="GameSwitcherStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/game_switcher_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/game_switcher_button_background</item>
     </style>
 
     <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMinTextSize">12sp</item>
+        <item name="autoSizeMinTextSize">@dimen/game_switcher_font_size</item>
     </style>
 
     <style name="CapsuleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/capsule_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:background">@drawable/capsule</item>
@@ -170,7 +172,7 @@
 
     <style name="CapsuleStyleAutosized" parent="CapsuleStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">16sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/capsule_font_size</item>
     </style>
 
     <style name="NavBarCapsuleStyle" parent="CapsuleStyleAutosized">
@@ -180,7 +182,7 @@
     </style>
 
     <style name="CurrentDisplayedIntroSegmentStyleBase" parent="ArkhamRegTypefacedTextViewStyle">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/current_displayed_intro_segment_font_size</item>
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
@@ -193,12 +195,12 @@
 
     <style name="CurrentDisplayedIntroSegmentStyleAutosized" parent="CurrentDisplayedIntroSegmentStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">25sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/current_displayed_intro_segment_font_size</item>
     </style>
 
     <style name="SettingsLayoutKeyStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:id">@id/keyTextView</item>
-        <item name="android:textSize">19sp</item>
+        <item name="android:textSize">@dimen/settings_layout_key_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">start</item>
@@ -209,12 +211,12 @@
 
     <style name="SettingsLayoutKeyStyleAutosized" parent="SettingsLayoutKeyStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">19sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/settings_layout_key_font_size</item>
     </style>
 
     <style name="SettingsLayoutValueStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:id">@id/valueTextView</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/settings_layout_value_font_size</item>
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:gravity">start</item>
         <item name="android:includeFontPadding">false</item>
@@ -223,25 +225,25 @@
 
     <style name="SettingsLayoutValueStyleAutosized" parent="SettingsLayoutValueStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">14sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/settings_layout_value_font_size</item>
     </style>
 
     <style name="SettingsLayoutEditButtonStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:id">@id/editButton</item>
         <item name="android:text">@string/edit_button_text</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/settings_layout_edit_button_font_size</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/edit_button_background</item>
     </style>
 
     <style name="SettingsLayoutEditButtonStyleAutosized" parent="SettingsLayoutEditButtonStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">16sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/settings_layout_edit_button_font_size</item>
     </style>
 
     <style name="SettingsTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:text">@string/dummy_placeholder_text</item>
-        <item name="android:textSize">35sp</item>
+        <item name="android:textSize">@dimen/settings_title_font_size</item>
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center</item>
@@ -251,18 +253,18 @@
 
     <style name="SettingsTitleStyleAutosized" parent="SettingsTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">35sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/settings_title_font_size</item>
     </style>
 
     <style name="ControlKeyStyleBase" parent="@android:style/Widget.TextView">
         <item name="android:layout_margin">5dp</item>
-        <item name="android:textSize">45sp</item>
+        <item name="android:textSize">@dimen/control_key_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="ControlKeyStyleAutosized" parent="ControlKeyStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">45sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/control_key_font_size</item>
     </style>
 
     <style name="ControlUpStyle" parent="ControlKeyStyleAutosized">
@@ -281,14 +283,14 @@
 
     <style name="ControlTextStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:gravity">center</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/control_text_font_size</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:maxLines">1</item>
     </style>
 
     <style name="ControlTextStyleAutosized" parent="ControlTextStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">30sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/control_text_font_size</item>
     </style>
 
     <style name="ControlValueStyle" parent="ControlTextStyleAutosized">
@@ -304,7 +306,7 @@
     <style name="BackgroundSoundSelectorStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:textAllCaps">true</item>
         <item name="android:layout_margin">5dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/background_sound_selector_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/settings_layout_selector</item>
         <item name="android:includeFontPadding">false</item>
@@ -314,12 +316,12 @@
 
     <style name="BackgroundSoundSelectorStyleAutosized" parent="BackgroundSoundSelectorStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">18sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/background_sound_selector_font_size</item>
     </style>
 
     <style name="AuthorWebsiteStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
         <item name="android:text">@string/author_website</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/author_website_font_size</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
@@ -331,11 +333,11 @@
 
     <style name="AuthorWebsiteStyleAutosized" parent="AuthorWebsiteStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMinTextSize">12sp</item>
+        <item name="autoSizeMinTextSize">@dimen/author_website_font_size</item>
     </style>
 
     <style name="NonStartingActivityTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/non_starting_activity_title_font_size</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">5dp</item>
@@ -345,7 +347,7 @@
 
     <style name="NonStartingActivityTitleStyleAutosized" parent="NonStartingActivityTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">25sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/non_starting_activity_title_font_size</item>
     </style>
 
     <style name="HelpTextStyle" parent="@android:style/Widget.TextView">
@@ -355,12 +357,12 @@
     </style>
 
     <style name="HelpParagraphStyleBase" parent="HelpTextStyle">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/help_paragraph_font_size</item>
     </style>
 
     <style name="HelpParagraphStyleAutosized" parent="HelpParagraphStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">16sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/help_paragraph_font_size</item>
     </style>
 
     <style name="HelpListStyle" parent="HelpParagraphStyleAutosized">
@@ -368,22 +370,22 @@
     </style>
 
     <style name="HelpSubheadingStyleBase" parent="HelpTextStyle">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/help_subheading_font_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="HelpSubheadingStyleAutosized" parent="HelpSubheadingStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">25sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/help_subheading_font_size</item>
     </style>
 
     <style name="HelpSubsubheadingStyleBase" parent="HelpTextStyle">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/help_subsubheading_font_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="HelpSubsubheadingStyleAutosized" parent="HelpSubsubheadingStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">18sp</item>
+        <item name="autoSizeMaxTextSize">@dimen/help_subsubheading_font_size</item>
     </style>
 </resources>

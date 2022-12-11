@@ -2,10 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <solid android:color="?attr/colorSurface" />
-    <stroke android:color="?attr/colorOnSurface" android:width="2dp"/>
+    <stroke android:color="?attr/colorOnSurface" android:width="@dimen/border_default"/>
     <padding
-        android:bottom="7dp"
-        android:left="7dp"
-        android:right="7dp"
-        android:top="7dp" />
+        android:bottom="@dimen/settings_button_padding"
+        android:left="@dimen/settings_button_padding"
+        android:right="@dimen/settings_button_padding"
+        android:top="@dimen/settings_button_padding" />
 </shape>
