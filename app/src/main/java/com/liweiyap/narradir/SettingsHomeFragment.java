@@ -77,6 +77,12 @@ public class SettingsHomeFragment extends ControlFragment
         });
 
         // ----------------------------------------------------------------------
+        // navigation from background sound selection layout itself
+        // ----------------------------------------------------------------------
+
+        mBackgroundSettingsLayout.getEditButton().addOnClickObserver(this::navigateToSettingsBackgroundFragment);
+
+        // ----------------------------------------------------------------------
         // navigation to external web browser
         // ----------------------------------------------------------------------
 
@@ -140,6 +146,12 @@ public class SettingsHomeFragment extends ControlFragment
                 narradirControl.playClickSound();
             }
         });
+    }
+
+    private void navigateToSettingsBackgroundFragment()
+    {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.settingsBackgroundFragment);
     }
 
     private void navigateUp()

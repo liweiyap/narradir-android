@@ -146,7 +146,8 @@ public class AvalonCharacterSelectionFragment extends ControlFragment
     }
 
     @Override
-    public void onDestroyView() {
+    public void onDestroyView()
+    {
         super.onDestroyView();
 
         if (mAvalonControlGroup != null)

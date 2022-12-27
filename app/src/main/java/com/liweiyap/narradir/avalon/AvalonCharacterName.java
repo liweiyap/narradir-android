@@ -29,11 +29,13 @@ public final class AvalonCharacterName
         return 16;
     }
 
-    public static int getDefaultNumberOfGoodCharacters() {
+    public static int getDefaultNumberOfGoodCharacters()
+    {
         return 3;
     }
 
-    public static int getDefaultNumberOfEvilCharacters() {
+    public static int getDefaultNumberOfEvilCharacters()
+    {
         return 2;
     }
 }

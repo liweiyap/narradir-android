@@ -113,6 +113,11 @@ public class CharacterDescriptionMediaPlayer implements MediaPlayerController
 
     private @Nullable MediaPlayer create(final @NonNull String res)
     {
+        if (mContext == null)
+        {
+            return null;
+        }
+
         // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
         if (res.equals(mContext.getString(R.string.merlindescription_key)))

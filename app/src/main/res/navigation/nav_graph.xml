@@ -46,6 +46,15 @@
         android:name="com.liweiyap.narradir.SettingsHomeFragment"
         tools:layout="@layout/activity_settings_home">
 
+        <action
+            android:id="@+id/actionSettingsHomeToBackground"
+            app:destination="@id/settingsBackgroundFragment" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsBackgroundFragment"
+        android:name="com.liweiyap.narradir.SettingsBackgroundFragment"
+        tools:layout="@layout/activity_settings_background" />
 
 </navigation>

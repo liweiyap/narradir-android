@@ -125,6 +125,21 @@ public class NarradirViewModel
         return mDoHideBackgroundSoundHint;
     }
 
+    public void setBackgroundSoundVolume(final float volume)
+    {
+        mBackgroundSoundVolume = volume;
+    }
+
+    public void setBackgroundSoundName(@NonNull final String sound)
+    {
+        mBackgroundSoundName = sound;
+    }
+
+    public void setHideBackgroundSoundHint(final boolean doHide)
+    {
+        mDoHideBackgroundSoundHint = doHide;
+    }
+
     public int getAvalonExpectedGoodTotal()
     {
         return mAvalonExpectedGoodTotal;

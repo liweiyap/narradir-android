@@ -34,7 +34,8 @@ public class NarradirActivity extends FullScreenActivity implements NarradirCont
     }
 
     @Override
-    public NarradirViewModel getViewModel() {
+    public NarradirViewModel getViewModel()
+    {
         return mViewModel;
     }
 
@@ -48,7 +49,8 @@ public class NarradirActivity extends FullScreenActivity implements NarradirCont
     }
 
     @Override
-    public void navigateAwayFromApp() {
+    public void navigateAwayFromApp()
+    {
         // https://developer.android.com/guide/components/activities/tasks-and-back-stack#back-press-behavior
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R)
         {
