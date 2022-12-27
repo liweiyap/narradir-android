@@ -22,4 +22,12 @@ public final class SecretHitlerCharacterName
     {
         return 10;
     }
+
+    public static int getDefaultNumberOfGoodCharacters() {
+        return 3;
+    }
+
+    public static int getDefaultNumberOfEvilCharacters() {
+        return 2;
+    }
 }

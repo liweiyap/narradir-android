@@ -15,6 +15,12 @@ public class CharacterDescriptionMediaPlayer implements MediaPlayerController
         mContext = context;
     }
 
+    public void destroy()
+    {
+        mContext = null;
+        free();
+    }
+
     @Override
     public void play(final String res, final float volume, final MediaPlayer.OnCompletionListener listener)
     {
@@ -157,7 +163,7 @@ public class CharacterDescriptionMediaPlayer implements MediaPlayerController
         return null;
     }
 
-    private final Context mContext;
+    private Context mContext;
 
     private MediaPlayer mMediaPlayer;
     private int mMediaPlayerCurrentLength;

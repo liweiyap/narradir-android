@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/avalonCharacterSelectionFragment">
+
+    <fragment
+        android:id="@+id/avalonCharacterSelectionFragment"
+        android:name="com.liweiyap.narradir.AvalonCharacterSelectionFragment"
+        tools:layout="@layout/activity_character_selection_avalon">
+
+        <action
+            android:id="@+id/actionAvalonToSecretHitler"
+            app:destination="@id/secretHitlerCharacterSelectionFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/secretHitlerCharacterSelectionFragment"
+        android:name="com.liweiyap.narradir.SecretHitlerCharacterSelectionFragment"
+        tools:layout="@layout/activity_character_selection_secrethitler">
+
+    </fragment>
+
+</navigation>

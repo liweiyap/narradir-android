@@ -37,6 +37,18 @@ public class ObserverImageButton
         setOnLongClickListener(this);
     }
 
+    public void destroy()
+    {
+        clearOnClickObservers();
+        clearOnLongClickObservers();
+
+        mOnClickObservers = null;
+        mOnLongClickObservers = null;
+
+        setOnClickListener(null);
+        setOnLongClickListener(null);
+    }
+
     @Override
     public void onClick(View view)
     {
@@ -53,27 +65,69 @@ public class ObserverImageButton
     @Override
     public void addOnClickObserver(final Observer observer)
     {
+        if (mOnClickObservers == null)
+        {
+            return;
+        }
+
         mOnClickObservers.add(observer);
     }
 
     @Override
     public void notifyOnClickObservers()
     {
+        if (mOnClickObservers == null)
+        {
+            return;
+        }
+
         mOnClickObservers.forEach(Observer::update);
+    }
+
+    @Override
+    public void clearOnClickObservers()
+    {
+        if (mOnClickObservers == null)
+        {
+            return;
+        }
+
+        mOnClickObservers.clear();
     }
 
     @Override
     public void addOnLongClickObserver(final Observer observer)
     {
+        if (mOnLongClickObservers == null)
+        {
+            return;
+        }
+
         mOnLongClickObservers.add(observer);
     }
 
     @Override
     public void notifyOnLongClickObservers()
     {
+        if (mOnLongClickObservers == null)
+        {
+            return;
+        }
+
         mOnLongClickObservers.forEach(Observer::update);
     }
 
-    protected final List<Observer> mOnClickObservers = new ArrayList<>();
-    protected final List<Observer> mOnLongClickObservers = new ArrayList<>();
+    @Override
+    public void clearOnLongClickObservers()
+    {
+        if (mOnLongClickObservers == null)
+        {
+            return;
+        }
+
+        mOnLongClickObservers.clear();
+    }
+
+    protected List<Observer> mOnClickObservers = new ArrayList<>();
+    protected List<Observer> mOnLongClickObservers = new ArrayList<>();
 }
