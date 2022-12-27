@@ -5,4 +5,6 @@ public interface NarradirControl
     NarradirViewModel getViewModel();
 
     void playClickSound();
+
+    void navigateAwayFromApp();
 }

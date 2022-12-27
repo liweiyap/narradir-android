@@ -12,8 +12,8 @@
         tools:layout="@layout/activity_character_selection_avalon">
 
         <action
-            android:id="@+id/actionAvalonToSecretHitler"
-            app:destination="@id/secretHitlerCharacterSelectionFragment" />
+            android:id="@+id/actionAvalonToPlayIntro"
+            app:destination="@id/playIntroductionFragment" />
 
     </fragment>
 
@@ -22,6 +22,15 @@
         android:name="com.liweiyap.narradir.SecretHitlerCharacterSelectionFragment"
         tools:layout="@layout/activity_character_selection_secrethitler">
 
+        <action
+            android:id="@+id/actionSecretHitlerToPlayIntro"
+            app:destination="@id/playIntroductionFragment" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/playIntroductionFragment"
+        android:name="com.liweiyap.narradir.PlayIntroductionFragment"
+        tools:layout="@layout/activity_play_introduction" />
 
 </navigation>

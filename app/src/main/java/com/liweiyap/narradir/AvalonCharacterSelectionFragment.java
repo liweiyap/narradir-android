@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
@@ -21,6 +22,8 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
+
+import java.util.ArrayList;
 
 public class AvalonCharacterSelectionFragment extends ControlFragment
 {
@@ -87,6 +90,25 @@ public class AvalonCharacterSelectionFragment extends ControlFragment
         addSoundToPlayOnButtonClick(gameSwitcherButton);
         addSoundToPlayOnButtonClick(playButton);
         addSoundToPlayOnButtonClick(settingsButton);
+
+        // -----------------------------------------------------------------------------------------
+        // navigation bar (of fragment, not of phone)
+        // -----------------------------------------------------------------------------------------
+
+        playButton.addOnClickObserver(this::navigateToPlayIntroductionFragment);
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed()
+            {
+                NarradirControl narradirControl = getNarradirControl();
+                if (narradirControl != null)
+                {
+                    narradirControl.navigateAwayFromApp();
+                }
+            }
+        });
 
         // -----------------------------------------------------------------------------------------
         // auto-sizing TextViews
@@ -164,6 +186,63 @@ public class AvalonCharacterSelectionFragment extends ControlFragment
 
         NavController navController = NavHostFragment.findNavController(this);
         navController.navigate(R.id.secretHitlerCharacterSelectionFragment);
+    }
+
+    private void navigateToPlayIntroductionFragment()
+    {
+        if (mAvalonControlGroup == null)
+        {
+            throw new RuntimeException("AvalonCharacterSelectionFragment::navigateToPlayIntroductionFragment(): mAvalonControlGroup is NULL");
+        }
+
+        ArrayList<String> introSegmentArrayList = new ArrayList<>();
+
+        introSegmentArrayList.add(getString(R.string.avalonintrosegment0_key));
+
+        introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.OBERON).isChecked() ?
+            R.string.avalonintrosegment1withoberon_key :
+            R.string.avalonintrosegment1nooberon_key));
+
+        introSegmentArrayList.add(getString(R.string.avalonintrosegment2_key));
+
+        if (mAvalonControlGroup.getCharacter(AvalonCharacterName.MERLIN).isChecked())
+        {
+            introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MORDRED).isChecked() ?
+                R.string.avalonintrosegment3withmordred_key :
+                R.string.avalonintrosegment3nomordred_key));
+
+            introSegmentArrayList.add(getString(R.string.avalonintrosegment4_key));
+
+            if (mAvalonControlGroup.getCharacter(AvalonCharacterName.PERCIVAL).isChecked())
+            {
+                final boolean isMorganaChecked = mAvalonControlGroup.getCharacter(AvalonCharacterName.MORGANA).isChecked();
+
+                introSegmentArrayList.add(getString(isMorganaChecked ?
+                    R.string.avalonintrosegment5withpercivalwithmorgana_key :
+                    R.string.avalonintrosegment5withpercivalnomorgana_key));
+
+                introSegmentArrayList.add(getString(isMorganaChecked ?
+                    R.string.avalonintrosegment6withpercivalwithmorgana_key :
+                    R.string.avalonintrosegment6withpercivalnomorgana_key));
+
+                introSegmentArrayList.add(getString(R.string.avalonintrosegment7_key));
+            }
+            else
+            {
+                introSegmentArrayList.add(getString(R.string.avalonintrosegment5nopercival_key));
+            }
+        }
+        else
+        {
+            introSegmentArrayList.add(getString(R.string.avalonintrosegment3nomerlin_key));
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList(getString(R.string.intro_segments_key), introSegmentArrayList);
+        bundle.putBoolean(getString(R.string.is_started_from_avalon_key), true);
+
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.playIntroductionFragment, bundle);
     }
 
     /**

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
@@ -20,6 +21,8 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
+
+import java.util.ArrayList;
 
 public class SecretHitlerCharacterSelectionFragment extends ControlFragment
 {
@@ -72,6 +75,21 @@ public class SecretHitlerCharacterSelectionFragment extends ControlFragment
 
         gameSwitcherButton.setText(getString(R.string.game_switcher_button_avalon));
         gameSwitcherButton.addOnClickObserver(this::navigateToAvalonCharacterSelectionFragment);
+
+        playButton.addOnClickObserver(this::navigateToPlayIntroductionFragment);
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed()
+            {
+                NarradirControl narradirControl = getNarradirControl();
+                if (narradirControl != null)
+                {
+                    narradirControl.navigateAwayFromApp();
+                }
+            }
+        });
 
         // -----------------------------------------------------------------------------------------
         // auto-sizing TextViews
@@ -148,6 +166,39 @@ public class SecretHitlerCharacterSelectionFragment extends ControlFragment
 
         NavController navController = NavHostFragment.findNavController(this);
         navController.navigate(R.id.avalonCharacterSelectionFragment);
+    }
+
+    private void navigateToPlayIntroductionFragment()
+    {
+        if (mSecretHitlerControlGroup == null)
+        {
+            throw new RuntimeException("SecretHitlerCharacterSelectionFragment::navigateToPlayIntroductionFragment(): mSecretHitlerControlGroup is NULL");
+        }
+
+        ArrayList<String> introSegmentArrayList = new ArrayList<>();
+
+        if (mSecretHitlerControlGroup.getExpectedGoodTotal() + mSecretHitlerControlGroup.getExpectedEvilTotal() < 7)
+        {
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment0small_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment1small_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment2small_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment3small_key));
+        }
+        else
+        {
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment0large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment1large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment2large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment3large_key));
+            introSegmentArrayList.add(getString(R.string.secrethitlerintrosegment4large_key));
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList(getString(R.string.intro_segments_key), introSegmentArrayList);
+        bundle.putBoolean(getString(R.string.is_started_from_avalon_key), false);
+
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.playIntroductionFragment, bundle);
     }
 
     /**

@@ -1,110 +1,144 @@
 package com.liweiyap.narradir;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.exoplayer2.Player;
-import com.liweiyap.narradir.ui.FullScreenActivity;
+import com.liweiyap.narradir.ui.ControlFragment;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.util.IntentHelper;
+import com.liweiyap.narradir.util.NarradirControl;
+import com.liweiyap.narradir.util.NarradirViewModel;
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer;
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class PlayIntroductionActivity extends FullScreenActivity
+public class PlayIntroductionFragment extends ControlFragment
 {
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_introduction);
+        mIsDestroying = false;
+        return inflater.inflate(R.layout.activity_play_introduction, container, false);
+    }
 
-        mCurrentDisplayedCharacterImageView = findViewById(R.id.currentDisplayedCharacterImageView);
-        mCurrentDisplayedIntroSegmentTextView = findViewById(R.id.currentDisplayedIntroSegmentTextView);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        mCurrentDisplayedCharacterImageView = view.findViewById(R.id.currentDisplayedCharacterImageView);
+        mCurrentDisplayedIntroSegmentTextView = view.findViewById(R.id.currentDisplayedIntroSegmentTextView);
 
         // ----------------------------------------------------------------------
-        // receive data from previous Activity
+        // receive data
         // ----------------------------------------------------------------------
 
-        Intent intent = getIntent();
+        ArrayList<String> tmp = null;
+        boolean isStartedFromAvalon = true;
+        if (savedInstanceState == null)
+        {
+            final Bundle bundle = getArguments();
+            if (bundle != null)
+            {
+                tmp = bundle.getStringArrayList(getString(R.string.intro_segments_key));
+                isStartedFromAvalon = bundle.getBoolean(getString(R.string.is_started_from_avalon_key), true);
+            }
+        }
+        else
+        {
+            tmp = savedInstanceState.getStringArrayList(getString(R.string.intro_segments_key));
+            isStartedFromAvalon = savedInstanceState.getBoolean(getString(R.string.is_started_from_avalon_key), true);
+        }
 
-        final ArrayList<String> introSegmentArrayList = intent.getStringArrayListExtra(getString(R.string.intro_segments_key));
-        mPauseDurationInMilliSecs = intent.getLongExtra(getString(R.string.pause_duration_key), mPauseDurationInMilliSecs);
-        mBackgroundSoundVolume = intent.getFloatExtra(getString(R.string.background_volume_key), mBackgroundSoundVolume);
-        mNarrationVolume = intent.getFloatExtra(getString(R.string.narration_volume_key), mNarrationVolume);
-        mBackgroundSoundName = IntentHelper.getStringExtra(intent, getString(R.string.background_sound_name_key), getString(R.string.backgroundsound_none));
+        if (tmp == null)
+        {
+            destroy();
+        }
 
-        boolean isStartedFromAvalon = intent.getBooleanExtra(getString(R.string.is_started_from_avalon_key), true);
-        findViewById(R.id.gameTitleAvalonTextView).setVisibility(isStartedFromAvalon ? View.VISIBLE : View.INVISIBLE);
-        findViewById(R.id.gameTitleSecretHitlerTextView).setVisibility(isStartedFromAvalon ? View.INVISIBLE : View.VISIBLE);
+        @NonNull final ArrayList<String> introSegmentArrayList = Objects.requireNonNull(tmp);
 
-        // handle edge case of mPauseDurationInMilliSecs passed in as 0
-        mPauseDurationInMilliSecs = Math.max(mPauseDurationInMilliSecs, IntroAudioPlayer.sMinPauseDurationInMilliSecs);
+        view.findViewById(R.id.gameTitleAvalonTextView).setVisibility(isStartedFromAvalon ? View.VISIBLE : View.INVISIBLE);
+        view.findViewById(R.id.gameTitleSecretHitlerTextView).setVisibility(isStartedFromAvalon ? View.INVISIBLE : View.VISIBLE);
 
         // ----------------------------------------------------------------------
         // initialise and prepare audio players
         // ----------------------------------------------------------------------
 
-        mAudioPlayer = new IntroAudioPlayer(
-            this,
-            introSegmentArrayList, mPauseDurationInMilliSecs, mNarrationVolume,
-            mBackgroundSoundName, mBackgroundSoundVolume);
-
-        mAudioPlayer.addExoPlayerListener(new Player.Listener()
+        NarradirViewModel viewModel = getViewModel();
+        if (viewModel == null)
         {
-            @Override
-            public void onPositionDiscontinuity(Player.@NotNull PositionInfo oldPosition, Player.@NotNull PositionInfo newPosition, @Player.DiscontinuityReason int reason)
-            {
-                if (reason != Player.DISCONTINUITY_REASON_AUTO_TRANSITION)
-                {
-                    return;
-                }
+            destroy();
+        }
+        else
+        {
+            mAudioPlayer = new IntroAudioPlayer(
+                requireContext(),
+                introSegmentArrayList, viewModel.getPauseDurationInMilliSecs(), viewModel.getNarrationVolume(),
+                viewModel.getBackgroundSoundName(), viewModel.getBackgroundSoundVolume());
 
-                int newWindowIdx = mAudioPlayer.getExoPlayerCurrentMediaItemIndex();
-                if ((newWindowIdx & 1) == 0)  // if even
+            mAudioPlayer.addExoPlayerListener(new Player.Listener()
+            {
+                @Override
+                public void onPositionDiscontinuity(Player.@NotNull PositionInfo oldPosition, Player.@NotNull PositionInfo newPosition, @Player.DiscontinuityReason int reason)
                 {
-                    switchCurrentDisplayedCharacterImage(introSegmentArrayList.get(newWindowIdx/2));
-                    switchCurrentDisplayedIntroSegmentTextView(introSegmentArrayList.get(newWindowIdx/2));
-                }
-                else  // if odd
-                {
-                    if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(PlayIntroductionActivity.this, introSegmentArrayList.get(newWindowIdx/2))) &&
-                         (mPauseDurationInMilliSecs != IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
+                    if (reason != Player.DISCONTINUITY_REASON_AUTO_TRANSITION)
                     {
-                        // this long to int conversion is safe for the current (values/1000) that we have but this may change in future
-                        mCurrentDisplayedIntroSegmentTextView.setText(getResources().getQuantityString(R.plurals.pauseduration_text, (int) (mPauseDurationInMilliSecs/1000), mPauseDurationInMilliSecs/1000));
+                        return;
+                    }
+
+                    int newWindowIdx = mAudioPlayer.getExoPlayerCurrentMediaItemIndex();
+                    if ((newWindowIdx & 1) == 0)  // if even
+                    {
+                        switchCurrentDisplayedCharacterImage(introSegmentArrayList.get(newWindowIdx/2));
+                        switchCurrentDisplayedIntroSegmentTextView(introSegmentArrayList.get(newWindowIdx/2));
+                    }
+                    else  // if odd
+                    {
+                        if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(requireContext(), introSegmentArrayList.get(newWindowIdx/2))) &&
+                             (viewModel.getPauseDurationInMilliSecs() > IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
+                        {
+                            // this long to int conversion is safe for the current (values/1000) that we have but this may change in future
+                            mCurrentDisplayedIntroSegmentTextView.setText(getResources().getQuantityString(R.plurals.pauseduration_text, (int) (viewModel.getPauseDurationInMilliSecs()/1000), viewModel.getPauseDurationInMilliSecs()/1000));
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onPlaybackStateChanged(@Player.State int playbackState)
-            {
-                if (playbackState == Player.STATE_ENDED)
+                @Override
+                public void onPlaybackStateChanged(@Player.State int playbackState)
                 {
-                    finish();
+                    if (playbackState == Player.STATE_ENDED)
+                    {
+                        destroy();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // ----------------------------------------------------------------------
-        // navigation bar (of activity, not of phone)
+        // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        CustomTypefaceableObserverButton pauseButton = findViewById(R.id.playIntroLayoutPauseButton);
+        CustomTypefaceableObserverButton pauseButton = view.findViewById(R.id.playIntroLayoutPauseButton);
         pauseButton.addOnClickObserver(() -> {
-//            mAudioPlayer.playClickSound();
+            NarradirControl narradirControl = getNarradirControl();
+            if (narradirControl != null)
+            {
+                narradirControl.playClickSound();
+            }
 
             pauseButton.setText(
                 mAudioPlayer.isPlayingIntro() ?
@@ -114,10 +148,10 @@ public class PlayIntroductionActivity extends FullScreenActivity
             mAudioPlayer.toggle();
         });
 
-        CustomTypefaceableObserverButton stopButton = findViewById(R.id.playIntroLayoutStopButton);
-        stopButton.addOnClickObserver(this::finish);
+        CustomTypefaceableObserverButton stopButton = view.findViewById(R.id.playIntroLayoutStopButton);
+        stopButton.addOnClickObserver(this::destroy);
 
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true)
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
         {
             @Override
             public void handleOnBackPressed()
@@ -131,11 +165,11 @@ public class PlayIntroductionActivity extends FullScreenActivity
         // ----------------------------------------------------------------------
 
         switchCurrentDisplayedIntroSegmentTextView(introSegmentArrayList.get(0));
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
-    protected void onResume()
+    public void onResume()
     {
         super.onResume();
 
@@ -151,7 +185,7 @@ public class PlayIntroductionActivity extends FullScreenActivity
     }
 
     @Override
-    protected void onPause()
+    public void onPause()
     {
         super.onPause();
 
@@ -167,26 +201,47 @@ public class PlayIntroductionActivity extends FullScreenActivity
     }
 
     @Override
-    protected void onDestroy()
+    public void onDestroyView()
     {
-        super.onDestroy();
+        super.onDestroyView();
 
         if (mAudioPlayer != null)
         {
             mAudioPlayer.freeResources();
+            mAudioPlayer = null;
         }
 
         if (mCurrentDisplayedCharacterImageView != null)
         {
             mCurrentDisplayedCharacterImageView.setImageDrawable(null);
+            mCurrentDisplayedCharacterImageView = null;
         }
 
         if (mCurrentDisplayedIntroSegmentTextView != null)
         {
             mCurrentDisplayedIntroSegmentTextView.setText("");
+            mCurrentDisplayedIntroSegmentTextView = null;
         }
 
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private synchronized boolean setDestroying()
+    {
+        boolean wasDestroying = mIsDestroying;
+        mIsDestroying = true;
+        return wasDestroying;
+    }
+
+    private synchronized void destroy()
+    {
+        if (setDestroying())
+        {
+            return;
+        }
+
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigateUp();
     }
 
     private void switchCurrentDisplayedCharacterImage(final @NonNull String resName)
@@ -265,13 +320,13 @@ public class PlayIntroductionActivity extends FullScreenActivity
             return;
         }
 
-        final String subtitle = IntroSegmentDictionary.getSubtitleFromIntroSegmentRes(this, resName);
+        final String subtitle = IntroSegmentDictionary.getSubtitleFromIntroSegmentRes(requireContext(), resName);
 
         if (subtitle == null)
         {
             throw new RuntimeException(
                 "PlayIntroductionActivity::switchCurrentDisplayedIntroSegmentTextView(): " +
-                "Invalid introduction segment resource name " + resName);
+                    "Invalid introduction segment resource name " + resName);
         }
 
         mCurrentDisplayedIntroSegmentTextView.setText(subtitle);
@@ -279,11 +334,8 @@ public class PlayIntroductionActivity extends FullScreenActivity
 
     private IntroAudioPlayer mAudioPlayer;
 
-    private long mPauseDurationInMilliSecs = 5000;
-    private float mBackgroundSoundVolume = 1f;
-    private float mNarrationVolume = 1f;
-    private String mBackgroundSoundName;
-
     private ImageView mCurrentDisplayedCharacterImageView;
     private CustomTypefaceableTextView mCurrentDisplayedIntroSegmentTextView;
+
+    private boolean mIsDestroying;
 }

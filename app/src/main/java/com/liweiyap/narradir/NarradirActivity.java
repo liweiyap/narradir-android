@@ -1,6 +1,7 @@
 package com.liweiyap.narradir;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.liweiyap.narradir.ui.FullScreenActivity;
@@ -43,6 +44,19 @@ public class NarradirActivity extends FullScreenActivity implements NarradirCont
         if (mClickSoundGenerator != null)
         {
             mClickSoundGenerator.playClickSound();
+        }
+    }
+
+    @Override
+    public void navigateAwayFromApp() {
+        // https://developer.android.com/guide/components/activities/tasks-and-back-stack#back-press-behavior
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R)
+        {
+            finish();
+        }
+        else
+        {
+            moveTaskToBack(true);
         }
     }
 
