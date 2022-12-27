@@ -130,6 +130,11 @@ public class NarradirViewModel
         mBackgroundSoundVolume = volume;
     }
 
+    public void setNarrationVolume(final float volume)
+    {
+        mNarrationVolume = volume;
+    }
+
     public void setBackgroundSoundName(@NonNull final String sound)
     {
         mBackgroundSoundName = sound;

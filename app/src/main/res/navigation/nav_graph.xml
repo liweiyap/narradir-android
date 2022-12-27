@@ -47,10 +47,19 @@
         tools:layout="@layout/activity_settings_home">
 
         <action
+            android:id="@+id/actionSettingsHomeToNarration"
+            app:destination="@id/settingsNarrationFragment" />
+
+        <action
             android:id="@+id/actionSettingsHomeToBackground"
             app:destination="@id/settingsBackgroundFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsNarrationFragment"
+        android:name="com.liweiyap.narradir.SettingsNarrationFragment"
+        tools:layout="@layout/activity_settings_narration" />
 
     <fragment
         android:id="@+id/settingsBackgroundFragment"
