@@ -77,6 +77,7 @@ public class SecretHitlerCharacterSelectionFragment extends ControlFragment
         gameSwitcherButton.addOnClickObserver(this::navigateToAvalonCharacterSelectionFragment);
 
         playButton.addOnClickObserver(this::navigateToPlayIntroductionFragment);
+        settingsButton.addOnClickObserver(this::navigateToSettingsHomeFragment);
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
         {
@@ -199,6 +200,12 @@ public class SecretHitlerCharacterSelectionFragment extends ControlFragment
 
         NavController navController = NavHostFragment.findNavController(this);
         navController.navigate(R.id.playIntroductionFragment, bundle);
+    }
+
+    private void navigateToSettingsHomeFragment()
+    {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.settingsHomeFragment);
     }
 
     /**
