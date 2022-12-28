@@ -125,6 +125,11 @@ public class NarradirViewModel
         return mDoHideBackgroundSoundHint;
     }
 
+    public void setPauseDurationInMilliSecs(final long msec)
+    {
+        mPauseDurationInMilliSecs = msec;
+    }
+
     public void setBackgroundSoundVolume(final float volume)
     {
         mBackgroundSoundVolume = volume;

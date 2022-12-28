@@ -82,6 +82,7 @@ public class SettingsHomeFragment extends ControlFragment
 
         mNarrationSettingsLayout.getEditButton().addOnClickObserver(this::navigateToSettingsNarrationFragment);
         mBackgroundSettingsLayout.getEditButton().addOnClickObserver(this::navigateToSettingsBackgroundFragment);
+        mRoleTimerSettingsLayout.getEditButton().addOnClickObserver(this::navigateToSettingsRoleTimerFragment);
 
         // ----------------------------------------------------------------------
         // navigation to external web browser
@@ -159,6 +160,12 @@ public class SettingsHomeFragment extends ControlFragment
     {
         NavController navController = NavHostFragment.findNavController(this);
         navController.navigate(R.id.settingsBackgroundFragment);
+    }
+
+    private void navigateToSettingsRoleTimerFragment()
+    {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.settingsRoleTimerFragment);
     }
 
     private void navigateUp()

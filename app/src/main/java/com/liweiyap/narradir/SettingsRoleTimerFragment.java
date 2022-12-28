@@ -19,36 +19,36 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 
-public class SettingsNarrationFragment extends ControlFragment
+public class SettingsRoleTimerFragment extends ControlFragment
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.activity_settings_narration, container, false);
+        return inflater.inflate(R.layout.activity_settings_roletimer, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        mVolumeControlLayoutValueTextView = view.findViewById(R.id.updownControlLayoutValue);
-        ObserverButton volumeIncreaseButton = view.findViewById(R.id.upControlButton);
-        ObserverButton volumeDecreaseButton = view.findViewById(R.id.downControlButton);
+        mPauseControlLayoutValueTextView = view.findViewById(R.id.updownControlLayoutValue);
+        ObserverButton pauseIncreaseButton = view.findViewById(R.id.upControlButton);
+        ObserverButton pauseDecreaseButton = view.findViewById(R.id.downControlButton);
         CustomTypefaceableObserverButton generalBackButton = view.findViewById(R.id.generalBackButton);
         CustomTypefaceableObserverButton mainButton = view.findViewById(R.id.mainButton);
         CustomTypefaceableTextView settingsTitle = view.findViewById(R.id.settingsTitleTextView);
         CustomTypefaceableTextView timeControlLayoutLabelTextView = view.findViewById(R.id.updownControlLayoutLabel);
 
-        settingsTitle.setText(R.string.settings_title_narration);
-        timeControlLayoutLabelTextView.setText(R.string.volume_control_layout_label);
+        settingsTitle.setText(R.string.settings_title_roletimer);
+        timeControlLayoutLabelTextView.setText(R.string.time_control_layout_label);
 
         // ----------------------------------------------------------------------
-        // volume control
+        // pause duration control
         // ----------------------------------------------------------------------
 
-        displayVolume();
+        displayPauseDuration();
 
-        volumeIncreaseButton.addOnClickObserver(this::increaseVolume);
-        volumeDecreaseButton.addOnClickObserver(this::decreaseVolume);
+        pauseIncreaseButton.addOnClickObserver(this::increasePauseDuration);
+        pauseDecreaseButton.addOnClickObserver(this::decreasePauseDuration);
 
         // ----------------------------------------------------------------------
         // click sound
@@ -56,8 +56,8 @@ public class SettingsNarrationFragment extends ControlFragment
 
         addSoundToPlayOnButtonClick(generalBackButton);
         addSoundToPlayOnButtonClick(mainButton);
-        addSoundToPlayOnButtonClick(volumeIncreaseButton);
-        addSoundToPlayOnButtonClick(volumeDecreaseButton);
+        addSoundToPlayOnButtonClick(pauseIncreaseButton);
+        addSoundToPlayOnButtonClick(pauseDecreaseButton);
 
         // ----------------------------------------------------------------------
         // navigation bar (of fragment, not of phone)
@@ -81,7 +81,7 @@ public class SettingsNarrationFragment extends ControlFragment
     {
         super.onDestroyView();
 
-        mVolumeControlLayoutValueTextView = null;
+        mPauseControlLayoutValueTextView = null;
     }
 
     private void addSoundToPlayOnButtonClick(final ObserverListener btn)
@@ -100,7 +100,7 @@ public class SettingsNarrationFragment extends ControlFragment
         });
     }
 
-    private void displayVolume()
+    private void displayPauseDuration()
     {
         NarradirViewModel viewModel = getViewModel();
         if (viewModel == null)
@@ -108,15 +108,15 @@ public class SettingsNarrationFragment extends ControlFragment
             return;
         }
 
-        if (mVolumeControlLayoutValueTextView == null)
+        if (mPauseControlLayoutValueTextView == null)
         {
             return;
         }
 
-        mVolumeControlLayoutValueTextView.setText(String.valueOf(Math.round(viewModel.getNarrationVolume() * 10)));
+        mPauseControlLayoutValueTextView.setText(String.valueOf(viewModel.getPauseDurationInMilliSecs()/1000));
     }
 
-    private void increaseVolume()
+    private void increasePauseDuration()
     {
         NarradirViewModel viewModel = getViewModel();
         if (viewModel == null)
@@ -124,11 +124,11 @@ public class SettingsNarrationFragment extends ControlFragment
             return;
         }
 
-        viewModel.setNarrationVolume(Math.min(1f, viewModel.getNarrationVolume() + 0.1f));
-        displayVolume();
+        viewModel.setPauseDurationInMilliSecs(Math.min(mMaxPauseDurationInMilliSecs, viewModel.getPauseDurationInMilliSecs() + 1000));
+        displayPauseDuration();
     }
 
-    private void decreaseVolume()
+    private void decreasePauseDuration()
     {
         NarradirViewModel viewModel = getViewModel();
         if (viewModel == null)
@@ -136,8 +136,8 @@ public class SettingsNarrationFragment extends ControlFragment
             return;
         }
 
-        viewModel.setNarrationVolume(Math.max(0f, viewModel.getNarrationVolume() - 0.1f));
-        displayVolume();
+        viewModel.setPauseDurationInMilliSecs(Math.max(mMinPauseDurationInMilliSecs, viewModel.getPauseDurationInMilliSecs() - 1000));
+        displayPauseDuration();
     }
 
     private void navigateUp(final int steps)
@@ -149,5 +149,8 @@ public class SettingsNarrationFragment extends ControlFragment
         }
     }
 
-    private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
+    private final long mMaxPauseDurationInMilliSecs = 10000;
+    private final long mMinPauseDurationInMilliSecs = 0;
+
+    private CustomTypefaceableTextView mPauseControlLayoutValueTextView;
 }

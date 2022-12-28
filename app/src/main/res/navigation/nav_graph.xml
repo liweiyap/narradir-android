@@ -54,6 +54,10 @@
             android:id="@+id/actionSettingsHomeToBackground"
             app:destination="@id/settingsBackgroundFragment" />
 
+        <action
+            android:id="@+id/actionSettingsHomeToRoleTimer"
+            app:destination="@id/settingsRoleTimerFragment" />
+
     </fragment>
 
     <fragment
@@ -65,5 +69,10 @@
         android:id="@+id/settingsBackgroundFragment"
         android:name="com.liweiyap.narradir.SettingsBackgroundFragment"
         tools:layout="@layout/activity_settings_background" />
+
+    <fragment
+        android:id="@+id/settingsRoleTimerFragment"
+        android:name="com.liweiyap.narradir.SettingsRoleTimerFragment"
+        tools:layout="@layout/activity_settings_roletimer" />
 
 </navigation>
