@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/avalonCharacterSelectionLayout"
         android:weightSum="10"
-        style="@style/ActivityLayoutStyle"
+        style="@style/FragmentLayoutStyle"
         android:orientation="vertical"
         tools:context=".AvalonCharacterSelectionFragment">
 

@@ -12,7 +12,6 @@
     <string name="shared_preferences_key">SHARED_PREFERENCES_KEY</string>
 
     <string name="intro_segments_key">INTRO_SEGMENTS</string>
-    <string name="guidance_activity_type_key">GUIDANCE_ACTIVITY_TYPE</string>
     <string name="pause_duration_key">PAUSE_DURATION</string>
     <string name="background_sound_key">BACKGROUND_SOUND</string>  <!-- {@deprecated Use background_sound_name_key instead.} -->
     <string name="background_volume_key">BACKGROUND_VOLUME</string>
@@ -30,10 +29,6 @@
     <string name="is_oberon_checked_key">IS_OBERON_CHECKED</string>
     <string name="is_started_from_avalon_key">IS_STARTED_FROM_AVALON</string>
     <string name="last_selected_game_key">LAST_SELECTED_GAME</string>
-
-    <string name="avalon_to_settingshome_key">AVALON_TO_SETTINGSHOME</string>
-    <string name="secrethitler_to_settingshome_key">SECRETHITLER_TO_SETTINGSHOME</string>
-    <string name="settingshome_to_settingsindividual_key">SETTINGSHOME_TO_SETTINGSINDIVIDUAL</string>
 
     <!-- According to Material Design guidelines, Snackbar messages should not be more than 40-60 characters long. -->
     <string name="avalon_loyal_notification">Loyal cannot be manually toggled.</string>  <!-- 33 characters -->

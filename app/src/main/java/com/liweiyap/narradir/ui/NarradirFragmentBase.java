@@ -21,7 +21,7 @@ public abstract class NarradirFragmentBase extends Fragment
         if (!(context instanceof NarradirControl))
         {
             throw new RuntimeException(
-                "ControlFragment::onAttach(): " +
+                "NarradirFragmentBase::onAttach(): " +
                     "Programming error: Context is not NarradirControl."
             );
         }
