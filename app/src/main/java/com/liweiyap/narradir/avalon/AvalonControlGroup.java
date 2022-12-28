@@ -323,7 +323,7 @@ public class AvalonControlGroup extends CharacterSelectionControlGroup
         }
     }
 
-    public void addSnackbarMessages()
+    private void addSnackbarMessages()
     {
         if (mCharacterSelectionRules == null)
         {

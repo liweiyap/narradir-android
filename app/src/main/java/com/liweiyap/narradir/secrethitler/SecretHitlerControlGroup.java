@@ -184,7 +184,7 @@ public class SecretHitlerControlGroup extends CharacterSelectionControlGroup
         }
     }
 
-    public void addSnackbarMessages()
+    private void addSnackbarMessages()
     {
         if (mCharacterArray == null)
         {
