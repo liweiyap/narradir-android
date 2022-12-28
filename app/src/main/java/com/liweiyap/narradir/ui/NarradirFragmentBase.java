@@ -31,6 +31,13 @@ public abstract class NarradirFragmentBase extends Fragment
         mNarradirControl = (NarradirControl) context;
     }
 
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mNarradirControl = null;
+    }
+
     protected NarradirControl getNarradirControl()
     {
         return mNarradirControl;

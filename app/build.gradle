@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+    debugImplementation 'androidx.fragment:fragment-testing:1.5.5'
+    debugImplementation 'androidx.test:monitor:1.6.0'  // fixes waiting forever for application to come online during instrumentation test (see: https://github.com/android/android-test/issues/1589#issuecomment-1316971699)
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
