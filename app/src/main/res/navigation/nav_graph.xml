@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/avalonCharacterSelectionFragment"
         android:name="com.liweiyap.narradir.AvalonCharacterSelectionFragment"
-        tools:layout="@layout/activity_character_selection_avalon">
+        tools:layout="@layout/fragment_character_selection_avalon">
 
         <action
             android:id="@+id/actionAvalonToPlayIntro"
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/secretHitlerCharacterSelectionFragment"
         android:name="com.liweiyap.narradir.SecretHitlerCharacterSelectionFragment"
-        tools:layout="@layout/activity_character_selection_secrethitler">
+        tools:layout="@layout/fragment_character_selection_secrethitler">
 
         <action
             android:id="@+id/actionSecretHitlerToPlayIntro"
@@ -39,12 +39,12 @@
     <fragment
         android:id="@+id/playIntroductionFragment"
         android:name="com.liweiyap.narradir.PlayIntroductionFragment"
-        tools:layout="@layout/activity_play_introduction" />
+        tools:layout="@layout/fragment_play_introduction" />
 
     <fragment
         android:id="@+id/settingsHomeFragment"
         android:name="com.liweiyap.narradir.SettingsHomeFragment"
-        tools:layout="@layout/activity_settings_home">
+        tools:layout="@layout/fragment_settings_home">
 
         <action
             android:id="@+id/actionSettingsHomeToNarration"
@@ -71,26 +71,26 @@
     <fragment
         android:id="@+id/settingsNarrationFragment"
         android:name="com.liweiyap.narradir.SettingsNarrationFragment"
-        tools:layout="@layout/activity_settings_narration" />
+        tools:layout="@layout/fragment_settings_narration" />
 
     <fragment
         android:id="@+id/settingsBackgroundFragment"
         android:name="com.liweiyap.narradir.SettingsBackgroundFragment"
-        tools:layout="@layout/activity_settings_background" />
+        tools:layout="@layout/fragment_settings_background" />
 
     <fragment
         android:id="@+id/settingsRoleTimerFragment"
         android:name="com.liweiyap.narradir.SettingsRoleTimerFragment"
-        tools:layout="@layout/activity_settings_roletimer" />
+        tools:layout="@layout/fragment_settings_roletimer" />
 
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.liweiyap.narradir.HelpFragment"
-        tools:layout="@layout/activity_guidance_help" />
+        tools:layout="@layout/fragment_help" />
 
     <fragment
         android:id="@+id/privacyFragment"
         android:name="com.liweiyap.narradir.PrivacyFragment"
-        tools:layout="@layout/activity_guidance_privacy" />
+        tools:layout="@layout/fragment_privacy" />
 
 </navigation>

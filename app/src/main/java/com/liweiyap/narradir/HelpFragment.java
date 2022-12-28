@@ -17,7 +17,7 @@ public class HelpFragment extends NarradirFragmentBase
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.activity_guidance_help, container, false);
+        return inflater.inflate(R.layout.fragment_help, container, false);
     }
 
     @Override

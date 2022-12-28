@@ -30,7 +30,7 @@ public class AvalonCharacterSelectionFragment extends NarradirFragmentBase
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.activity_character_selection_avalon, container, false);
+        return inflater.inflate(R.layout.fragment_character_selection_avalon, container, false);
     }
 
     @Override

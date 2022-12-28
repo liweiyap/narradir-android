@@ -2,40 +2,33 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/helpLayout"
+    android:id="@+id/settingsRoleTimerLayout"
     android:weightSum="10"
     style="@style/ActivityLayoutStyle"
-    tools:context=".HelpFragment">
+    tools:context=".SettingsRoleTimerFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:id="@+id/metadata"
-        android:text="@string/app_name_and_version"
+        android:layout_weight="1"
+        android:text="@string/settings_page_title"
         style="@style/NonStartingActivityTitleStyleAutosized" />
 
-    <ScrollView
-        android:fadeScrollbars="false"
+    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
-        android:layout_margin="10dp">
-
-        <include
-            layout="@layout/activity_guidance_help_scrollview_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </ScrollView>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" />
+        android:layout_weight="1"
+        android:id="@+id/settingsTitleTextView"
+        style="@style/SettingsTitleStyleAutosized" />
 
     <include
-        layout="@layout/non_activity_starting_navbar"
+        layout="@layout/updown_control_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="7"/>
+
+    <include
+        layout="@layout/non_fragment_starting_navbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

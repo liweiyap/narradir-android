@@ -20,7 +20,7 @@ public class SettingsNarrationFragment extends NarradirFragmentBase
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.activity_settings_narration, container, false);
+        return inflater.inflate(R.layout.fragment_settings_narration, container, false);
     }
 
     @Override

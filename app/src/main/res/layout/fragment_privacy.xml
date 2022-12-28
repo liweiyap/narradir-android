@@ -2,33 +2,40 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/settingsNarrationLayout"
+    android:id="@+id/helpLayout"
     android:weightSum="10"
     style="@style/ActivityLayoutStyle"
-    tools:context=".SettingsNarrationFragment">
+    tools:context=".PrivacyFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/settings_page_title"
+        android:layout_weight="1.5"
+        android:id="@+id/privacyTitle"
+        android:text="@string/privacy_title"
         style="@style/NonStartingActivityTitleStyleAutosized" />
 
-    <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
+    <ScrollView
+        android:fadeScrollbars="false"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/settingsTitleTextView"
-        style="@style/SettingsTitleStyleAutosized" />
+        android:layout_weight="7"
+        android:layout_margin="10dp">
 
-    <include
-        layout="@layout/updown_control_layout"
-        android:layout_width="wrap_content"
+        <include
+            layout="@layout/fragment_privacy_scrollview_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+    <Space
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"/>
+        android:layout_weight="0.5" />
 
     <include
-        layout="@layout/non_activity_starting_navbar"
+        layout="@layout/non_fragment_starting_navbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

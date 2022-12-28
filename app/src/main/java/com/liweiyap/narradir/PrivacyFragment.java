@@ -18,7 +18,7 @@ public class PrivacyFragment extends NarradirFragmentBase
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.activity_guidance_privacy, container, false);
+        return inflater.inflate(R.layout.fragment_privacy, container, false);
     }
 
     @Override

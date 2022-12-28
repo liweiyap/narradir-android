@@ -32,7 +32,7 @@ public class PlayIntroductionFragment extends NarradirFragmentBase
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         mIsDestroying = false;
-        return inflater.inflate(R.layout.activity_play_introduction, container, false);
+        return inflater.inflate(R.layout.fragment_play_introduction, container, false);
     }
 
     @Override
