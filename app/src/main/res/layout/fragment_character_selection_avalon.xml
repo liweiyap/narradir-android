@@ -10,9 +10,9 @@
     <LinearLayout
         android:id="@+id/avalonCharacterSelectionLayout"
         android:weightSum="10"
-        style="@style/ActivityLayoutStyle"
+        style="@style/FragmentLayoutStyle"
         android:orientation="vertical"
-        tools:context=".AvalonCharacterSelectionActivity">
+        tools:context=".AvalonCharacterSelectionFragment">
 
         <!-- force a default alignment to bottom -->
         <RelativeLayout
@@ -93,7 +93,7 @@
         </RelativeLayout>
 
         <include
-            layout="@layout/activity_character_selection_navbar"
+            layout="@layout/fragment_character_selection_navbar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />

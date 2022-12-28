@@ -6,7 +6,8 @@ import static org.junit.Assert.*;
 
 import com.liweiyap.narradir.util.TimeDisplay;
 
-public class TimeDisplayTest {
+public class TimeDisplayTest
+{
     @Test
     public void runTest()
     {

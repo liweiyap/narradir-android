@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/playIntroLayout"
     android:weightSum="10"
-    style="@style/ActivityLayoutStyle"
+    style="@style/FragmentLayoutStyle"
     android:orientation="vertical"
-    tools:context=".PlayIntroductionActivity">
+    tools:context=".PlayIntroductionFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
         style="@style/CurrentDisplayedIntroSegmentStyleAutosized" />
 
     <include
-        layout="@layout/activity_play_introduction_navbar"
+        layout="@layout/fragment_play_introduction_navbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_horizontal_margin">0dp</dimen>
-    <dimen name="activity_vertical_margin">0dp</dimen>
+    <dimen name="fragment_horizontal_margin">0dp</dimen>
+    <dimen name="fragment_vertical_margin">0dp</dimen>
 
     <!-- alternative to: https://stackoverflow.com/a/54177574/12367873 -->
     <!-- on my personal device, the size of "OK" should be < 58 dp, but other phones might use different fonts, so give some leeway. -->
@@ -22,7 +22,7 @@
     <dimen name="control_text_font_size">30sp</dimen>
     <dimen name="background_sound_selector_font_size">18sp</dimen>
     <dimen name="author_website_font_size">12sp</dimen>
-    <dimen name="non_starting_activity_title_font_size">25sp</dimen>
+    <dimen name="non_starting_fragment_title_font_size">25sp</dimen>
     <dimen name="help_paragraph_font_size">16sp</dimen>
     <dimen name="help_subheading_font_size">25sp</dimen>
     <dimen name="help_subsubheading_font_size">18sp</dimen>

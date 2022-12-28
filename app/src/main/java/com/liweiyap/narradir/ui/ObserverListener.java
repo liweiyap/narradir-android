@@ -6,6 +6,8 @@ public interface ObserverListener
 {
     void addOnClickObserver(final Observer observer);
     void notifyOnClickObservers();
+    void clearOnClickObservers();
     void addOnLongClickObserver(final Observer observer);
     void notifyOnLongClickObservers();
+    void clearOnLongClickObservers();
 }

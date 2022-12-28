@@ -15,6 +15,12 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
         mContext = context;
     }
 
+    public void destroy()
+    {
+        mContext = null;
+        free();
+    }
+
     @Override
     public void play(final String res, final float volume, final MediaPlayer.OnCompletionListener listener)
     {
@@ -110,6 +116,11 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
 
     private @Nullable MediaPlayer create(final @NonNull String res)
     {
+        if (mContext == null)
+        {
+            return null;
+        }
+
         // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
         // no need to call prepare(); create() does that for you (https://stackoverflow.com/a/59682667/12367873)
         if (res.equals(mContext.getString(R.string.backgroundsound_cards)))
@@ -144,7 +155,7 @@ public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
         return null;
     }
 
-    private final Context mContext;
+    private Context mContext;
 
     private MediaPlayer mMediaPlayer;
     private boolean mIsPlaying;

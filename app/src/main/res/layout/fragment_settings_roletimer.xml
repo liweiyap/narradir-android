@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settingsRoleTimerLayout"
     android:weightSum="10"
-    style="@style/ActivityLayoutStyle"
-    tools:context=".SettingsRoleTimerActivity">
+    style="@style/FragmentLayoutStyle"
+    tools:context=".SettingsRoleTimerFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="@string/settings_page_title"
-        style="@style/NonStartingActivityTitleStyleAutosized" />
+        style="@style/NonStartingFragmentTitleStyleAutosized" />
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_weight="7"/>
 
     <include
-        layout="@layout/non_activity_starting_navbar"
+        layout="@layout/non_fragment_starting_navbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
