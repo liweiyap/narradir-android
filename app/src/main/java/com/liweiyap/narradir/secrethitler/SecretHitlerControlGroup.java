@@ -16,7 +16,7 @@ import com.liweiyap.narradir.util.PlayerNumbers;
 public class SecretHitlerControlGroup extends CharacterSelectionControlGroup
 {
     public SecretHitlerControlGroup(
-        @NonNull final Context context,
+        @NonNull final Context activityContext,
         @NonNull final LinearLayout playerNumberSelectionLayout,
         @NonNull final CustomTypefaceableCheckableObserverButton p5Button,
         @NonNull final CustomTypefaceableCheckableObserverButton p6Button,
@@ -35,7 +35,7 @@ public class SecretHitlerControlGroup extends CharacterSelectionControlGroup
         @NonNull final ObserverImageButton fascist1Button,
         @NonNull final ObserverImageButton fascist2Button)
     {
-        super(context);
+        super(activityContext);
 
         mCharacterArray = new SecretHitlerCharacterArray(
             liberal0Button, liberal1Button, liberal2Button, liberal3Button,
@@ -160,23 +160,23 @@ public class SecretHitlerControlGroup extends CharacterSelectionControlGroup
             throw new RuntimeException("SecretHitlerControlGroup::addCharacterDescriptions(): mCharacterArray is NULL");
         }
 
-        if (mContext == null)
+        if (mActivityContext == null)
         {
             return;
         }
 
         try
         {
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.liberaldescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.hitlerdescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.fascistdescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.fascistdescription_key)));
-            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mContext.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.liberaldescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.hitlerdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.fascistdescription_key)));
+            mCharacterArray.getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(() -> startCharacterDescriptionMediaPlayer(mActivityContext.getString(R.string.fascistdescription_key)));
         }
         catch (Exception e)
         {
@@ -195,7 +195,7 @@ public class SecretHitlerControlGroup extends CharacterSelectionControlGroup
         {
             if (btn != null)
             {
-                btn.addOnClickObserver(() -> showSnackbar(mContext.getString(R.string.secrethitler_all_notification)));
+                btn.addOnClickObserver(() -> showSnackbar(mActivityContext.getString(R.string.secrethitler_all_notification)));
             }
         }
     }

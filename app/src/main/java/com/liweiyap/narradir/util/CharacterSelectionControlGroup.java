@@ -16,16 +16,16 @@ import java.util.EnumSet;
 
 public abstract class CharacterSelectionControlGroup
 {
-    public CharacterSelectionControlGroup(final Context context)
+    public CharacterSelectionControlGroup(final Context activityContext)
     {
-        mContext = context;
-        mSnackbar = new SnackbarWrapper(context);
-        mCharacterDescriptionMediaPlayer = new CharacterDescriptionMediaPlayer(context);
+        mActivityContext = activityContext;
+        mSnackbar = new SnackbarWrapper(activityContext);
+        mCharacterDescriptionMediaPlayer = new CharacterDescriptionMediaPlayer(activityContext);
     }
 
     public void destroy()
     {
-        mContext = null;
+        mActivityContext = null;
 
         if (mSnackbar != null)
         {
@@ -99,13 +99,13 @@ public abstract class CharacterSelectionControlGroup
 
     protected void startCharacterDescriptionMediaPlayer(final @NonNull String description)
     {
-        if ( (!(mContext instanceof AppCompatActivity)) || (mCharacterDescriptionMediaPlayer == null) )
+        if ( (!(mActivityContext instanceof AppCompatActivity)) || (mCharacterDescriptionMediaPlayer == null) )
         {
             return;
         }
 
-        mCharacterDescriptionMediaPlayer.play(description, 1f, mp -> ((AppCompatActivity) mContext).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON));
-        ((AppCompatActivity) mContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        mCharacterDescriptionMediaPlayer.play(description, 1f, mp -> ((AppCompatActivity) mActivityContext).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON));
+        ((AppCompatActivity) mActivityContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void resumeCharacterDescriptionMediaPlayer()
@@ -130,13 +130,13 @@ public abstract class CharacterSelectionControlGroup
 
     public void stopCharacterDescriptionMediaPlayer()
     {
-        if ( (!(mContext instanceof AppCompatActivity)) || (mCharacterDescriptionMediaPlayer == null) )
+        if ( (!(mActivityContext instanceof AppCompatActivity)) || (mCharacterDescriptionMediaPlayer == null) )
         {
             return;
         }
 
         mCharacterDescriptionMediaPlayer.stop();
-        ((AppCompatActivity) mContext).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        ((AppCompatActivity) mActivityContext).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void freeCharacterDescriptionMediaPlayer()
@@ -151,7 +151,7 @@ public abstract class CharacterSelectionControlGroup
 
     protected void showSnackbar(final String message)
     {
-        if (!(mContext instanceof AppCompatActivity))
+        if (!(mActivityContext instanceof AppCompatActivity))
         {
             return;
         }
@@ -159,10 +159,10 @@ public abstract class CharacterSelectionControlGroup
         try
         {
             mSnackbar.show(
-                ((AppCompatActivity) mContext).findViewById(R.id.characterSelectionLayoutNavBar),
+                ((AppCompatActivity) mActivityContext).findViewById(R.id.characterSelectionLayoutNavBar),
                 message,
                 BaseTransientBottomBar.LENGTH_SHORT,
-                mContext.getString(R.string.positive_button_text),
+                mActivityContext.getString(R.string.positive_button_text),
                 null,
                 EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE));
         }
@@ -176,5 +176,5 @@ public abstract class CharacterSelectionControlGroup
     protected CharacterDescriptionMediaPlayer mCharacterDescriptionMediaPlayer;
     protected SnackbarWrapper mSnackbar;
 
-    protected Context mContext;
+    protected Context mActivityContext;
 }
