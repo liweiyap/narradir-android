@@ -13,8 +13,6 @@ import com.liweiyap.narradir.util.NarradirViewModel;
 
 public abstract class NarradirFragmentBase extends Fragment
 {
-    private NarradirControl mNarradirControl;
-
     @Override
     public void onAttach(@NonNull Context context)
     {
@@ -78,4 +76,6 @@ public abstract class NarradirFragmentBase extends Fragment
             navController.navigateUp();
         }
     }
+
+    private NarradirControl mNarradirControl;
 }

@@ -7,7 +7,7 @@
     android:weightSum="10"
     style="@style/ActivityLayoutStyle"
     android:orientation="vertical"
-    tools:context=".PlayIntroductionActivity">
+    tools:context=".PlayIntroductionFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

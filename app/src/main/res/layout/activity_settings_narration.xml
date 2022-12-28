@@ -5,7 +5,7 @@
     android:id="@+id/settingsNarrationLayout"
     android:weightSum="10"
     style="@style/ActivityLayoutStyle"
-    tools:context=".SettingsNarrationActivity">
+    tools:context=".SettingsNarrationFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"

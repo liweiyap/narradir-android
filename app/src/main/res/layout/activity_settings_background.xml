@@ -10,7 +10,7 @@
         android:id="@+id/settingsBackgroundLayout"
         android:weightSum="10"
         style="@style/ActivityLayoutStyle"
-        tools:context=".SettingsBackgroundActivity">
+        tools:context=".SettingsBackgroundFragment">
 
         <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
             android:layout_width="match_parent"

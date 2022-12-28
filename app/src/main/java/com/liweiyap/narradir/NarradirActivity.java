@@ -30,6 +30,13 @@ public class NarradirActivity extends FullScreenActivity implements NarradirCont
         if (mClickSoundGenerator != null)
         {
             mClickSoundGenerator.freeResources();
+            mClickSoundGenerator = null;
+        }
+
+        if (mViewModel != null)
+        {
+            mViewModel.destroy();
+            mViewModel = null;
         }
     }
 

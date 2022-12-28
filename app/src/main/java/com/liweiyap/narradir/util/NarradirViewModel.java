@@ -31,6 +31,12 @@ public class NarradirViewModel
         mSecretHitlerExpectedEvilTotal = sharedPref.getInt(context.getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerExpectedEvilTotal);
     }
 
+    public synchronized void destroy()
+    {
+        mContext = null;
+        mSharedPref = null;
+    }
+
     public void savePreferences()
     {
         if ( (mContext == null) || (mSharedPref == null) )
@@ -257,6 +263,6 @@ public class NarradirViewModel
     private int mSecretHitlerExpectedGoodTotal = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters();
     private int mSecretHitlerExpectedEvilTotal = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters();
 
-    private final Context mContext;
-    private final SharedPreferences mSharedPref;
+    private Context mContext;
+    private SharedPreferences mSharedPref;
 }

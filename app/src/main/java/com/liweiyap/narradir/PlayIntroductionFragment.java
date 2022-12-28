@@ -322,7 +322,7 @@ public class PlayIntroductionFragment extends NarradirFragmentBase
         if (subtitle == null)
         {
             throw new RuntimeException(
-                "PlayIntroductionActivity::switchCurrentDisplayedIntroSegmentTextView(): " +
+                "PlayIntroductionFragment::switchCurrentDisplayedIntroSegmentTextView(): " +
                     "Invalid introduction segment resource name " + resName);
         }
 

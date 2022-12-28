@@ -218,7 +218,7 @@ public class SecretHitlerCharacterSelectionFragment extends NarradirFragmentBase
     {
         if (mSecretHitlerControlGroup == null)
         {
-            throw new RuntimeException("SecretHitlerCharacterSelectionActivity::savePreferences(): mSecretHitlerControlGroup is NULL");
+            throw new RuntimeException("SecretHitlerCharacterSelectionFragment::savePreferences(): mSecretHitlerControlGroup is NULL");
         }
 
         NarradirViewModel viewModel = getViewModel();

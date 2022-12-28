@@ -38,14 +38,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AvalonCharacterSelectionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SecretHitlerCharacterSelectionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".PlayIntroductionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsHomeActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsNarrationActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsBackgroundActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsRoleTimerActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".GuidanceActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

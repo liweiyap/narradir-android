@@ -5,7 +5,7 @@
     android:id="@+id/settingsRoleTimerLayout"
     android:weightSum="10"
     style="@style/ActivityLayoutStyle"
-    tools:context=".SettingsRoleTimerActivity">
+    tools:context=".SettingsRoleTimerFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
