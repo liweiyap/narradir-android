@@ -58,6 +58,14 @@
             android:id="@+id/actionSettingsHomeToRoleTimer"
             app:destination="@id/settingsRoleTimerFragment" />
 
+        <action
+            android:id="@+id/actionSettingsHomeToHelp"
+            app:destination="@id/helpFragment" />
+
+        <action
+            android:id="@+id/actionSettingsHomeToPrivacy"
+            app:destination="@id/privacyFragment" />
+
     </fragment>
 
     <fragment
@@ -74,5 +82,15 @@
         android:id="@+id/settingsRoleTimerFragment"
         android:name="com.liweiyap.narradir.SettingsRoleTimerFragment"
         tools:layout="@layout/activity_settings_roletimer" />
+
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.liweiyap.narradir.HelpFragment"
+        tools:layout="@layout/activity_guidance_help" />
+
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="com.liweiyap.narradir.PrivacyFragment"
+        tools:layout="@layout/activity_guidance_privacy" />
 
 </navigation>

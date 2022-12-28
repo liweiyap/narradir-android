@@ -10,11 +10,9 @@ import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.liweiyap.narradir.ui.ControlFragment;
+import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.ObserverButton;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.SnackbarWrapper;
@@ -29,7 +27,7 @@ import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
 
 import java.util.EnumSet;
 
-public class SettingsBackgroundFragment extends ControlFragment
+public class SettingsBackgroundFragment extends NarradirFragmentBase
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -366,15 +364,6 @@ public class SettingsBackgroundFragment extends ControlFragment
         catch (Exception e)
         {
             e.printStackTrace();
-        }
-    }
-
-    private void navigateUp(final int steps)
-    {
-        NavController navController = NavHostFragment.findNavController(this);
-        for (int step = 0; step < steps; ++step)
-        {
-            navController.navigateUp();
         }
     }
 

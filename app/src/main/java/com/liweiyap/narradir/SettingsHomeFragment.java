@@ -14,16 +14,14 @@ import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.liweiyap.narradir.ui.ControlFragment;
-import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.SettingsLayout;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 import com.liweiyap.narradir.util.TimeDisplay;
 
-public class SettingsHomeFragment extends ControlFragment
+public class SettingsHomeFragment extends NarradirFragmentBase
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -65,7 +63,9 @@ public class SettingsHomeFragment extends ControlFragment
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        backButton.addOnClickObserver(this::navigateUp);
+        privacyButton.addOnClickObserver(this::navigateToPrivacyFragment);
+        backButton.addOnClickObserver(() -> navigateUp(1));
+        helpButton.addOnClickObserver(this::navigateToHelpFragment);
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true)
         {
@@ -134,22 +134,6 @@ public class SettingsHomeFragment extends ControlFragment
         mRoleTimerSettingsLayout = null;
     }
 
-    private void addSoundToPlayOnButtonClick(final ObserverListener btn)
-    {
-        if (btn == null)
-        {
-            return;
-        }
-
-        btn.addOnClickObserver(() -> {
-            NarradirControl narradirControl = getNarradirControl();
-            if (narradirControl != null)
-            {
-                narradirControl.playClickSound();
-            }
-        });
-    }
-
     private void navigateToSettingsNarrationFragment()
     {
         NavController navController = NavHostFragment.findNavController(this);
@@ -168,10 +152,16 @@ public class SettingsHomeFragment extends ControlFragment
         navController.navigate(R.id.settingsRoleTimerFragment);
     }
 
-    private void navigateUp()
+    private void navigateToHelpFragment()
     {
         NavController navController = NavHostFragment.findNavController(this);
-        navController.navigateUp();
+        navController.navigate(R.id.helpFragment);
+    }
+
+    private void navigateToPrivacyFragment()
+    {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.privacyFragment);
     }
 
     private void navigateToAuthorWebsite()

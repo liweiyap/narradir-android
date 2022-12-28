@@ -5,11 +5,13 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 
-public class ControlFragment extends Fragment
+public abstract class NarradirFragmentBase extends Fragment
 {
     private NarradirControl mNarradirControl;
 
@@ -43,5 +45,30 @@ public class ControlFragment extends Fragment
         }
 
         return mNarradirControl.getViewModel();
+    }
+
+    protected void addSoundToPlayOnButtonClick(final ObserverListener btn)
+    {
+        if (btn == null)
+        {
+            return;
+        }
+
+        btn.addOnClickObserver(() -> {
+            NarradirControl narradirControl = getNarradirControl();
+            if (narradirControl != null)
+            {
+                narradirControl.playClickSound();
+            }
+        });
+    }
+
+    protected void navigateUp(final int steps)
+    {
+        NavController navController = NavHostFragment.findNavController(this);
+        for (int step = 0; step < steps; ++step)
+        {
+            navController.navigateUp();
+        }
     }
 }

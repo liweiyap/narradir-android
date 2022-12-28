@@ -11,11 +11,9 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.exoplayer2.Player;
-import com.liweiyap.narradir.ui.ControlFragment;
+import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.NarradirControl;
@@ -28,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PlayIntroductionFragment extends ControlFragment
+public class PlayIntroductionFragment extends NarradirFragmentBase
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -240,8 +238,7 @@ public class PlayIntroductionFragment extends ControlFragment
             return;
         }
 
-        NavController navController = NavHostFragment.findNavController(this);
-        navController.navigateUp();
+        navigateUp(1);
     }
 
     private void switchCurrentDisplayedCharacterImage(final @NonNull String resName)

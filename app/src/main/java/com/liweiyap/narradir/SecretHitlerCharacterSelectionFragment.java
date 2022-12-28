@@ -13,7 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
-import com.liweiyap.narradir.ui.ControlFragment;
+import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.ObserverImageButton;
 import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
@@ -24,7 +24,7 @@ import com.liweiyap.narradir.util.NarradirViewModel;
 
 import java.util.ArrayList;
 
-public class SecretHitlerCharacterSelectionFragment extends ControlFragment
+public class SecretHitlerCharacterSelectionFragment extends NarradirFragmentBase
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -137,7 +137,8 @@ public class SecretHitlerCharacterSelectionFragment extends ControlFragment
         }
     }
 
-    private void addSoundToPlayOnButtonClick(final ObserverListener btn)
+    @Override
+    protected void addSoundToPlayOnButtonClick(final ObserverListener btn)
     {
         if (btn == null)
         {

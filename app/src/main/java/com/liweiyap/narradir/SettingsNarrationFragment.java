@@ -8,18 +8,14 @@ import android.view.ViewGroup;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.liweiyap.narradir.ui.ControlFragment;
+import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.ObserverButton;
-import com.liweiyap.narradir.ui.ObserverListener;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 
-public class SettingsNarrationFragment extends ControlFragment
+public class SettingsNarrationFragment extends NarradirFragmentBase
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -84,22 +80,6 @@ public class SettingsNarrationFragment extends ControlFragment
         mVolumeControlLayoutValueTextView = null;
     }
 
-    private void addSoundToPlayOnButtonClick(final ObserverListener btn)
-    {
-        if (btn == null)
-        {
-            return;
-        }
-
-        btn.addOnClickObserver(() -> {
-            NarradirControl narradirControl = getNarradirControl();
-            if (narradirControl != null)
-            {
-                narradirControl.playClickSound();
-            }
-        });
-    }
-
     private void displayVolume()
     {
         NarradirViewModel viewModel = getViewModel();
@@ -138,15 +118,6 @@ public class SettingsNarrationFragment extends ControlFragment
 
         viewModel.setNarrationVolume(Math.max(0f, viewModel.getNarrationVolume() - 0.1f));
         displayVolume();
-    }
-
-    private void navigateUp(final int steps)
-    {
-        NavController navController = NavHostFragment.findNavController(this);
-        for (int step = 0; step < steps; ++step)
-        {
-            navController.navigateUp();
-        }
     }
 
     private CustomTypefaceableTextView mVolumeControlLayoutValueTextView;
