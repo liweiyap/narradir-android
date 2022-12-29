@@ -11,7 +11,7 @@ import com.liweiyap.narradir.util.fonts.CustomFontSetter;
 
 public class CustomTypefaceableObserverButton
     extends ObserverButton
-    implements CustomTypefaceable
+    implements ICustomTypefaceable
 {
     public CustomTypefaceableObserverButton(@NonNull Context context)
     {

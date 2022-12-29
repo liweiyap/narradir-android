@@ -13,7 +13,7 @@ import com.liweiyap.narradir.util.fonts.CustomFontSetter;
  */
 public class CustomTypefaceableTextView
     extends androidx.appcompat.widget.AppCompatTextView
-    implements CustomTypefaceable
+    implements ICustomTypefaceable
 {
     public CustomTypefaceableTextView(@NonNull Context context)
     {
