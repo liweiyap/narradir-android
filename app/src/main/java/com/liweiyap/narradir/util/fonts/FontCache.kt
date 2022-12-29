@@ -2,8 +2,10 @@ package com.liweiyap.narradir.util.fonts
 
 import android.content.Context
 import android.graphics.Typeface
+
 import androidx.collection.ArrayMap
-import java.lang.Exception
+
+import kotlin.Exception
 
 /**
  * Caches the custom Typefaces in the assets directory to:
@@ -20,7 +22,7 @@ object FontCache {
         }
 
         synchronized(sFontCache) {
-            var typeface = sFontCache[assetFontPath]
+            var typeface: Typeface? = sFontCache[assetFontPath]
 
             if (typeface == null) {
                 try {
