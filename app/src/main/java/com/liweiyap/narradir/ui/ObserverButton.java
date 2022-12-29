@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.liweiyap.narradir.util.Observer;
+import com.liweiyap.narradir.util.IObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class ObserverButton
     }
 
     @Override
-    public void addOnClickObserver(final Observer observer)
+    public void addOnClickObserver(final IObserver observer)
     {
         if (mOnClickObservers == null)
         {
@@ -81,7 +81,7 @@ public class ObserverButton
             return;
         }
 
-        mOnClickObservers.forEach(Observer::update);
+        mOnClickObservers.forEach(IObserver::update);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class ObserverButton
     }
 
     @Override
-    public void addOnLongClickObserver(final Observer observer)
+    public void addOnLongClickObserver(final IObserver observer)
     {
         if (mOnLongClickObservers == null)
         {
@@ -114,7 +114,7 @@ public class ObserverButton
             return;
         }
 
-        mOnLongClickObservers.forEach(Observer::update);
+        mOnLongClickObservers.forEach(IObserver::update);
     }
 
     @Override
@@ -128,6 +128,6 @@ public class ObserverButton
         mOnLongClickObservers.clear();
     }
 
-    protected List<Observer> mOnClickObservers = new ArrayList<>();
-    protected List<Observer> mOnLongClickObservers = new ArrayList<>();
+    protected List<IObserver> mOnClickObservers = new ArrayList<>();
+    protected List<IObserver> mOnLongClickObservers = new ArrayList<>();
 }

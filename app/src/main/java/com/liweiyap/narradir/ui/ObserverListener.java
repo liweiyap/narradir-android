@@ -1,13 +1,13 @@
 package com.liweiyap.narradir.ui;
 
-import com.liweiyap.narradir.util.Observer;
+import com.liweiyap.narradir.util.IObserver;
 
 public interface ObserverListener
 {
-    void addOnClickObserver(final Observer observer);
+    void addOnClickObserver(final IObserver observer);
     void notifyOnClickObservers();
     void clearOnClickObservers();
-    void addOnLongClickObserver(final Observer observer);
+    void addOnLongClickObserver(final IObserver observer);
     void notifyOnLongClickObservers();
     void clearOnLongClickObservers();
 }

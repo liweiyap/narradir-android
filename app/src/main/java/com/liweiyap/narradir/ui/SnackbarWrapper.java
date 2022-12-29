@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.liweiyap.narradir.R;
-import com.liweiyap.narradir.util.Observer;
+import com.liweiyap.narradir.util.IObserver;
 import com.liweiyap.narradir.util.SnackbarBuilderFlag;
 
 import java.util.EnumSet;
@@ -31,7 +31,7 @@ public class SnackbarWrapper
         }
     }
 
-    public void show(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable Observer actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
+    public void show(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable IObserver actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
     {
         if (!isValidSnackbarDuration(duration))
         {
@@ -50,7 +50,7 @@ public class SnackbarWrapper
         showNewSnackbar(view, message, duration, actionMessage, actionCallback, flags);
     }
 
-    private void showNewSnackbar(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable Observer actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
+    private void showNewSnackbar(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable IObserver actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
     {
         mSnackbar = Snackbar.make(view, message, duration);
 
