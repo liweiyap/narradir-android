@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/helpLayout"
     android:weightSum="10"
-    style="@style/ActivityLayoutStyle"
-    tools:context=".GuidanceActivity">
+    style="@style/FragmentLayoutStyle"
+    tools:context=".HelpFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:layout_weight="1.5"
         android:id="@+id/metadata"
         android:text="@string/app_name_and_version"
-        style="@style/NonStartingActivityTitleStyleAutosized" />
+        style="@style/NonStartingFragmentTitleStyleAutosized" />
 
     <ScrollView
         android:fadeScrollbars="false"
@@ -23,7 +23,7 @@
         android:layout_margin="10dp">
 
         <include
-            layout="@layout/activity_guidance_help_scrollview_layout"
+            layout="@layout/fragment_help_scrollview_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -35,7 +35,7 @@
         android:layout_weight="0.5" />
 
     <include
-        layout="@layout/non_activity_starting_navbar"
+        layout="@layout/non_fragment_starting_navbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

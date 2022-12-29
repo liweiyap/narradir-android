@@ -51,11 +51,33 @@ class AvalonCharacterSelectionRules
         mCharacterImageButtonArray[AvalonCharacterName.OBERON].addOnClickObserver(this::runOberonSelectionRules);
     }
 
+    public void destroy()
+    {
+        if (mCharacterImageButtonArray != null)
+        {
+            for (int idx = 0; idx < mCharacterImageButtonArray.length; ++idx)
+            {
+                if (mCharacterImageButtonArray[idx] != null)
+                {
+                    mCharacterImageButtonArray[idx].destroy();
+                    mCharacterImageButtonArray[idx] = null;
+                }
+            }
+
+            mCharacterImageButtonArray = null;
+        }
+    }
+
     public CheckableObserverImageButton getCharacter(final int idx)
     {
         if ( (idx < AvalonCharacterName.MERLIN) || (idx > AvalonCharacterName.MINION3) )
         {
             throw new RuntimeException("AvalonCharacterSelectionRules::getCharacter(): Invalid index " + idx);
+        }
+
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException("AvalonCharacterSelectionRules::getCharacter(): mCharacterImageButtonArray is NULL");
         }
 
         return mCharacterImageButtonArray[idx];
@@ -76,6 +98,13 @@ class AvalonCharacterSelectionRules
      */
     private void runMerlinSelectionRules()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::runMerlinSelectionRules(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         if (mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
         {
             if (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
@@ -123,6 +152,13 @@ class AvalonCharacterSelectionRules
      */
     private void runPercivalSelectionRules()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::runPercivalSelectionRules(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         if (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
         {
             mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].setChecked(false);
@@ -175,6 +211,13 @@ class AvalonCharacterSelectionRules
      */
     private void runMorganaSelectionRules()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::runMorganaSelectionRules(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         if (mCharacterImageButtonArray[AvalonCharacterName.MORGANA].isChecked())
         {
             if (!mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked())
@@ -234,6 +277,13 @@ class AvalonCharacterSelectionRules
      */
     private void runMordredSelectionRules()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::runMordredSelectionRules(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         if (mCharacterImageButtonArray[AvalonCharacterName.MORDRED].isChecked())
         {
             if (!mCharacterImageButtonArray[AvalonCharacterName.MERLIN].isChecked())
@@ -294,6 +344,13 @@ class AvalonCharacterSelectionRules
      */
     private void runOberonSelectionRules()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::runOberonSelectionRules(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         if (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked())
         {
             mCharacterImageButtonArray[AvalonCharacterName.OBERON].setChecked(false);
@@ -325,6 +382,13 @@ class AvalonCharacterSelectionRules
      */
     public void onPlayerNumberChange()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::onPlayerNumberChange(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
              (mCharacterImageButtonArray[AvalonCharacterName.PERCIVAL].isChecked()) &&
              (mCharacterImageButtonArray[AvalonCharacterName.OBERON].isChecked()) )
@@ -367,6 +431,13 @@ class AvalonCharacterSelectionRules
             throw new RuntimeException(
                 "AvalonCharacterSelectionRules::searchAndCheckNewCharacters(): " +
                     "X must be >= 0");
+        }
+
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::searchAndCheckNewCharacters(): " +
+                    "mCharacterImageButtonArray is NULL");
         }
 
         int currIdx = startIdx;
@@ -421,6 +492,13 @@ class AvalonCharacterSelectionRules
                     "X must be >= 0");
         }
 
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::searchAndUncheckOldCharacters(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         int currIdx = startIdx;
         int charactersToUncheck = X;
         while ((currIdx >= endIdx) && (charactersToUncheck > 0))
@@ -443,6 +521,13 @@ class AvalonCharacterSelectionRules
 
     public int getActualGoodTotal()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::getActualGoodTotal(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         int actualGoodTotal = 0;
         for (int idx = AvalonCharacterName.MERLIN; idx <= AvalonCharacterName.LOYAL5; ++idx)
         {
@@ -457,6 +542,13 @@ class AvalonCharacterSelectionRules
 
     public int getActualEvilTotal()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "AvalonCharacterSelectionRules::getActualEvilTotal(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         int actualEvilTotal = 0;
         for (int idx = AvalonCharacterName.ASSASSIN; idx <= AvalonCharacterName.MINION3; ++idx)
         {
@@ -515,7 +607,7 @@ class AvalonCharacterSelectionRules
         }
     }
 
-    private final CheckableObserverImageButton[] mCharacterImageButtonArray = new CheckableObserverImageButton[AvalonCharacterName.getNumberOfCharacters()];
-    private int mExpectedGoodTotal = 3;
-    private int mExpectedEvilTotal = 2;
+    private CheckableObserverImageButton[] mCharacterImageButtonArray = new CheckableObserverImageButton[AvalonCharacterName.getNumberOfCharacters()];
+    private int mExpectedGoodTotal = AvalonCharacterName.getDefaultNumberOfGoodCharacters();
+    private int mExpectedEvilTotal = AvalonCharacterName.getDefaultNumberOfEvilCharacters();
 }

@@ -32,11 +32,33 @@ class SecretHitlerCharacterArray
         mCharacterImageButtonArray[SecretHitlerCharacterName.FASCIST2] = fascist2Button;
     }
 
+    public void destroy()
+    {
+        if (mCharacterImageButtonArray != null)
+        {
+            for (int idx = 0; idx < mCharacterImageButtonArray.length; ++idx)
+            {
+                if (mCharacterImageButtonArray[idx] != null)
+                {
+                    mCharacterImageButtonArray[idx].destroy();
+                    mCharacterImageButtonArray[idx] = null;
+                }
+            }
+
+            mCharacterImageButtonArray = null;
+        }
+    }
+
     public ObserverImageButton getCharacter(final int idx)
     {
         if ( (idx < SecretHitlerCharacterName.LIBERAL0) || (idx > SecretHitlerCharacterName.FASCIST2) )
         {
             throw new RuntimeException("SecretHitlerCharacterArray::getCharacter(): Invalid index " + idx);
+        }
+
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException("SecretHitlerCharacterArray::getCharacter(): mCharacterImageButtonArray is NULL");
         }
 
         return mCharacterImageButtonArray[idx];
@@ -49,6 +71,13 @@ class SecretHitlerCharacterArray
 
     public int getActualGoodTotal()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "SecretHitlerCharacterArray::getActualGoodTotal(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         int actualGoodTotal = 0;
         for (int idx = SecretHitlerCharacterName.LIBERAL0; idx <= SecretHitlerCharacterName.LIBERAL5; ++idx)
         {
@@ -63,6 +92,13 @@ class SecretHitlerCharacterArray
 
     public int getActualEvilTotal()
     {
+        if (mCharacterImageButtonArray == null)
+        {
+            throw new RuntimeException(
+                "SecretHitlerCharacterArray::getActualEvilTotal(): " +
+                    "mCharacterImageButtonArray is NULL");
+        }
+
         int actualEvilTotal = 0;
         for (int idx = SecretHitlerCharacterName.HITLER; idx <= SecretHitlerCharacterName.FASCIST2; ++idx)
         {
@@ -121,7 +157,7 @@ class SecretHitlerCharacterArray
         }
     }
 
-    private final ObserverImageButton[] mCharacterImageButtonArray = new ObserverImageButton[SecretHitlerCharacterName.getNumberOfCharacters()];
-    private int mExpectedGoodTotal = 3;
-    private int mExpectedEvilTotal = 2;
+    private ObserverImageButton[] mCharacterImageButtonArray = new ObserverImageButton[SecretHitlerCharacterName.getNumberOfCharacters()];
+    private int mExpectedGoodTotal = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters();
+    private int mExpectedEvilTotal = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters();
 }

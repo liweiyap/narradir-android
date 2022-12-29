@@ -10,10 +10,6 @@
     <!-- "So using this element makes it easy to block your app from lots of devices that your app actually can support." -->
     <!-- (see: https://developer.android.com/guide/practices/screens-distribution.html#FilteringHansetApps) -->
 
-    <!-- so until we have time to make changes to adapt to screen sizes and foldables, we'll just have to manually adjust the list of excluded devices on the Google Developer Console -->
-    <!-- (see: https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes) -->
-    <!-- (see: https://developer.android.com/guide/topics/large-screens/make-apps-fold-aware) -->
-
 
     <!-- Warning: if android:allowBackup="true", then during Auto Backup, the base-class Application is launched instead of NarradirApplication. -->
     <!-- Any calls to getApplicationContext() would cause a crash during Auto Backup. At the moment, there are no such calls, but once there are, we should set android:allowBackup="false" -->
@@ -33,7 +29,7 @@
         tools:targetApi="s">
         <!-- declare screenOrientation here rather than in the code so that it's in portrait from the get-go. Otherwise, in tablets as well as in some phones like HUAWEI YAL-L21 (Android 10) (see: https://stackoverflow.com/a/50616559/12367873), -->
         <!-- the app might be in landscape mode for a short period of time before switching to portait mode. -->
-        <activity android:name=".AvalonCharacterSelectionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout"
+        <activity android:name=".NarradirActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout"
             android:exported="true"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -42,13 +38,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecretHitlerCharacterSelectionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".PlayIntroductionActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsHomeActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsNarrationActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsBackgroundActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".SettingsRoleTimerActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".GuidanceActivity" android:screenOrientation="portrait" android:configChanges="orientation|screenSize|screenLayout" tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

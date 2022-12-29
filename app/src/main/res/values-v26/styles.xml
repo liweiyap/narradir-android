@@ -70,9 +70,9 @@
         <item name="android:autoSizeMinTextSize">@dimen/author_website_font_size</item>
     </style>
 
-    <style name="NonStartingActivityTitleStyleAutosized" parent="NonStartingActivityTitleStyleBase">
+    <style name="NonStartingFragmentTitleStyleAutosized" parent="NonStartingFragmentTitleStyleBase">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMaxTextSize">@dimen/non_starting_activity_title_font_size</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/non_starting_fragment_title_font_size</item>
     </style>
 
     <style name="HelpParagraphStyleAutosized" parent="HelpParagraphStyleBase">

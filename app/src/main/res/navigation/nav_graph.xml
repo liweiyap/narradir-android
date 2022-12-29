@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/avalonCharacterSelectionFragment">
+
+    <fragment
+        android:id="@+id/avalonCharacterSelectionFragment"
+        android:name="com.liweiyap.narradir.AvalonCharacterSelectionFragment"
+        tools:layout="@layout/fragment_character_selection_avalon">
+
+        <action
+            android:id="@+id/actionAvalonToPlayIntro"
+            app:destination="@id/playIntroductionFragment" />
+
+        <action
+            android:id="@+id/actionAvalonToSettingsHome"
+            app:destination="@id/settingsHomeFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/secretHitlerCharacterSelectionFragment"
+        android:name="com.liweiyap.narradir.SecretHitlerCharacterSelectionFragment"
+        tools:layout="@layout/fragment_character_selection_secrethitler">
+
+        <action
+            android:id="@+id/actionSecretHitlerToPlayIntro"
+            app:destination="@id/playIntroductionFragment" />
+
+        <action
+            android:id="@+id/actionSecretHitlerToSettingsHome"
+            app:destination="@id/settingsHomeFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/playIntroductionFragment"
+        android:name="com.liweiyap.narradir.PlayIntroductionFragment"
+        tools:layout="@layout/fragment_play_introduction" />
+
+    <fragment
+        android:id="@+id/settingsHomeFragment"
+        android:name="com.liweiyap.narradir.SettingsHomeFragment"
+        tools:layout="@layout/fragment_settings_home">
+
+        <action
+            android:id="@+id/actionSettingsHomeToNarration"
+            app:destination="@id/settingsNarrationFragment" />
+
+        <action
+            android:id="@+id/actionSettingsHomeToBackground"
+            app:destination="@id/settingsBackgroundFragment" />
+
+        <action
+            android:id="@+id/actionSettingsHomeToRoleTimer"
+            app:destination="@id/settingsRoleTimerFragment" />
+
+        <action
+            android:id="@+id/actionSettingsHomeToHelp"
+            app:destination="@id/helpFragment" />
+
+        <action
+            android:id="@+id/actionSettingsHomeToPrivacy"
+            app:destination="@id/privacyFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsNarrationFragment"
+        android:name="com.liweiyap.narradir.SettingsNarrationFragment"
+        tools:layout="@layout/fragment_settings_narration" />
+
+    <fragment
+        android:id="@+id/settingsBackgroundFragment"
+        android:name="com.liweiyap.narradir.SettingsBackgroundFragment"
+        tools:layout="@layout/fragment_settings_background" />
+
+    <fragment
+        android:id="@+id/settingsRoleTimerFragment"
+        android:name="com.liweiyap.narradir.SettingsRoleTimerFragment"
+        tools:layout="@layout/fragment_settings_roletimer" />
+
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.liweiyap.narradir.HelpFragment"
+        tools:layout="@layout/fragment_help" />
+
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="com.liweiyap.narradir.PrivacyFragment"
+        tools:layout="@layout/fragment_privacy" />
+
+</navigation>

@@ -14,7 +14,7 @@
     <dimen name="control_text_font_size">42sp</dimen>
     <dimen name="background_sound_selector_font_size">25sp</dimen>
     <dimen name="author_website_font_size">17sp</dimen>
-    <dimen name="non_starting_activity_title_font_size">35sp</dimen>
+    <dimen name="non_starting_fragment_title_font_size">35sp</dimen>
     <dimen name="help_paragraph_font_size">22sp</dimen>
     <dimen name="help_subheading_font_size">35sp</dimen>
     <dimen name="help_subsubheading_font_size">25sp</dimen>

@@ -32,6 +32,8 @@ public class IntroAudioPlayer
         final String backgroundSoundName,
         final float backgroundSoundVolume)
     {
+        mBackgroundSoundVolume = backgroundSoundVolume;
+
         allocateResources(
             context,
             introSegmentArrayList, pauseDurationInMilliSecs, narrationVolume,
@@ -56,10 +58,8 @@ public class IntroAudioPlayer
     private void initSoundPool(final @NonNull Context context, final @NonNull String backgroundSoundName, final float backgroundSoundVolume)
     {
         mGeneralSoundPool = new SoundPool.Builder()
-            .setMaxStreams(2)
+            .setMaxStreams(1)
             .build();
-
-        mClickSoundId = mGeneralSoundPool.load(context, R.raw.clicksound, 1);
 
         final Integer loadedBackgroundSound = loadBackgroundSound(context, backgroundSoundName);
         if (loadedBackgroundSound == null)
@@ -185,17 +185,7 @@ public class IntroAudioPlayer
         return mIntroSegmentPlayer.getCurrentMediaItemIndex();
     }
 
-    public void playClickSound()
-    {
-        if (mGeneralSoundPool == null)
-        {
-            return;
-        }
-
-        mGeneralSoundPool.play(mClickSoundId, 1f, 1f, 2, 0, 1f);
-    }
-
-    public void toggle(final float backgroundSoundVolume)
+    public void toggle()
     {
         if (mIsPlaying)
         {
@@ -205,7 +195,7 @@ public class IntroAudioPlayer
         else
         {
             mIsPlaying = true;
-            playIntro(backgroundSoundVolume);
+            playIntro();
         }
     }
 
@@ -214,7 +204,7 @@ public class IntroAudioPlayer
         return mIsPlaying;
     }
 
-    public void playIntro(final float backgroundSoundVolume)
+    public void playIntro()
     {
         if ( (mIntroSegmentPlayer == null) || (mGeneralSoundPool == null) )
         {
@@ -229,7 +219,7 @@ public class IntroAudioPlayer
             return;
         }
 
-        mBackgroundStreamId = mGeneralSoundPool.play(mBackgroundSoundId, backgroundSoundVolume, backgroundSoundVolume, 1, -1, 1f);
+        mBackgroundStreamId = mGeneralSoundPool.play(mBackgroundSoundId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f);
     }
 
     public void pauseIntro()
@@ -267,7 +257,7 @@ public class IntroAudioPlayer
     private SoundPool mGeneralSoundPool;
     private int mBackgroundSoundId;
     private int mBackgroundStreamId = 0;
-    private int mClickSoundId;
+    private final float mBackgroundSoundVolume;
 
     private boolean mIsPlaying = true;
     private boolean mIsFirstCall = true;

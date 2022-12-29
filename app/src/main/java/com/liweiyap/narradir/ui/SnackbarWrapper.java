@@ -22,6 +22,15 @@ public class SnackbarWrapper
         mMaxInlineActionWidth = context.getResources().getDimensionPixelSize(R.dimen.narradir_design_snackbar_action_inline_max_width);
     }
 
+    public void destroy()
+    {
+        if (mSnackbar != null)
+        {
+            mSnackbar.dismiss();
+            mSnackbar = null;
+        }
+    }
+
     public void show(final @NonNull View view, final @NonNull String message, final int duration, final @Nullable String actionMessage, final @Nullable Observer actionCallback, final @NonNull EnumSet<SnackbarBuilderFlag> flags)
     {
         if (!isValidSnackbarDuration(duration))

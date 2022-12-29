@@ -20,13 +20,13 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="ActivityLayoutStyle" parent="@android:style/Widget">
+    <style name="FragmentLayoutStyle" parent="@android:style/Widget">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@drawable/grunge_background_kashmirblue</item>
-        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingTop">@dimen/fragment_vertical_margin</item>
     </style>
 
     <style name="RowLayoutStyleDefault" parent="@android:style/Widget">
@@ -336,8 +336,8 @@
         <item name="autoSizeMinTextSize">@dimen/author_website_font_size</item>
     </style>
 
-    <style name="NonStartingActivityTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
-        <item name="android:textSize">@dimen/non_starting_activity_title_font_size</item>
+    <style name="NonStartingFragmentTitleStyleBase" parent="ArkhamBoldTypefacedTextViewStyle">
+        <item name="android:textSize">@dimen/non_starting_fragment_title_font_size</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">5dp</item>
@@ -345,9 +345,9 @@
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
 
-    <style name="NonStartingActivityTitleStyleAutosized" parent="NonStartingActivityTitleStyleBase">
+    <style name="NonStartingFragmentTitleStyleAutosized" parent="NonStartingFragmentTitleStyleBase">
         <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeMaxTextSize">@dimen/non_starting_activity_title_font_size</item>
+        <item name="autoSizeMaxTextSize">@dimen/non_starting_fragment_title_font_size</item>
     </style>
 
     <style name="HelpTextStyle" parent="@android:style/Widget.TextView">
