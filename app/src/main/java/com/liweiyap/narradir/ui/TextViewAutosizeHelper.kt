@@ -1,15 +1,12 @@
-package com.liweiyap.narradir.ui;
+package com.liweiyap.narradir.ui
 
-import android.os.Build;
-import android.util.TypedValue;
-import android.widget.TextView;
+import android.os.Build
+import android.util.TypedValue
+import android.widget.TextView
 
-import androidx.core.widget.TextViewCompat;
+import androidx.core.widget.TextViewCompat
 
-public final class TextViewAutosizeHelper
-{
-    private TextViewAutosizeHelper(){}
-
+object TextViewAutosizeHelper {
     /**
      * Programmatically sets the autoSizeMaxTextSize of a TextView to prevent it from getting too big when auto-sized according to user preferences,
      * thereby fixing the autoSizeTextSize (or minimising its range).
@@ -22,25 +19,19 @@ public final class TextViewAutosizeHelper
      * Here, because we don't know the px to sp ratio, we set autoSizeMaxTextSize just high enough so that it is clearly not less than or equal to autoSizeMinTextSize and should thus hopefully not throw another type of IllegalArgumentException.
      * But it's not that accurate because autoSizeMaxTextSize shouldn't simply be 10.5 sp; it should instead be as close as possible to textSize (or autoSizeMinTextSize, for that matter) without throwing the latter IllegalArgumentException.
      */
-    public static void minimiseAutoSizeTextSizeRange(final TextView textView)
-    {
-        if (textView == null)
-        {
-            return;
+    @JvmStatic
+    fun minimiseAutoSizeTextSizeRange(textView: TextView?) {
+        if (textView == null) {
+            return
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            if (textView.getAutoSizeTextType() != TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
-            {
-                return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (textView.autoSizeTextType != TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
+                return
             }
-        }
-        else
-        {
-            if (TextViewCompat.getAutoSizeTextType(textView) != TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
-            {
-                return;
+        } else {
+            if (TextViewCompat.getAutoSizeTextType(textView) != TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
+                return
             }
         }
 
@@ -49,6 +40,6 @@ public final class TextViewAutosizeHelper
             TextViewCompat.getAutoSizeMinTextSize(textView),
             TextViewCompat.getAutoSizeMinTextSize(textView) + 1,
             TextViewCompat.getAutoSizeStepGranularity(textView),
-            TypedValue.COMPLEX_UNIT_PX);
+            TypedValue.COMPLEX_UNIT_PX)
     }
 }
