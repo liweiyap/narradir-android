@@ -16,7 +16,7 @@ import com.liweiyap.narradir.R;
 
 public class StrokedCustomTypefaceableTextView
     extends CustomTypefaceableTextView
-    implements Outlineable
+    implements IOutlineable
 {
     public StrokedCustomTypefaceableTextView(@NonNull Context context)
     {
