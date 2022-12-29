@@ -27,7 +27,7 @@ public final class ViewGroupSingleTargetSelector
                 );
             }
 
-            if (!(view instanceof ObserverListener))
+            if (!(view instanceof IObserverListener))
             {
                 throw new RuntimeException(
                     "ViewGroupSingleTargetSelector::addSingleTargetSelection(): " +
@@ -36,7 +36,7 @@ public final class ViewGroupSingleTargetSelector
             }
 
             int i = childIdx;
-            ((ObserverListener) view).addOnClickObserver(() -> {
+            ((IObserverListener) view).addOnClickObserver(() -> {
                 ((Checkable) view).setChecked(true);
                 for (int j = 0; j < viewGroup.getChildCount(); ++j)
                 {

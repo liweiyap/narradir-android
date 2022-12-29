@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.ObserverButton;
-import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.IObserverListener;
 import com.liweiyap.narradir.ui.SnackbarWrapper;
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
@@ -216,7 +216,7 @@ public class SettingsBackgroundFragment extends NarradirFragmentBase
         mNavBar = null;
     }
 
-    private void addSoundToPlayOnButtonClick(final ObserverListener btn, final boolean isVolumeControl)
+    private void addSoundToPlayOnButtonClick(final IObserverListener btn, final boolean isVolumeControl)
     {
         NarradirViewModel viewModel = getViewModel();
         if (viewModel == null)

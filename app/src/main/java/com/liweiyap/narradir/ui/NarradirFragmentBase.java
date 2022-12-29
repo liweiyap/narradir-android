@@ -52,7 +52,7 @@ public abstract class NarradirFragmentBase extends Fragment
         return mNarradirControl.getViewModel();
     }
 
-    protected void addSoundToPlayOnButtonClick(final ObserverListener btn)
+    protected void addSoundToPlayOnButtonClick(final IObserverListener btn)
     {
         if (btn == null)
         {

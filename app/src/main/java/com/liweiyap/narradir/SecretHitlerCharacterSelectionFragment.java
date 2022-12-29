@@ -15,7 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup;
 import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.ObserverImageButton;
-import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.IObserverListener;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
@@ -138,7 +138,7 @@ public class SecretHitlerCharacterSelectionFragment extends NarradirFragmentBase
     }
 
     @Override
-    protected void addSoundToPlayOnButtonClick(final ObserverListener btn)
+    protected void addSoundToPlayOnButtonClick(final IObserverListener btn)
     {
         if (btn == null)
         {

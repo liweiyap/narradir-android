@@ -16,7 +16,7 @@ import com.liweiyap.narradir.avalon.AvalonCharacterName;
 import com.liweiyap.narradir.avalon.AvalonControlGroup;
 import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.ObserverImageButton;
-import com.liweiyap.narradir.ui.ObserverListener;
+import com.liweiyap.narradir.ui.IObserverListener;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
@@ -158,7 +158,7 @@ public class AvalonCharacterSelectionFragment extends NarradirFragmentBase
     }
 
     @Override
-    protected void addSoundToPlayOnButtonClick(final ObserverListener btn)
+    protected void addSoundToPlayOnButtonClick(final IObserverListener btn)
     {
         if (btn == null)
         {

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ObserverButton
     extends androidx.appcompat.widget.AppCompatButton
-    implements View.OnClickListener, View.OnLongClickListener, ObserverListener
+    implements View.OnClickListener, View.OnLongClickListener, IObserverListener
 {
     public ObserverButton(@NonNull Context context)
     {
