@@ -12,7 +12,8 @@ import com.liweiyap.narradir.util.fonts.CustomFontSetter
  */
 open class CustomTypefaceableTextView:
     AppCompatTextView,
-    ICustomTypefaceable {
+    ICustomTypefaceable
+{
     constructor(context: Context): super(context)
 
     constructor(context: Context, attrs: AttributeSet?): super(context, attrs) {

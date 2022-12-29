@@ -17,14 +17,12 @@ object CustomFontSetter {
      */
     @JvmStatic
     fun setCustomFont(textView: TextView?, context: Context, attrs: AttributeSet?) {
-        if (attrs == null) {
-            return
+        attrs?.let {
+            val typedArray: TypedArray = context.obtainStyledAttributes(it, R.styleable.CustomFont)
+            val assetFontPath: String? = typedArray.getString(R.styleable.CustomFont_assetFontPath)
+            setCustomFont(textView, assetFontPath, context)
+            typedArray.recycle()
         }
-
-        val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomFont)
-        val assetFontPath: String? = typedArray.getString(R.styleable.CustomFont_assetFontPath)
-        setCustomFont(textView, assetFontPath, context)
-        typedArray.recycle()
     }
 
     /**
@@ -37,8 +35,8 @@ object CustomFontSetter {
         }
 
         val typeface: Typeface? = FontCache.get(assetFontPath, context)
-        if (typeface != null) {
-            textView.typeface = typeface
+        typeface?.let {
+            textView.typeface = it
         }
     }
 }
