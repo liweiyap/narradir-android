@@ -1,4 +1,4 @@
-package com.liweiyap.narradir.ui.fonts
+package com.liweiyap.narradir.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,8 +11,8 @@ import com.liweiyap.narradir.R
 /**
  * See: https://stackoverflow.com/a/34074176/12367873
  */
-open class CustomTypefaceableCheckableObserverButton:
-    CustomTypefaceableObserverButton,
+open class CheckableObserverImageButton:
+    ObserverImageButton,
     Checkable
 {
     constructor(context: Context): super(context) {
@@ -27,15 +27,11 @@ open class CustomTypefaceableCheckableObserverButton:
         init(context, attrs)
     }
 
-    constructor(context: Context, assetFontPath: String?): super(context, assetFontPath) {
-        init(context, null)
-    }
-
     /**
      * Toggles background based on the selector that we set in XML
      */
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
-        val drawableState: IntArray = super.onCreateDrawableState(extraSpace + 1)
+        val drawableState = super.onCreateDrawableState(extraSpace + 1)
         if (isChecked) {
             mergeDrawableStates(drawableState, CHECKED_STATE_SET)
         }
