@@ -34,9 +34,9 @@ object ViewGroupSingleTargetSelector {
             (view as IObserverListener).addOnClickObserver(object: IObserver {
                 override fun update() {
                     (view as Checkable).isChecked = true
-                    for (idx in 0 until viewGroup.childCount) {
+                    for (idx: Int in 0 until viewGroup.childCount) {
                         if (childIdx != idx) {
-                            val tmp = viewGroup.getChildAt(idx)
+                            val tmp: View = viewGroup.getChildAt(idx)
                             (tmp as Checkable).isChecked = false
                         }
                     }
