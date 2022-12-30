@@ -10,21 +10,13 @@ object IntroSegmentDictionary {
         return (context != null)
             && (resName != null)
             && ( resName == context.getString(R.string.avalonintrosegment1nooberon_key)
-            || resName == context.getString(
-            R.string.avalonintrosegment1withoberon_key
-        )
+            || resName == context.getString(R.string.avalonintrosegment1withoberon_key)
             || resName == context.getString(R.string.avalonintrosegment3nomordred_key)
-            || resName == context.getString(
-            R.string.avalonintrosegment3withmordred_key
-        )
+            || resName == context.getString(R.string.avalonintrosegment3withmordred_key)
             || resName == context.getString(R.string.avalonintrosegment5withpercivalnomorgana_key)
-            || resName == context.getString(
-            R.string.avalonintrosegment5withpercivalwithmorgana_key
-        )
+            || resName == context.getString(R.string.avalonintrosegment5withpercivalwithmorgana_key)
             || resName == context.getString(R.string.secrethitlerintrosegment1small_key)
-            || resName == context.getString(
-            R.string.secrethitlerintrosegment1large_key
-        )
+            || resName == context.getString(R.string.secrethitlerintrosegment1large_key)
             || resName == context.getString(R.string.secrethitlerintrosegment2large_key) )
     }
 
@@ -35,7 +27,8 @@ object IntroSegmentDictionary {
         }
 
         return when (resName) {
-            context.getString(R.string.avalonintrosegment0_key) -> context.getString(R.string.avalonintrosegment0_text)
+            context.getString(R.string.avalonintrosegment0nomerlin_key) -> context.getString(R.string.avalonintrosegment0nomerlin_text)
+            context.getString(R.string.avalonintrosegment0withmerlin_key) -> context.getString(R.string.avalonintrosegment0withmerlin_text)
             context.getString(R.string.avalonintrosegment1nooberon_key) -> context.getString(R.string.avalonintrosegment1nooberon_text)
             context.getString(R.string.avalonintrosegment1withoberon_key) -> context.getString(R.string.avalonintrosegment1withoberon_text)
             context.getString(R.string.avalonintrosegment2_key) -> context.getString(R.string.avalonintrosegment2_text)

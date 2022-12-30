@@ -60,9 +60,13 @@ public final class ExoPlayerMediaSourceCreator
 
         // does not look elegant but it's safe because RawRes ID integers are non-constant from Gradle version >4.
         // I think that the URI that is itself loaded and returned wouldn't be non-constant, right??
-        if (resName.equals(context.getString(R.string.avalonintrosegment0_key)))
+        if (resName.equals(context.getString(R.string.avalonintrosegment0nomerlin_key)))
         {
-            return RawResourceDataSource.buildRawResourceUri(R.raw.avalonintrosegment0);
+            return RawResourceDataSource.buildRawResourceUri(R.raw.avalonintrosegment0nomerlin);
+        }
+        else if (resName.equals(context.getString(R.string.avalonintrosegment0withmerlin_key)))
+        {
+            return RawResourceDataSource.buildRawResourceUri(R.raw.avalonintrosegment0withmerlin);
         }
         else if (resName.equals(context.getString(R.string.avalonintrosegment1nooberon_key)))
         {

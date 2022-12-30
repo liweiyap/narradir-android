@@ -56,7 +56,8 @@
     <string name="main_button_text">MAIN</string>
     <string name="privacy_button_text">PRIVACY POLICY</string>
 
-    <string name="avalonintrosegment0_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
+    <string name="avalonintrosegment0nomerlin_text">EVERYONE, close your eyes.</string>
+    <string name="avalonintrosegment0withmerlin_text">EVERYONE, close your eyes, and extend your hand into a fist in front of you.</string>
     <string name="avalonintrosegment1nooberon_text">AGENTS OF EVIL, wake up, and look for other agents of Evil.</string>
     <string name="avalonintrosegment1withoberon_text">AGENTS OF EVIL, except OBERON, wake up, and look for other agents of Evil.</string>
     <string name="avalonintrosegment2_text">AGENTS OF EVIL, close your eyes.</string>
@@ -226,7 +227,8 @@
     <string name="up_button_contentdescription">Click to increase.</string>
     <string name="down_button_contentdescription">Click to decrease.</string>
 
-    <string name="avalonintrosegment0_key">AV_SEG_0</string>
+    <string name="avalonintrosegment0nomerlin_key">AV_SEG_0_NOMERLIN</string>
+    <string name="avalonintrosegment0withmerlin_key">AV_SEG_0_WITHMERLIN</string>
     <string name="avalonintrosegment1nooberon_key" tools:ignore="Typos">AV_SEG_1_NOOBERON</string>
     <string name="avalonintrosegment1withoberon_key" tools:ignore="Typos">AV_SEG_1_WITHOBERON</string>
     <string name="avalonintrosegment2_key">AV_SEG_2</string>

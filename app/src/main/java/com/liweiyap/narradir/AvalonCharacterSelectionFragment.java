@@ -200,7 +200,9 @@ public class AvalonCharacterSelectionFragment extends NarradirFragmentBase
 
         ArrayList<String> introSegmentArrayList = new ArrayList<>();
 
-        introSegmentArrayList.add(getString(R.string.avalonintrosegment0_key));
+        introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.MERLIN).isChecked() ?
+            R.string.avalonintrosegment0withmerlin_key :
+            R.string.avalonintrosegment0nomerlin_key));
 
         introSegmentArrayList.add(getString(mAvalonControlGroup.getCharacter(AvalonCharacterName.OBERON).isChecked() ?
             R.string.avalonintrosegment1withoberon_key :
