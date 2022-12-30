@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
 
-public class BackgroundSoundTestMediaPlayer implements MediaPlayerController
+public class BackgroundSoundTestMediaPlayer implements IMediaPlayerController
 {
     public BackgroundSoundTestMediaPlayer(final @NonNull Context context)
     {

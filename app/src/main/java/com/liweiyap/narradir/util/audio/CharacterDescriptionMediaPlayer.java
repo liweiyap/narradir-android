@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.liweiyap.narradir.R;
 
-public class CharacterDescriptionMediaPlayer implements MediaPlayerController
+public class CharacterDescriptionMediaPlayer implements IMediaPlayerController
 {
     public CharacterDescriptionMediaPlayer(final @NonNull Context context)
     {
