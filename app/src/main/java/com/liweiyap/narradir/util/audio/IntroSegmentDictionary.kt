@@ -22,7 +22,7 @@ object IntroSegmentDictionary {
 
     @JvmStatic
     fun getSubtitleFromIntroSegmentRes(context: Context?, resName: String?): String? {
-        if (context == null || resName == null) {
+        if ((context == null) || (resName == null)) {
             return null
         }
 
