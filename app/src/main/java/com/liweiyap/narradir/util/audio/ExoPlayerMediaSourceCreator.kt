@@ -33,7 +33,8 @@ object ExoPlayerMediaSourceCreator {
             val mediaItem: MediaItem = MediaItem.fromUri(dataSource.uri!!)
             val mediaSourceFactory: MediaSource.Factory = DefaultMediaSourceFactory(context, extractorsFactory)
             return mediaSourceFactory.createMediaSource(mediaItem) as ProgressiveMediaSource
-        } catch (e: RawResourceDataSource.RawResourceDataSourceException) {
+        }
+        catch (e: RawResourceDataSource.RawResourceDataSourceException) {
             e.printStackTrace()
         }
 

@@ -35,7 +35,8 @@ class CharacterDescriptionMediaPlayer(context: Context): IMediaPlayerController 
             setVolume(volume)
             mMediaPlayer!!.setOnCompletionListener(listener)
             mMediaPlayer!!.start()
-        } catch (e: IllegalStateException) {
+        }
+        catch (e: IllegalStateException) {
             e.printStackTrace()
         }
     }

@@ -27,7 +27,8 @@ object FontCache {
             if (typeface == null) {
                 try {
                     typeface = Typeface.createFromAsset(context.assets, assetFontPath)
-                } catch (e: Exception) {
+                }
+                catch (e: Exception) {
                     return null
                 }
 
