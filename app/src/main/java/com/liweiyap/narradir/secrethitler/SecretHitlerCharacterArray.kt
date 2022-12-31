@@ -46,7 +46,7 @@ class SecretHitlerCharacterArray(
         characterImageButtonArray = null
     }
 
-    fun getCharacter(idx: Int): ObserverImageButton? {
+    fun getCharacter(idx: Int): ObserverImageButton {
         if ( (idx < SecretHitlerCharacterName.LIBERAL0) || (idx > SecretHitlerCharacterName.FASCIST2) ) {
             throw RuntimeException("SecretHitlerCharacterArray::getCharacter(): Invalid index $idx")
         }
@@ -55,7 +55,7 @@ class SecretHitlerCharacterArray(
             throw RuntimeException("SecretHitlerCharacterArray::getCharacter(): mCharacterImageButtonArray is NULL")
         }
 
-        return characterImageButtonArray!![idx]
+        return characterImageButtonArray!![idx]!!
     }
 
     val actualGoodTotal: Int
@@ -63,16 +63,13 @@ class SecretHitlerCharacterArray(
             if (characterImageButtonArray == null) {
                 throw RuntimeException(
                     "SecretHitlerCharacterArray::getActualGoodTotal(): " +
-                        "mCharacterImageButtonArray is NULL"
-                )
+                        "mCharacterImageButtonArray is NULL")
             }
 
             var good = 0
             for (idx: Int in SecretHitlerCharacterName.LIBERAL0 .. SecretHitlerCharacterName.LIBERAL5) {
-                characterImageButtonArray!![idx]?.let {
-                    if (it.visibility == View.VISIBLE) {
-                        ++good
-                    }
+                if (characterImageButtonArray!![idx]!!.visibility == View.VISIBLE) {
+                    ++good
                 }
             }
 
@@ -84,16 +81,13 @@ class SecretHitlerCharacterArray(
             if (characterImageButtonArray == null) {
                 throw RuntimeException(
                     "SecretHitlerCharacterArray::getActualEvilTotal(): " +
-                        "mCharacterImageButtonArray is NULL"
-                )
+                        "mCharacterImageButtonArray is NULL")
             }
 
             var evil = 0
             for (idx: Int in SecretHitlerCharacterName.HITLER .. SecretHitlerCharacterName.FASCIST2) {
-                characterImageButtonArray!![idx]?.let {
-                    if (it.visibility == View.VISIBLE) {
-                        ++evil
-                    }
+                if (characterImageButtonArray!![idx]!!.visibility == View.VISIBLE) {
+                    ++evil
                 }
             }
 
@@ -108,19 +102,15 @@ class SecretHitlerCharacterArray(
         val good: Int = actualGoodTotal
         if (good != expectedGoodTotal) {
             throw RuntimeException(
-                callingFuncName +
-                    ": expected good player total is " + expectedGoodTotal +
-                    " but actual good player total is " + good
-            )
+                "$callingFuncName: expected good player total is $expectedGoodTotal" +
+                    " but actual good player total is $good")
         }
 
         val evil: Int = actualEvilTotal
         if (evil != expectedEvilTotal) {
             throw RuntimeException(
-                callingFuncName +
-                    ": expected evil player total is " + expectedEvilTotal +
-                    " but actual evil player total is " + evil
-            )
+                "$callingFuncName: expected evil player total is $expectedEvilTotal" +
+                    " but actual evil player total is $evil")
         }
     }
 }

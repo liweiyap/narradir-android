@@ -124,10 +124,7 @@ class IntroAudioPlayer(
         if (mIntroSegmentPlayer!!.mediaItemCount != 2 * introSegmentArrayList.size - 1) {
             throw RuntimeException(
                 "IntroAudioPlayer::prepareExoPlayer(): " +
-                    "Invalid no of MediaSources for ExoPlayer; " +
-                    introSegmentArrayList.size + " segments but " +
-                    mIntroSegmentPlayer!!.mediaItemCount + " media sources."
-            )
+                    "Invalid no of MediaSources for ExoPlayer; ${introSegmentArrayList.size} segments but ${mIntroSegmentPlayer!!.mediaItemCount} media sources.")
         }
 
         mIntroSegmentPlayer!!.volume = narrationVolume

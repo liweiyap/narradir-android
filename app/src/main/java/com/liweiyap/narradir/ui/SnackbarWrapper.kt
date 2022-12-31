@@ -30,7 +30,7 @@ class SnackbarWrapper(context: Context) {
         if (!isValidSnackbarDuration(duration)) {
             throw RuntimeException(
                 "SnackbarWrapper::show()" +
-                    ": Programming Error. Value for duration (" + duration + ") not recognised.")
+                    ": Programming Error. Value for duration ($duration) not recognised.")
         }
 
         dismissOldSnackbar()

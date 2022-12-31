@@ -29,7 +29,8 @@ object TextViewAutosizeHelper {
             if (textView.autoSizeTextType != TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
                 return
             }
-        } else {
+        }
+        else {
             if (TextViewCompat.getAutoSizeTextType(textView) != TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
                 return
             }
