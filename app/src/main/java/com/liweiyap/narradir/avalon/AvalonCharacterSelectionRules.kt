@@ -108,7 +108,7 @@ class AvalonCharacterSelectionRules(
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.OBERON, 1)
         }
 
-        checkPlayerComposition("AvalonCharacterSelectionRules::runMerlinSelectionRules()")
+        checkPlayerComposition(callingFuncName = "AvalonCharacterSelectionRules::runMerlinSelectionRules()")
     }
 
     /**
@@ -156,7 +156,7 @@ class AvalonCharacterSelectionRules(
             }
         }
 
-        checkPlayerComposition("AvalonCharacterSelectionRules::runPercivalSelectionRules()")
+        checkPlayerComposition(callingFuncName = "AvalonCharacterSelectionRules::runPercivalSelectionRules()")
     }
 
     /**
@@ -206,7 +206,7 @@ class AvalonCharacterSelectionRules(
             }
         }
 
-        checkPlayerComposition("AvalonCharacterSelectionRules::runMorganaSelectionRules()")
+        checkPlayerComposition(callingFuncName = "AvalonCharacterSelectionRules::runMorganaSelectionRules()")
     }
 
     /**
@@ -265,7 +265,7 @@ class AvalonCharacterSelectionRules(
             }
         }
 
-        checkPlayerComposition("AvalonCharacterSelectionRules::runMordredSelectionRules()")
+        checkPlayerComposition(callingFuncName = "AvalonCharacterSelectionRules::runMordredSelectionRules()")
     }
 
     /**
@@ -297,7 +297,7 @@ class AvalonCharacterSelectionRules(
             getCharacter(AvalonCharacterName.OBERON).isChecked = true
         }
 
-        checkPlayerComposition("AvalonCharacterSelectionRules::runOberonSelectionRules()")
+        checkPlayerComposition(callingFuncName = "AvalonCharacterSelectionRules::runOberonSelectionRules()")
     }
 
     /**

@@ -70,7 +70,7 @@ abstract class CharacterSelectionControlGroup(@JvmField protected var mActivityC
             return
         }
 
-        mCharacterDescriptionMediaPlayer!!.play(description, 1f) {
+        mCharacterDescriptionMediaPlayer!!.play(res = description, volume = 1f) {
             (mActivityContext as AppCompatActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
         (mActivityContext as AppCompatActivity).window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -104,12 +104,12 @@ abstract class CharacterSelectionControlGroup(@JvmField protected var mActivityC
 
         try {
             mSnackbar?.show(
-                (mActivityContext as AppCompatActivity).findViewById(R.id.characterSelectionLayoutNavBar),
-                message,
-                BaseTransientBottomBar.LENGTH_SHORT,
-                mActivityContext?.getString(R.string.positive_button_text),
-                null,
-                EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE))
+                view = (mActivityContext as AppCompatActivity).findViewById(R.id.characterSelectionLayoutNavBar),
+                message = message,
+                duration = BaseTransientBottomBar.LENGTH_SHORT,
+                actionMessage = mActivityContext?.getString(R.string.positive_button_text),
+                actionCallback = null,
+                flags = EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE))
         }
         catch (e: Exception) {
             e.printStackTrace()

@@ -59,7 +59,7 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
         }
 
         val sharedPrefEditor: SharedPreferences.Editor = mSharedPref!!.edit()
-        sharedPrefEditor.remove(mContext!!.getString(R.string.background_sound_key)) // this line may be removed in future
+        sharedPrefEditor.remove(mContext!!.getString(R.string.background_sound_key))  // this line may be removed in future
         sharedPrefEditor.putLong(mContext!!.getString(R.string.pause_duration_key), pauseDurationInMilliSecs)
         sharedPrefEditor.putString(mContext!!.getString(R.string.background_sound_name_key), backgroundSoundName)
         sharedPrefEditor.putFloat(mContext!!.getString(R.string.background_volume_key), backgroundSoundVolume)
@@ -91,11 +91,11 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
     }
 
     fun saveAvalonLastSelected() {
-        saveLastSelectedGame(Constants.GAME_AVALON)
+        saveLastSelectedGame(gameId = Constants.GAME_AVALON)
     }
 
     fun saveSecretHitlerLastSelected() {
-        saveLastSelectedGame(Constants.GAME_SECRETHITLER)
+        saveLastSelectedGame(gameId = Constants.GAME_SECRETHITLER)
     }
 
     fun saveLastSelectedGame(gameId: Int) {

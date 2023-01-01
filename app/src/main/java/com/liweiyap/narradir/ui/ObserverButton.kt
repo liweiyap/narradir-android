@@ -46,7 +46,7 @@ open class ObserverButton:
 
     override fun onLongClick(view: View): Boolean {
         notifyOnLongClickObservers()
-        return true // https://stackoverflow.com/a/3756619/12367873; https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
+        return true  // https://stackoverflow.com/a/3756619/12367873; https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
     }
 
     override fun addOnClickObserver(observer: IObserver) {

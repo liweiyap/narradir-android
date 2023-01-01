@@ -113,7 +113,7 @@ class IntroAudioPlayer(
             }
 
             val silence = SilenceMediaSource(
-                if (IntroSegmentDictionary.canPauseManuallyAtEnd(context, segment))
+                if (IntroSegmentDictionary.canPauseManuallyAtEnd(context = context, resName = segment))
                     pauseDurationInMilliSecs * 1000
                 else
                     sMinPauseDurationInMilliSecs * 1000

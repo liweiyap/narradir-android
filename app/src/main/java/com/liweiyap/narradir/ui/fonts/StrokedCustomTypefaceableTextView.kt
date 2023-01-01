@@ -89,7 +89,7 @@ open class StrokedCustomTypefaceableTextView:
     final override fun setStrokeWidth(width: Float) {
         // convert values specified in dp in XML layout to px,
         // otherwise stroke width would appear different on different screens
-        mStrokeWidth = dpToPx(context, width).toFloat()
+        mStrokeWidth = dpToPx(context = context, dp = width).toFloat()
     }
 
     final override fun setStrokeWidth(unit: Int, width: Float) {
