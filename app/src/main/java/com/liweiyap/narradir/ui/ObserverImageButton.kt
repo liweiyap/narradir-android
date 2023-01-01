@@ -54,7 +54,7 @@ open class ObserverImageButton:
     }
 
     override fun notifyOnClickObservers() {
-        mOnClickObservers?.forEach { observer ->
+        mOnClickObservers?.forEach { observer: IObserver ->
             observer.update()
         }
     }
@@ -68,7 +68,7 @@ open class ObserverImageButton:
     }
 
     override fun notifyOnLongClickObservers() {
-        mOnLongClickObservers?.forEach { observer ->
+        mOnLongClickObservers?.forEach { observer: IObserver ->
             observer.update()
         }
     }

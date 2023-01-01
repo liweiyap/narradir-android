@@ -60,15 +60,9 @@ class SecretHitlerCharacterArray(
 
     val actualGoodTotal: Int
         get() {
-            if (characterImageButtonArray == null) {
-                throw RuntimeException(
-                    "SecretHitlerCharacterArray::getActualGoodTotal(): " +
-                        "mCharacterImageButtonArray is NULL")
-            }
-
             var good = 0
             for (idx: Int in SecretHitlerCharacterName.LIBERAL0 .. SecretHitlerCharacterName.LIBERAL5) {
-                if (characterImageButtonArray!![idx]!!.visibility == View.VISIBLE) {
+                if (getCharacter(idx).visibility == View.VISIBLE) {
                     ++good
                 }
             }
@@ -78,15 +72,9 @@ class SecretHitlerCharacterArray(
 
     val actualEvilTotal: Int
         get() {
-            if (characterImageButtonArray == null) {
-                throw RuntimeException(
-                    "SecretHitlerCharacterArray::getActualEvilTotal(): " +
-                        "mCharacterImageButtonArray is NULL")
-            }
-
             var evil = 0
             for (idx: Int in SecretHitlerCharacterName.HITLER .. SecretHitlerCharacterName.FASCIST2) {
-                if (characterImageButtonArray!![idx]!!.visibility == View.VISIBLE) {
+                if (getCharacter(idx).visibility == View.VISIBLE) {
                     ++evil
                 }
             }

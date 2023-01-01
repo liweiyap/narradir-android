@@ -47,12 +47,12 @@ class AvalonCharacterSelectionRules(
         characterImageButtonArray!![AvalonCharacterName.MINION2] = minion2Button
         characterImageButtonArray!![AvalonCharacterName.MINION3] = minion3Button
 
-        characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.addOnClickObserver(object: IObserver { override fun update() { runMerlinSelectionRules() } })
-        characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.addOnClickObserver(object: IObserver { override fun update() { runPercivalSelectionRules() } })
-        characterImageButtonArray!![AvalonCharacterName.ASSASSIN]!!.addOnClickObserver(object: IObserver { override fun update() { runMerlinSelectionRules() } })
-        characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.addOnClickObserver(object: IObserver { override fun update() { runMorganaSelectionRules() } })
-        characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.addOnClickObserver(object: IObserver { override fun update() { runMordredSelectionRules() } })
-        characterImageButtonArray!![AvalonCharacterName.OBERON]!!.addOnClickObserver(object: IObserver { override fun update() { runOberonSelectionRules() } })
+        getCharacter(AvalonCharacterName.MERLIN).addOnClickObserver(object: IObserver { override fun update() { runMerlinSelectionRules() } })
+        getCharacter(AvalonCharacterName.PERCIVAL).addOnClickObserver(object: IObserver { override fun update() { runPercivalSelectionRules() } })
+        getCharacter(AvalonCharacterName.ASSASSIN).addOnClickObserver(object: IObserver { override fun update() { runMerlinSelectionRules() } })
+        getCharacter(AvalonCharacterName.MORGANA).addOnClickObserver(object: IObserver { override fun update() { runMorganaSelectionRules() } })
+        getCharacter(AvalonCharacterName.MORDRED).addOnClickObserver(object: IObserver { override fun update() { runMordredSelectionRules() } })
+        getCharacter(AvalonCharacterName.OBERON).addOnClickObserver(object: IObserver { override fun update() { runOberonSelectionRules() } })
     }
 
     fun destroy() {
@@ -87,29 +87,23 @@ class AvalonCharacterSelectionRules(
      * If Percival, Morgana, or Mordred are already selected, they should be replaced by MINIONS.
      */
     private fun runMerlinSelectionRules() {
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::runMerlinSelectionRules(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
-        if (characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.isChecked) {
-            if (characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) {
-                characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.performClick()
+        if (getCharacter(AvalonCharacterName.MERLIN).isChecked) {
+            if (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) {
+                getCharacter(AvalonCharacterName.PERCIVAL).performClick()
             }
 
-            if (characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked) {
-                characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.performClick()
+            if (getCharacter(AvalonCharacterName.MORDRED).isChecked) {
+                getCharacter(AvalonCharacterName.MORDRED).performClick()
             }
 
-            characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.isChecked = false
-            characterImageButtonArray!![AvalonCharacterName.ASSASSIN]!!.isChecked = false
+            getCharacter(AvalonCharacterName.MERLIN).isChecked = false
+            getCharacter(AvalonCharacterName.ASSASSIN).isChecked = false
             checkNewLoyal()
             checkNewMinion()
         }
         else {
-            characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.isChecked = true
-            characterImageButtonArray!![AvalonCharacterName.ASSASSIN]!!.isChecked = true
+            getCharacter(AvalonCharacterName.MERLIN).isChecked = true
+            getCharacter(AvalonCharacterName.ASSASSIN).isChecked = true
             uncheckOldLoyal()
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.OBERON, 1)
         }
@@ -135,36 +129,30 @@ class AvalonCharacterSelectionRules(
      * - One of the LOYAL is auto-selected.
      */
     private fun runPercivalSelectionRules() {
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::runPercivalSelectionRules(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
-        if (characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) {
-            characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked = false
+        if (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) {
+            getCharacter(AvalonCharacterName.PERCIVAL).isChecked = false
             checkNewLoyal()
 
-            if (characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked) {
+            if (getCharacter(AvalonCharacterName.MORGANA).isChecked) {
                 checkNewMinion()
             }
-            characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked = false
+            getCharacter(AvalonCharacterName.MORGANA).isChecked = false
         }
         else {
-            characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked = true
+            getCharacter(AvalonCharacterName.PERCIVAL).isChecked = true
             uncheckOldLoyal()
 
-            if (!characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.isChecked) {
-                characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.performClick()
+            if (!getCharacter(AvalonCharacterName.MERLIN).isChecked) {
+                getCharacter(AvalonCharacterName.MERLIN).performClick()
             }
 
             if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
-                 (!characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked) )
+                 (!getCharacter(AvalonCharacterName.MORDRED).isChecked) )
             {
-                if (!characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked) {
+                if (!getCharacter(AvalonCharacterName.MORGANA).isChecked) {
                     searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORDRED, 1)
                 }
-                characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked = true
+                getCharacter(AvalonCharacterName.MORGANA).isChecked = true
             }
         }
 
@@ -188,39 +176,33 @@ class AvalonCharacterSelectionRules(
      * - In a non 5-player game, one of the MINIONS is auto-selected.
      */
     private fun runMorganaSelectionRules() {
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::runMorganaSelectionRules(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
-        if (characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked) {
-            if (!characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) {
+        if (getCharacter(AvalonCharacterName.MORGANA).isChecked) {
+            if (!getCharacter(AvalonCharacterName.PERCIVAL).isChecked) {
                 throw RuntimeException(
                     "AvalonCharacterSelectionRules::runMorganaSelectionRules(): " +
                         "Morgana was active in the absence of Percival")
             }
 
-            characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked = false
+            getCharacter(AvalonCharacterName.MORGANA).isChecked = false
 
             if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
-                 (characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) )
+                 (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
-                if (characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked) {
+                if (getCharacter(AvalonCharacterName.MORDRED).isChecked) {
                     checkNewMinion()
                 }
-                characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked = true
+                getCharacter(AvalonCharacterName.MORDRED).isChecked = true
             }
             else {
                 checkNewMinion()
             }
         }
         else {
-            characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked = true
+            getCharacter(AvalonCharacterName.MORGANA).isChecked = true
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORDRED, 1)
 
-            if (!characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) {
-                characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.performClick()
+            if (!getCharacter(AvalonCharacterName.PERCIVAL).isChecked) {
+                getCharacter(AvalonCharacterName.PERCIVAL).performClick()
             }
         }
 
@@ -247,28 +229,22 @@ class AvalonCharacterSelectionRules(
      * - In a non 5-player game, one of the MINIONS is auto-selected.
      */
     private fun runMordredSelectionRules() {
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::runMordredSelectionRules(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
-        if (characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked) {
-            if (!characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.isChecked) {
+        if (getCharacter(AvalonCharacterName.MORDRED).isChecked) {
+            if (!getCharacter(AvalonCharacterName.MERLIN).isChecked) {
                 throw RuntimeException(
                     "AvalonCharacterSelectionRules::runMordredSelectionRules(): " +
                         "Mordred was active in the absence of Merlin")
             }
 
-            characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked = false
+            getCharacter(AvalonCharacterName.MORDRED).isChecked = false
 
             if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
-                 (characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) )
+                 (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
-                if (characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked) {
+                if (getCharacter(AvalonCharacterName.MORGANA).isChecked) {
                     checkNewMinion()
                 }
-                characterImageButtonArray!![AvalonCharacterName.MORGANA]!!.isChecked = true
+                getCharacter(AvalonCharacterName.MORGANA).isChecked = true
             }
             else {
                 checkNewMinion()
@@ -276,16 +252,16 @@ class AvalonCharacterSelectionRules(
         }
         else {
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1)
-            characterImageButtonArray!![AvalonCharacterName.MORDRED]!!.isChecked = true
+            getCharacter(AvalonCharacterName.MORDRED).isChecked = true
 
-            if (!characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.isChecked) {
-                characterImageButtonArray!![AvalonCharacterName.MERLIN]!!.performClick()
+            if (!getCharacter(AvalonCharacterName.MERLIN).isChecked) {
+                getCharacter(AvalonCharacterName.MERLIN).performClick()
             }
 
             if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
-                 (!characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) )
+                 (!getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
-                characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.performClick()
+                getCharacter(AvalonCharacterName.PERCIVAL).performClick()
             }
         }
 
@@ -306,25 +282,19 @@ class AvalonCharacterSelectionRules(
      * - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
      */
     private fun runOberonSelectionRules() {
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::runOberonSelectionRules(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
-        if (characterImageButtonArray!![AvalonCharacterName.OBERON]!!.isChecked) {
-            characterImageButtonArray!![AvalonCharacterName.OBERON]!!.isChecked = false
+        if (getCharacter(AvalonCharacterName.OBERON).isChecked) {
+            getCharacter(AvalonCharacterName.OBERON).isChecked = false
             searchAndCheckNewCharacters(AvalonCharacterName.MINION0, AvalonCharacterName.MINION3, 1)
         }
         else {
             if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
-                 (characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) )
+                 (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
-                characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.performClick()
+                getCharacter(AvalonCharacterName.PERCIVAL).performClick()
             }
 
             searchAndUncheckOldCharacters(AvalonCharacterName.MINION3, AvalonCharacterName.MORGANA, 1)
-            characterImageButtonArray!![AvalonCharacterName.OBERON]!!.isChecked = true
+            getCharacter(AvalonCharacterName.OBERON).isChecked = true
         }
 
         checkPlayerComposition("AvalonCharacterSelectionRules::runOberonSelectionRules()")
@@ -340,17 +310,11 @@ class AvalonCharacterSelectionRules(
      * - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
      */
     fun onPlayerNumberChange() {
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::onPlayerNumberChange(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
         if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
-             (characterImageButtonArray!![AvalonCharacterName.PERCIVAL]!!.isChecked) &&
-             (characterImageButtonArray!![AvalonCharacterName.OBERON]!!.isChecked) )
+             (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) &&
+             (getCharacter(AvalonCharacterName.OBERON).isChecked) )
         {
-            characterImageButtonArray!![AvalonCharacterName.OBERON]!!.performClick()
+            getCharacter(AvalonCharacterName.OBERON).performClick()
         }
     }
 
@@ -385,20 +349,14 @@ class AvalonCharacterSelectionRules(
                     "X must be >= 0")
         }
 
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::searchAndCheckNewCharacters(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
         var currIdx: Int = startIdx
         var charactersToCheck: Int = X
         while ( (currIdx <= endIdx) &&
-                (characterImageButtonArray!![currIdx]!!.visibility == View.VISIBLE) &&
+                (getCharacter(currIdx).visibility == View.VISIBLE) &&
                 (charactersToCheck > 0) )
         {
-            if (!characterImageButtonArray!![currIdx]!!.isChecked) {
-                characterImageButtonArray!![currIdx]!!.isChecked = true
+            if (!getCharacter(currIdx).isChecked) {
+                getCharacter(currIdx).isChecked = true
                 --charactersToCheck
             }
 
@@ -437,22 +395,16 @@ class AvalonCharacterSelectionRules(
                     "X must be >= 0")
         }
 
-        if (characterImageButtonArray == null) {
-            throw RuntimeException(
-                "AvalonCharacterSelectionRules::searchAndUncheckOldCharacters(): " +
-                    "mCharacterImageButtonArray is NULL")
-        }
-
         var currIdx: Int = startIdx
         var charactersToUncheck: Int = X
         while ((currIdx >= endIdx) && (charactersToUncheck > 0)) {
-            if (characterImageButtonArray!![currIdx]!!.visibility == View.INVISIBLE) {
+            if (getCharacter(currIdx).visibility == View.INVISIBLE) {
                 --currIdx
                 continue
             }
 
-            if (characterImageButtonArray!![currIdx]!!.isChecked) {
-                characterImageButtonArray!![currIdx]!!.isChecked = false
+            if (getCharacter(currIdx).isChecked) {
+                getCharacter(currIdx).isChecked = false
                 --charactersToUncheck
             }
 
@@ -462,15 +414,9 @@ class AvalonCharacterSelectionRules(
 
     val actualGoodTotal: Int
         get() {
-            if (characterImageButtonArray == null) {
-                throw RuntimeException(
-                    "AvalonCharacterSelectionRules::getActualGoodTotal(): " +
-                        "mCharacterImageButtonArray is NULL")
-            }
-
             var good = 0
             for (idx: Int in AvalonCharacterName.MERLIN .. AvalonCharacterName.LOYAL5) {
-                if (characterImageButtonArray!![idx]!!.isChecked) {
+                if (getCharacter(idx).isChecked) {
                     ++good
                 }
             }
@@ -479,15 +425,9 @@ class AvalonCharacterSelectionRules(
 
     val actualEvilTotal: Int
         get() {
-            if (characterImageButtonArray == null) {
-                throw RuntimeException(
-                    "AvalonCharacterSelectionRules::getActualEvilTotal(): " +
-                        "mCharacterImageButtonArray is NULL")
-            }
-
             var evil = 0
             for (idx: Int in AvalonCharacterName.ASSASSIN .. AvalonCharacterName.MINION3) {
-                if (characterImageButtonArray!![idx]!!.isChecked) {
+                if (getCharacter(idx).isChecked) {
                     ++evil
                 }
             }
