@@ -149,7 +149,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
     }
 
     private fun navigateToSettingsHomeFragment() {
-        val navController = NavHostFragment.findNavController(this)
+        val navController: NavController = NavHostFragment.findNavController(this)
         navController.navigate(R.id.settingsHomeFragment)
     }
 
