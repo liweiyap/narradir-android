@@ -16,7 +16,7 @@ import com.google.android.exoplayer2.Player;
 import com.liweiyap.narradir.ui.NarradirFragmentBase;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.util.NarradirControl;
+import com.liweiyap.narradir.util.INarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 import com.liweiyap.narradir.util.TimeDisplay;
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer;
@@ -132,7 +132,7 @@ public class PlayIntroductionFragment extends NarradirFragmentBase
 
         CustomTypefaceableObserverButton pauseButton = view.findViewById(R.id.playIntroLayoutPauseButton);
         pauseButton.addOnClickObserver(() -> {
-            NarradirControl narradirControl = getNarradirControl();
+            INarradirControl narradirControl = getNarradirControl();
             if (narradirControl != null)
             {
                 narradirControl.playClickSound();

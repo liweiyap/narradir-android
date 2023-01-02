@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.liweiyap.narradir.util.NarradirControl;
+import com.liweiyap.narradir.util.INarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 
 public abstract class NarradirFragmentBase extends Fragment
@@ -18,7 +18,7 @@ public abstract class NarradirFragmentBase extends Fragment
     {
         super.onAttach(context);
 
-        if (!(context instanceof NarradirControl))
+        if (!(context instanceof INarradirControl))
         {
             throw new RuntimeException(
                 "NarradirFragmentBase::onAttach(): " +
@@ -26,7 +26,7 @@ public abstract class NarradirFragmentBase extends Fragment
             );
         }
 
-        mNarradirControl = (NarradirControl) context;
+        mNarradirControl = (INarradirControl) context;
     }
 
     @Override
@@ -36,7 +36,7 @@ public abstract class NarradirFragmentBase extends Fragment
         mNarradirControl = null;
     }
 
-    protected NarradirControl getNarradirControl()
+    protected INarradirControl getNarradirControl()
     {
         return mNarradirControl;
     }
@@ -60,7 +60,7 @@ public abstract class NarradirFragmentBase extends Fragment
         }
 
         btn.addOnClickObserver(() -> {
-            NarradirControl narradirControl = getNarradirControl();
+            INarradirControl narradirControl = getNarradirControl();
             if (narradirControl != null)
             {
                 narradirControl.playClickSound();
@@ -77,5 +77,5 @@ public abstract class NarradirFragmentBase extends Fragment
         }
     }
 
-    private NarradirControl mNarradirControl;
+    private INarradirControl mNarradirControl;
 }

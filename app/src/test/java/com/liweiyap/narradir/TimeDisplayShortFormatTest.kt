@@ -5,7 +5,7 @@ import com.liweiyap.narradir.util.TimeDisplay
 import org.junit.Assert
 import org.junit.Test
 
-class TimeDisplayTest {
+class TimeDisplayShortFormatTest {
     @Test
     fun runTest() {
         Assert.assertEquals(TimeDisplay.shortFormat(msec = 0), "00:00")

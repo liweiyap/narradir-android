@@ -20,7 +20,7 @@ import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
-import com.liweiyap.narradir.util.NarradirControl;
+import com.liweiyap.narradir.util.INarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 import com.liweiyap.narradir.util.SnackbarBuilderFlag;
 import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer;
@@ -242,7 +242,7 @@ public class SettingsBackgroundFragment extends NarradirFragmentBase
                 }
             }
 
-            NarradirControl narradirControl = getNarradirControl();
+            INarradirControl narradirControl = getNarradirControl();
             if (narradirControl != null)
             {
                 narradirControl.playClickSound();

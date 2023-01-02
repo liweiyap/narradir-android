@@ -5,11 +5,11 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.liweiyap.narradir.ui.FullScreenActivity;
-import com.liweiyap.narradir.util.NarradirControl;
+import com.liweiyap.narradir.util.INarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator;
 
-public class NarradirActivity extends FullScreenActivity implements NarradirControl
+public class NarradirActivity extends FullScreenActivity implements INarradirControl
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

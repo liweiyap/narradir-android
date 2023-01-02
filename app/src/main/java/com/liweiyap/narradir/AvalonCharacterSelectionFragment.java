@@ -20,7 +20,7 @@ import com.liweiyap.narradir.ui.IObserverListener;
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
-import com.liweiyap.narradir.util.NarradirControl;
+import com.liweiyap.narradir.util.INarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
 
 import java.util.ArrayList;
@@ -103,7 +103,7 @@ public class AvalonCharacterSelectionFragment extends NarradirFragmentBase
             @Override
             public void handleOnBackPressed()
             {
-                NarradirControl narradirControl = getNarradirControl();
+                INarradirControl narradirControl = getNarradirControl();
                 if (narradirControl != null)
                 {
                     narradirControl.navigateAwayFromApp();
@@ -171,7 +171,7 @@ public class AvalonCharacterSelectionFragment extends NarradirFragmentBase
                 mAvalonControlGroup.stopCharacterDescriptionMediaPlayer();
             }
 
-            NarradirControl narradirControl = getNarradirControl();
+            INarradirControl narradirControl = getNarradirControl();
             if (narradirControl != null)
             {
                 narradirControl.playClickSound();
