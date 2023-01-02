@@ -20,15 +20,13 @@ object ViewGroupSingleTargetSelector {
             if (view !is Checkable) {
                 throw RuntimeException(
                     "ViewGroupSingleTargetSelector::addSingleTargetSelection(): " +
-                            "Programming error: View is not Checkable."
-                )
+                            "Programming error: View is not Checkable.")
             }
 
             if (view !is IObserverListener) {
                 throw RuntimeException(
                     "ViewGroupSingleTargetSelector::addSingleTargetSelection(): " +
-                            "Programming error: View is not ObserverListener."
-                )
+                            "Programming error: View is not IObserverListener.")
             }
 
             (view as IObserverListener).addOnClickObserver(object: IObserver {
