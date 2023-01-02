@@ -143,7 +143,8 @@ class IntroAudioPlayer(
         if (mIsPlaying) {
             mIsPlaying = false
             pauseIntro()
-        } else {
+        }
+        else {
             mIsPlaying = true
             playIntro()
         }
