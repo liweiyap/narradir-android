@@ -76,7 +76,7 @@ open class CustomTypefaceableCheckableObserverButton:
     private var mAlphaUnchecked: Float = 0.5f
 
     companion object {
-        private val CHECKED_STATE_SET = intArrayOf(
+        private val CHECKED_STATE_SET: IntArray = intArrayOf(
             android.R.attr.state_checked
         )
     }

@@ -31,7 +31,7 @@ open class CheckableObserverImageButton:
      * Toggles background based on the selector that we set in XML
      */
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
-        val drawableState = super.onCreateDrawableState(extraSpace + 1)
+        val drawableState: IntArray = super.onCreateDrawableState(extraSpace + 1)
         if (isChecked) {
             mergeDrawableStates(drawableState, CHECKED_STATE_SET)
         }
@@ -72,7 +72,7 @@ open class CheckableObserverImageButton:
     private var mAlphaUnchecked: Float = 0.5f
 
     companion object {
-        private val CHECKED_STATE_SET = intArrayOf(
+        private val CHECKED_STATE_SET: IntArray = intArrayOf(
             android.R.attr.state_checked
         )
     }

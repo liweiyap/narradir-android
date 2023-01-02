@@ -29,5 +29,5 @@ class ClickSoundGenerator(context: Context) {
     }
 
     private var mSoundPool: SoundPool? = null
-    private var mClickSoundId = 0
+    private var mClickSoundId: Int = 0
 }

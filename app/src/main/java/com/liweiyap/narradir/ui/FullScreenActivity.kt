@@ -56,7 +56,7 @@ open class FullScreenActivity: AppCompatActivity() {
     private fun makeFullScreenSinceApi29() {
         // https://stackoverflow.com/questions/62643517/immersive-fullscreen-on-android-11
         window.setDecorFitsSystemWindows(false)
-        val controller = window.insetsController
+        val controller: WindowInsetsController = window.insetsController
             ?: return
 
         controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())

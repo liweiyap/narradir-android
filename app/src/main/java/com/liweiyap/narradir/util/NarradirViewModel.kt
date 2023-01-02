@@ -22,8 +22,8 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
     var isMordredChecked: Boolean = false
     var isOberonChecked: Boolean = false
 
-    var secretHitlerExpectedGoodTotal = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters()
-    var secretHitlerExpectedEvilTotal = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters()
+    var secretHitlerExpectedGoodTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters()
+    var secretHitlerExpectedEvilTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters()
 
     private var mContext: Context?
     private var mSharedPref: SharedPreferences?
@@ -103,7 +103,7 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
             return
         }
 
-        val sharedPrefEditor = mSharedPref!!.edit()
+        val sharedPrefEditor: SharedPreferences.Editor = mSharedPref!!.edit()
         sharedPrefEditor.putInt(mContext!!.getString(R.string.last_selected_game_key), gameId)
         sharedPrefEditor.apply()
     }

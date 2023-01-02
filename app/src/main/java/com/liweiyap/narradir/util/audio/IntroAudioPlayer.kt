@@ -58,7 +58,7 @@ class IntroAudioPlayer(
             .setMaxStreams(1)
             .build()
 
-        val loadedBackgroundSound = loadBackgroundSound(context, backgroundSoundName)
+        val loadedBackgroundSound: Int = loadBackgroundSound(context, backgroundSoundName)
             ?: return
 
         mBackgroundSoundId = loadedBackgroundSound
