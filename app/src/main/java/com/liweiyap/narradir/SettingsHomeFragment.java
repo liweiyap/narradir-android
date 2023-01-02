@@ -120,7 +120,7 @@ public class SettingsHomeFragment extends NarradirFragmentBase
 
         if (mRoleTimerSettingsLayout != null)
         {
-            mRoleTimerSettingsLayout.setValue(TimeDisplay.fromMilliseconds(viewModel.getPauseDurationInMilliSecs()));
+            mRoleTimerSettingsLayout.setValue(TimeDisplay.shortFormat(viewModel.getPauseDurationInMilliSecs()));
         }
     }
 

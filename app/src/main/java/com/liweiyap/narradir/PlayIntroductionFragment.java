@@ -18,6 +18,7 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton;
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView;
 import com.liweiyap.narradir.util.NarradirControl;
 import com.liweiyap.narradir.util.NarradirViewModel;
+import com.liweiyap.narradir.util.TimeDisplay;
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer;
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary;
 
@@ -109,8 +110,7 @@ public class PlayIntroductionFragment extends NarradirFragmentBase
                         if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(requireContext(), introSegmentArrayList.get(newWindowIdx/2))) &&
                              (viewModel.getPauseDurationInMilliSecs() > IntroAudioPlayer.sMinPauseDurationInMilliSecs) )
                         {
-                            // this long to int conversion is safe for the current (values/1000) that we have but this may change in future
-                            mCurrentDisplayedIntroSegmentTextView.setText(getResources().getQuantityString(R.plurals.pauseduration_text, (int) (viewModel.getPauseDurationInMilliSecs()/1000), viewModel.getPauseDurationInMilliSecs()/1000));
+                            mCurrentDisplayedIntroSegmentTextView.setText(TimeDisplay.longFormat(getResources(), viewModel.getPauseDurationInMilliSecs()/1000));
                         }
                     }
                 }
