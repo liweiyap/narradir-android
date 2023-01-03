@@ -45,14 +45,13 @@ class MockAvalonCharacterSelectionFragment: Fragment() {
         mAvalonControlGroup = null
     }
 
-    val characterImageButtonArray: Array<CheckableObserverImageButton?>?
-        get() {
-            if (mAvalonControlGroup == null) {
-                throw RuntimeException("MockAvalonCharacterSelectionFragment::getCharacterImageButtonArray(): mAvalonControlGroup is NULL")
-            }
-
-            return mAvalonControlGroup!!.characterImageButtonArray
+    fun getCharacter(idx: Int): CheckableObserverImageButton {
+        if (mAvalonControlGroup == null) {
+            throw RuntimeException("MockAvalonCharacterSelectionFragment::getCharacter(): mAvalonControlGroup is NULL")
         }
+
+        return mAvalonControlGroup!!.getCharacter(idx)
+    }
 
     private var mAvalonControlGroup: AvalonControlGroup? = null
 }
