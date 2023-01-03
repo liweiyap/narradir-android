@@ -8,9 +8,9 @@ import com.liweiyap.narradir.avalon.AvalonCharacterName
 import com.liweiyap.narradir.secrethitler.SecretHitlerCharacterName
 
 class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
-    var pauseDurationInMilliSecs: Long = 5000
-    var backgroundSoundVolume: Float = 1f
-    var narrationVolume: Float = 1f
+    var pauseDurationInMilliSecs: Long = 5000L
+    var backgroundSoundVolume: Float = 1F
+    var narrationVolume: Float = 1F
     var backgroundSoundName: String
     private var mDoHideBackgroundSoundHint: Boolean = false
 

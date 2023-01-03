@@ -70,7 +70,7 @@ abstract class CharacterSelectionControlGroup(@JvmField protected var mActivityC
             return
         }
 
-        mCharacterDescriptionMediaPlayer!!.play(res = description, volume = 1f) {
+        mCharacterDescriptionMediaPlayer!!.play(res = description, volume = 1F) {
             (mActivityContext as AppCompatActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
         (mActivityContext as AppCompatActivity).window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)

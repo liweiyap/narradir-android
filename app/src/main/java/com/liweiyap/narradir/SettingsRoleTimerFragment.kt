@@ -79,20 +79,20 @@ class SettingsRoleTimerFragment: NarradirFragmentBase() {
 
     private fun increasePauseDuration() {
         viewModel?.let {
-            it.pauseDurationInMilliSecs = (it.pauseDurationInMilliSecs + 1000).coerceAtMost(mMaxPauseDurationInMilliSecs)
+            it.pauseDurationInMilliSecs = (it.pauseDurationInMilliSecs + 1000L).coerceAtMost(mMaxPauseDurationInMilliSecs)
             displayPauseDuration()
         }
     }
 
     private fun decreasePauseDuration() {
         viewModel?.let {
-            it.pauseDurationInMilliSecs = (it.pauseDurationInMilliSecs - 1000).coerceAtLeast(mMinPauseDurationInMilliSecs)
+            it.pauseDurationInMilliSecs = (it.pauseDurationInMilliSecs - 1000L).coerceAtLeast(mMinPauseDurationInMilliSecs)
             displayPauseDuration()
         }
     }
 
-    private val mMaxPauseDurationInMilliSecs: Long = 10000
-    private val mMinPauseDurationInMilliSecs: Long = 0
+    private val mMaxPauseDurationInMilliSecs: Long = 10000L
+    private val mMinPauseDurationInMilliSecs: Long = 0L
 
     private var mPauseControlLayoutValueTextView: CustomTypefaceableTextView? = null
 }

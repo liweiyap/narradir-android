@@ -39,7 +39,7 @@ open class CheckableObserverImageButton:
     }
 
     override fun setChecked(checked: Boolean) {
-        alpha = if (checked) 1f else mAlphaUnchecked
+        alpha = if (checked) 1F else mAlphaUnchecked
 
         if (mIsChecked == checked) {
             return
@@ -69,7 +69,7 @@ open class CheckableObserverImageButton:
     }
 
     private var mIsChecked: Boolean = false
-    private var mAlphaUnchecked: Float = 0.5f
+    private var mAlphaUnchecked: Float = 0.5F
 
     companion object {
         private val CHECKED_STATE_SET: IntArray = intArrayOf(

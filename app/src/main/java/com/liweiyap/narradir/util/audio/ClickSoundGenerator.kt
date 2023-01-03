@@ -20,7 +20,7 @@ class ClickSoundGenerator(context: Context) {
     }
 
     fun playClickSound() {
-        mSoundPool?.play(mClickSoundId, 1f, 1f, 1, 0, 1f)
+        mSoundPool?.play(mClickSoundId, 1F, 1F, 1, 0, 1F)
     }
 
     fun freeResources() {

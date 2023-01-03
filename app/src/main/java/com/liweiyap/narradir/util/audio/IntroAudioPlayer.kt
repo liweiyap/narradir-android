@@ -65,7 +65,7 @@ class IntroAudioPlayer(
         mGeneralSoundPool?.let {
             it.setOnLoadCompleteListener { soundPool: SoundPool, sampleId: Int, status: Int ->
                 if ((sampleId == mBackgroundSoundId) && (status == 0)) {
-                    mBackgroundStreamId = soundPool.play(sampleId, backgroundSoundVolume, backgroundSoundVolume, 1, -1, 1f)
+                    mBackgroundStreamId = soundPool.play(sampleId, backgroundSoundVolume, backgroundSoundVolume, 1, -1, 1F)
                 }
             }
         }
@@ -166,7 +166,7 @@ class IntroAudioPlayer(
             return
         }
 
-        mBackgroundStreamId = mGeneralSoundPool!!.play(mBackgroundSoundId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1f)
+        mBackgroundStreamId = mGeneralSoundPool!!.play(mBackgroundSoundId, mBackgroundSoundVolume, mBackgroundSoundVolume, 1, -1, 1F)
     }
 
     fun pauseIntro() {
@@ -195,6 +195,6 @@ class IntroAudioPlayer(
     private var mIsFirstCall: Boolean = true
 
     companion object {
-        const val sMinPauseDurationInMilliSecs: Long = 500
+        const val sMinPauseDurationInMilliSecs: Long = 500L
     }
 }

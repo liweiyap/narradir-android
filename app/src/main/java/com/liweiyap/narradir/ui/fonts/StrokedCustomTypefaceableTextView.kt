@@ -106,12 +106,12 @@ open class StrokedCustomTypefaceableTextView:
      */
     private fun dpToPx(context: Context, dp: Float): Int {
         val scale: Float = context.resources.displayMetrics.density
-        return (dp * scale + 0.5f).toInt()
+        return (dp * scale + 0.5F).toInt()
     }
 
     // should be safe to be stored as an int; it represents a packed color int, AARRGGBB. If applied to an int array, every element in the array represents a color integer.
     // Hence, it's not a resource ID (R.color.); it's already been converted from said resource ID. We even use TypedArray::getColor() instead of TypedArray::getInt()
     @ColorInt private var mStrokeColor: Int = currentTextColor
-    private var mStrokeWidth: Float = 0f
+    private var mStrokeWidth: Float = 0F
     private var mIsDrawing: Boolean = false
 }
