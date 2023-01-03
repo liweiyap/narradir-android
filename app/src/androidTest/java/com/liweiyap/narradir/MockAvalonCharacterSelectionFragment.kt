@@ -12,8 +12,8 @@ import com.liweiyap.narradir.avalon.AvalonControlGroup
 import com.liweiyap.narradir.ui.CheckableObserverImageButton
 
 /**
- * Gets rid of RuntimeException("NarradirFragmentBase::onAttach(): Programming error: Context is not NarradirControl.")
- * due to original Fragment not being attached to Activity that implements NarradirControl interface.
+ * Gets rid of RuntimeException("NarradirFragmentBase::onAttach(): Programming error: Context is not INarradirControl.")
+ * due to original Fragment not being attached to Activity that implements INarradirControl interface.
  */
 class MockAvalonCharacterSelectionFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
