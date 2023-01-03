@@ -78,24 +78,24 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
     }
 
     val isAvalonLastSelected: Boolean
-        get() = (loadLastSelectedGame() == Constants.GAME_AVALON)
+        get() = (loadLastSelectedGame() == GAMEID_AVALON)
 
     val isSecretHitlerLastSelected: Boolean
-        get() = (loadLastSelectedGame() == Constants.GAME_SECRETHITLER)
+        get() = (loadLastSelectedGame() == GAMEID_SECRETHITLER)
 
     fun loadLastSelectedGame(): Int {
         return if ((mContext == null) || (mSharedPref == null))
-            Constants.GAME_AVALON
+            GAMEID_AVALON
         else
-            mSharedPref!!.getInt(mContext!!.getString(R.string.last_selected_game_key), Constants.GAME_AVALON)
+            mSharedPref!!.getInt(mContext!!.getString(R.string.last_selected_game_key), GAMEID_AVALON)
     }
 
     fun saveAvalonLastSelected() {
-        saveLastSelectedGame(gameId = Constants.GAME_AVALON)
+        saveLastSelectedGame(gameId = GAMEID_AVALON)
     }
 
     fun saveSecretHitlerLastSelected() {
-        saveLastSelectedGame(gameId = Constants.GAME_SECRETHITLER)
+        saveLastSelectedGame(gameId = GAMEID_SECRETHITLER)
     }
 
     fun saveLastSelectedGame(gameId: Int) {
@@ -114,5 +114,10 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
 
     fun setHideBackgroundSoundHint(doHide: Boolean) {
         mDoHideBackgroundSoundHint = doHide
+    }
+
+    companion object {
+        const val GAMEID_AVALON: Int = 0
+        const val GAMEID_SECRETHITLER: Int = 1
     }
 }
