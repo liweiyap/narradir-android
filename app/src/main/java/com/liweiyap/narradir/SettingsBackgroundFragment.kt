@@ -19,7 +19,6 @@ import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
-import com.liweiyap.narradir.util.IObserver
 import com.liweiyap.narradir.util.SnackbarBuilderFlag
 import com.liweiyap.narradir.util.audio.BackgroundSoundTestMediaPlayer
 
@@ -80,23 +79,23 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
             }
         }
 
-        backgroundSoundNoneButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_none)) } })
-        backgroundSoundCardsButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_cards)) } })
-        backgroundSoundCricketsButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_crickets)) } })
-        backgroundSoundFireplaceButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_fireplace)) } })
-        backgroundSoundRainButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_rain)) } })
-        backgroundSoundRainforestButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_rainforest)) } })
-        backgroundSoundRainstormButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_rainstorm)) } })
-        backgroundSoundWolvesButton.addOnClickObserver(object: IObserver { override fun update() { selectBackgroundSound(getString(R.string.backgroundsound_wolves)) } })
+        backgroundSoundNoneButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_none)) }
+        backgroundSoundCardsButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_cards)) }
+        backgroundSoundCricketsButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_crickets)) }
+        backgroundSoundFireplaceButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_fireplace)) }
+        backgroundSoundRainButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_rain)) }
+        backgroundSoundRainforestButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_rainforest)) }
+        backgroundSoundRainstormButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_rainstorm)) }
+        backgroundSoundWolvesButton.addOnClickObserver { selectBackgroundSound(getString(R.string.backgroundsound_wolves)) }
 
-        backgroundSoundCardsButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_cards)) } })
-        backgroundSoundCricketsButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_crickets)) } })
-        backgroundSoundFireplaceButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_fireplace)) } })
-        backgroundSoundRainButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_rain)) } })
-        backgroundSoundRainforestButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_rainforest)) } })
-        backgroundSoundRainstormButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_rainstorm)) } })
-        backgroundSoundWolvesButton.addOnLongClickObserver(object: IObserver { override fun update() { playBackgroundSound(getString(R.string.backgroundsound_wolves)) } })
-        backgroundSoundNoneButton.addOnLongClickObserver(object: IObserver { override fun update() { stopBackgroundSound() } })
+        backgroundSoundCardsButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_cards)) }
+        backgroundSoundCricketsButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_crickets)) }
+        backgroundSoundFireplaceButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_fireplace)) }
+        backgroundSoundRainButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_rain)) }
+        backgroundSoundRainforestButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_rainforest)) }
+        backgroundSoundRainstormButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_rainstorm)) }
+        backgroundSoundWolvesButton.addOnLongClickObserver { playBackgroundSound(getString(R.string.backgroundsound_wolves)) }
+        backgroundSoundNoneButton.addOnLongClickObserver { stopBackgroundSound() }
 
         // ----------------------------------------------------------------------
         // volume control
@@ -104,8 +103,8 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
 
         displayVolume()
 
-        volumeIncreaseButton.addOnClickObserver(object: IObserver { override fun update() { increaseVolume() } })
-        volumeDecreaseButton.addOnClickObserver(object: IObserver { override fun update() { decreaseVolume() } })
+        volumeIncreaseButton.addOnClickObserver { increaseVolume() }
+        volumeDecreaseButton.addOnClickObserver { decreaseVolume() }
 
         // ----------------------------------------------------------------------
         // click sound
@@ -125,8 +124,8 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        generalBackButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 1) } })
-        mainButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 2) } })
+        generalBackButton.addOnClickObserver { navigateUp(steps = 1) }
+        mainButton.addOnClickObserver { navigateUp(steps = 2) }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -166,20 +165,18 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
             return
         }
 
-        btn?.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mBackgroundSoundTestMediaPlayer?.let {
-                    if (isVolumeControl) {
-                        it.setVolume(viewModel!!.backgroundSoundVolume)
-                    }
-                    else {
-                        stopBackgroundSound()
-                    }
+        btn?.addOnClickObserver {
+            mBackgroundSoundTestMediaPlayer?.let {
+                if (isVolumeControl) {
+                    it.setVolume(viewModel!!.backgroundSoundVolume)
                 }
-
-                narradirControl?.playClickSound()
+                else {
+                    stopBackgroundSound()
+                }
             }
-        })
+
+            narradirControl?.playClickSound()
+        }
     }
 
     private fun selectBackgroundSound(sound: String) {
@@ -235,7 +232,7 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
                 message = getString(R.string.backgroundsound_mute_notification),
                 duration = BaseTransientBottomBar.LENGTH_SHORT,
                 actionMessage = getString(R.string.acknowledge_button_text),
-                actionCallback = object: IObserver { override fun update() { viewModel!!.setHideBackgroundSoundHint(true) } },
+                actionCallback = { viewModel!!.setHideBackgroundSoundHint(true) },
                 flags = EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE))
         }
         catch (e: Exception) {

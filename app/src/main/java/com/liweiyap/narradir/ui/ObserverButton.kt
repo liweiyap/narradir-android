@@ -6,8 +6,6 @@ import android.view.View
 
 import androidx.appcompat.widget.AppCompatButton
 
-import com.liweiyap.narradir.util.IObserver
-
 open class ObserverButton:
     AppCompatButton,
     View.OnClickListener, View.OnLongClickListener, IObserverListener
@@ -49,13 +47,13 @@ open class ObserverButton:
         return true  // https://stackoverflow.com/a/3756619/12367873; https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
     }
 
-    override fun addOnClickObserver(observer: IObserver) {
+    override fun addOnClickObserver(observer: () -> Unit) {
         mOnClickObservers?.add(observer)
     }
 
     override fun notifyOnClickObservers() {
-        mOnClickObservers?.forEach { observer: IObserver ->
-            observer.update()
+        mOnClickObservers?.forEach { observer: () -> Unit ->
+            observer()
         }
     }
 
@@ -63,13 +61,13 @@ open class ObserverButton:
         mOnClickObservers?.clear()
     }
 
-    override fun addOnLongClickObserver(observer: IObserver) {
+    override fun addOnLongClickObserver(observer: () -> Unit) {
         mOnLongClickObservers?.add(observer)
     }
 
     override fun notifyOnLongClickObservers() {
-        mOnLongClickObservers?.forEach { observer: IObserver ->
-            observer.update()
+        mOnLongClickObservers?.forEach { observer: () -> Unit ->
+            observer()
         }
     }
 
@@ -77,6 +75,6 @@ open class ObserverButton:
         mOnLongClickObservers?.clear()
     }
 
-    private var mOnClickObservers: MutableList<IObserver>? = ArrayList()
-    private var mOnLongClickObservers: MutableList<IObserver>? = ArrayList()
+    private var mOnClickObservers: MutableList<() -> Unit>? = ArrayList()
+    private var mOnLongClickObservers: MutableList<() -> Unit>? = ArrayList()
 }

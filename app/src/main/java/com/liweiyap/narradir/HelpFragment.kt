@@ -9,7 +9,6 @@ import androidx.activity.OnBackPressedCallback
 
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.IObserver
 
 class HelpFragment: NarradirFragmentBase() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,8 +30,8 @@ class HelpFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        generalBackButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 1) } })
-        mainButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 2) } })
+        generalBackButton.addOnClickObserver { navigateUp(steps = 1) }
+        mainButton.addOnClickObserver { navigateUp(steps = 2) }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

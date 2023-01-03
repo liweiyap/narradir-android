@@ -15,7 +15,6 @@ import com.google.android.exoplayer2.Player
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
-import com.liweiyap.narradir.util.IObserver
 import com.liweiyap.narradir.util.TimeDisplay
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary
@@ -100,22 +99,20 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         // ----------------------------------------------------------------------
 
         val pauseButton = view.findViewById<CustomTypefaceableObserverButton>(R.id.playIntroLayoutPauseButton)
-        pauseButton.addOnClickObserver(object: IObserver {
-            override fun update() {
-                narradirControl?.playClickSound()
+        pauseButton.addOnClickObserver {
+            narradirControl?.playClickSound()
 
-                pauseButton.setText(
-                    if (mAudioPlayer!!.isPlayingIntro())
-                        R.string.pause_button_text_state_inactive
-                    else
-                        R.string.pause_button_text_state_active)
+            pauseButton.setText(
+                if (mAudioPlayer!!.isPlayingIntro())
+                    R.string.pause_button_text_state_inactive
+                else
+                    R.string.pause_button_text_state_active)
 
-                mAudioPlayer?.toggle()
-            }
-        })
+            mAudioPlayer?.toggle()
+        }
 
         val stopButton = view.findViewById<CustomTypefaceableObserverButton>(R.id.playIntroLayoutStopButton)
-        stopButton.addOnClickObserver(object: IObserver { override fun update() { destroy() } })
+        stopButton.addOnClickObserver { destroy() }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

@@ -11,7 +11,6 @@ import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.ObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.IObserver
 
 class SettingsRoleTimerFragment: NarradirFragmentBase() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,8 +34,8 @@ class SettingsRoleTimerFragment: NarradirFragmentBase() {
         // ----------------------------------------------------------------------
 
         displayPauseDuration()
-        pauseIncreaseButton.addOnClickObserver(object: IObserver { override fun update() { increasePauseDuration() } })
-        pauseDecreaseButton.addOnClickObserver(object: IObserver { override fun update() { decreasePauseDuration() } })
+        pauseIncreaseButton.addOnClickObserver { increasePauseDuration() }
+        pauseDecreaseButton.addOnClickObserver { decreasePauseDuration() }
 
         // ----------------------------------------------------------------------
         // click sound
@@ -51,8 +50,8 @@ class SettingsRoleTimerFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        generalBackButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 1) } })
-        mainButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 2) } })
+        generalBackButton.addOnClickObserver { navigateUp(steps = 1) }
+        mainButton.addOnClickObserver { navigateUp(steps = 2) }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

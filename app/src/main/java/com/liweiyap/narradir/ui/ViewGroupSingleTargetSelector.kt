@@ -4,8 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Checkable
 
-import com.liweiyap.narradir.util.IObserver
-
 object ViewGroupSingleTargetSelector {
     @Throws(RuntimeException::class)
     @JvmStatic
@@ -29,17 +27,15 @@ object ViewGroupSingleTargetSelector {
                             "Programming error: View is not IObserverListener.")
             }
 
-            (view as IObserverListener).addOnClickObserver(object: IObserver {
-                override fun update() {
-                    (view as Checkable).isChecked = true
-                    for (idx: Int in 0 until viewGroup.childCount) {
-                        if (childIdx != idx) {
-                            val tmp: View = viewGroup.getChildAt(idx)
-                            (tmp as Checkable).isChecked = false
-                        }
+            (view as IObserverListener).addOnClickObserver {
+                (view as Checkable).isChecked = true
+                for (idx: Int in 0 until viewGroup.childCount) {
+                    if (childIdx != idx) {
+                        val tmp: View = viewGroup.getChildAt(idx)
+                        (tmp as Checkable).isChecked = false
                     }
                 }
-            })
+            }
         }
     }
 }

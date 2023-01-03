@@ -18,7 +18,6 @@ import com.liweiyap.narradir.ui.ObserverImageButton
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.IObserver
 
 import java.util.ArrayList
 
@@ -39,7 +38,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
         // -----------------------------------------------------------------------------------------
 
         gameSwitcherButton.text = getString(R.string.game_switcher_button_secrethitler)
-        gameSwitcherButton.addOnClickObserver(object: IObserver { override fun update() { navigateToSecretHitlerCharacterSelectionFragment() } })
+        gameSwitcherButton.addOnClickObserver { navigateToSecretHitlerCharacterSelectionFragment() }
         if ( (viewModel != null) && (!viewModel!!.isAvalonLastSelected) ) {
             gameSwitcherButton.performClick()
         }
@@ -83,8 +82,8 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // -----------------------------------------------------------------------------------------
 
-        playButton.addOnClickObserver(object: IObserver { override fun update() { navigateToPlayIntroductionFragment() } })
-        settingsButton.addOnClickObserver(object: IObserver { override fun update() { navigateToSettingsHomeFragment() } })
+        playButton.addOnClickObserver { navigateToPlayIntroductionFragment() }
+        settingsButton.addOnClickObserver { navigateToSettingsHomeFragment() }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -121,12 +120,10 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
     }
 
     override fun addSoundToPlayOnButtonClick(btn: IObserverListener?) {
-        btn?.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mAvalonControlGroup?.stopCharacterDescriptionMediaPlayer()
-                narradirControl?.playClickSound()
-            }
-        })
+        btn?.addOnClickObserver {
+            mAvalonControlGroup?.stopCharacterDescriptionMediaPlayer()
+            narradirControl?.playClickSound()
+        }
     }
 
     private fun navigateToSecretHitlerCharacterSelectionFragment() {

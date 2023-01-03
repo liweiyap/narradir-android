@@ -9,7 +9,6 @@ import com.liweiyap.narradir.ui.ObserverImageButton
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.util.CharacterSelectionControlGroup
-import com.liweiyap.narradir.util.IObserver
 import com.liweiyap.narradir.util.PlayerNumbers
 
 class SecretHitlerControlGroup(
@@ -55,95 +54,83 @@ class SecretHitlerControlGroup(
         mPlayerNumberButtonArray!![PlayerNumbers.P9] = p9Button
         mPlayerNumberButtonArray!![PlayerNumbers.P10] = p10Button
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P5]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mCharacterArray!!.expectedGoodTotal = 3
-                mCharacterArray!!.expectedEvilTotal = 2
+        mPlayerNumberButtonArray!![PlayerNumbers.P5]!!.addOnClickObserver {
+            mCharacterArray!!.expectedGoodTotal = 3
+            mCharacterArray!!.expectedEvilTotal = 2
 
-                getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
 
-                checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p5Button.onClick()")
-            }
-        })
+            checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p5Button.onClick()")
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P6]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mCharacterArray!!.expectedGoodTotal = 4
-                mCharacterArray!!.expectedEvilTotal = 2
+        mPlayerNumberButtonArray!![PlayerNumbers.P6]!!.addOnClickObserver {
+            mCharacterArray!!.expectedGoodTotal = 4
+            mCharacterArray!!.expectedEvilTotal = 2
 
-                getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
 
-                checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p6Button.onClick()")
-            }
-        })
+            checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p6Button.onClick()")
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P7]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mCharacterArray!!.expectedGoodTotal = 4
-                mCharacterArray!!.expectedEvilTotal = 3
+        mPlayerNumberButtonArray!![PlayerNumbers.P7]!!.addOnClickObserver {
+            mCharacterArray!!.expectedGoodTotal = 4
+            mCharacterArray!!.expectedEvilTotal = 3
 
-                getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
 
-                checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p7Button.onClick()")
-            }
-        })
+            checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p7Button.onClick()")
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P8]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mCharacterArray!!.expectedGoodTotal = 5
-                mCharacterArray!!.expectedEvilTotal = 3
+        mPlayerNumberButtonArray!![PlayerNumbers.P8]!!.addOnClickObserver {
+            mCharacterArray!!.expectedGoodTotal = 5
+            mCharacterArray!!.expectedEvilTotal = 3
 
-                getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.INVISIBLE
 
-                checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p8Button.onClick()")
-            }
-        })
+            checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p8Button.onClick()")
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P9]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mCharacterArray!!.expectedGoodTotal = 5
-                mCharacterArray!!.expectedEvilTotal = 4
+        mPlayerNumberButtonArray!![PlayerNumbers.P9]!!.addOnClickObserver {
+            mCharacterArray!!.expectedGoodTotal = 5
+            mCharacterArray!!.expectedEvilTotal = 4
 
-                getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.INVISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.VISIBLE
 
-                checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p9Button.onClick()")
-            }
-        })
+            checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p9Button.onClick()")
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P10]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mCharacterArray!!.expectedGoodTotal = 6
-                mCharacterArray!!.expectedEvilTotal = 4
+        mPlayerNumberButtonArray!![PlayerNumbers.P10]!!.addOnClickObserver {
+            mCharacterArray!!.expectedGoodTotal = 6
+            mCharacterArray!!.expectedEvilTotal = 4
 
-                getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
-                getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST1).visibility = View.VISIBLE
+            getCharacter(SecretHitlerCharacterName.FASCIST2).visibility = View.VISIBLE
 
-                checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p10Button.onClick()")
-            }
-        })
+            checkPlayerComposition(callingFuncName = "SecretHitlerControlGroup::p10Button.onClick()")
+        }
 
         // -----------------------------------------------------------------------------------------
         // MediaPlayer for character descriptions
@@ -165,16 +152,16 @@ class SecretHitlerControlGroup(
         }
 
         try {
-            getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.hitlerdescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.fascistdescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.fascistdescription_key)) } })
-            getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.fascistdescription_key)) } })
+            getCharacter(SecretHitlerCharacterName.LIBERAL0).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) }
+            getCharacter(SecretHitlerCharacterName.LIBERAL1).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) }
+            getCharacter(SecretHitlerCharacterName.LIBERAL2).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) }
+            getCharacter(SecretHitlerCharacterName.LIBERAL3).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) }
+            getCharacter(SecretHitlerCharacterName.LIBERAL4).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) }
+            getCharacter(SecretHitlerCharacterName.LIBERAL5).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.liberaldescription_key)) }
+            getCharacter(SecretHitlerCharacterName.HITLER).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.hitlerdescription_key)) }
+            getCharacter(SecretHitlerCharacterName.FASCIST0).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.fascistdescription_key)) }
+            getCharacter(SecretHitlerCharacterName.FASCIST1).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.fascistdescription_key)) }
+            getCharacter(SecretHitlerCharacterName.FASCIST2).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.fascistdescription_key)) }
         }
         catch (e: Exception) {
             e.printStackTrace()
@@ -200,7 +187,7 @@ class SecretHitlerControlGroup(
 
         mCharacterArray!!.characterImageButtonArray?.let {
             for (btn: ObserverImageButton? in it) {
-                btn?.addOnClickObserver(object: IObserver { override fun update() { showSnackbar(mActivityContext!!.getString(R.string.secrethitler_all_notification)) } })
+                btn?.addOnClickObserver { showSnackbar(mActivityContext!!.getString(R.string.secrethitler_all_notification)) }
             }
         }
     }

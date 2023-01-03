@@ -16,7 +16,6 @@ import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.SettingsLayout
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.IObserver
 import com.liweiyap.narradir.util.TimeDisplay
 
 import kotlin.math.roundToInt
@@ -58,9 +57,9 @@ class SettingsHomeFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        privacyButton.addOnClickObserver(object: IObserver { override fun update() { navigateToPrivacyFragment() } })
-        backButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 1) } })
-        helpButton.addOnClickObserver(object: IObserver { override fun update() { navigateToHelpFragment() } })
+        privacyButton.addOnClickObserver { navigateToPrivacyFragment() }
+        backButton.addOnClickObserver { navigateUp(steps = 1) }
+        helpButton.addOnClickObserver { navigateToHelpFragment() }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -72,9 +71,9 @@ class SettingsHomeFragment: NarradirFragmentBase() {
         // navigation from background sound selection layout itself
         // ----------------------------------------------------------------------
 
-        mNarrationSettingsLayout!!.editButton.addOnClickObserver(object: IObserver { override fun update() { navigateToSettingsNarrationFragment() } })
-        mBackgroundSettingsLayout!!.editButton.addOnClickObserver(object: IObserver { override fun update() { navigateToSettingsBackgroundFragment() } })
-        mRoleTimerSettingsLayout!!.editButton.addOnClickObserver(object: IObserver { override fun update() { navigateToSettingsRoleTimerFragment() } })
+        mNarrationSettingsLayout!!.editButton.addOnClickObserver { navigateToSettingsNarrationFragment() }
+        mBackgroundSettingsLayout!!.editButton.addOnClickObserver { navigateToSettingsBackgroundFragment() }
+        mRoleTimerSettingsLayout!!.editButton.addOnClickObserver { navigateToSettingsRoleTimerFragment() }
 
         // ----------------------------------------------------------------------
         // navigation to external web browser

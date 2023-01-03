@@ -3,7 +3,6 @@ package com.liweiyap.narradir.avalon
 import android.view.View
 
 import com.liweiyap.narradir.ui.CheckableObserverImageButton
-import com.liweiyap.narradir.util.IObserver
 
 class AvalonCharacterSelectionRules(
     merlinButton: CheckableObserverImageButton,
@@ -47,12 +46,12 @@ class AvalonCharacterSelectionRules(
         characterImageButtonArray!![AvalonCharacterName.MINION2] = minion2Button
         characterImageButtonArray!![AvalonCharacterName.MINION3] = minion3Button
 
-        getCharacter(AvalonCharacterName.MERLIN).addOnClickObserver(object: IObserver { override fun update() { runMerlinSelectionRules() } })
-        getCharacter(AvalonCharacterName.PERCIVAL).addOnClickObserver(object: IObserver { override fun update() { runPercivalSelectionRules() } })
-        getCharacter(AvalonCharacterName.ASSASSIN).addOnClickObserver(object: IObserver { override fun update() { runMerlinSelectionRules() } })
-        getCharacter(AvalonCharacterName.MORGANA).addOnClickObserver(object: IObserver { override fun update() { runMorganaSelectionRules() } })
-        getCharacter(AvalonCharacterName.MORDRED).addOnClickObserver(object: IObserver { override fun update() { runMordredSelectionRules() } })
-        getCharacter(AvalonCharacterName.OBERON).addOnClickObserver(object: IObserver { override fun update() { runOberonSelectionRules() } })
+        getCharacter(AvalonCharacterName.MERLIN).addOnClickObserver { runMerlinSelectionRules() }
+        getCharacter(AvalonCharacterName.PERCIVAL).addOnClickObserver { runPercivalSelectionRules() }
+        getCharacter(AvalonCharacterName.ASSASSIN).addOnClickObserver { runMerlinSelectionRules() }
+        getCharacter(AvalonCharacterName.MORGANA).addOnClickObserver { runMorganaSelectionRules() }
+        getCharacter(AvalonCharacterName.MORDRED).addOnClickObserver { runMordredSelectionRules() }
+        getCharacter(AvalonCharacterName.OBERON).addOnClickObserver { runOberonSelectionRules() }
     }
 
     fun destroy() {

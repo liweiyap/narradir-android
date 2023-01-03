@@ -11,7 +11,6 @@ import com.liweiyap.narradir.ui.CheckableObserverImageButton
 import com.liweiyap.narradir.ui.ViewGroupSingleTargetSelector
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.util.CharacterSelectionControlGroup
-import com.liweiyap.narradir.util.IObserver
 import com.liweiyap.narradir.util.PlayerNumbers
 
 class AvalonControlGroup(
@@ -64,131 +63,119 @@ class AvalonControlGroup(
         mPlayerNumberButtonArray!![PlayerNumbers.P9] = p9Button
         mPlayerNumberButtonArray!![PlayerNumbers.P10] = p10Button
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P5]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                // new - old
-                val playerNumberChange: Int = 5 - (expectedGoodTotal + expectedEvilTotal)
+        mPlayerNumberButtonArray!![PlayerNumbers.P5]!!.addOnClickObserver {
+            // new - old
+            val playerNumberChange: Int = 5 - (expectedGoodTotal + expectedEvilTotal)
 
-                if (playerNumberChange < 0) {  // new < old (decrease)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 5)
-                }
-
-                getCharacter(AvalonCharacterName.LOYAL3).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.LOYAL4).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.MINION2).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
-
-                if (playerNumberChange > 0) {  // new > old (increase)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 5)
-                }
+            if (playerNumberChange < 0) {  // new < old (decrease)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 5)
             }
-        })
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P6]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                // new - old
-                val playerNumberChange: Int = 6 - (expectedGoodTotal + expectedEvilTotal)
+            getCharacter(AvalonCharacterName.LOYAL3).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.LOYAL4).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.MINION2).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
 
-                if (playerNumberChange < 0) {  // new < old (decrease)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 6)
-                }
-
-                getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL4).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.MINION2).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
-
-                if (playerNumberChange > 0) {  // new > old (increase)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 6)
-                }
+            if (playerNumberChange > 0) {  // new > old (increase)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 5)
             }
-        })
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P7]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                // new - old
-                val playerNumberChange: Int = 7 - (expectedGoodTotal + expectedEvilTotal)
+        mPlayerNumberButtonArray!![PlayerNumbers.P6]!!.addOnClickObserver {
+            // new - old
+            val playerNumberChange: Int = 6 - (expectedGoodTotal + expectedEvilTotal)
 
-                if (playerNumberChange < 0) {  // new < old (decrease)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 7)
-                }
-
-                getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL4).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
-
-                if (playerNumberChange > 0) {  // new > old (increase)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 7)
-                }
+            if (playerNumberChange < 0) {  // new < old (decrease)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 6)
             }
-        })
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P8]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                // new - old
-                val playerNumberChange: Int = 8 - (expectedGoodTotal + expectedEvilTotal)
+            getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL4).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.MINION2).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
 
-                if (playerNumberChange < 0) {  // new < old (decrease)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 8)
-                }
-
-                getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL4).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
-                getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
-
-                if (playerNumberChange > 0) {  // new > old (increase)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 8)
-                }
+            if (playerNumberChange > 0) {  // new > old (increase)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 6)
             }
-        })
+        }
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P9]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                // new - old
-                val playerNumberChange: Int = 9 - (expectedGoodTotal + expectedEvilTotal)
+        mPlayerNumberButtonArray!![PlayerNumbers.P7]!!.addOnClickObserver {
+            // new - old
+            val playerNumberChange: Int = 7 - (expectedGoodTotal + expectedEvilTotal)
 
-                if (playerNumberChange < 0) {  // new < old (decrease)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 9)
-                }
-
-                getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL4).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL5).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
-
-                if (playerNumberChange > 0) {  // new > old (increase)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 9)
-                }
+            if (playerNumberChange < 0) {  // new < old (decrease)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 7)
             }
-        })
 
-        mPlayerNumberButtonArray!![PlayerNumbers.P10]!!.addOnClickObserver(object: IObserver {
-            override fun update() {
-                // new - old
-                val playerNumberChange: Int = 10 - (expectedGoodTotal + expectedEvilTotal)
+            getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL4).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
 
-                if (playerNumberChange < 0) {  // new < old (decrease)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 10)
-                }
-
-                getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL4).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.LOYAL5).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
-                getCharacter(AvalonCharacterName.MINION3).visibility = View.VISIBLE
-
-                if (playerNumberChange > 0) {  // new > old (increase)
-                    playerNumberSelectionLayoutChecker(newPlayerNumber = 10)
-                }
+            if (playerNumberChange > 0) {  // new > old (increase)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 7)
             }
-        })
+        }
+
+        mPlayerNumberButtonArray!![PlayerNumbers.P8]!!.addOnClickObserver {
+            // new - old
+            val playerNumberChange: Int = 8 - (expectedGoodTotal + expectedEvilTotal)
+
+            if (playerNumberChange < 0) {  // new < old (decrease)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 8)
+            }
+
+            getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL4).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL5).visibility = View.INVISIBLE
+            getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
+
+            if (playerNumberChange > 0) {  // new > old (increase)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 8)
+            }
+        }
+
+        mPlayerNumberButtonArray!![PlayerNumbers.P9]!!.addOnClickObserver {
+            // new - old
+            val playerNumberChange: Int = 9 - (expectedGoodTotal + expectedEvilTotal)
+
+            if (playerNumberChange < 0) {  // new < old (decrease)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 9)
+            }
+
+            getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL4).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL5).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.MINION3).visibility = View.INVISIBLE
+
+            if (playerNumberChange > 0) {  // new > old (increase)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 9)
+            }
+        }
+
+        mPlayerNumberButtonArray!![PlayerNumbers.P10]!!.addOnClickObserver {
+            // new - old
+            val playerNumberChange: Int = 10 - (expectedGoodTotal + expectedEvilTotal)
+
+            if (playerNumberChange < 0) {  // new < old (decrease)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 10)
+            }
+
+            getCharacter(AvalonCharacterName.LOYAL3).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL4).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.LOYAL5).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.MINION2).visibility = View.VISIBLE
+            getCharacter(AvalonCharacterName.MINION3).visibility = View.VISIBLE
+
+            if (playerNumberChange > 0) {  // new > old (increase)
+                playerNumberSelectionLayoutChecker(newPlayerNumber = 10)
+            }
+        }
 
         // -----------------------------------------------------------------------------------------
         // MediaPlayer for character descriptions
@@ -274,22 +261,22 @@ class AvalonControlGroup(
         }
 
         try {
-            getCharacter(AvalonCharacterName.MERLIN).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.merlindescription_key)) } })
-            getCharacter(AvalonCharacterName.PERCIVAL).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.percivaldescription_key)) } })
-            getCharacter(AvalonCharacterName.LOYAL0).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) } })
-            getCharacter(AvalonCharacterName.LOYAL1).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) } })
-            getCharacter(AvalonCharacterName.LOYAL2).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) } })
-            getCharacter(AvalonCharacterName.LOYAL3).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) } })
-            getCharacter(AvalonCharacterName.LOYAL4).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) } })
-            getCharacter(AvalonCharacterName.LOYAL5).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) } })
-            getCharacter(AvalonCharacterName.ASSASSIN).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.assassindescription_key)) } })
-            getCharacter(AvalonCharacterName.MORGANA).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.morganadescription_key)) } })
-            getCharacter(AvalonCharacterName.MORDRED).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.mordreddescription_key)) } })
-            getCharacter(AvalonCharacterName.OBERON).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.oberondescription_key)) } })
-            getCharacter(AvalonCharacterName.MINION0).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) } })
-            getCharacter(AvalonCharacterName.MINION1).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) } })
-            getCharacter(AvalonCharacterName.MINION2).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) } })
-            getCharacter(AvalonCharacterName.MINION3).addOnLongClickObserver(object: IObserver { override fun update() { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) } })
+            getCharacter(AvalonCharacterName.MERLIN).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.merlindescription_key)) }
+            getCharacter(AvalonCharacterName.PERCIVAL).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.percivaldescription_key)) }
+            getCharacter(AvalonCharacterName.LOYAL0).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) }
+            getCharacter(AvalonCharacterName.LOYAL1).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) }
+            getCharacter(AvalonCharacterName.LOYAL2).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) }
+            getCharacter(AvalonCharacterName.LOYAL3).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) }
+            getCharacter(AvalonCharacterName.LOYAL4).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) }
+            getCharacter(AvalonCharacterName.LOYAL5).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.loyaldescription_key)) }
+            getCharacter(AvalonCharacterName.ASSASSIN).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.assassindescription_key)) }
+            getCharacter(AvalonCharacterName.MORGANA).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.morganadescription_key)) }
+            getCharacter(AvalonCharacterName.MORDRED).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.mordreddescription_key)) }
+            getCharacter(AvalonCharacterName.OBERON).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.oberondescription_key)) }
+            getCharacter(AvalonCharacterName.MINION0).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) }
+            getCharacter(AvalonCharacterName.MINION1).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) }
+            getCharacter(AvalonCharacterName.MINION2).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) }
+            getCharacter(AvalonCharacterName.MINION3).addOnLongClickObserver { startCharacterDescriptionMediaPlayer(mActivityContext!!.getString(R.string.miniondescription_key)) }
         }
         catch (e: Exception) {
             e.printStackTrace()
@@ -306,11 +293,11 @@ class AvalonControlGroup(
         }
 
         for (idx in AvalonCharacterName.LOYAL0 .. AvalonCharacterName.LOYAL5) {
-            getCharacter(idx).addOnClickObserver(object: IObserver { override fun update() { showSnackbar(mActivityContext!!.getString(R.string.avalon_loyal_notification)) } })
+            getCharacter(idx).addOnClickObserver { showSnackbar(mActivityContext!!.getString(R.string.avalon_loyal_notification)) }
         }
 
         for (idx in AvalonCharacterName.MINION0 .. AvalonCharacterName.MINION3) {
-            getCharacter(idx).addOnClickObserver(object: IObserver { override fun update() { showSnackbar(mActivityContext!!.getString(R.string.avalon_minion_notification)) } })
+            getCharacter(idx).addOnClickObserver { showSnackbar(mActivityContext!!.getString(R.string.avalon_minion_notification)) }
         }
     }
 

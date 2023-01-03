@@ -8,7 +8,6 @@ import androidx.navigation.fragment.NavHostFragment
 
 import com.liweiyap.narradir.util.INarradirControl
 import com.liweiyap.narradir.util.NarradirViewModel
-import com.liweiyap.narradir.util.IObserver
 
 abstract class NarradirFragmentBase: Fragment() {
     override fun onAttach(context: Context) {
@@ -29,11 +28,9 @@ abstract class NarradirFragmentBase: Fragment() {
     }
 
     protected open fun addSoundToPlayOnButtonClick(btn: IObserverListener?) {
-        btn?.addOnClickObserver(object: IObserver {
-            override fun update() {
-                narradirControl?.playClickSound()
-            }
-        })
+        btn?.addOnClickObserver {
+            narradirControl?.playClickSound()
+        }
     }
 
     protected fun navigateUp(steps: Int) {

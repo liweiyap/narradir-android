@@ -1,12 +1,10 @@
 package com.liweiyap.narradir.ui
 
-import com.liweiyap.narradir.util.IObserver
-
 interface IObserverListener {
-    fun addOnClickObserver(observer: IObserver)
+    fun addOnClickObserver(observer: () -> Unit)
     fun notifyOnClickObservers()
     fun clearOnClickObservers()
-    fun addOnLongClickObserver(observer: IObserver)
+    fun addOnLongClickObserver(observer: () -> Unit)
     fun notifyOnLongClickObservers()
     fun clearOnLongClickObservers()
 }

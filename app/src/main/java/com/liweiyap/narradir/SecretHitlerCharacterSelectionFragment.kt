@@ -17,7 +17,6 @@ import com.liweiyap.narradir.ui.ObserverImageButton
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.IObserver
 
 import java.util.ArrayList
 
@@ -65,10 +64,10 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
         // -----------------------------------------------------------------------------------------
 
         gameSwitcherButton.text = getString(R.string.game_switcher_button_avalon)
-        gameSwitcherButton.addOnClickObserver(object: IObserver { override fun update() { navigateToAvalonCharacterSelectionFragment() } })
+        gameSwitcherButton.addOnClickObserver { navigateToAvalonCharacterSelectionFragment() }
 
-        playButton.addOnClickObserver(object: IObserver { override fun update() { navigateToPlayIntroductionFragment() } })
-        settingsButton.addOnClickObserver(object: IObserver { override fun update() { navigateToSettingsHomeFragment() } })
+        playButton.addOnClickObserver { navigateToPlayIntroductionFragment() }
+        settingsButton.addOnClickObserver { navigateToSettingsHomeFragment() }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -104,12 +103,10 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
     }
 
     override fun addSoundToPlayOnButtonClick(btn: IObserverListener?) {
-        btn?.addOnClickObserver(object: IObserver {
-            override fun update() {
-                mSecretHitlerControlGroup?.stopCharacterDescriptionMediaPlayer()
-                narradirControl?.playClickSound()
-            }
-        })
+        btn?.addOnClickObserver {
+            mSecretHitlerControlGroup?.stopCharacterDescriptionMediaPlayer()
+            narradirControl?.playClickSound()
+        }
     }
 
     private fun navigateToAvalonCharacterSelectionFragment() {

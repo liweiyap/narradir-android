@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 import com.liweiyap.narradir.R
-import com.liweiyap.narradir.util.IObserver
 import com.liweiyap.narradir.util.SnackbarBuilderFlag
 
 import java.util.EnumSet
@@ -26,7 +25,7 @@ class SnackbarWrapper(context: Context) {
         mSnackbar = null
     }
 
-    fun show(view: View, message: String, duration: Int, actionMessage: String?, actionCallback: IObserver?, flags: EnumSet<SnackbarBuilderFlag>) {
+    fun show(view: View, message: String, duration: Int, actionMessage: String?, actionCallback: (() -> Unit)?, flags: EnumSet<SnackbarBuilderFlag>) {
         if (!isValidSnackbarDuration(duration)) {
             throw RuntimeException(
                 "SnackbarWrapper::show()" +
@@ -40,7 +39,7 @@ class SnackbarWrapper(context: Context) {
         }
     }
 
-    private fun showNewSnackbar(view: View, message: String, duration: Int, actionMessage: String?, actionCallback: IObserver?, flags: EnumSet<SnackbarBuilderFlag>) {
+    private fun showNewSnackbar(view: View, message: String, duration: Int, actionMessage: String?, actionCallback: (() -> Unit)?, flags: EnumSet<SnackbarBuilderFlag>) {
         mSnackbar = Snackbar.make(view, message, duration)
 
         if (flags.contains(SnackbarBuilderFlag.SHOW_ABOVE_XY)) {
@@ -52,7 +51,9 @@ class SnackbarWrapper(context: Context) {
             actionMessage?.let {
                 mSnackbar!!.setAction(it) {
                     dismissOldSnackbar()
-                    actionCallback?.update()
+                    if (actionCallback != null) {
+                        actionCallback()
+                    }
                 }
             }
         }

@@ -11,7 +11,6 @@ import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.ObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
-import com.liweiyap.narradir.util.IObserver
 
 import kotlin.math.roundToInt
 
@@ -37,8 +36,8 @@ class SettingsNarrationFragment: NarradirFragmentBase() {
         // ----------------------------------------------------------------------
 
         displayVolume()
-        volumeIncreaseButton.addOnClickObserver(object: IObserver { override fun update() { increaseVolume() } })
-        volumeDecreaseButton.addOnClickObserver(object: IObserver { override fun update() { decreaseVolume() } })
+        volumeIncreaseButton.addOnClickObserver { increaseVolume() }
+        volumeDecreaseButton.addOnClickObserver { decreaseVolume() }
 
         // ----------------------------------------------------------------------
         // click sound
@@ -53,8 +52,8 @@ class SettingsNarrationFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        generalBackButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 1) } })
-        mainButton.addOnClickObserver(object: IObserver { override fun update() { navigateUp(steps = 2) } })
+        generalBackButton.addOnClickObserver { navigateUp(steps = 1) }
+        mainButton.addOnClickObserver { navigateUp(steps = 2) }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
