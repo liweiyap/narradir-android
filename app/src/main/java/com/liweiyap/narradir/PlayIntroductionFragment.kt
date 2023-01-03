@@ -75,13 +75,11 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
                     }
 
                     val newWindowIdx = mAudioPlayer!!.getExoPlayerCurrentMediaItemIndex()
-                    if ((newWindowIdx and 1) == 0) // if even
-                    {
+                    if ((newWindowIdx and 1) == 0) {  // if even
                         switchCurrentDisplayedCharacterImage(resName = introSegmentArrayList[newWindowIdx / 2])
                         switchCurrentDisplayedIntroSegmentTextView(resName = introSegmentArrayList[newWindowIdx / 2])
                     }
-                    else  // if odd
-                    {
+                    else {  // if odd
                         if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(context = requireContext(), resName = introSegmentArrayList[newWindowIdx / 2])) &&
                              (viewModel!!.pauseDurationInMilliSecs > IntroAudioPlayer.sMinPauseDurationInMilliSecs) ) {
                             mCurrentDisplayedIntroSegmentTextView?.text = TimeDisplay.longFormat(resources = resources, msec = viewModel!!.pauseDurationInMilliSecs / 1000)
@@ -185,33 +183,31 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
     }
 
     private fun switchCurrentDisplayedCharacterImage(resName: String) {
-        if (mCurrentDisplayedCharacterImageView == null) {
-            return
-        }
-
-        // does not look elegant but it's safe because resource ID integers are non-constant from Gradle version >4.
-        when (resName) {
-            getString(R.string.avalonintrosegment1nooberon_key),
-            getString(R.string.avalonintrosegment1withoberon_key) -> mCurrentDisplayedCharacterImageView!!.setImageResource(R.drawable.teamevil)
-            getString(R.string.avalonintrosegment3nomordred_key),
-            getString(R.string.avalonintrosegment3withmordred_key) -> mCurrentDisplayedCharacterImageView!!.setImageResource(R.drawable.merlin_unchecked_unlabelled)
-            getString(R.string.avalonintrosegment5withpercivalnomorgana_key),
-            getString(R.string.avalonintrosegment5withpercivalwithmorgana_key) -> mCurrentDisplayedCharacterImageView!!.setImageResource(R.drawable.percival_unchecked_unlabelled)
-            getString(R.string.secrethitlerintrosegment1small_key) -> {
-                mCurrentDisplayedCharacterImageView!!.setImageResource(R.drawable.ic_teamfascists)
-                mCurrentDisplayedCharacterImageView!!.setBackgroundResource(R.drawable.fascist_background)
-            }
-            getString(R.string.secrethitlerintrosegment1large_key) -> {
-                mCurrentDisplayedCharacterImageView!!.setImageResource(R.drawable.ic_fascist)
-                mCurrentDisplayedCharacterImageView!!.setBackgroundResource(R.drawable.fascist_background)
-            }
-            getString(R.string.avalonintrosegment3nomerlin_key),
-            getString(R.string.avalonintrosegment5nopercival_key),
-            getString(R.string.avalonintrosegment7_key),
-            getString(R.string.secrethitlerintrosegment3small_key),
-            getString(R.string.secrethitlerintrosegment4large_key) -> {
-                mCurrentDisplayedCharacterImageView!!.setImageDrawable(null)
-                mCurrentDisplayedCharacterImageView!!.setBackgroundResource(ResourcesCompat.ID_NULL)
+        mCurrentDisplayedCharacterImageView?.let {
+            // does not look elegant but it's safe because resource ID integers are non-constant from Gradle version >4.
+            when (resName) {
+                getString(R.string.avalonintrosegment1nooberon_key),
+                getString(R.string.avalonintrosegment1withoberon_key) -> it.setImageResource(R.drawable.teamevil)
+                getString(R.string.avalonintrosegment3nomordred_key),
+                getString(R.string.avalonintrosegment3withmordred_key) -> it.setImageResource(R.drawable.merlin_unchecked_unlabelled)
+                getString(R.string.avalonintrosegment5withpercivalnomorgana_key),
+                getString(R.string.avalonintrosegment5withpercivalwithmorgana_key) -> it.setImageResource(R.drawable.percival_unchecked_unlabelled)
+                getString(R.string.secrethitlerintrosegment1small_key) -> {
+                    it.setImageResource(R.drawable.ic_teamfascists)
+                    it.setBackgroundResource(R.drawable.fascist_background)
+                }
+                getString(R.string.secrethitlerintrosegment1large_key) -> {
+                    it.setImageResource(R.drawable.ic_fascist)
+                    it.setBackgroundResource(R.drawable.fascist_background)
+                }
+                getString(R.string.avalonintrosegment3nomerlin_key),
+                getString(R.string.avalonintrosegment5nopercival_key),
+                getString(R.string.avalonintrosegment7_key),
+                getString(R.string.secrethitlerintrosegment3small_key),
+                getString(R.string.secrethitlerintrosegment4large_key) -> {
+                    it.setImageDrawable(null)
+                    it.setBackgroundResource(ResourcesCompat.ID_NULL)
+                }
             }
         }
     }
@@ -234,5 +230,5 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
     private var mCurrentDisplayedCharacterImageView: ImageView? = null
     private var mCurrentDisplayedIntroSegmentTextView: CustomTypefaceableTextView? = null
 
-    private var mIsDestroying = false
+    private var mIsDestroying: Boolean = false
 }
