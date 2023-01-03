@@ -213,16 +213,14 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
     }
 
     private fun switchCurrentDisplayedIntroSegmentTextView(resName: String) {
-        if (mCurrentDisplayedIntroSegmentTextView == null) {
-            return
+        mCurrentDisplayedIntroSegmentTextView?.let {
+            val subtitle: String = IntroSegmentDictionary.getSubtitleFromIntroSegmentRes(requireContext(), resName)
+                ?: throw RuntimeException(
+                    "PlayIntroductionFragment::switchCurrentDisplayedIntroSegmentTextView(): " +
+                        "Invalid introduction segment resource name $resName")
+
+            it.text = subtitle
         }
-
-        val subtitle: String = IntroSegmentDictionary.getSubtitleFromIntroSegmentRes(requireContext(), resName)
-            ?: throw RuntimeException(
-                "PlayIntroductionFragment::switchCurrentDisplayedIntroSegmentTextView(): " +
-                    "Invalid introduction segment resource name $resName")
-
-        mCurrentDisplayedIntroSegmentTextView!!.text = subtitle
     }
 
     private var mAudioPlayer: IntroAudioPlayer? = null
