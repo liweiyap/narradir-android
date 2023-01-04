@@ -130,6 +130,13 @@ class IntroAudioPlayer(
             }
         }
 
+        if (mIntroSegmentPlayer!!.mediaItemCount != mIntroSegmentTypeArrayList!!.size) {
+            throw RuntimeException(
+                "IntroAudioPlayer::prepareExoPlayer(): " +
+                    "Invalid no of MediaSources for ExoPlayer; ${mIntroSegmentTypeArrayList!!.size} segments but ${mIntroSegmentPlayer!!.mediaItemCount} media sources."
+            )
+        }
+
         mIntroSegmentPlayer!!.volume = narrationVolume
         mIntroSegmentPlayer!!.prepare()
     }
