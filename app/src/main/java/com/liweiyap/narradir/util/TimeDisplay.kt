@@ -19,14 +19,14 @@ object TimeDisplay {
         )
     }
 
-    fun longFormat(resources: Resources, msec: Long): String {
+    fun longFormat(resources: Resources, sec: Long): String {
         return String.format(
             // guaranteed to be available on all devices, has no surprising special cases, and tends to be most efficient due to its frequency of use
             // (https://developer.android.com/reference/java/util/Locale.html#default_locale)
             locale = Locale.US,
             // this long to int conversion is safe for the current (values/1000) that we have but this may change in future
-            format = resources.getQuantityString(R.plurals.pauseduration_text, msec.toInt()),
-            msec.toInt()
+            format = resources.getQuantityString(R.plurals.pauseduration_text, sec.toInt()),
+            sec.toInt()
         )
     }
 }

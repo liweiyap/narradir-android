@@ -17,6 +17,7 @@ import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
 import com.liweiyap.narradir.util.TimeDisplay
 import com.liweiyap.narradir.util.audio.IntroAudioPlayer
+import com.liweiyap.narradir.util.audio.IntroAudioPlayerSegment
 import com.liweiyap.narradir.util.audio.IntroSegmentDictionary
 
 class PlayIntroductionFragment: NarradirFragmentBase() {
@@ -73,16 +74,15 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
                         return
                     }
 
-                    val newWindowIdx = mAudioPlayer!!.getExoPlayerCurrentMediaItemIndex()
-                    if ((newWindowIdx and 1) == 0) {  // if even
-                        switchCurrentDisplayedCharacterImage(resName = introSegmentArrayList[newWindowIdx / 2])
-                        switchCurrentDisplayedIntroSegmentTextView(resName = introSegmentArrayList[newWindowIdx / 2])
+                    val newWindowType: IntroAudioPlayerSegment = mAudioPlayer!!.getExoPlayerCurrentMediaItemType()
+                    if (newWindowType is IntroAudioPlayerSegment.Narration) {
+                        switchCurrentDisplayedCharacterImage(resName = introSegmentArrayList[newWindowType.mIntroSegmentIndex])
+                        switchCurrentDisplayedSubtitle(resName = introSegmentArrayList[newWindowType.mIntroSegmentIndex])
                     }
-                    else {  // if odd
-                        if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(context = requireContext(), resName = introSegmentArrayList[newWindowIdx / 2])) &&
-                             (viewModel!!.mPauseDurationInMilliSecs > IntroAudioPlayer.sMinPauseDurationInMilliSecs) ) {
-                            mCurrentDisplayedIntroSegmentTextView?.text = TimeDisplay.longFormat(resources = resources, msec = viewModel!!.mPauseDurationInMilliSecs / 1000)
-                        }
+                    else if ( (newWindowType is IntroAudioPlayerSegment.Pause) &&
+                              (!newWindowType.isMinimumDuration()) )
+                    {
+                        mCurrentDisplayedIntroSegmentTextView?.text = TimeDisplay.longFormat(resources = resources, sec = newWindowType.mRemainingDurationInMilliSecs / 1000)
                     }
                 }
 
@@ -124,7 +124,7 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         // miscellaneous UI initialisation
         // ----------------------------------------------------------------------
 
-        switchCurrentDisplayedIntroSegmentTextView(resName = introSegmentArrayList!![0])
+        switchCurrentDisplayedSubtitle(resName = introSegmentArrayList!![0])
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
@@ -209,7 +209,7 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         }
     }
 
-    private fun switchCurrentDisplayedIntroSegmentTextView(resName: String) {
+    private fun switchCurrentDisplayedSubtitle(resName: String) {
         mCurrentDisplayedIntroSegmentTextView?.let {
             val subtitle: String = IntroSegmentDictionary.getSubtitleFromIntroSegmentRes(requireContext(), resName)
                 ?: throw RuntimeException(

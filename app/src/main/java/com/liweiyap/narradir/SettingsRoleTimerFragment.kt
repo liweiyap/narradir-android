@@ -11,6 +11,7 @@ import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.ObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
+import com.liweiyap.narradir.util.audio.IntroAudioPlayer
 
 class SettingsRoleTimerFragment: NarradirFragmentBase() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -78,14 +79,14 @@ class SettingsRoleTimerFragment: NarradirFragmentBase() {
 
     private fun increasePauseDuration() {
         viewModel?.let {
-            it.mPauseDurationInMilliSecs = (it.mPauseDurationInMilliSecs + 1000L).coerceAtMost(mMaxPauseDurationInMilliSecs)
+            it.mPauseDurationInMilliSecs = (it.mPauseDurationInMilliSecs + IntroAudioPlayer.sPauseInterval).coerceAtMost(mMaxPauseDurationInMilliSecs)
             displayPauseDuration()
         }
     }
 
     private fun decreasePauseDuration() {
         viewModel?.let {
-            it.mPauseDurationInMilliSecs = (it.mPauseDurationInMilliSecs - 1000L).coerceAtLeast(mMinPauseDurationInMilliSecs)
+            it.mPauseDurationInMilliSecs = (it.mPauseDurationInMilliSecs - IntroAudioPlayer.sPauseInterval).coerceAtLeast(mMinPauseDurationInMilliSecs)
             displayPauseDuration()
         }
     }
