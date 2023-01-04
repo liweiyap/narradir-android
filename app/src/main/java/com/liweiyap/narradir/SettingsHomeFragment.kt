@@ -95,9 +95,9 @@ class SettingsHomeFragment: NarradirFragmentBase() {
             return
         }
 
-        mNarrationSettingsLayout?.setValue("Vol ${(viewModel!!.narrationVolume * 10).roundToInt()}")
-        mBackgroundSettingsLayout?.setValue("${viewModel!!.backgroundSoundName}, Vol ${(viewModel!!.backgroundSoundVolume * 10).roundToInt()}")
-        mRoleTimerSettingsLayout?.setValue(TimeDisplay.shortFormat(msec = viewModel!!.pauseDurationInMilliSecs))
+        mNarrationSettingsLayout?.setValue("Vol ${(viewModel!!.mNarrationVolume * 10).roundToInt()}")
+        mBackgroundSettingsLayout?.setValue("${viewModel!!.mBackgroundSoundName}, Vol ${(viewModel!!.mBackgroundSoundVolume * 10).roundToInt()}")
+        mRoleTimerSettingsLayout?.setValue(TimeDisplay.shortFormat(msec = viewModel!!.mPauseDurationInMilliSecs))
     }
 
     override fun onDestroyView() {

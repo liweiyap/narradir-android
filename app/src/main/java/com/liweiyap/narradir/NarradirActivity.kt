@@ -14,7 +14,7 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_narradir)
 
-        viewModel = NarradirViewModel(this, getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE))
+        mViewModel = NarradirViewModel(this, getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE))
         mClickSoundGenerator = ClickSoundGenerator(this)
     }
 
@@ -24,8 +24,12 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
         mClickSoundGenerator?.freeResources()
         mClickSoundGenerator = null
 
-        viewModel?.destroy()
-        viewModel = null
+        mViewModel?.destroy()
+        mViewModel = null
+    }
+
+    override fun getViewModel(): NarradirViewModel? {
+        return mViewModel
     }
 
     override fun playClickSound() {
@@ -43,6 +47,5 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
     }
 
     private var mClickSoundGenerator: ClickSoundGenerator? = null
-    override var viewModel: NarradirViewModel? = null
-        private set
+    private var mViewModel: NarradirViewModel? = null
 }

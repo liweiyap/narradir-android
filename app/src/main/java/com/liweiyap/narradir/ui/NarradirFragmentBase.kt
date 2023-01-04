@@ -19,17 +19,17 @@ abstract class NarradirFragmentBase: Fragment() {
                     "Programming error: Context is not INarradirControl.")
         }
 
-        narradirControl = context
+        mNarradirControl = context
     }
 
     override fun onDetach() {
         super.onDetach()
-        narradirControl = null
+        mNarradirControl = null
     }
 
     protected open fun addSoundToPlayOnButtonClick(btn: IObserverListener?) {
         btn?.addOnClickObserver {
-            narradirControl?.playClickSound()
+            mNarradirControl?.playClickSound()
         }
     }
 
@@ -40,9 +40,9 @@ abstract class NarradirFragmentBase: Fragment() {
         }
     }
 
-    protected var narradirControl: INarradirControl? = null
+    protected var mNarradirControl: INarradirControl? = null
         private set
 
     protected val viewModel: NarradirViewModel?
-        get() = narradirControl?.viewModel
+        get() = mNarradirControl?.getViewModel()
 }

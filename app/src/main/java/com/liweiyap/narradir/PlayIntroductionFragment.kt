@@ -64,8 +64,8 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         else {
             mAudioPlayer = IntroAudioPlayer(
                 requireContext(),
-                introSegmentArrayList!!, viewModel!!.pauseDurationInMilliSecs, viewModel!!.narrationVolume,
-                viewModel!!.backgroundSoundName, viewModel!!.backgroundSoundVolume)
+                introSegmentArrayList!!, viewModel!!.mPauseDurationInMilliSecs, viewModel!!.mNarrationVolume,
+                viewModel!!.mBackgroundSoundName, viewModel!!.mBackgroundSoundVolume)
 
             mAudioPlayer!!.addExoPlayerListener(object: Player.Listener {
                 override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo, reason: @Player.DiscontinuityReason Int) {
@@ -80,8 +80,8 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
                     }
                     else {  // if odd
                         if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(context = requireContext(), resName = introSegmentArrayList[newWindowIdx / 2])) &&
-                             (viewModel!!.pauseDurationInMilliSecs > IntroAudioPlayer.sMinPauseDurationInMilliSecs) ) {
-                            mCurrentDisplayedIntroSegmentTextView?.text = TimeDisplay.longFormat(resources = resources, msec = viewModel!!.pauseDurationInMilliSecs / 1000)
+                             (viewModel!!.mPauseDurationInMilliSecs > IntroAudioPlayer.sMinPauseDurationInMilliSecs) ) {
+                            mCurrentDisplayedIntroSegmentTextView?.text = TimeDisplay.longFormat(resources = resources, msec = viewModel!!.mPauseDurationInMilliSecs / 1000)
                         }
                     }
                 }
@@ -100,7 +100,7 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
 
         val pauseButton = view.findViewById<CustomTypefaceableObserverButton>(R.id.playIntroLayoutPauseButton)
         pauseButton.addOnClickObserver {
-            narradirControl?.playClickSound()
+            mNarradirControl?.playClickSound()
 
             pauseButton.setText(
                 if (mAudioPlayer!!.isPlayingIntro())

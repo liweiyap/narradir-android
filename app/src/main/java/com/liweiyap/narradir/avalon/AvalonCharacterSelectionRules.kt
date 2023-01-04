@@ -22,29 +22,29 @@ class AvalonCharacterSelectionRules(
     minion2Button: CheckableObserverImageButton,
     minion3Button: CheckableObserverImageButton,
 ) {
-    var characterImageButtonArray: Array<CheckableObserverImageButton?>? = arrayOfNulls(AvalonCharacterName.getNumberOfCharacters())
+    var mCharacterImageButtonArray: Array<CheckableObserverImageButton?>? = arrayOfNulls(AvalonCharacterName.getNumberOfCharacters())
         private set
 
-    var expectedGoodTotal: Int = AvalonCharacterName.getDefaultNumberOfGoodCharacters()
-    var expectedEvilTotal: Int = AvalonCharacterName.getDefaultNumberOfEvilCharacters()
+    var mExpectedGoodTotal: Int = AvalonCharacterName.getDefaultNumberOfGoodCharacters()
+    var mExpectedEvilTotal: Int = AvalonCharacterName.getDefaultNumberOfEvilCharacters()
 
     init {
-        characterImageButtonArray!![AvalonCharacterName.MERLIN] = merlinButton
-        characterImageButtonArray!![AvalonCharacterName.PERCIVAL] = percivalButton
-        characterImageButtonArray!![AvalonCharacterName.LOYAL0] = loyal0Button
-        characterImageButtonArray!![AvalonCharacterName.LOYAL1] = loyal1Button
-        characterImageButtonArray!![AvalonCharacterName.LOYAL2] = loyal2Button
-        characterImageButtonArray!![AvalonCharacterName.LOYAL3] = loyal3Button
-        characterImageButtonArray!![AvalonCharacterName.LOYAL4] = loyal4Button
-        characterImageButtonArray!![AvalonCharacterName.LOYAL5] = loyal5Button
-        characterImageButtonArray!![AvalonCharacterName.ASSASSIN] = assassinButton
-        characterImageButtonArray!![AvalonCharacterName.MORGANA] = morganaButton
-        characterImageButtonArray!![AvalonCharacterName.MORDRED] = mordredButton
-        characterImageButtonArray!![AvalonCharacterName.OBERON] = oberonButton
-        characterImageButtonArray!![AvalonCharacterName.MINION0] = minion0Button
-        characterImageButtonArray!![AvalonCharacterName.MINION1] = minion1Button
-        characterImageButtonArray!![AvalonCharacterName.MINION2] = minion2Button
-        characterImageButtonArray!![AvalonCharacterName.MINION3] = minion3Button
+        mCharacterImageButtonArray!![AvalonCharacterName.MERLIN] = merlinButton
+        mCharacterImageButtonArray!![AvalonCharacterName.PERCIVAL] = percivalButton
+        mCharacterImageButtonArray!![AvalonCharacterName.LOYAL0] = loyal0Button
+        mCharacterImageButtonArray!![AvalonCharacterName.LOYAL1] = loyal1Button
+        mCharacterImageButtonArray!![AvalonCharacterName.LOYAL2] = loyal2Button
+        mCharacterImageButtonArray!![AvalonCharacterName.LOYAL3] = loyal3Button
+        mCharacterImageButtonArray!![AvalonCharacterName.LOYAL4] = loyal4Button
+        mCharacterImageButtonArray!![AvalonCharacterName.LOYAL5] = loyal5Button
+        mCharacterImageButtonArray!![AvalonCharacterName.ASSASSIN] = assassinButton
+        mCharacterImageButtonArray!![AvalonCharacterName.MORGANA] = morganaButton
+        mCharacterImageButtonArray!![AvalonCharacterName.MORDRED] = mordredButton
+        mCharacterImageButtonArray!![AvalonCharacterName.OBERON] = oberonButton
+        mCharacterImageButtonArray!![AvalonCharacterName.MINION0] = minion0Button
+        mCharacterImageButtonArray!![AvalonCharacterName.MINION1] = minion1Button
+        mCharacterImageButtonArray!![AvalonCharacterName.MINION2] = minion2Button
+        mCharacterImageButtonArray!![AvalonCharacterName.MINION3] = minion3Button
 
         getCharacter(AvalonCharacterName.MERLIN).addOnClickObserver { runMerlinSelectionRules() }
         getCharacter(AvalonCharacterName.PERCIVAL).addOnClickObserver { runPercivalSelectionRules() }
@@ -55,14 +55,14 @@ class AvalonCharacterSelectionRules(
     }
 
     fun destroy() {
-        characterImageButtonArray?.let {
+        mCharacterImageButtonArray?.let {
             for (idx: Int in it.indices) {
                 it[idx]?.destroy()
                 it[idx] = null
             }
         }
 
-        characterImageButtonArray = null
+        mCharacterImageButtonArray = null
     }
 
     fun getCharacter(idx: Int): CheckableObserverImageButton {
@@ -70,11 +70,11 @@ class AvalonCharacterSelectionRules(
             throw RuntimeException("AvalonCharacterSelectionRules::getCharacter(): Invalid index $idx")
         }
 
-        if (characterImageButtonArray == null) {
+        if (mCharacterImageButtonArray == null) {
             throw RuntimeException("AvalonCharacterSelectionRules::getCharacter(): mCharacterImageButtonArray is NULL")
         }
 
-        return characterImageButtonArray!![idx]!!
+        return mCharacterImageButtonArray!![idx]!!
     }
 
     /**
@@ -145,7 +145,7 @@ class AvalonCharacterSelectionRules(
                 getCharacter(AvalonCharacterName.MERLIN).performClick()
             }
 
-            if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (!getCharacter(AvalonCharacterName.MORDRED).isChecked) )
             {
                 if (!getCharacter(AvalonCharacterName.MORGANA).isChecked) {
@@ -184,7 +184,7 @@ class AvalonCharacterSelectionRules(
 
             getCharacter(AvalonCharacterName.MORGANA).isChecked = false
 
-            if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
                 if (getCharacter(AvalonCharacterName.MORDRED).isChecked) {
@@ -237,7 +237,7 @@ class AvalonCharacterSelectionRules(
 
             getCharacter(AvalonCharacterName.MORDRED).isChecked = false
 
-            if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
                 if (getCharacter(AvalonCharacterName.MORGANA).isChecked) {
@@ -257,7 +257,7 @@ class AvalonCharacterSelectionRules(
                 getCharacter(AvalonCharacterName.MERLIN).performClick()
             }
 
-            if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (!getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
                 getCharacter(AvalonCharacterName.PERCIVAL).performClick()
@@ -286,7 +286,7 @@ class AvalonCharacterSelectionRules(
             searchAndCheckNewCharacters(AvalonCharacterName.MINION0, AvalonCharacterName.MINION3, 1)
         }
         else {
-            if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
+            if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
                  (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
             {
                 getCharacter(AvalonCharacterName.PERCIVAL).performClick()
@@ -309,7 +309,7 @@ class AvalonCharacterSelectionRules(
      * - In a 5-player game, if Percival is already selected, then Percival is auto-deselected.
      */
     fun onPlayerNumberChange() {
-        if ( (expectedGoodTotal + expectedEvilTotal == 5) &&
+        if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
              (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) &&
              (getCharacter(AvalonCharacterName.OBERON).isChecked) )
         {
@@ -440,16 +440,16 @@ class AvalonCharacterSelectionRules(
         }
 
         val good: Int = actualGoodTotal
-        if (good != expectedGoodTotal) {
+        if (good != mExpectedGoodTotal) {
             throw RuntimeException(
-                "$callingFuncName: expected good player total is $expectedGoodTotal" +
+                "$callingFuncName: expected good player total is $mExpectedGoodTotal" +
                     " but actual good player total is $good")
         }
 
         val evil: Int = actualEvilTotal
-        if (evil != expectedEvilTotal) {
+        if (evil != mExpectedEvilTotal) {
             throw RuntimeException(
-                "$callingFuncName: expected evil player total is $expectedEvilTotal" +
+                "$callingFuncName: expected evil player total is $mExpectedEvilTotal" +
                     " but actual evil player total is $evil")
         }
     }

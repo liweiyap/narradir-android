@@ -71,7 +71,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                narradirControl?.navigateAwayFromApp()
+                mNarradirControl?.navigateAwayFromApp()
             }
         })
 
@@ -105,7 +105,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
     override fun addSoundToPlayOnButtonClick(btn: IObserverListener?) {
         btn?.addOnClickObserver {
             mSecretHitlerControlGroup?.stopCharacterDescriptionMediaPlayer()
-            narradirControl?.playClickSound()
+            mNarradirControl?.playClickSound()
         }
     }
 
@@ -159,8 +159,8 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
             throw RuntimeException("SecretHitlerCharacterSelectionFragment::savePreferences(): mSecretHitlerControlGroup is NULL")
         }
 
-        viewModel?.secretHitlerExpectedGoodTotal = mSecretHitlerControlGroup!!.expectedGoodTotal
-        viewModel?.secretHitlerExpectedEvilTotal = mSecretHitlerControlGroup!!.expectedEvilTotal
+        viewModel?.mSecretHitlerExpectedGoodTotal = mSecretHitlerControlGroup!!.expectedGoodTotal
+        viewModel?.mSecretHitlerExpectedEvilTotal = mSecretHitlerControlGroup!!.expectedEvilTotal
         viewModel?.savePreferences()
     }
 
@@ -170,7 +170,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
         }
 
         viewModel?.let {
-            mSecretHitlerControlGroup!!.selectPlayerNumberButton(playerNumber = it.secretHitlerExpectedGoodTotal + it.secretHitlerExpectedEvilTotal)
+            mSecretHitlerControlGroup!!.selectPlayerNumberButton(playerNumber = it.mSecretHitlerExpectedGoodTotal + it.mSecretHitlerExpectedEvilTotal)
         }
     }
 

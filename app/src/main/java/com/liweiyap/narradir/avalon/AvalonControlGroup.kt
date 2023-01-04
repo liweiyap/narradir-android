@@ -230,8 +230,8 @@ class AvalonControlGroup(
         }
 
         // update old values to new values
-        mCharacterSelectionRules!!.expectedGoodTotal = newExpectedGoodTotal
-        mCharacterSelectionRules!!.expectedEvilTotal = newExpectedEvilTotal
+        mCharacterSelectionRules!!.mExpectedGoodTotal = newExpectedGoodTotal
+        mCharacterSelectionRules!!.mExpectedEvilTotal = newExpectedEvilTotal
 
         // callback for externally-driven selection rules
         mCharacterSelectionRules!!.onPlayerNumberChange()
@@ -315,7 +315,7 @@ class AvalonControlGroup(
                 throw RuntimeException("AvalonControlGroup::getCharacterImageButtonArray(): mCharacterSelectionRules is NULL")
             }
 
-            return mCharacterSelectionRules!!.characterImageButtonArray
+            return mCharacterSelectionRules!!.mCharacterImageButtonArray
         }
 
     val expectedGoodTotal: Int
@@ -324,7 +324,7 @@ class AvalonControlGroup(
                 throw RuntimeException("AvalonControlGroup::getExpectedGoodTotal(): mCharacterSelectionRules is NULL")
             }
 
-            return mCharacterSelectionRules!!.expectedGoodTotal
+            return mCharacterSelectionRules!!.mExpectedGoodTotal
         }
 
     val expectedEvilTotal: Int
@@ -333,7 +333,7 @@ class AvalonControlGroup(
                 throw RuntimeException("AvalonControlGroup::getExpectedEvilTotal(): mCharacterSelectionRules is NULL")
             }
 
-            return mCharacterSelectionRules!!.expectedEvilTotal
+            return mCharacterSelectionRules!!.mExpectedEvilTotal
         }
 
     fun checkPlayerComposition(callingFuncName: String?) {

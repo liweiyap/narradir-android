@@ -8,22 +8,22 @@ import com.liweiyap.narradir.avalon.AvalonCharacterName
 import com.liweiyap.narradir.secrethitler.SecretHitlerCharacterName
 
 class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
-    var pauseDurationInMilliSecs: Long = 5000L
-    var backgroundSoundVolume: Float = 1F
-    var narrationVolume: Float = 1F
-    var backgroundSoundName: String
+    var mPauseDurationInMilliSecs: Long = 5000L
+    var mBackgroundSoundVolume: Float = 1F
+    var mNarrationVolume: Float = 1F
+    var mBackgroundSoundName: String
     private var mDoHideBackgroundSoundHint: Boolean = false
 
-    var avalonExpectedGoodTotal: Int = AvalonCharacterName.getDefaultNumberOfGoodCharacters()
-    var avalonExpectedEvilTotal: Int = AvalonCharacterName.getDefaultNumberOfEvilCharacters()
-    var isMerlinChecked: Boolean = true
-    var isPercivalChecked: Boolean = false
-    var isMorganaChecked: Boolean = false
-    var isMordredChecked: Boolean = false
-    var isOberonChecked: Boolean = false
+    var mAvalonExpectedGoodTotal: Int = AvalonCharacterName.getDefaultNumberOfGoodCharacters()
+    var mAvalonExpectedEvilTotal: Int = AvalonCharacterName.getDefaultNumberOfEvilCharacters()
+    var mIsMerlinChecked: Boolean = true
+    var mIsPercivalChecked: Boolean = false
+    var mIsMorganaChecked: Boolean = false
+    var mIsMordredChecked: Boolean = false
+    var mIsOberonChecked: Boolean = false
 
-    var secretHitlerExpectedGoodTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters()
-    var secretHitlerExpectedEvilTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters()
+    var mSecretHitlerExpectedGoodTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters()
+    var mSecretHitlerExpectedEvilTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters()
 
     private var mContext: Context?
     private var mSharedPref: SharedPreferences?
@@ -31,20 +31,20 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
     init {
         mContext = context
         mSharedPref = sharedPref
-        pauseDurationInMilliSecs = sharedPref.getLong(context.getString(R.string.pause_duration_key), pauseDurationInMilliSecs)
-        backgroundSoundVolume = sharedPref.getFloat(context.getString(R.string.background_volume_key), backgroundSoundVolume)
-        narrationVolume = sharedPref.getFloat(context.getString(R.string.narration_volume_key), narrationVolume)
-        backgroundSoundName = sharedPref.getString(context.getString(R.string.background_sound_name_key), context.getString(R.string.backgroundsound_none))!!
+        mPauseDurationInMilliSecs = sharedPref.getLong(context.getString(R.string.pause_duration_key), mPauseDurationInMilliSecs)
+        mBackgroundSoundVolume = sharedPref.getFloat(context.getString(R.string.background_volume_key), mBackgroundSoundVolume)
+        mNarrationVolume = sharedPref.getFloat(context.getString(R.string.narration_volume_key), mNarrationVolume)
+        mBackgroundSoundName = sharedPref.getString(context.getString(R.string.background_sound_name_key), context.getString(R.string.backgroundsound_none))!!
         mDoHideBackgroundSoundHint = sharedPref.getBoolean(context.getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint)
-        avalonExpectedGoodTotal = sharedPref.getInt(context.getString(R.string.good_player_number_avalon_key), avalonExpectedGoodTotal)
-        avalonExpectedEvilTotal = sharedPref.getInt(context.getString(R.string.evil_player_number_avalon_key), avalonExpectedEvilTotal)
-        isMerlinChecked = sharedPref.getBoolean(context.getString(R.string.is_merlin_checked_key), isMerlinChecked)
-        isPercivalChecked = sharedPref.getBoolean(context.getString(R.string.is_percival_checked_key), isPercivalChecked)
-        isMorganaChecked = sharedPref.getBoolean(context.getString(R.string.is_morgana_checked_key), isMorganaChecked)
-        isMordredChecked = sharedPref.getBoolean(context.getString(R.string.is_mordred_checked_key), isMordredChecked)
-        isOberonChecked = sharedPref.getBoolean(context.getString(R.string.is_oberon_checked_key), isOberonChecked)
-        secretHitlerExpectedGoodTotal = sharedPref.getInt(context.getString(R.string.good_player_number_secrethitler_key), secretHitlerExpectedGoodTotal)
-        secretHitlerExpectedEvilTotal = sharedPref.getInt(context.getString(R.string.evil_player_number_secrethitler_key), secretHitlerExpectedEvilTotal)
+        mAvalonExpectedGoodTotal = sharedPref.getInt(context.getString(R.string.good_player_number_avalon_key), mAvalonExpectedGoodTotal)
+        mAvalonExpectedEvilTotal = sharedPref.getInt(context.getString(R.string.evil_player_number_avalon_key), mAvalonExpectedEvilTotal)
+        mIsMerlinChecked = sharedPref.getBoolean(context.getString(R.string.is_merlin_checked_key), mIsMerlinChecked)
+        mIsPercivalChecked = sharedPref.getBoolean(context.getString(R.string.is_percival_checked_key), mIsPercivalChecked)
+        mIsMorganaChecked = sharedPref.getBoolean(context.getString(R.string.is_morgana_checked_key), mIsMorganaChecked)
+        mIsMordredChecked = sharedPref.getBoolean(context.getString(R.string.is_mordred_checked_key), mIsMordredChecked)
+        mIsOberonChecked = sharedPref.getBoolean(context.getString(R.string.is_oberon_checked_key), mIsOberonChecked)
+        mSecretHitlerExpectedGoodTotal = sharedPref.getInt(context.getString(R.string.good_player_number_secrethitler_key), mSecretHitlerExpectedGoodTotal)
+        mSecretHitlerExpectedEvilTotal = sharedPref.getInt(context.getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerExpectedEvilTotal)
     }
 
     @Synchronized
@@ -60,20 +60,20 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
 
         val sharedPrefEditor: SharedPreferences.Editor = mSharedPref!!.edit()
         sharedPrefEditor.remove(mContext!!.getString(R.string.background_sound_key))  // this line may be removed in future
-        sharedPrefEditor.putLong(mContext!!.getString(R.string.pause_duration_key), pauseDurationInMilliSecs)
-        sharedPrefEditor.putString(mContext!!.getString(R.string.background_sound_name_key), backgroundSoundName)
-        sharedPrefEditor.putFloat(mContext!!.getString(R.string.background_volume_key), backgroundSoundVolume)
-        sharedPrefEditor.putFloat(mContext!!.getString(R.string.narration_volume_key), narrationVolume)
+        sharedPrefEditor.putLong(mContext!!.getString(R.string.pause_duration_key), mPauseDurationInMilliSecs)
+        sharedPrefEditor.putString(mContext!!.getString(R.string.background_sound_name_key), mBackgroundSoundName)
+        sharedPrefEditor.putFloat(mContext!!.getString(R.string.background_volume_key), mBackgroundSoundVolume)
+        sharedPrefEditor.putFloat(mContext!!.getString(R.string.narration_volume_key), mNarrationVolume)
         sharedPrefEditor.putBoolean(mContext!!.getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.good_player_number_avalon_key), avalonExpectedGoodTotal)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.evil_player_number_avalon_key), avalonExpectedEvilTotal)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_merlin_checked_key), isMerlinChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_percival_checked_key), isPercivalChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_morgana_checked_key), isMorganaChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_mordred_checked_key), isMordredChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_oberon_checked_key), isOberonChecked)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.good_player_number_secrethitler_key), secretHitlerExpectedGoodTotal)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.evil_player_number_secrethitler_key), secretHitlerExpectedEvilTotal)
+        sharedPrefEditor.putInt(mContext!!.getString(R.string.good_player_number_avalon_key), mAvalonExpectedGoodTotal)
+        sharedPrefEditor.putInt(mContext!!.getString(R.string.evil_player_number_avalon_key), mAvalonExpectedEvilTotal)
+        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_merlin_checked_key), mIsMerlinChecked)
+        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_percival_checked_key), mIsPercivalChecked)
+        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_morgana_checked_key), mIsMorganaChecked)
+        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_mordred_checked_key), mIsMordredChecked)
+        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_oberon_checked_key), mIsOberonChecked)
+        sharedPrefEditor.putInt(mContext!!.getString(R.string.good_player_number_secrethitler_key), mSecretHitlerExpectedGoodTotal)
+        sharedPrefEditor.putInt(mContext!!.getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerExpectedEvilTotal)
         sharedPrefEditor.apply()
     }
 

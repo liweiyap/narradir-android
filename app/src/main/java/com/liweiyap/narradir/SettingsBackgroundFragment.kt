@@ -67,7 +67,7 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
         }
         else {
             // does not look elegant but it's safe because resource ID integers are non-constant from Gradle version >4.
-            when (viewModel!!.backgroundSoundName) {
+            when (viewModel!!.mBackgroundSoundName) {
                 getString(R.string.backgroundsound_cards) -> backgroundSoundCardsButton.performClick()
                 getString(R.string.backgroundsound_crickets) -> backgroundSoundCricketsButton.performClick()
                 getString(R.string.backgroundsound_fireplace) -> backgroundSoundFireplaceButton.performClick()
@@ -168,19 +168,19 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
         btn?.addOnClickObserver {
             mBackgroundSoundTestMediaPlayer?.let {
                 if (isVolumeControl) {
-                    it.setVolume(viewModel!!.backgroundSoundVolume)
+                    it.setVolume(viewModel!!.mBackgroundSoundVolume)
                 }
                 else {
                     stopBackgroundSound()
                 }
             }
 
-            narradirControl?.playClickSound()
+            mNarradirControl?.playClickSound()
         }
     }
 
     private fun selectBackgroundSound(sound: String) {
-        viewModel?.backgroundSoundName = sound
+        viewModel?.mBackgroundSoundName = sound
     }
 
     private fun playBackgroundSound(sound: String) {
@@ -188,7 +188,7 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
             return
         }
 
-        mBackgroundSoundTestMediaPlayer!!.play(res = sound, volume = viewModel!!.backgroundSoundVolume, listener = null)
+        mBackgroundSoundTestMediaPlayer!!.play(res = sound, volume = viewModel!!.mBackgroundSoundVolume, listener = null)
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         showSnackbar()
     }
@@ -203,20 +203,20 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
 
     private fun displayVolume() {
         viewModel?.let {
-            mVolumeControlLayoutValueTextView?.text = (it.backgroundSoundVolume * 10).roundToInt().toString()
+            mVolumeControlLayoutValueTextView?.text = (it.mBackgroundSoundVolume * 10).roundToInt().toString()
         }
     }
 
     private fun increaseVolume() {
         viewModel?.let {
-            it.backgroundSoundVolume = (it.backgroundSoundVolume + 0.1F).coerceAtMost(maximumValue = 1F)
+            it.mBackgroundSoundVolume = (it.mBackgroundSoundVolume + 0.1F).coerceAtMost(maximumValue = 1F)
             displayVolume()
         }
     }
 
     private fun decreaseVolume() {
         viewModel?.let {
-            it.backgroundSoundVolume = (it.backgroundSoundVolume - 0.1F).coerceAtLeast(minimumValue = 0F)
+            it.mBackgroundSoundVolume = (it.mBackgroundSoundVolume - 0.1F).coerceAtLeast(minimumValue = 0F)
             displayVolume()
         }
     }

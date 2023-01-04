@@ -42,9 +42,10 @@ abstract class CharacterSelectionControlGroup(protected var mActivityContext: Co
         mPlayerNumberButtonArray = null
     }
 
-    fun getPlayerNumberButtonArray(): Array<CustomTypefaceableCheckableObserverButton?>? {
-        return mPlayerNumberButtonArray
-    }
+    val playerNumberButtonArray: Array<CustomTypefaceableCheckableObserverButton?>?
+        get() {
+            return mPlayerNumberButtonArray
+        }
 
     fun selectPlayerNumberButton(playerNumber: Int) {
         if (mPlayerNumberButtonArray == null) {

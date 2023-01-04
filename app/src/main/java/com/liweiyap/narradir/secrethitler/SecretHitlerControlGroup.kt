@@ -55,8 +55,8 @@ class SecretHitlerControlGroup(
         mPlayerNumberButtonArray!![PlayerNumbers.P10] = p10Button
 
         mPlayerNumberButtonArray!![PlayerNumbers.P5]!!.addOnClickObserver {
-            mCharacterArray!!.expectedGoodTotal = 3
-            mCharacterArray!!.expectedEvilTotal = 2
+            mCharacterArray!!.mExpectedGoodTotal = 3
+            mCharacterArray!!.mExpectedEvilTotal = 2
 
             getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.INVISIBLE
             getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
@@ -68,8 +68,8 @@ class SecretHitlerControlGroup(
         }
 
         mPlayerNumberButtonArray!![PlayerNumbers.P6]!!.addOnClickObserver {
-            mCharacterArray!!.expectedGoodTotal = 4
-            mCharacterArray!!.expectedEvilTotal = 2
+            mCharacterArray!!.mExpectedGoodTotal = 4
+            mCharacterArray!!.mExpectedEvilTotal = 2
 
             getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
             getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
@@ -81,8 +81,8 @@ class SecretHitlerControlGroup(
         }
 
         mPlayerNumberButtonArray!![PlayerNumbers.P7]!!.addOnClickObserver {
-            mCharacterArray!!.expectedGoodTotal = 4
-            mCharacterArray!!.expectedEvilTotal = 3
+            mCharacterArray!!.mExpectedGoodTotal = 4
+            mCharacterArray!!.mExpectedEvilTotal = 3
 
             getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
             getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.INVISIBLE
@@ -94,8 +94,8 @@ class SecretHitlerControlGroup(
         }
 
         mPlayerNumberButtonArray!![PlayerNumbers.P8]!!.addOnClickObserver {
-            mCharacterArray!!.expectedGoodTotal = 5
-            mCharacterArray!!.expectedEvilTotal = 3
+            mCharacterArray!!.mExpectedGoodTotal = 5
+            mCharacterArray!!.mExpectedEvilTotal = 3
 
             getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
             getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
@@ -107,8 +107,8 @@ class SecretHitlerControlGroup(
         }
 
         mPlayerNumberButtonArray!![PlayerNumbers.P9]!!.addOnClickObserver {
-            mCharacterArray!!.expectedGoodTotal = 5
-            mCharacterArray!!.expectedEvilTotal = 4
+            mCharacterArray!!.mExpectedGoodTotal = 5
+            mCharacterArray!!.mExpectedEvilTotal = 4
 
             getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
             getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
@@ -120,8 +120,8 @@ class SecretHitlerControlGroup(
         }
 
         mPlayerNumberButtonArray!![PlayerNumbers.P10]!!.addOnClickObserver {
-            mCharacterArray!!.expectedGoodTotal = 6
-            mCharacterArray!!.expectedEvilTotal = 4
+            mCharacterArray!!.mExpectedGoodTotal = 6
+            mCharacterArray!!.mExpectedEvilTotal = 4
 
             getCharacter(SecretHitlerCharacterName.LIBERAL3).visibility = View.VISIBLE
             getCharacter(SecretHitlerCharacterName.LIBERAL4).visibility = View.VISIBLE
@@ -185,7 +185,7 @@ class SecretHitlerControlGroup(
             return
         }
 
-        mCharacterArray!!.characterImageButtonArray?.let {
+        mCharacterArray!!.mCharacterImageButtonArray?.let {
             for (btn: ObserverImageButton? in it) {
                 btn?.addOnClickObserver { showSnackbar(mActivityContext!!.getString(R.string.secrethitler_all_notification)) }
             }
@@ -198,7 +198,7 @@ class SecretHitlerControlGroup(
                 throw RuntimeException("SecretHitlerControlGroup::getExpectedGoodTotal(): mCharacterArray is NULL")
             }
 
-            return mCharacterArray!!.expectedGoodTotal
+            return mCharacterArray!!.mExpectedGoodTotal
         }
 
     val expectedEvilTotal: Int
@@ -207,7 +207,7 @@ class SecretHitlerControlGroup(
                 throw RuntimeException("SecretHitlerControlGroup::getExpectedEvilTotal(): mCharacterArray is NULL")
             }
 
-            return mCharacterArray!!.expectedEvilTotal
+            return mCharacterArray!!.mExpectedEvilTotal
         }
 
     private fun checkPlayerComposition(callingFuncName: String?) {

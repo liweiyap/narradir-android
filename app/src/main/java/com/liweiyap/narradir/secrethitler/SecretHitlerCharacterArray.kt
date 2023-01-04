@@ -16,34 +16,34 @@ class SecretHitlerCharacterArray(
     fascist1Button: ObserverImageButton,
     fascist2Button: ObserverImageButton,
 ) {
-    var characterImageButtonArray: Array<ObserverImageButton?>? = arrayOfNulls(SecretHitlerCharacterName.getNumberOfCharacters())
+    var mCharacterImageButtonArray: Array<ObserverImageButton?>? = arrayOfNulls(SecretHitlerCharacterName.getNumberOfCharacters())
         private set
 
-    var expectedGoodTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters()
-    var expectedEvilTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters()
+    var mExpectedGoodTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfGoodCharacters()
+    var mExpectedEvilTotal: Int = SecretHitlerCharacterName.getDefaultNumberOfEvilCharacters()
 
     init {
-        characterImageButtonArray!![SecretHitlerCharacterName.LIBERAL0] = liberal0Button
-        characterImageButtonArray!![SecretHitlerCharacterName.LIBERAL1] = liberal1Button
-        characterImageButtonArray!![SecretHitlerCharacterName.LIBERAL2] = liberal2Button
-        characterImageButtonArray!![SecretHitlerCharacterName.LIBERAL3] = liberal3Button
-        characterImageButtonArray!![SecretHitlerCharacterName.LIBERAL4] = liberal4Button
-        characterImageButtonArray!![SecretHitlerCharacterName.LIBERAL5] = liberal5Button
-        characterImageButtonArray!![SecretHitlerCharacterName.HITLER] = hitlerButton
-        characterImageButtonArray!![SecretHitlerCharacterName.FASCIST0] = fascist0Button
-        characterImageButtonArray!![SecretHitlerCharacterName.FASCIST1] = fascist1Button
-        characterImageButtonArray!![SecretHitlerCharacterName.FASCIST2] = fascist2Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.LIBERAL0] = liberal0Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.LIBERAL1] = liberal1Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.LIBERAL2] = liberal2Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.LIBERAL3] = liberal3Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.LIBERAL4] = liberal4Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.LIBERAL5] = liberal5Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.HITLER] = hitlerButton
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.FASCIST0] = fascist0Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.FASCIST1] = fascist1Button
+        mCharacterImageButtonArray!![SecretHitlerCharacterName.FASCIST2] = fascist2Button
     }
 
     fun destroy() {
-        characterImageButtonArray?.let {
+        mCharacterImageButtonArray?.let {
             for (idx: Int in it.indices) {
                 it[idx]?.destroy()
                 it[idx] = null
             }
         }
 
-        characterImageButtonArray = null
+        mCharacterImageButtonArray = null
     }
 
     fun getCharacter(idx: Int): ObserverImageButton {
@@ -51,11 +51,11 @@ class SecretHitlerCharacterArray(
             throw RuntimeException("SecretHitlerCharacterArray::getCharacter(): Invalid index $idx")
         }
 
-        if (characterImageButtonArray == null) {
+        if (mCharacterImageButtonArray == null) {
             throw RuntimeException("SecretHitlerCharacterArray::getCharacter(): mCharacterImageButtonArray is NULL")
         }
 
-        return characterImageButtonArray!![idx]!!
+        return mCharacterImageButtonArray!![idx]!!
     }
 
     val actualGoodTotal: Int
@@ -88,16 +88,16 @@ class SecretHitlerCharacterArray(
         }
 
         val good: Int = actualGoodTotal
-        if (good != expectedGoodTotal) {
+        if (good != mExpectedGoodTotal) {
             throw RuntimeException(
-                "$callingFuncName: expected good player total is $expectedGoodTotal" +
+                "$callingFuncName: expected good player total is $mExpectedGoodTotal" +
                     " but actual good player total is $good")
         }
 
         val evil: Int = actualEvilTotal
-        if (evil != expectedEvilTotal) {
+        if (evil != mExpectedEvilTotal) {
             throw RuntimeException(
-                "$callingFuncName: expected evil player total is $expectedEvilTotal" +
+                "$callingFuncName: expected evil player total is $mExpectedEvilTotal" +
                     " but actual evil player total is $evil")
         }
     }

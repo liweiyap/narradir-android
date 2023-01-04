@@ -74,20 +74,20 @@ class SettingsNarrationFragment: NarradirFragmentBase() {
 
     private fun displayVolume() {
         viewModel?.let {
-            mVolumeControlLayoutValueTextView?.text = (it.narrationVolume * 10).roundToInt().toString()
+            mVolumeControlLayoutValueTextView?.text = (it.mNarrationVolume * 10).roundToInt().toString()
         }
     }
 
     private fun increaseVolume() {
         viewModel?.let {
-            it.narrationVolume = (it.narrationVolume + 0.1F).coerceAtMost(maximumValue = 1F)
+            it.mNarrationVolume = (it.mNarrationVolume + 0.1F).coerceAtMost(maximumValue = 1F)
             displayVolume()
         }
     }
 
     private fun decreaseVolume() {
         viewModel?.let {
-            it.narrationVolume = (it.narrationVolume - 0.1F).coerceAtLeast(minimumValue = 0F)
+            it.mNarrationVolume = (it.mNarrationVolume - 0.1F).coerceAtLeast(minimumValue = 0F)
             displayVolume()
         }
     }

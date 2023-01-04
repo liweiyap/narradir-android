@@ -87,7 +87,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                narradirControl?.navigateAwayFromApp()
+                mNarradirControl?.navigateAwayFromApp()
             }
         })
 
@@ -122,7 +122,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
     override fun addSoundToPlayOnButtonClick(btn: IObserverListener?) {
         btn?.addOnClickObserver {
             mAvalonControlGroup?.stopCharacterDescriptionMediaPlayer()
-            narradirControl?.playClickSound()
+            mNarradirControl?.playClickSound()
         }
     }
 
@@ -216,13 +216,13 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
                     "Checked state of Assassin should be identical to that of Merlin")
         }
 
-        viewModel?.avalonExpectedGoodTotal = mAvalonControlGroup!!.expectedGoodTotal
-        viewModel?.avalonExpectedEvilTotal = mAvalonControlGroup!!.expectedEvilTotal
-        viewModel?.isMerlinChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MERLIN).isChecked
-        viewModel?.isPercivalChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.PERCIVAL).isChecked
-        viewModel?.isMorganaChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORGANA).isChecked
-        viewModel?.isMordredChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORDRED).isChecked
-        viewModel?.isOberonChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.OBERON).isChecked
+        viewModel?.mAvalonExpectedGoodTotal = mAvalonControlGroup!!.expectedGoodTotal
+        viewModel?.mAvalonExpectedEvilTotal = mAvalonControlGroup!!.expectedEvilTotal
+        viewModel?.mIsMerlinChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MERLIN).isChecked
+        viewModel?.mIsPercivalChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.PERCIVAL).isChecked
+        viewModel?.mIsMorganaChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORGANA).isChecked
+        viewModel?.mIsMordredChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORDRED).isChecked
+        viewModel?.mIsOberonChecked = mAvalonControlGroup!!.getCharacter(AvalonCharacterName.OBERON).isChecked
         viewModel?.savePreferences()
     }
 
@@ -231,40 +231,40 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
             throw RuntimeException("AvalonCharacterSelectionFragment::applyPreferences(): mAvalonControlGroup is NULL")
         }
 
-        if ( (mAvalonControlGroup!!.characterImageButtonArray == null) || (mAvalonControlGroup!!.getPlayerNumberButtonArray() == null) ) {
+        if ( (mAvalonControlGroup!!.characterImageButtonArray == null) || (mAvalonControlGroup!!.playerNumberButtonArray == null) ) {
             return
         }
 
         viewModel?.let {
-            mAvalonControlGroup!!.selectPlayerNumberButton(playerNumber = it.avalonExpectedGoodTotal + it.avalonExpectedEvilTotal)
+            mAvalonControlGroup!!.selectPlayerNumberButton(playerNumber = it.mAvalonExpectedGoodTotal + it.mAvalonExpectedEvilTotal)
 
             // default: Merlin is checked
             // saved preferences: if Merlin is not checked
-            if ( (!it.isMerlinChecked) && (mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MERLIN).isChecked) ) {
+            if ( (!it.mIsMerlinChecked) && (mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MERLIN).isChecked) ) {
                 mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MERLIN).performClick()
             }
 
             // default: Percival is not checked
             // saved preferences: if Percival is checked
-            if ( (it.isPercivalChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.PERCIVAL).isChecked) ) {
+            if ( (it.mIsPercivalChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.PERCIVAL).isChecked) ) {
                 mAvalonControlGroup!!.getCharacter(AvalonCharacterName.PERCIVAL).performClick()
             }
 
             // default: Morgana is not checked
             // saved preferences: if Morgana is checked
-            if ( (it.isMorganaChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORGANA).isChecked) ) {
+            if ( (it.mIsMorganaChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORGANA).isChecked) ) {
                 mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORGANA).performClick()
             }
 
             // default: Mordred is not checked
             // saved preferences: if Mordred is checked
-            if ( (it.isMordredChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORDRED).isChecked) ) {
+            if ( (it.mIsMordredChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORDRED).isChecked) ) {
                 mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MORDRED).performClick()
             }
 
             // default: Oberon is not checked
             // saved preferences: if Oberon is checked
-            if ( (it.isOberonChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.OBERON).isChecked) ) {
+            if ( (it.mIsOberonChecked) && (!mAvalonControlGroup!!.getCharacter(AvalonCharacterName.OBERON).isChecked) ) {
                 mAvalonControlGroup!!.getCharacter(AvalonCharacterName.OBERON).performClick()
             }
 
