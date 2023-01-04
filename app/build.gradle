@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -47,14 +48,16 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'org.jetbrains:annotations:15.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
     debugImplementation 'androidx.fragment:fragment-testing:1.5.5'
     debugImplementation 'androidx.test:monitor:1.6.0'  // fixes waiting forever for application to come online during instrumentation test (see: https://github.com/android/android-test/issues/1589#issuecomment-1316971699)
+                                                       // maybe can remove after upgrading fragment-testing to 1.6.0 (see: https://github.com/android/android-test/issues/1611#issuecomment-1360681554)
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
