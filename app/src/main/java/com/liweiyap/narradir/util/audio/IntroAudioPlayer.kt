@@ -100,6 +100,7 @@ class IntroAudioPlayer(
         }
 
         mIntroSegmentPlayer = ExoPlayer.Builder(context, audioOnlyRenderersFactory, DefaultMediaSourceFactory(context, ExtractorsFactory.EMPTY)).build()
+        mIntroSegmentTypeArrayList = arrayListOf()
         for (idx: Int in introSegmentArrayList.indices) {
             val segment: String = introSegmentArrayList[idx]
 
@@ -107,24 +108,33 @@ class IntroAudioPlayer(
                 ?: continue
 
             mIntroSegmentPlayer!!.addMediaSource(mediaSource)
+            mIntroSegmentTypeArrayList!!.add(IntroAudioPlayerSegment.Narration(mIntroSegmentIndex = idx))
 
             if (idx == introSegmentArrayList.size - 1) {
                 break
             }
 
-            val silence = SilenceMediaSource(
-                if (IntroSegmentDictionary.canPauseManuallyAtEnd(context = context, resName = segment))
-                    pauseDurationInMilliSecs * 1000
-                else
-                    sMinPauseDurationInMilliSecs * 1000
-            )
-            mIntroSegmentPlayer!!.addMediaSource(silence)
+            if ( (IntroSegmentDictionary.canPauseManuallyAtEnd(context = context, resName = segment)) &&
+                 (pauseDurationInMilliSecs > sMinPauseDurationInMilliSecs) )
+            {
+                val silence = SilenceMediaSource(sPauseInterval * 1000)
+
+                for (duration: Long in pauseDurationInMilliSecs downTo 1000L step sPauseInterval) {
+                    mIntroSegmentPlayer!!.addMediaSource(silence)
+                    mIntroSegmentTypeArrayList!!.add(IntroAudioPlayerSegment.Pause(mRemainingDurationInMilliSecs = duration))
+                }
+            }
+            else {
+                mIntroSegmentPlayer!!.addMediaSource(SilenceMediaSource(sMinPauseDurationInMilliSecs * 1000))
+                mIntroSegmentTypeArrayList!!.add(IntroAudioPlayerSegment.Pause(mRemainingDurationInMilliSecs = sMinPauseDurationInMilliSecs))
+            }
         }
 
-        if (mIntroSegmentPlayer!!.mediaItemCount != 2 * introSegmentArrayList.size - 1) {
+        if (mIntroSegmentPlayer!!.mediaItemCount != mIntroSegmentTypeArrayList!!.size) {
             throw RuntimeException(
                 "IntroAudioPlayer::prepareExoPlayer(): " +
-                    "Invalid no of MediaSources for ExoPlayer; ${introSegmentArrayList.size} segments but ${mIntroSegmentPlayer!!.mediaItemCount} media sources.")
+                    "Invalid no of MediaSources for ExoPlayer; ${mIntroSegmentTypeArrayList!!.size} segments but ${mIntroSegmentPlayer!!.mediaItemCount} media sources."
+            )
         }
 
         mIntroSegmentPlayer!!.volume = narrationVolume
@@ -137,6 +147,17 @@ class IntroAudioPlayer(
 
     fun getExoPlayerCurrentMediaItemIndex(): Int {
         return if (mIntroSegmentPlayer == null) 0 else mIntroSegmentPlayer!!.currentMediaItemIndex
+    }
+
+    fun getExoPlayerCurrentMediaItemType(): IntroAudioPlayerSegment {
+        val idx: Int = getExoPlayerCurrentMediaItemIndex()
+        if ( (mIntroSegmentTypeArrayList == null) ||
+             (idx < 0) ||
+             (idx >= mIntroSegmentTypeArrayList!!.size) ) {
+            return IntroAudioPlayerSegment.Error
+        }
+
+        return mIntroSegmentTypeArrayList!![idx]
     }
 
     fun toggle() {
@@ -183,9 +204,13 @@ class IntroAudioPlayer(
 
         mGeneralSoundPool?.release()
         mGeneralSoundPool = null
+
+        mIntroSegmentTypeArrayList?.clear()
+        mIntroSegmentTypeArrayList = null
     }
 
     private var mIntroSegmentPlayer: ExoPlayer? = null
+    private var mIntroSegmentTypeArrayList: ArrayList<IntroAudioPlayerSegment>? = null
 
     private var mGeneralSoundPool: SoundPool? = null
     private var mBackgroundSoundId: Int = 0
@@ -196,5 +221,6 @@ class IntroAudioPlayer(
 
     companion object {
         const val sMinPauseDurationInMilliSecs: Long = 500L
+        const val sPauseInterval: Long = 1000L
     }
 }
