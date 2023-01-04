@@ -41,7 +41,8 @@
             android:minHeight="@dimen/settings_button_dim_min"
             android:minWidth="@dimen/settings_button_dim_min"
             android:scaleType="fitCenter"
-            android:background="@drawable/settings_button_background" />
+            android:background="@drawable/settings_button_background"
+            android:stateListAnimator="@animator/button_animator" />
 
     </RelativeLayout>
 
