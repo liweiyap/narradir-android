@@ -8,7 +8,6 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 object TimeDisplay {
-    @JvmStatic
     fun shortFormat(msec: Long): String {
         return String.format(
             // guaranteed to be available on all devices, has no surprising special cases, and tends to be most efficient due to its frequency of use
@@ -20,7 +19,6 @@ object TimeDisplay {
         )
     }
 
-    @JvmStatic
     fun longFormat(resources: Resources, msec: Long): String {
         return String.format(
             // guaranteed to be available on all devices, has no surprising special cases, and tends to be most efficient due to its frequency of use

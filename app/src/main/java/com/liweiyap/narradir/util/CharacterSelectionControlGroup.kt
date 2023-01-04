@@ -14,8 +14,7 @@ import com.liweiyap.narradir.util.audio.CharacterDescriptionMediaPlayer
 
 import java.util.EnumSet
 
-abstract class CharacterSelectionControlGroup(@JvmField protected var mActivityContext: Context?) {
-    @JvmField
+abstract class CharacterSelectionControlGroup(protected var mActivityContext: Context?) {
     protected var mPlayerNumberButtonArray: Array<CustomTypefaceableCheckableObserverButton?>? = arrayOfNulls(PlayerNumbers.getNumberOfPlayerNumbers())
     protected var mCharacterDescriptionMediaPlayer: CharacterDescriptionMediaPlayer?
     protected var mSnackbar: SnackbarWrapper?

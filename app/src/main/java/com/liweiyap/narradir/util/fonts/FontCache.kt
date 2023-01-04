@@ -15,7 +15,6 @@ import kotlin.Exception
 object FontCache {
     private val sFontCache = ArrayMap<String, Typeface>()
 
-    @JvmStatic
     fun get(assetFontPath: String?, context: Context): Typeface? {
         if (assetFontPath == null) {
             return null

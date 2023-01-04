@@ -15,7 +15,6 @@ object CustomFontSetter {
      * Can also be used on Buttons, because Button extends (is a subclass of) TextView.
      * Context required for getAssets() function.
      */
-    @JvmStatic
     fun setCustomFont(textView: TextView?, context: Context, attrs: AttributeSet?) {
         attrs?.let {
             val typedArray: TypedArray = context.obtainStyledAttributes(it, R.styleable.CustomFont)
@@ -28,7 +27,6 @@ object CustomFontSetter {
     /**
      * Sets a font on a TextView
      */
-    @JvmStatic
     fun setCustomFont(textView: TextView?, assetFontPath: String?, context: Context) {
         if ( (assetFontPath == null) || (textView == null) ) {
             return

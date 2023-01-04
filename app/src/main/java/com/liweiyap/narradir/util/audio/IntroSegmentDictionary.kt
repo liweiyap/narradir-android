@@ -5,7 +5,6 @@ import android.content.Context
 import com.liweiyap.narradir.R
 
 object IntroSegmentDictionary {
-    @JvmStatic
     fun canPauseManuallyAtEnd(context: Context?, resName: String?): Boolean {
         return (context != null)
             && (resName != null)
@@ -20,7 +19,6 @@ object IntroSegmentDictionary {
             || resName == context.getString(R.string.secrethitlerintrosegment2large_key) )
     }
 
-    @JvmStatic
     fun getSubtitleFromIntroSegmentRes(context: Context?, resName: String?): String? {
         if ((context == null) || (resName == null)) {
             return null

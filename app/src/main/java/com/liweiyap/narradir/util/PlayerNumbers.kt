@@ -8,7 +8,6 @@ object PlayerNumbers {
     const val P9: Int = 4
     const val P10: Int = 5
 
-    @JvmStatic
     fun getNumberOfPlayerNumbers(): Int {
         return 6
     }

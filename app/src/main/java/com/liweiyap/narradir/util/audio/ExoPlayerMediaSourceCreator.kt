@@ -15,7 +15,6 @@ import com.google.android.exoplayer2.util.Assertions
 import com.liweiyap.narradir.R
 
 object ExoPlayerMediaSourceCreator {
-    @JvmStatic
     fun createProgressiveMediaSourceFromRes(context: Context?, resName: String?, extractorsFactory: ExtractorsFactory?): ProgressiveMediaSource? {
         if ((context == null) || (resName == null) || (extractorsFactory == null)) {
             return null

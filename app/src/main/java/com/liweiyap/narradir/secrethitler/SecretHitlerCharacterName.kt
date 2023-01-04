@@ -12,17 +12,14 @@ object SecretHitlerCharacterName {
     const val FASCIST1: Int = 8
     const val FASCIST2: Int = 9
 
-    @JvmStatic
     fun getNumberOfCharacters(): Int {
         return 10
     }
 
-    @JvmStatic
     fun getDefaultNumberOfGoodCharacters(): Int {
         return 3
     }
 
-    @JvmStatic
     fun getDefaultNumberOfEvilCharacters(): Int {
         return 2
     }

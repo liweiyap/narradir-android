@@ -19,7 +19,6 @@ object TextViewAutosizeHelper {
      * Here, because we don't know the px to sp ratio, we set autoSizeMaxTextSize just high enough so that it is clearly not less than or equal to autoSizeMinTextSize and should thus hopefully not throw another type of IllegalArgumentException.
      * But it's not that accurate because autoSizeMaxTextSize shouldn't simply be 10.5 sp; it should instead be as close as possible to textSize (or autoSizeMinTextSize, for that matter) without throwing the latter IllegalArgumentException.
      */
-    @JvmStatic
     fun minimiseAutoSizeTextSizeRange(textView: TextView?) {
         if (textView == null) {
             return

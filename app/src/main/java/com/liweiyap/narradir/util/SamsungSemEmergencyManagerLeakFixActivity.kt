@@ -45,7 +45,6 @@ class SamsungSemEmergencyManagerLeakFixActivity private constructor(private val 
     }
 
     companion object {
-        @JvmStatic
         fun applyFix(application: Application) {
             if ( (Build.MANUFACTURER == "samsung") && (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) ) {
                 application.registerActivityLifecycleCallbacks(SamsungSemEmergencyManagerLeakFixActivity(application))

@@ -18,17 +18,14 @@ object AvalonCharacterName {
     const val MINION2: Int = 14
     const val MINION3: Int = 15
 
-    @JvmStatic
     fun getNumberOfCharacters(): Int {
         return 16
     }
 
-    @JvmStatic
     fun getDefaultNumberOfGoodCharacters(): Int {
         return 3
     }
 
-    @JvmStatic
     fun getDefaultNumberOfEvilCharacters(): Int {
         return 2
     }

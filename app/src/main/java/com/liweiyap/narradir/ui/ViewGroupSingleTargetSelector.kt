@@ -6,7 +6,6 @@ import android.widget.Checkable
 
 object ViewGroupSingleTargetSelector {
     @Throws(RuntimeException::class)
-    @JvmStatic
     fun addSingleTargetSelection(viewGroup: ViewGroup?) {
         if (viewGroup == null) {
             return
