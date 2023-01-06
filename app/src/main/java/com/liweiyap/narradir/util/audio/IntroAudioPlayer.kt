@@ -152,7 +152,8 @@ class IntroAudioPlayer(
         val idx: Int = getExoPlayerCurrentMediaItemIndex()
         if ( (mIntroSegmentTypeArrayList == null) ||
              (idx < 0) ||
-             (idx >= mIntroSegmentTypeArrayList!!.size) ) {
+             (idx >= mIntroSegmentTypeArrayList!!.size) )
+        {
             return IntroAudioPlayerSegment.Error
         }
 
