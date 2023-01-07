@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
     debugImplementation 'androidx.fragment:fragment-testing:1.5.5'
-    debugImplementation 'androidx.test:monitor:1.6.0'  // fixes waiting forever for application to come online during instrumentation test (see: https://github.com/android/android-test/issues/1589#issuecomment-1316971699)
+    debugImplementation 'androidx.test:monitor:1.6.1'  // fixes waiting forever for application to come online during instrumentation test (see: https://github.com/android/android-test/issues/1589#issuecomment-1316971699)
                                                        // maybe can remove after upgrading fragment-testing to 1.6.0 (see: https://github.com/android/android-test/issues/1611#issuecomment-1360681554)
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'

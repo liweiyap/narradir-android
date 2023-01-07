@@ -106,6 +106,7 @@
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
         <item name="alphaUnchecked">0.6</item>
     </style>
 
@@ -122,6 +123,7 @@
     <style name="CharacterImageStyleBase" parent="@android:style/Widget.ImageButton">
         <item name="android:scaleType">fitXY</item>
         <item name="android:padding">2dp</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
     </style>
 
     <style name="CharacterImageStyleAvalon" parent="CharacterImageStyleBase">
@@ -153,6 +155,7 @@
         <item name="android:textSize">@dimen/game_switcher_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/game_switcher_button_background</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
     </style>
 
     <style name="GameSwitcherStyleAutosized" parent="GameSwitcherStyleBase">
@@ -168,6 +171,7 @@
         <item name="android:minWidth">0dp</item>
         <item name="android:background">@drawable/capsule</item>
         <item name="android:maxLines">1</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
     </style>
 
     <style name="CapsuleStyleAutosized" parent="CapsuleStyleBase">
@@ -234,6 +238,7 @@
         <item name="android:textSize">@dimen/settings_layout_edit_button_font_size</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/edit_button_background</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
     </style>
 
     <style name="SettingsLayoutEditButtonStyleAutosized" parent="SettingsLayoutEditButtonStyleBase">
@@ -260,6 +265,7 @@
         <item name="android:layout_margin">5dp</item>
         <item name="android:textSize">@dimen/control_key_font_size</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
     </style>
 
     <style name="ControlKeyStyleAutosized" parent="ControlKeyStyleBase">
@@ -311,6 +317,7 @@
         <item name="android:background">@drawable/settings_layout_selector</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:stateListAnimator">@animator/button_animator</item>
         <item name="alphaUnchecked">0.5</item>
     </style>
 

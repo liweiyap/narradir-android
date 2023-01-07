@@ -133,8 +133,7 @@ class IntroAudioPlayer(
         if (mIntroSegmentPlayer!!.mediaItemCount != mIntroSegmentTypeArrayList!!.size) {
             throw RuntimeException(
                 "IntroAudioPlayer::prepareExoPlayer(): " +
-                    "Invalid no of MediaSources for ExoPlayer; ${mIntroSegmentTypeArrayList!!.size} segments but ${mIntroSegmentPlayer!!.mediaItemCount} media sources."
-            )
+                    "Invalid no of MediaSources for ExoPlayer; ${mIntroSegmentTypeArrayList!!.size} segments but ${mIntroSegmentPlayer!!.mediaItemCount} media sources.")
         }
 
         mIntroSegmentPlayer!!.volume = narrationVolume
@@ -153,7 +152,8 @@ class IntroAudioPlayer(
         val idx: Int = getExoPlayerCurrentMediaItemIndex()
         if ( (mIntroSegmentTypeArrayList == null) ||
              (idx < 0) ||
-             (idx >= mIntroSegmentTypeArrayList!!.size) ) {
+             (idx >= mIntroSegmentTypeArrayList!!.size) )
+        {
             return IntroAudioPlayerSegment.Error
         }
 
