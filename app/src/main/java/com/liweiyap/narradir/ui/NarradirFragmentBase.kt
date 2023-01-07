@@ -3,11 +3,10 @@ package com.liweiyap.narradir.ui
 import android.content.Context
 
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 
 import com.liweiyap.narradir.util.INarradirControl
 import com.liweiyap.narradir.util.NarradirViewModel
+import com.liweiyap.narradir.util.SafeNavigator
 
 abstract class NarradirFragmentBase: Fragment() {
     override fun onAttach(context: Context) {
@@ -34,10 +33,7 @@ abstract class NarradirFragmentBase: Fragment() {
     }
 
     protected fun navigateUp(steps: Int) {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        for (step: Int in 0 until steps) {
-            navController.navigateUp()
-        }
+        SafeNavigator.navigateUp(fragment = this, steps = steps)
     }
 
     protected var mNarradirControl: INarradirControl? = null

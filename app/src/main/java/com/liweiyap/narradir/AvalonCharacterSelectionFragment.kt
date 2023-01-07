@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 
 import com.liweiyap.narradir.avalon.AvalonCharacterName
 import com.liweiyap.narradir.avalon.AvalonControlGroup
@@ -18,6 +16,7 @@ import com.liweiyap.narradir.ui.ObserverImageButton
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
+import com.liweiyap.narradir.util.SafeNavigator
 
 import java.util.ArrayList
 
@@ -129,8 +128,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
     private fun navigateToSecretHitlerCharacterSelectionFragment() {
         viewModel?.saveSecretHitlerLastSelected()
 
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.secretHitlerCharacterSelectionFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.secretHitlerCharacterSelectionFragment)
     }
 
     private fun navigateToPlayIntroductionFragment() {
@@ -192,13 +190,11 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
         bundle.putStringArrayList(getString(R.string.intro_segments_key), introSegmentArrayList)
         bundle.putBoolean(getString(R.string.is_started_from_avalon_key), true)
 
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.playIntroductionFragment, bundle)
+        SafeNavigator.navigate(fragment = this, resId = R.id.playIntroductionFragment, args = bundle)
     }
 
     private fun navigateToSettingsHomeFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.settingsHomeFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.settingsHomeFragment)
     }
 
     /**

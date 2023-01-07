@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 
 import com.liweiyap.narradir.secrethitler.SecretHitlerControlGroup
 import com.liweiyap.narradir.ui.IObserverListener
@@ -17,6 +15,7 @@ import com.liweiyap.narradir.ui.ObserverImageButton
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
+import com.liweiyap.narradir.util.SafeNavigator
 
 import java.util.ArrayList
 
@@ -112,8 +111,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
     private fun navigateToAvalonCharacterSelectionFragment() {
         viewModel?.saveAvalonLastSelected()
 
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.avalonCharacterSelectionFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.avalonCharacterSelectionFragment)
     }
 
     private fun navigateToPlayIntroductionFragment() {
@@ -141,13 +139,11 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
         bundle.putStringArrayList(getString(R.string.intro_segments_key), introSegmentArrayList)
         bundle.putBoolean(getString(R.string.is_started_from_avalon_key), false)
 
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.playIntroductionFragment, bundle)
+        SafeNavigator.navigate(fragment = this, resId = R.id.playIntroductionFragment, args = bundle)
     }
 
     private fun navigateToSettingsHomeFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.settingsHomeFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.settingsHomeFragment)
     }
 
     /**

@@ -9,13 +9,12 @@ import android.view.View
 import android.widget.LinearLayout
 
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.SettingsLayout
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
+import com.liweiyap.narradir.util.SafeNavigator
 import com.liweiyap.narradir.util.TimeDisplay
 
 import kotlin.math.roundToInt
@@ -109,28 +108,23 @@ class SettingsHomeFragment: NarradirFragmentBase() {
     }
 
     private fun navigateToSettingsNarrationFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.settingsNarrationFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.settingsNarrationFragment)
     }
 
     private fun navigateToSettingsBackgroundFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.settingsBackgroundFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.settingsBackgroundFragment)
     }
 
     private fun navigateToSettingsRoleTimerFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.settingsRoleTimerFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.settingsRoleTimerFragment)
     }
 
     private fun navigateToHelpFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.helpFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.helpFragment)
     }
 
     private fun navigateToPrivacyFragment() {
-        val navController: NavController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.privacyFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.privacyFragment)
     }
 
     private fun navigateToAuthorWebsite() {
