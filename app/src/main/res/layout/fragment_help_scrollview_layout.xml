@@ -106,7 +106,7 @@
         style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
-        android:text="@string/help_subheading3_para1"
+        android:id="@+id/tv_help_subheading3_para1"
         style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
@@ -143,6 +143,10 @@
 
     <TextView
         android:text="@string/help_subheading3_para10"
+        style="@style/HelpParagraphStyleAutosized" />
+
+    <TextView
+        android:text="@string/help_subheading3_para11"
         style="@style/HelpParagraphStyleAutosized" />
 
     <TextView
