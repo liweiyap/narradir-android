@@ -34,6 +34,10 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         // receive data
         // ----------------------------------------------------------------------
 
+        // Since we have a ViewModel, we could actually navigate to PlayIntroductionFragment without a Bundle,
+        // just like how we navigate to other Fragments without one.
+        // However, using a Bundle is just a trick to prevent the app from starting from the background with PlayIntroductionFragment,
+        // which I as the developer personally dislike, with the audio already playing from the get-go.
         var introSegmentArrayList: ArrayList<String>? = null
         var isStartedFromAvalon = true
         if (savedInstanceState == null) {
@@ -48,6 +52,8 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
             isStartedFromAvalon = savedInstanceState.getBoolean(getString(R.string.is_started_from_avalon_key), true)
         }
 
+        // App started from the background with PlayIntroductionFragment.
+        // Destroy, so that audio will not already be playing from the get-go.
         if (introSegmentArrayList == null) {
             destroy()
         }
