@@ -23,7 +23,7 @@ class HelpFragment: NarradirFragmentBase() {
         val generalBackButton = view.findViewById<CustomTypefaceableObserverButton>(R.id.generalBackButton)
         val mainButton = view.findViewById<CustomTypefaceableObserverButton>(R.id.mainButton)
 
-        TextViewSpanHelper.setSpan(
+        TextViewSpanHelper.setClickableSpan(
             textView = view.findViewById(R.id.tv_help_subheading3_para1),
             text = getString(R.string.help_subheading3_para1),
             spanStart = 6,

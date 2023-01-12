@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.TextView
 
 object TextViewSpanHelper {
-    fun setSpan(textView: TextView?, text: CharSequence?, spanStart: Int, spanEnd: Int, onClickCallback: () -> Unit) {
+    fun setClickableSpan(textView: TextView?, text: CharSequence?, spanStart: Int, spanEnd: Int, onClickCallback: () -> Unit) {
         if ( (textView == null ) || (TextUtils.isEmpty(text)) ) {
             return
         }
