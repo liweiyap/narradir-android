@@ -17,14 +17,14 @@ object TextViewSpanHelper {
         }
 
         val spannableString = SpannableString(text)
-        spannableString.setSpan(getClickableSpan(onClickCallback), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(createClickableSpan(onClickCallback), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         textView.text = spannableString
         textView.movementMethod = LinkMovementMethod.getInstance()
         textView.highlightColor = Color.TRANSPARENT
     }
 
-    private fun getClickableSpan(onClickCallback: () -> Unit): ClickableSpan {
+    private fun createClickableSpan(onClickCallback: () -> Unit): ClickableSpan {
         return object: ClickableSpan() {
             override fun onClick(textView: View) {
                 onClickCallback()
