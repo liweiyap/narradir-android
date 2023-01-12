@@ -12,7 +12,7 @@ import android.widget.TextView
 
 object TextViewSpanHelper {
     fun setClickableSpan(textView: TextView?, text: CharSequence?, spanStart: Int, spanEnd: Int, onClickCallback: () -> Unit) {
-        if ( (textView == null ) || (TextUtils.isEmpty(text)) ) {
+        if ( (textView == null) || (TextUtils.isEmpty(text)) ) {
             return
         }
 
