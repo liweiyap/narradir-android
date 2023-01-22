@@ -1,7 +1,7 @@
 # <a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img align="left" src="assets-github/ic_launcher-mipmap-xxxhdpi.png" height="100px" /></a> Narradir : Narrator App for <br/> _The Resistance: Avalon_ & _Secret Hitler_ 
 <a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="70px"/></a>
 <br/>
-<img src="https://img.shields.io/badge/downloads-1k%2B-3ddc84?style=for-the-badge">&emsp;<img src="https://img.shields.io/badge/Android-7%2B-3ddc84?style=for-the-badge&logo=android">&emsp;<img src="https://img.shields.io/badge/release-v5.1-5a748c?style=for-the-badge">
+<img src="https://img.shields.io/badge/downloads-1k%2B-green?style=for-the-badge">&emsp;<img src="https://img.shields.io/badge/Android-7%2B-green?style=for-the-badge&logo=android">&emsp;<img src="https://img.shields.io/badge/release-v5.1-5a748c?style=for-the-badge">
 
 _Narradir_ [na-rey-deer] is designed to be used with the original _The Resistance: Avalon_ and _Secret Hitler_ board games. You will need at least one of these games, as well as an Android phone, in order to take advantage of this app.
 
