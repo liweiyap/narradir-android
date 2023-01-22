@@ -52,10 +52,12 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
             isStartedFromAvalon = savedInstanceState.getBoolean(getString(R.string.is_started_from_avalon_key), true)
         }
 
-        // App started from the background with PlayIntroductionFragment.
-        // Destroy, so that audio will not already be playing from the get-go.
         if (introSegmentArrayList == null) {
+            // App started from the background with PlayIntroductionFragment.
+            // Destroy, so that audio will not already be playing from the get-go.
             destroy()
+
+            introSegmentArrayList = ArrayList()
         }
 
         view.findViewById<View>(R.id.gameTitleAvalonTextView).visibility = if (isStartedFromAvalon) View.VISIBLE else View.INVISIBLE
@@ -71,7 +73,7 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         else {
             mAudioPlayer = IntroAudioPlayer(
                 requireContext(),
-                introSegmentArrayList!!, viewModel!!.mPauseDurationInMilliSecs, viewModel!!.mNarrationVolume,
+                introSegmentArrayList, viewModel!!.mPauseDurationInMilliSecs, viewModel!!.mNarrationVolume,
                 viewModel!!.mBackgroundSoundName, viewModel!!.mBackgroundSoundVolume)
 
             mAudioPlayer!!.addExoPlayerListener(object: Player.Listener {
@@ -130,7 +132,9 @@ class PlayIntroductionFragment: NarradirFragmentBase() {
         // miscellaneous UI initialisation
         // ----------------------------------------------------------------------
 
-        switchCurrentDisplayedSubtitle(resName = introSegmentArrayList!![0])
+        if (introSegmentArrayList.isNotEmpty()) {
+            switchCurrentDisplayedSubtitle(resName = introSegmentArrayList[0])
+        }
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
