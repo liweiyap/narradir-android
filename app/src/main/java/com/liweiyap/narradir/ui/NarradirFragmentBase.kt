@@ -1,6 +1,8 @@
 package com.liweiyap.narradir.ui
 
 import android.content.Context
+import android.os.Bundle
+import androidx.annotation.IdRes
 
 import androidx.fragment.app.Fragment
 
@@ -30,6 +32,14 @@ abstract class NarradirFragmentBase: Fragment() {
         btn?.addOnClickObserver {
             mNarradirControl?.playClickSound()
         }
+    }
+
+    protected fun navigateToFragment(@IdRes resId: Int) {
+        SafeNavigator.navigate(fragment = this, resId = resId)
+    }
+
+    protected fun navigateToFragment(@IdRes resId: Int, args: Bundle?) {
+        SafeNavigator.navigate(fragment = this, resId = resId, args = args)
     }
 
     protected fun navigateUp(steps: Int) {

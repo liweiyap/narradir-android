@@ -14,7 +14,6 @@ import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.SettingsLayout
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.SafeNavigator
 import com.liweiyap.narradir.util.TimeDisplay
 
 import kotlin.math.roundToInt
@@ -56,9 +55,9 @@ class SettingsHomeFragment: NarradirFragmentBase() {
         // navigation bar (of fragment, not of phone)
         // ----------------------------------------------------------------------
 
-        privacyButton.addOnClickObserver { navigateToPrivacyFragment() }
+        privacyButton.addOnClickObserver { navigateToFragment(resId = R.id.actionSettingsHomeToPrivacy) }
         backButton.addOnClickObserver { navigateUp(steps = 1) }
-        helpButton.addOnClickObserver { navigateToHelpFragment() }
+        helpButton.addOnClickObserver { navigateToFragment(resId = R.id.actionSettingsHomeToHelp) }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -70,9 +69,9 @@ class SettingsHomeFragment: NarradirFragmentBase() {
         // navigation from background sound selection layout itself
         // ----------------------------------------------------------------------
 
-        mNarrationSettingsLayout!!.editButton.addOnClickObserver { navigateToSettingsNarrationFragment() }
-        mBackgroundSettingsLayout!!.editButton.addOnClickObserver { navigateToSettingsBackgroundFragment() }
-        mRoleTimerSettingsLayout!!.editButton.addOnClickObserver { navigateToSettingsRoleTimerFragment() }
+        mNarrationSettingsLayout!!.editButton.addOnClickObserver { navigateToFragment(resId = R.id.actionSettingsHomeToNarration) }
+        mBackgroundSettingsLayout!!.editButton.addOnClickObserver { navigateToFragment(resId = R.id.actionSettingsHomeToBackground) }
+        mRoleTimerSettingsLayout!!.editButton.addOnClickObserver { navigateToFragment(resId = R.id.actionSettingsHomeToRoleTimer) }
 
         // ----------------------------------------------------------------------
         // navigation to external web browser
@@ -105,26 +104,6 @@ class SettingsHomeFragment: NarradirFragmentBase() {
         mNarrationSettingsLayout = null
         mBackgroundSettingsLayout = null
         mRoleTimerSettingsLayout = null
-    }
-
-    private fun navigateToSettingsNarrationFragment() {
-        SafeNavigator.navigate(fragment = this, resId = R.id.settingsNarrationFragment)
-    }
-
-    private fun navigateToSettingsBackgroundFragment() {
-        SafeNavigator.navigate(fragment = this, resId = R.id.settingsBackgroundFragment)
-    }
-
-    private fun navigateToSettingsRoleTimerFragment() {
-        SafeNavigator.navigate(fragment = this, resId = R.id.settingsRoleTimerFragment)
-    }
-
-    private fun navigateToHelpFragment() {
-        SafeNavigator.navigate(fragment = this, resId = R.id.helpFragment)
-    }
-
-    private fun navigateToPrivacyFragment() {
-        SafeNavigator.navigate(fragment = this, resId = R.id.privacyFragment)
     }
 
     private fun navigateToAuthorWebsite() {

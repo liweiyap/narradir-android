@@ -36,6 +36,8 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
         mClickSoundGenerator?.playClickSound()
     }
 
+    // useful in SecretHitlerCharacterSelectionFragment since popUpToInclusive is TRUE in nav_graph.xml
+    // we don't really need it in AvalonCharacterSelectionFragment, but just putting it there too to make sure that app behaviour is consistent throughout
     override fun navigateAwayFromApp() {
         // https://developer.android.com/guide/components/activities/tasks-and-back-stack#back-press-behavior
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
