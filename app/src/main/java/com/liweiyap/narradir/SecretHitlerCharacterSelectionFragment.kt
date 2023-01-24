@@ -15,7 +15,6 @@ import com.liweiyap.narradir.ui.ObserverImageButton
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableCheckableObserverButton
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
-import com.liweiyap.narradir.util.SafeNavigator
 
 import java.util.ArrayList
 
@@ -66,7 +65,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
         gameSwitcherButton.addOnClickObserver { navigateToAvalonCharacterSelectionFragment() }
 
         playButton.addOnClickObserver { navigateToPlayIntroductionFragment() }
-        settingsButton.addOnClickObserver { navigateToSettingsHomeFragment() }
+        settingsButton.addOnClickObserver { navigateToFragment(resId = R.id.actionSecretHitlerToSettingsHome) }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -111,7 +110,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
     private fun navigateToAvalonCharacterSelectionFragment() {
         viewModel?.saveAvalonLastSelected()
 
-        SafeNavigator.navigate(fragment = this, resId = R.id.actionSecretHitlerToAvalon)
+        navigateToFragment(resId = R.id.actionSecretHitlerToAvalon)
     }
 
     // Since we have a ViewModel, we could actually navigate to PlayIntroductionFragment without a Bundle,
@@ -144,11 +143,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
         bundle.putStringArrayList(getString(R.string.intro_segments_key), introSegmentArrayList)
         bundle.putBoolean(getString(R.string.is_started_from_avalon_key), false)
 
-        SafeNavigator.navigate(fragment = this, resId = R.id.playIntroductionFragment, args = bundle)
-    }
-
-    private fun navigateToSettingsHomeFragment() {
-        SafeNavigator.navigate(fragment = this, resId = R.id.settingsHomeFragment)
+        navigateToFragment(resId = R.id.actionSecretHitlerToPlayIntro, args = bundle)
     }
 
     /**
