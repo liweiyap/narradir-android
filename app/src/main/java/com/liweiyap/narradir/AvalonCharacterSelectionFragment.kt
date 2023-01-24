@@ -128,7 +128,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
     private fun navigateToSecretHitlerCharacterSelectionFragment() {
         viewModel?.saveSecretHitlerLastSelected()
 
-        SafeNavigator.navigate(fragment = this, resId = R.id.secretHitlerCharacterSelectionFragment)
+        SafeNavigator.navigate(fragment = this, resId = R.id.actionAvalonToSecretHitler)
     }
 
     // Since we have a ViewModel, we could actually navigate to PlayIntroductionFragment without a Bundle,
