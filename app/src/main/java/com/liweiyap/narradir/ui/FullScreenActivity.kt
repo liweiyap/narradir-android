@@ -45,15 +45,15 @@ open class FullScreenActivity: AppCompatActivity() {
 
     private fun makeFullScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            makeFullScreenSinceApi29()
+            makeFullScreenSinceApi30()
         }
         else {
-            makeFullScreenPreApi29()
+            makeFullScreenPreApi30()
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.R)
-    private fun makeFullScreenSinceApi29() {
+    private fun makeFullScreenSinceApi30() {
         // https://stackoverflow.com/questions/62643517/immersive-fullscreen-on-android-11
         window.setDecorFitsSystemWindows(false)
         val controller: WindowInsetsController = window.insetsController
@@ -64,7 +64,7 @@ open class FullScreenActivity: AppCompatActivity() {
     }
 
     @Suppress("DEPRECATION")
-    private fun makeFullScreenPreApi29() {
+    private fun makeFullScreenPreApi30() {
         // make the below show-/hide-changes temporary
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.decorView.systemUiVisibility =
