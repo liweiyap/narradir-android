@@ -5,6 +5,7 @@
     android:id="@+id/helpLayout"
     android:weightSum="10"
     style="@style/FragmentLayoutStyle"
+    tools:background="@drawable/grunge_background_kashmirblue"
     tools:context=".PrivacyFragment">
 
     <com.liweiyap.narradir.ui.fonts.CustomTypefaceableTextView
