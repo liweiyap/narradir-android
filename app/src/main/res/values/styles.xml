@@ -25,12 +25,16 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="FragmentContainerViewStyle" parent="@android:style/Widget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <style name="FragmentLayoutStyle" parent="@android:style/Widget">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:background">@drawable/grunge_background_kashmirblue</item>
         <item name="android:paddingTop">@dimen/fragment_vertical_margin</item>
     </style>
 
