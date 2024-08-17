@@ -117,7 +117,7 @@ class SecretHitlerCharacterSelectionFragment: NarradirFragmentBase() {
     // just like how we navigate to other Fragments without one.
     // However, using a Bundle is just a trick to prevent the app from starting from the background with PlayIntroductionFragment,
     // which I as the developer personally dislike, with the audio already playing from the get-go.
-    // See PlayIntroductionFragment::onCreate() for more details.
+    // See PlayIntroductionFragment::onViewCreated() for more details.
     private fun navigateToPlayIntroductionFragment() {
         if (mSecretHitlerControlGroup == null) {
             throw RuntimeException("SecretHitlerCharacterSelectionFragment::navigateToPlayIntroductionFragment(): mSecretHitlerControlGroup is NULL")

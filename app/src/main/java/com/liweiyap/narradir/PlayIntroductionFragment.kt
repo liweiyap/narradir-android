@@ -9,8 +9,7 @@ import android.widget.ImageView
 
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.res.ResourcesCompat
-
-import com.google.android.exoplayer2.Player
+import androidx.media3.common.Player
 
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton

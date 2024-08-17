@@ -15,6 +15,10 @@
 /.idea/jarRepositories.xml
 /.idea/vcs.xml
 /.idea/androidTestResultsUserPreferences.xml
+.idea/deploymentTargetSelector.xml
+.idea/kotlinc.xml
+.idea/migrations.xml
+.idea/other.xml
 .DS_Store
 /build
 /captures

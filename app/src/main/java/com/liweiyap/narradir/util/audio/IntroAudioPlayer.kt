@@ -4,22 +4,24 @@ import android.content.Context
 import android.media.SoundPool
 import android.os.Handler
 
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.Renderer
-import com.google.android.exoplayer2.RenderersFactory
-import com.google.android.exoplayer2.audio.AudioRendererEventListener
-import com.google.android.exoplayer2.audio.MediaCodecAudioRenderer
-import com.google.android.exoplayer2.extractor.Extractor
-import com.google.android.exoplayer2.extractor.ExtractorsFactory
-import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor
-import com.google.android.exoplayer2.mediacodec.MediaCodecSelector
-import com.google.android.exoplayer2.metadata.MetadataOutput
-import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.source.SilenceMediaSource
-import com.google.android.exoplayer2.text.TextOutput
-import com.google.android.exoplayer2.video.VideoRendererEventListener
+import androidx.annotation.OptIn
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.extractor.Extractor
+import androidx.media3.extractor.ExtractorsFactory
+import androidx.media3.exoplayer.Renderer
+import androidx.media3.exoplayer.RenderersFactory
+import androidx.media3.exoplayer.audio.AudioRendererEventListener
+import androidx.media3.exoplayer.audio.MediaCodecAudioRenderer
+import androidx.media3.exoplayer.mediacodec.MediaCodecSelector
+import androidx.media3.exoplayer.metadata.MetadataOutput
+import androidx.media3.extractor.mp3.Mp3Extractor
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
+import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import androidx.media3.exoplayer.source.SilenceMediaSource
+import androidx.media3.exoplayer.text.TextOutput
+import androidx.media3.exoplayer.video.VideoRendererEventListener
 
 import com.liweiyap.narradir.R
 
@@ -90,6 +92,7 @@ class IntroAudioPlayer(
         }
     }
 
+    @OptIn(UnstableApi::class)
     private fun prepareExoPlayer(context: Context, introSegmentArrayList: ArrayList<String>, pauseDurationInMilliSecs: Long, narrationVolume: Float) {
         val audioOnlyRenderersFactory = RenderersFactory { handler: Handler?, _: VideoRendererEventListener?, audioListener: AudioRendererEventListener?, _: TextOutput?, _: MetadataOutput? ->
             arrayOf<Renderer>(MediaCodecAudioRenderer(context, MediaCodecSelector.DEFAULT, handler, audioListener))
