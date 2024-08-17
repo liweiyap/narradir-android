@@ -1,6 +1,8 @@
 package com.liweiyap.narradir.util
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
@@ -15,22 +17,27 @@ object SafeNavigator {
     fun navigate(fragment: Fragment, @IdRes resId: Int) {
         navigateSafely {
             val navController: NavController = NavHostFragment.findNavController(fragment)
-            navController.navigate(resId)
+            postDelayed({
+                navController.navigate(resId)
+            })
         }
     }
 
     fun navigate(fragment: Fragment, @IdRes resId: Int, args: Bundle?) {
         navigateSafely {
             val navController: NavController = NavHostFragment.findNavController(fragment)
-            navController.navigate(resId, args)
+            postDelayed({
+                navController.navigate(resId, args)
+            })
         }
     }
 
     fun navigateUp(fragment: Fragment, steps: Int) {
         navigateSafely {
             val navController: NavController = NavHostFragment.findNavController(fragment)
+            val runnable = Runnable { navController.navigateUp() }
             for (step: Int in 0 until steps) {
-                navController.navigateUp()
+                postDelayed(runnable, step + 1)
             }
         }
     }
@@ -42,5 +49,10 @@ object SafeNavigator {
         catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun postDelayed(runnable: Runnable, delay: Int = 1) {
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed(runnable, delay.toLong())
     }
 }
