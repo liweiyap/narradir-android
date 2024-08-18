@@ -8,8 +8,8 @@ _Narradir_ [na-rey-deer] is designed to be used with the original _The Resistanc
 This app automates the night-time narration based on the roles in your game. It offers the following improvements over similar apps out there:
 
 * It allows the user to play a background sound during narration to help cover up any sounds made inadvertently by players.
-* It allows the user to change the pause length during which certain characters have to perform their roles.
-* In the case of _The Resistance: Avalon_, it provides a "smart" selection for the characters. As the number of players changes, the range of characters available for selection might also change. In addition, certain selection rules apply. Some characters will be automatically selected/deselected depending on the selection/deselection of other characters.
+* It allows the user to change the pause length during which certain roles have to perform their actions.
+* In the case of _The Resistance: Avalon_, it provides a "smart" selection for the roles. As the number of players changes, the range of roles available for selection might also change. In addition, certain selection rules apply. Some roles will be automatically selected/deselected depending on the selection/deselection of other roles.
 
 <table>
     <tbody>
