@@ -107,8 +107,13 @@ class SettingsHomeFragment: NarradirFragmentBase() {
     }
 
     private fun navigateToAuthorWebsite() {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://liweiyap.github.io"))
-        startActivity(browserIntent)
+        try {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://liweiyap.github.io"))
+            startActivity(browserIntent)
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private var mNarrationSettingsLayout: SettingsLayout? = null
