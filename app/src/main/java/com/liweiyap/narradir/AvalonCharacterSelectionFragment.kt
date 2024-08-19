@@ -136,9 +136,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
     // which I as the developer personally dislike, with the audio already playing from the get-go.
     // See PlayIntroductionFragment::onViewCreated() for more details.
     private fun navigateToPlayIntroductionFragment() {
-        if (mAvalonControlGroup == null) {
-            throw RuntimeException("AvalonCharacterSelectionFragment::navigateToPlayIntroductionFragment(): mAvalonControlGroup is NULL")
-        }
+        mAvalonControlGroup ?: throw RuntimeException("AvalonCharacterSelectionFragment::navigateToPlayIntroductionFragment(): mAvalonControlGroup is NULL")
 
         val introSegmentArrayList = ArrayList<String>()
 
@@ -202,9 +200,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
      * https://stackoverflow.com/a/10991785/12367873
      */
     private fun savePreferences() {
-        if (mAvalonControlGroup == null) {
-            throw RuntimeException("AvalonCharacterSelectionFragment::savePreferences(): mAvalonControlGroup is NULL")
-        }
+        mAvalonControlGroup ?: throw RuntimeException("AvalonCharacterSelectionFragment::savePreferences(): mAvalonControlGroup is NULL")
 
         if (mAvalonControlGroup!!.getCharacter(AvalonCharacterName.MERLIN).isChecked != mAvalonControlGroup!!.getCharacter(AvalonCharacterName.ASSASSIN).isChecked) {
             throw RuntimeException(
@@ -223,9 +219,7 @@ class AvalonCharacterSelectionFragment: NarradirFragmentBase() {
     }
 
     private fun applyPreferences() {
-        if (mAvalonControlGroup == null) {
-            throw RuntimeException("AvalonCharacterSelectionFragment::applyPreferences(): mAvalonControlGroup is NULL")
-        }
+        mAvalonControlGroup ?: throw RuntimeException("AvalonCharacterSelectionFragment::applyPreferences(): mAvalonControlGroup is NULL")
 
         if ( (mAvalonControlGroup!!.characterImageButtonArray == null) || (mAvalonControlGroup!!.playerNumberButtonArray == null) ) {
             return

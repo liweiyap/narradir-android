@@ -1,15 +1,15 @@
-# <a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img align="left" src="assets-github/ic_launcher-mipmap-xxxhdpi.png" height="100px" /></a> Narradir : Narrator App for <br/> _The Resistance: Avalon_ & _Secret Hitler_ 
-<a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="70px"/></a>
+# <a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir'><img align="left" src="assets-github/ic_launcher-mipmap-xxxhdpi.png" height="100px" /></a> Narradir : Narrator App for <br/> _The Resistance: Avalon_ & _Secret Hitler_ 
+<a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="70px"/></a>
 <br/>
-<img src="https://img.shields.io/badge/downloads-1k%2B-green?style=for-the-badge">&emsp;<img src="https://img.shields.io/badge/Android-7%2B-green?style=for-the-badge&logo=android">&emsp;<img src="https://img.shields.io/badge/release-v5.2-5a748c?style=for-the-badge">
+<img src="https://img.shields.io/badge/downloads-10k%2B-green?style=for-the-badge">&emsp;<img src="https://img.shields.io/badge/Android-7%2B-green?style=for-the-badge&logo=android">&emsp;<img src="https://img.shields.io/badge/release-v5.3-5a748c?style=for-the-badge">
 
 _Narradir_ [na-rey-deer] is designed to be used with the original _The Resistance: Avalon_ and _Secret Hitler_ board games. You will need at least one of these games, as well as an Android phone, in order to take advantage of this app.
 
 This app automates the night-time narration based on the roles in your game. It offers the following improvements over similar apps out there:
 
 * It allows the user to play a background sound during narration to help cover up any sounds made inadvertently by players.
-* It allows the user to change the pause length during which certain characters have to perform their roles.
-* In the case of _The Resistance: Avalon_, it provides a "smart" selection for the characters. As the number of players changes, the range of characters available for selection might also change. In addition, certain selection rules apply. Some characters will be automatically selected/deselected depending on the selection/deselection of other characters.
+* It allows the user to change the pause length during which certain roles have to perform their actions.
+* In the case of _The Resistance: Avalon_, it provides a "smart" selection for the roles. As the number of players changes, the range of roles available for selection might also change. In addition, certain selection rules apply. Some roles will be automatically selected/deselected depending on the selection/deselection of other roles.
 
 <table>
     <tbody>
@@ -63,7 +63,7 @@ The cards background sound was taken from the YouTube Audio library. The rest of
 
 The overall app design was inspired by the [_One Night Ultimate Werewolf_](https://play.google.com/store/apps/details?id=com.mobieos.karan.Wolf_Android14_11_13&hl=en_SG&gl=US) app by Bezier Games, Inc., Ted Alspach, Andre Infante, Jonathan Casper, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.
 
-The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, and Li-Toong Yap for their generous help in the internal testing of the app and in providing valuable feedback.
+The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, Li-Toong Yap, and Sascha Böhrkircher for their generous help in the internal testing of the app and in providing valuable feedback.
 
 The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.
 

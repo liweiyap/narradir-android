@@ -14,11 +14,7 @@ import java.util.EnumSet
 
 class SnackbarWrapper(context: Context) {
     private var mSnackbar: Snackbar? = null
-    private val mMaxInlineActionWidth: Int
-
-    init {
-        mMaxInlineActionWidth = context.resources.getDimensionPixelSize(R.dimen.narradir_design_snackbar_action_inline_max_width)
-    }
+    private val mMaxInlineActionWidth: Int = context.resources.getDimensionPixelSize(R.dimen.narradir_design_snackbar_action_inline_max_width)
 
     fun destroy() {
         mSnackbar?.dismiss()

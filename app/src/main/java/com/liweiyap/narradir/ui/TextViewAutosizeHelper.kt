@@ -1,6 +1,5 @@
 package com.liweiyap.narradir.ui
 
-import android.os.Build
 import android.util.TypedValue
 import android.widget.TextView
 
@@ -24,21 +23,16 @@ object TextViewAutosizeHelper {
             return
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (textView.autoSizeTextType != TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
-                return
-            }
+        if (TextViewCompat.getAutoSizeTextType(textView) != TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
+            return
         }
-        else {
-            if (TextViewCompat.getAutoSizeTextType(textView) != TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM) {
-                return
-            }
-        }
+
+        val minTextSize: Int = TextViewCompat.getAutoSizeMinTextSize(textView)
 
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
             textView,
-            TextViewCompat.getAutoSizeMinTextSize(textView),
-            TextViewCompat.getAutoSizeMinTextSize(textView) + 1,
+            minTextSize,
+            minTextSize + 1,
             TextViewCompat.getAutoSizeStepGranularity(textView),
             TypedValue.COMPLEX_UNIT_PX)
     }
