@@ -63,7 +63,7 @@ The cards background sound was taken from the YouTube Audio library. The rest of
 
 The overall app design was inspired by the [_One Night Ultimate Werewolf_](https://play.google.com/store/apps/details?id=com.mobieos.karan.Wolf_Android14_11_13&hl=en_SG&gl=US) app by Bezier Games, Inc., Ted Alspach, Andre Infante, Jonathan Casper, Jeremiah Maher, Akihisa Okui, Gus Batts, and Eric Summerer.
 
-The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, and Li-Toong Yap for their generous help in the internal testing of the app and in providing valuable feedback.
+The app developer would like to express his deepest gratitude to Rui Xiang Peh, Isla Lim, Darrell Wong, Li-Toong Yap, and Sascha Böhrkircher for their generous help in the internal testing of the app and in providing valuable feedback.
 
 The app developer sincerely apologises in advance if he has forgotten to acknowledge/credit anybody else who needs to be acknowledged/credited.
 
