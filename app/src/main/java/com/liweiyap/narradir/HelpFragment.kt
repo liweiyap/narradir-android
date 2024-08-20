@@ -29,7 +29,12 @@ class HelpFragment: NarradirFragmentBase() {
             spanStart = 6,
             spanEnd = 10,
         ) {
-            startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
+            try {
+                startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
         // ----------------------------------------------------------------------
