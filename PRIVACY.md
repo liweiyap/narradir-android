@@ -2,7 +2,7 @@
 
 Li-Wei Yap built the Narradir app (an Avalon/Secret Hitler Narrator app) as a Free app. This SERVICE is provided by Li-Wei Yap at no cost and is intended for use as is.
 
-The terms used in this Privacy Policy have the same meanings as in my Terms and Conditions, which is accessible [here](https://github.com/liweiyap/narradir-android/blob/main/TERMS-AND-CONDITIONS.md) unless otherwise defined in this Privacy Policy.
+The terms used in this Privacy Policy have the same meanings as in my Terms and Conditions, which is accessible [here](https://liweiyap.github.io/narradir-android/TERMS-AND-CONDITIONS) unless otherwise defined in this Privacy Policy.
 
 ## Personal Information Collection and Use
 
@@ -22,10 +22,11 @@ I want to inform you that whenever you use my Service, in a case of an error in 
 
 ## Links to Other Sites
 
-This Service contains a link to my [personal website](https://liweiyap.github.io/). If you click on the link, you will be directed to that site. Whilst I do not collect, use, or share any of your Personal Information on my website either, the website is hosted on GitHub Pages. In addition, the website contains icons from JSDELIVR and Font Awesome, as well as fonts from Google Fonts. Please note that GitHub, JSDELIVR, Font Awesome, and Google Fonts may collect User Personal Information from visitors to my website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the website.
+This Service contains a link to my [personal website](https://liweiyap.github.io/). If you click on the link, you will be directed to that site. I do not collect, use, or share any of your Personal Information on my website either. I do use the Google Search Console to see the number of clicks and impressions from visitors to my website. However, the Google Search Console does not give me the Personal Information of any of these visitors. Furthermore, the website is hosted on GitHub Pages. In addition, the website contains icons from JSDELIVR and Font Awesome, as well as fonts from Google Fonts. Please note that Google, GitHub, JSDELIVR, Font Awesome, and Google Fonts may collect User Personal Information from visitors to my website, including logs of visitor IP addresses, to comply with legal obligations, and to maintain the security and integrity of the website.
 
 Links to privacy policy of these other sites
 
+*   [Google](https://policies.google.com/privacy)
 *   [GitHub Pages](https://docs.github.com/en/github/site-policy/github-privacy-statement)
 *   [JSDELIVR](https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net)
 *   [Font Awesome](https://fontawesome.com/privacy)
