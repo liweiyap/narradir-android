@@ -1,7 +1,7 @@
 # <a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir'><img align="left" src="assets-github/ic_launcher-mipmap-xxxhdpi.png" height="100px" /></a> Narradir : Narrator App for <br/> _The Resistance: Avalon_ & _Secret Hitler_ 
 <a href='https://play.google.com/store/apps/details?id=com.liweiyap.narradir'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="70px"/></a>
 <br/>
-<img src="https://img.shields.io/badge/downloads-10k%2B-green?style=for-the-badge">&emsp;<img src="https://img.shields.io/badge/Android-7%2B-green?style=for-the-badge&logo=android">&emsp;<img src="https://img.shields.io/badge/release-v5.3-5a748c?style=for-the-badge">
+<img src="https://img.shields.io/badge/downloads-10k%2B-green?style=for-the-badge">&emsp;<img src="https://img.shields.io/badge/Android-7%2B-green?style=for-the-badge&logo=android">&emsp;<img src="https://img.shields.io/badge/release-v5.4-5a748c?style=for-the-badge">
 
 _Narradir_ [na-rey-deer] is designed to be used with the original _The Resistance: Avalon_ and _Secret Hitler_ board games. You will need at least one of these games, as well as an Android phone, in order to take advantage of this app.
 
@@ -45,7 +45,9 @@ For the avoidance of doubt, _Narradir_ is not affiliated with or sponsored by Do
 
 Google Play and the Google Play logo are trademarks of Google LLC. Android is also a trademark of Google LLC.
 
-_Narradir_ was developed by [Li-Wei Yap](https://liweiyap.github.io/). The code within this app is Copyright © 2021 Li-Wei Yap and licensed under the [GNU General Public Licence v3.0](https://github.com/liweiyap/narradir-android/blob/main/LICENSE). The code may ___not___ be reproduced without citation.
+_Narradir_ was developed by [Li-Wei Yap](https://liweiyap.github.io/). The code within this app is Copyright © 2021 Li-Wei Yap and licensed under the [GNU General Public Licence v3.0](https://github.com/liweiyap/narradir-android/blob/main/LICENSE-CODE.md). The code may ___not___ be reproduced without citation.
+
+The assets within this app are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence.
 
 The character artwork for _The Resistance: Avalon_ was designed entirely by Indie Boards and Cards and others including Luis Francisco, George Patsouras, Marco Turini, Pablo Messuti, and Luis Tomas. For the purposes of this app, the character artwork for _The Resistance: Avalon_ was cartoonified using the [Cartoon Photo Editor](https://play.google.com/store/apps/details?id=com.lyrebirdstudio.cartoon.face&hl=en_SG&gl=US) from Lyrebird Studio.
 

@@ -24,8 +24,8 @@ class HelpFragment: NarradirFragmentBase() {
         val mainButton = view.findViewById<CustomTypefaceableObserverButton>(R.id.mainButton)
 
         TextViewSpanHelper.setClickableSpan(
-            textView = view.findViewById(R.id.tv_help_subheading3_para1),
-            text = getString(R.string.help_subheading3_para1),
+            textView = view.findViewById(R.id.tv_help_subheading3_para2),
+            text = getString(R.string.help_subheading3_para2),
             spanStart = 6,
             spanEnd = 10,
         ) {

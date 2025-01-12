@@ -8,15 +8,15 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     namespace 'com.liweiyap.narradir'
-    compileSdk 34
-    buildToolsVersion = "34.0.0"
+    compileSdk 35
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId "com.liweiyap.narradir"
         minSdkVersion 24
-        targetSdkVersion 34
-        versionCode 17
-        versionName "5.3"
+        targetSdkVersion 35
+        versionCode 18
+        versionName "5.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -41,23 +41,23 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'org.jetbrains:annotations:24.1.0'
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.8.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.8.7'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.5'
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.media3:media3-exoplayer:1.4.0'  // @UnstableApi annotations after upgrading to Media3: https://github.com/androidx/media/issues/331#issuecomment-1512711590; https://github.com/androidx/media/issues/503
+    implementation 'androidx.media3:media3-exoplayer:1.5.1'  // @UnstableApi annotations after upgrading to Media3: https://github.com/androidx/media/issues/331#issuecomment-1512711590; https://github.com/androidx/media/issues/503
     implementation 'com.google.android.gms:play-services-oss-licenses:17.1.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
-    debugImplementation 'androidx.fragment:fragment-testing:1.8.2'
+    debugImplementation 'androidx.fragment:fragment-testing:1.8.5'
     debugImplementation 'androidx.test:monitor:1.7.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit-ktx:1.2.1'
