@@ -45,7 +45,9 @@ For the avoidance of doubt, _Narradir_ is not affiliated with or sponsored by Do
 
 Google Play and the Google Play logo are trademarks of Google LLC. Android is also a trademark of Google LLC.
 
-_Narradir_ was developed by [Li-Wei Yap](https://liweiyap.github.io/). The code within this app is Copyright © 2021 Li-Wei Yap and licensed under the [GNU General Public Licence v3.0](https://github.com/liweiyap/narradir-android/blob/main/LICENSE). The code may ___not___ be reproduced without citation.
+_Narradir_ was developed by [Li-Wei Yap](https://liweiyap.github.io/). The code within this app is Copyright © 2021 Li-Wei Yap and licensed under the [GNU General Public Licence v3.0](https://github.com/liweiyap/narradir-android/blob/main/LICENSE-CODE.md). The code may ___not___ be reproduced without citation.
+
+The assets within this app are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence.
 
 The character artwork for _The Resistance: Avalon_ was designed entirely by Indie Boards and Cards and others including Luis Francisco, George Patsouras, Marco Turini, Pablo Messuti, and Luis Tomas. For the purposes of this app, the character artwork for _The Resistance: Avalon_ was cartoonified using the [Cartoon Photo Editor](https://play.google.com/store/apps/details?id=com.lyrebirdstudio.cartoon.face&hl=en_SG&gl=US) from Lyrebird Studio.
 
