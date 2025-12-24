@@ -311,10 +311,16 @@ class AvalonCharacterSelectionRules(
      */
     fun onPlayerNumberChange() {
         if ( (mExpectedGoodTotal + mExpectedEvilTotal == 5) &&
-             (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) &&
-             (getCharacter(AvalonCharacterName.OBERON).isChecked) )
+             (getCharacter(AvalonCharacterName.PERCIVAL).isChecked) )
         {
-            getCharacter(AvalonCharacterName.OBERON).performClick()
+            if (getCharacter(AvalonCharacterName.OBERON).isChecked) {
+                getCharacter(AvalonCharacterName.OBERON).performClick()
+            }
+
+            if (!getCharacter(AvalonCharacterName.MORGANA).isChecked &&
+                !getCharacter(AvalonCharacterName.MORDRED).isChecked) {
+                getCharacter(AvalonCharacterName.MORGANA).performClick()
+            }
         }
     }
 
