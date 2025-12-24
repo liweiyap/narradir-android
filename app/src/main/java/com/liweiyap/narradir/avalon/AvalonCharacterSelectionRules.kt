@@ -1,6 +1,7 @@
 package com.liweiyap.narradir.avalon
 
-import android.view.View
+import androidx.core.view.isVisible
+import androidx.core.view.isInvisible
 
 import com.liweiyap.narradir.ui.CheckableObserverImageButton
 
@@ -351,7 +352,7 @@ class AvalonCharacterSelectionRules(
         var currIdx: Int = startIdx
         var charactersToCheck: Int = X
         while ( (currIdx <= endIdx) &&
-                (getCharacter(currIdx).visibility == View.VISIBLE) &&
+                (getCharacter(currIdx).isVisible) &&
                 (charactersToCheck > 0) )
         {
             if (!getCharacter(currIdx).isChecked) {
@@ -397,7 +398,7 @@ class AvalonCharacterSelectionRules(
         var currIdx: Int = startIdx
         var charactersToUncheck: Int = X
         while ((currIdx >= endIdx) && (charactersToUncheck > 0)) {
-            if (getCharacter(currIdx).visibility == View.INVISIBLE) {
+            if (getCharacter(currIdx).isInvisible) {
                 --currIdx
                 continue
             }

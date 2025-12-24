@@ -2,13 +2,13 @@ package com.liweiyap.narradir.ui.fonts
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.TypedValue
 
 import androidx.annotation.ColorInt
+import androidx.core.content.withStyledAttributes
 
 import com.liweiyap.narradir.R
 
@@ -72,10 +72,11 @@ open class StrokedCustomTypefaceableTextView:
 
     final override fun setStroke(context: Context, attrs: AttributeSet?) {
         attrs?.let {
-            @SuppressLint("CustomViewStyleable") val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.StrokedTextAttrs)
-            mStrokeColor = typedArray.getColor(R.styleable.StrokedTextAttrs_textStrokeColor, mStrokeColor)
-            mStrokeWidth = typedArray.getFloat(R.styleable.StrokedTextAttrs_textStrokeWidth, mStrokeWidth)
-            typedArray.recycle()
+            @SuppressLint("CustomViewStyleable")
+            context.withStyledAttributes(attrs, R.styleable.StrokedTextAttrs) {
+                mStrokeColor = getColor(R.styleable.StrokedTextAttrs_textStrokeColor, mStrokeColor)
+                mStrokeWidth = getFloat(R.styleable.StrokedTextAttrs_textStrokeWidth, mStrokeWidth)
+            }
 
             setStrokeColor(mStrokeColor)
             setStrokeWidth(mStrokeWidth)

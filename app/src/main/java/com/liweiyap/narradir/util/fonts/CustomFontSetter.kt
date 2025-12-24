@@ -1,10 +1,11 @@
 package com.liweiyap.narradir.util.fonts
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.widget.TextView
+
+import androidx.core.content.withStyledAttributes
 
 import com.liweiyap.narradir.R
 
@@ -17,10 +18,10 @@ object CustomFontSetter {
      */
     fun setCustomFont(textView: TextView?, context: Context, attrs: AttributeSet?) {
         attrs?.let {
-            val typedArray: TypedArray = context.obtainStyledAttributes(it, R.styleable.CustomFont)
-            val assetFontPath: String? = typedArray.getString(R.styleable.CustomFont_assetFontPath)
-            setCustomFont(textView, assetFontPath, context)
-            typedArray.recycle()
+            context.withStyledAttributes(it, R.styleable.CustomFont) {
+                val assetFontPath: String? = getString(R.styleable.CustomFont_assetFontPath)
+                setCustomFont(textView, assetFontPath, context)
+            }
         }
     }
 

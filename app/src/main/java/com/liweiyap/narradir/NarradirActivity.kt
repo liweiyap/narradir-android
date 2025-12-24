@@ -1,6 +1,5 @@
 package com.liweiyap.narradir
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 
@@ -14,7 +13,7 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_narradir)
 
-        mViewModel = NarradirViewModel(this, getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE))
+        mViewModel = NarradirViewModel(this, getSharedPreferences(getString(R.string.shared_preferences_key), MODE_PRIVATE))
         mClickSoundGenerator = ClickSoundGenerator(this)
     }
 

@@ -3,6 +3,8 @@ package com.liweiyap.narradir.util
 import android.content.Context
 import android.content.SharedPreferences
 
+import androidx.core.content.edit
+
 import com.liweiyap.narradir.R
 import com.liweiyap.narradir.avalon.AvalonCharacterName
 import com.liweiyap.narradir.secrethitler.SecretHitlerCharacterName
@@ -58,23 +60,23 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
             return
         }
 
-        val sharedPrefEditor: SharedPreferences.Editor = mSharedPref!!.edit()
-        sharedPrefEditor.remove(mContext!!.getString(R.string.background_sound_key))  // this line may be removed in future
-        sharedPrefEditor.putLong(mContext!!.getString(R.string.pause_duration_key), mPauseDurationInMilliSecs)
-        sharedPrefEditor.putString(mContext!!.getString(R.string.background_sound_name_key), mBackgroundSoundName)
-        sharedPrefEditor.putFloat(mContext!!.getString(R.string.background_volume_key), mBackgroundSoundVolume)
-        sharedPrefEditor.putFloat(mContext!!.getString(R.string.narration_volume_key), mNarrationVolume)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.good_player_number_avalon_key), mAvalonExpectedGoodTotal)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.evil_player_number_avalon_key), mAvalonExpectedEvilTotal)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_merlin_checked_key), mIsMerlinChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_percival_checked_key), mIsPercivalChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_morgana_checked_key), mIsMorganaChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_mordred_checked_key), mIsMordredChecked)
-        sharedPrefEditor.putBoolean(mContext!!.getString(R.string.is_oberon_checked_key), mIsOberonChecked)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.good_player_number_secrethitler_key), mSecretHitlerExpectedGoodTotal)
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerExpectedEvilTotal)
-        sharedPrefEditor.apply()
+        mSharedPref!!.edit {
+            remove(mContext!!.getString(R.string.background_sound_key))  // this line may be removed in future
+            putLong(mContext!!.getString(R.string.pause_duration_key), mPauseDurationInMilliSecs)
+            putString(mContext!!.getString(R.string.background_sound_name_key), mBackgroundSoundName)
+            putFloat(mContext!!.getString(R.string.background_volume_key), mBackgroundSoundVolume)
+            putFloat(mContext!!.getString(R.string.narration_volume_key), mNarrationVolume)
+            putBoolean(mContext!!.getString(R.string.do_hide_background_sound_hint_key), mDoHideBackgroundSoundHint)
+            putInt(mContext!!.getString(R.string.good_player_number_avalon_key), mAvalonExpectedGoodTotal)
+            putInt(mContext!!.getString(R.string.evil_player_number_avalon_key), mAvalonExpectedEvilTotal)
+            putBoolean(mContext!!.getString(R.string.is_merlin_checked_key), mIsMerlinChecked)
+            putBoolean(mContext!!.getString(R.string.is_percival_checked_key), mIsPercivalChecked)
+            putBoolean(mContext!!.getString(R.string.is_morgana_checked_key), mIsMorganaChecked)
+            putBoolean(mContext!!.getString(R.string.is_mordred_checked_key), mIsMordredChecked)
+            putBoolean(mContext!!.getString(R.string.is_oberon_checked_key), mIsOberonChecked)
+            putInt(mContext!!.getString(R.string.good_player_number_secrethitler_key), mSecretHitlerExpectedGoodTotal)
+            putInt(mContext!!.getString(R.string.evil_player_number_secrethitler_key), mSecretHitlerExpectedEvilTotal)
+        }
     }
 
     val isAvalonLastSelected: Boolean
@@ -103,9 +105,9 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
             return
         }
 
-        val sharedPrefEditor: SharedPreferences.Editor = mSharedPref!!.edit()
-        sharedPrefEditor.putInt(mContext!!.getString(R.string.last_selected_game_key), gameId)
-        sharedPrefEditor.apply()
+        mSharedPref!!.edit {
+            putInt(mContext!!.getString(R.string.last_selected_game_key), gameId)
+        }
     }
 
     fun doHideBackgroundSoundHint(): Boolean {

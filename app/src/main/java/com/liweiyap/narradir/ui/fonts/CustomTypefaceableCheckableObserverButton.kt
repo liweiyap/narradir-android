@@ -2,9 +2,10 @@ package com.liweiyap.narradir.ui.fonts
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.Checkable
+
+import androidx.core.content.withStyledAttributes
 
 import com.liweiyap.narradir.R
 
@@ -63,10 +64,11 @@ open class CustomTypefaceableCheckableObserverButton:
 
     private fun init(context: Context, attrs: AttributeSet?) {
         attrs?.let {
-            @SuppressLint("CustomViewStyleable") val typedArray: TypedArray = context.obtainStyledAttributes(it, R.styleable.CheckableInitHelper)
-            mIsChecked = typedArray.getBoolean(R.styleable.CheckableInitHelper_defaultCheckedState, mIsChecked)
-            mAlphaUnchecked = typedArray.getFloat(R.styleable.CheckableInitHelper_alphaUnchecked, mAlphaUnchecked)
-            typedArray.recycle()
+            @SuppressLint("CustomViewStyleable")
+            context.withStyledAttributes(it, R.styleable.CheckableInitHelper) {
+                mIsChecked = getBoolean(R.styleable.CheckableInitHelper_defaultCheckedState, mIsChecked)
+                mAlphaUnchecked = getFloat(R.styleable.CheckableInitHelper_alphaUnchecked, mAlphaUnchecked)
+            }
         }
 
         isChecked = mIsChecked
