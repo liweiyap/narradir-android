@@ -1,6 +1,6 @@
 package com.liweiyap.narradir.secrethitler
 
-import android.view.View
+import androidx.core.view.isVisible
 
 import com.liweiyap.narradir.ui.ObserverImageButton
 
@@ -62,7 +62,7 @@ class SecretHitlerCharacterArray(
         get() {
             var good = 0
             for (idx: Int in SecretHitlerCharacterName.LIBERAL0 .. SecretHitlerCharacterName.LIBERAL5) {
-                if (getCharacter(idx).visibility == View.VISIBLE) {
+                if (getCharacter(idx).isVisible) {
                     ++good
                 }
             }
@@ -74,7 +74,7 @@ class SecretHitlerCharacterArray(
         get() {
             var evil = 0
             for (idx: Int in SecretHitlerCharacterName.HITLER .. SecretHitlerCharacterName.FASCIST2) {
-                if (getCharacter(idx).visibility == View.VISIBLE) {
+                if (getCharacter(idx).isVisible) {
                     ++evil
                 }
             }

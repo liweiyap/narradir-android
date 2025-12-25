@@ -3,9 +3,9 @@ package com.liweiyap.narradir.util.audio
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
+
 import androidx.annotation.OptIn
 import androidx.media3.common.MediaItem
-import androidx.media3.common.util.Assertions
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DataSpec
 import androidx.media3.datasource.RawResourceDataSource
@@ -13,6 +13,8 @@ import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import androidx.media3.extractor.ExtractorsFactory
+
+import com.google.common.base.Preconditions
 import com.liweiyap.narradir.R
 
 object ExoPlayerMediaSourceCreator {
@@ -30,7 +32,7 @@ object ExoPlayerMediaSourceCreator {
             val dataSpec = DataSpec(resUri)
             dataSource.open(dataSpec)
 
-            Assertions.checkNotNull(dataSource.uri)
+            Preconditions.checkNotNull(dataSource.uri)
             val mediaItem: MediaItem = MediaItem.fromUri(dataSource.uri!!)
             val mediaSourceFactory: MediaSource.Factory = DefaultMediaSourceFactory(context, extractorsFactory)
             return mediaSourceFactory.createMediaSource(mediaItem) as ProgressiveMediaSource
@@ -42,7 +44,6 @@ object ExoPlayerMediaSourceCreator {
         return null
     }
 
-    @OptIn(UnstableApi::class)
     private fun buildRawResourceUri(context: Context?, resName: String?): Uri? {
         if (context == null || resName == null) {
             return null

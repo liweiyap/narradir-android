@@ -1,7 +1,6 @@
 package com.liweiyap.narradir
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
@@ -9,6 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 
 import androidx.activity.OnBackPressedCallback
+import androidx.core.net.toUri
 
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.SettingsLayout
@@ -108,7 +108,7 @@ class SettingsHomeFragment: NarradirFragmentBase() {
 
     private fun navigateToAuthorWebsite() {
         try {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://liweiyap.github.io"))
+            val browserIntent = Intent(Intent.ACTION_VIEW, "https://liweiyap.github.io".toUri())
             startActivity(browserIntent)
         }
         catch (e: Exception) {
