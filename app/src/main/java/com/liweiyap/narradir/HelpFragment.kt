@@ -8,7 +8,7 @@ import android.view.ViewGroup
 
 import androidx.activity.OnBackPressedCallback
 
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity
 
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.TextViewSpanHelper

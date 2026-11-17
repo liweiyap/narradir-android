@@ -23,6 +23,7 @@
 /.idea/AndroidProjectSystem.xml
 /.idea/deviceManager.xml
 /.idea/markdown.xml
+/.idea/appInsightsSettings.xml
 .DS_Store
 /build
 /captures
