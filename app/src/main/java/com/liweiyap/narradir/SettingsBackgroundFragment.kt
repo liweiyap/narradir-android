@@ -222,7 +222,7 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
     }
 
     private fun showSnackbar() {
-        if ( (viewModel == null) || (viewModel!!.doHideBackgroundSoundHint()) ) {
+        if ( (viewModel == null) || (viewModel!!.mDoHideBackgroundSoundHint) ) {
             return
         }
 
@@ -232,7 +232,7 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
                 message = getString(R.string.backgroundsound_mute_notification),
                 duration = BaseTransientBottomBar.LENGTH_SHORT,
                 actionMessage = getString(R.string.acknowledge_button_text),
-                actionCallback = { viewModel!!.setHideBackgroundSoundHint(true) },
+                actionCallback = { viewModel!!.mDoHideBackgroundSoundHint = true },
                 flags = EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE))
         }
         catch (e: Exception) {
