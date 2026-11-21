@@ -14,7 +14,7 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
     var mBackgroundSoundVolume: Float = 1F
     var mNarrationVolume: Float = 1F
     var mBackgroundSoundName: String
-    private var mDoHideBackgroundSoundHint: Boolean = false
+    var mDoHideBackgroundSoundHint: Boolean = false
 
     var mAvalonExpectedGoodTotal: Int = AvalonCharacterName.getDefaultNumberOfGoodCharacters()
     var mAvalonExpectedEvilTotal: Int = AvalonCharacterName.getDefaultNumberOfEvilCharacters()
@@ -108,14 +108,6 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
         mSharedPref!!.edit {
             putInt(mContext!!.getString(R.string.last_selected_game_key), gameId)
         }
-    }
-
-    fun doHideBackgroundSoundHint(): Boolean {
-        return mDoHideBackgroundSoundHint
-    }
-
-    fun setHideBackgroundSoundHint(doHide: Boolean) {
-        mDoHideBackgroundSoundHint = doHide
     }
 
     companion object {

@@ -6,7 +6,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    namespace 'com.liweiyap.narradir'
+    namespace = 'com.liweiyap.narradir'
     compileSdk = 37
     buildToolsVersion = "37.0.0"
 
@@ -33,9 +33,9 @@ android {
         release {
             // https://developer.android.com/studio/build/shrink-code
             minifyEnabled true
-            shrinkResources true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig = signingConfigs.release
         }
     }
 
@@ -50,7 +50,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:26.1.0'
     implementation 'androidx.core:core-ktx:1.19.1'
     implementation 'androidx.appcompat:appcompat:1.8.0'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.11.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.11.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.10.2'
     implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.media3:media3-exoplayer:1.11.1'  // @UnstableApi annotations after upgrading to Media3: https://github.com/androidx/media/issues/331#issuecomment-1512711590; https://github.com/androidx/media/issues/503
