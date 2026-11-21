@@ -231,7 +231,7 @@ class SettingsBackgroundFragment: NarradirFragmentBase() {
                 view = mNavBar!!,
                 message = getString(R.string.backgroundsound_mute_notification),
                 duration = BaseTransientBottomBar.LENGTH_SHORT,
-                actionMessage = getString(R.string.acknowledge_button_text),
+                actionMessage = getString(R.string.acknowledge_button_text).uppercase(),
                 actionCallback = { viewModel!!.mDoHideBackgroundSoundHint = true },
                 flags = EnumSet.of(SnackbarBuilderFlag.SHOW_ABOVE_XY, SnackbarBuilderFlag.ACTION_DISMISSABLE))
         }

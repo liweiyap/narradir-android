@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.media3:media3-exoplayer:1.11.1'  // @UnstableApi annotations after upgrading to Media3: https://github.com/androidx/media/issues/331#issuecomment-1512711590; https://github.com/androidx/media/issues/503
     implementation 'com.google.android.gms:play-services-oss-licenses:17.5.3'
+    implementation 'com.google.android.play:age-signals:0.0.6'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
     debugImplementation 'androidx.fragment:fragment-testing:1.9.1'
     debugImplementation 'androidx.test:monitor:1.8.0'

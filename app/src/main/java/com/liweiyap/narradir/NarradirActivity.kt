@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.liweiyap.narradir.ui.FullScreenActivity
 import com.liweiyap.narradir.util.INarradirControl
 import com.liweiyap.narradir.util.NarradirViewModel
+import com.liweiyap.narradir.util.AgeSignalsManagerWrapper
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator
 
 class NarradirActivity: FullScreenActivity(), INarradirControl {
@@ -15,6 +16,7 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
 
         mViewModel = NarradirViewModel(this, getSharedPreferences(getString(R.string.shared_preferences_key), MODE_PRIVATE))
         mClickSoundGenerator = ClickSoundGenerator(this)
+        mAgeSignalsManagerWrapper = AgeSignalsManagerWrapper(applicationContext, this)
     }
 
     override fun onDestroy() {
@@ -25,6 +27,14 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
 
         mViewModel?.destroy()
         mViewModel = null
+
+        mAgeSignalsManagerWrapper?.destroy()
+        mAgeSignalsManagerWrapper = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mAgeSignalsManagerWrapper?.requestAgeSignals()
     }
 
     override fun getViewModel(): NarradirViewModel? {
@@ -49,4 +59,5 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
 
     private var mClickSoundGenerator: ClickSoundGenerator? = null
     private var mViewModel: NarradirViewModel? = null
+    private var mAgeSignalsManagerWrapper: AgeSignalsManagerWrapper? = null
 }

@@ -37,7 +37,7 @@
     <string name="backgroundsound_mute_notification">To mute, tap and hold on \"NONE\".</string>  <!-- 32 characters -->
 
     <string name="positive_button_text">OK</string>
-    <string name="acknowledge_button_text">DON\'T SHOW AGAIN</string>
+    <string name="acknowledge_button_text">Don\'t show again</string>
 
     <string name="p5_button_text">5P</string>
     <string name="p6_button_text">6P</string>
@@ -268,6 +268,15 @@
     <string name="liberaldescription_key">D_LIBERAL</string>
     <string name="hitlerdescription_key">D_HITLER</string>
     <string name="fascistdescription_key">D_FASCIST</string>
+
+    <string name="underage_dialog_title">Underaged user detected</string>
+    <string name="underage_dialog_msg">You must be at least 13 years old to use this app.</string>
+    <string name="underage_dialog_tag">DIALOG_UNDERAGE</string>
+    <string name="verify_req_dialog_title">Age verification mandatory</string>
+    <string name="verify_req_dialog_msg">Age unknown for user. Visit the Play Store to resolve your age status. You must be at least 13 years old to use this app.</string>
+    <string name="verify_req_dialog_tag">DIALOG_VERIFY_REQ</string>
+    <string name="exit_app_button_text">Exit</string>
+    <string name="playstore_link_button_text">Play Store</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>

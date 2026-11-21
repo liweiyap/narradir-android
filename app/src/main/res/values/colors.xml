@@ -40,4 +40,7 @@
 
     <color name="hopbush">#FFC868AA</color>
     <color name="prelude">#FFD6BCD7</color>
+
+    <color name="crimson">#FFEE1E26</color>
+    <color name="supernova">#FFFFBB33</color>  <!-- copied from @android:color/holo_orange_light -->
 </resources>
