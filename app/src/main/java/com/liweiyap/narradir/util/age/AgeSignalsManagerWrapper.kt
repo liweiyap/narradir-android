@@ -1,6 +1,7 @@
-package com.liweiyap.narradir.util
+package com.liweiyap.narradir.util.age
 
 import android.content.Context
+import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.google.android.play.agesignals.AgeSignalsAccessRequest
@@ -14,6 +15,8 @@ import com.google.android.play.agesignals.model.AgeSignalsErrorCode
 import com.google.android.play.agesignals.model.AgeSignalsStatus
 import com.google.android.play.agesignals.testing.FakeAgeSignalsManager
 import com.liweiyap.narradir.R
+import com.liweiyap.narradir.ui.DialogHelper
+import com.liweiyap.narradir.ui.age.RetryInfiniteDialogFragment
 import com.liweiyap.narradir.ui.age.UnderageDialogFragment
 import com.liweiyap.narradir.ui.age.VerificationReqDialogFragment
 
@@ -21,7 +24,7 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
     private var mAgeSignalsManager: AgeSignalsManager? = null
     private var mAccessRequest: AgeSignalsAccessRequest? = null
     private var mRequest: AgeSignalsRequest? = null
-    private val mUseCase: UseCase = UseCase.DEBUG_VERIFICATION_REQUIRED
+    private val mUseCase: UseCase = UseCase.DEBUG_APP_NOT_OWNED
     private var mIsResolved: Boolean = false
 
     private var mContext: Context?
@@ -33,6 +36,14 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
         DEBUG_SHARED_UNDERAGE,
         DEBUG_NOT_SHARED,
         DEBUG_VERIFICATION_REQUIRED,
+        DEBUG_API_NOT_AVAILABLE,
+        DEBUG_PLAY_STORE_NOT_FOUND,
+        DEBUG_NETWORK_ERROR,
+        DEBUG_PLAY_SERVICES_NOT_FOUND,
+        DEBUG_PLAY_STORE_VERSION_OUTDATED,
+        DEBUG_PLAY_SERVICES_VERSION_OUTDATED,
+        DEBUG_APP_NOT_OWNED,
+        DEBUG_DEVICE_NOT_SUPPORTED,
     }
 
     init {
@@ -65,7 +76,21 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                 UseCase.DEBUG_SHARED, UseCase.DEBUG_SHARED_UNDERAGE -> AgeSignalsStatus.SHARED
                 UseCase.DEBUG_NOT_SHARED -> AgeSignalsStatus.NOT_SHARED
                 UseCase.DEBUG_VERIFICATION_REQUIRED -> AgeSignalsStatus.VERIFICATION_REQUIRED
+                else -> AgeSignalsStatus.SHARED
             }
+
+            val errorCode: Int = when (mUseCase) {
+                UseCase.DEBUG_API_NOT_AVAILABLE -> AgeSignalsErrorCode.API_NOT_AVAILABLE
+                UseCase.DEBUG_PLAY_STORE_NOT_FOUND -> AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND
+                UseCase.DEBUG_NETWORK_ERROR -> AgeSignalsErrorCode.NETWORK_ERROR
+                UseCase.DEBUG_PLAY_SERVICES_NOT_FOUND -> AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND
+                UseCase.DEBUG_PLAY_STORE_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED
+                UseCase.DEBUG_PLAY_SERVICES_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED
+                UseCase.DEBUG_APP_NOT_OWNED -> AgeSignalsErrorCode.APP_NOT_OWNED
+                UseCase.DEBUG_DEVICE_NOT_SUPPORTED -> AgeSignalsErrorCode.DEVICE_NOT_SUPPORTED
+                else -> AgeSignalsErrorCode.NO_ERROR
+            }
+
             val result = AgeSignalsAccessResult.builder()
                 .setAgeSignalsStatus(status)
                 .build()
@@ -75,11 +100,15 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
 
             fake.setNextAgeSignalsAccessResult(result)
             fake.setNextAgeSignalsResult(user)
+            if (errorCode != AgeSignalsErrorCode.NO_ERROR) {
+                fake.setNextAgeSignalsException(AgeSignalsException(errorCode))
+            }
+
             mAgeSignalsManager = fake
         }
     }
 
-    fun requestAgeSignals() {
+    fun requestAgeSignals(doIgnoreOldDialog: Boolean) {
         if (mAccessRequest == null || mIsResolved) {
             return
         }
@@ -112,7 +141,7 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                         // Call checkAgeSignals()
                         // If the user (or parent) has decided to share the age signals, or is in an eligible auto-share region,
                         // then you receive age signals as part of the API response, and you can decide how to handle the response
-                        checkSharedAgeSignals()
+                        checkSharedAgeSignals(doIgnoreOldDialog)
                     }
                     AgeSignalsStatus.NOT_SHARED -> {
                         // Your app won't get age signals in the API response.
@@ -125,19 +154,22 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                         // where age verification and age signals sharing is mandatory.
                         // To obtain an age signal from Google Play in these regions, ask the user to
                         // visit the Play Store to resolve their status.
-                        val dialog = VerificationReqDialogFragment()
-                        dialog.isCancelable = false
-                        dialog.show(mFragmentManager!!, mContext!!.getString(R.string.verify_req_dialog_tag))
+                        DialogHelper.showDialog(
+                            VerificationReqDialogFragment(),
+                            null,
+                            mFragmentManager,
+                            mContext!!.getString(R.string.verify_req_dialog_tag),
+                            doIgnoreOldDialog)
                     }
                 }
             }
             .addOnFailureListener { e ->
                 // Handle API/Play Store connection and system errors
-                handleFailure(e)
+                handleFailure(e, AgeSignalsStep.REQUEST_ACCESS, doIgnoreOldDialog)
             }
     }
 
-    private fun checkSharedAgeSignals() {
+    fun checkSharedAgeSignals(doIgnoreOldDialog: Boolean) {
         mAgeSignalsManager!!
             .checkAgeSignals(mRequest!!)
             .addOnSuccessListener { result ->
@@ -147,27 +179,92 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                 // null if ageSignalsStatus is NOT_SHARED or VERIFICATION_REQUIRED,
                 // but in the first place, we checkAgeSignals() only if ageSignalsStatus is SHARED.
                 if (lower != null && lower < 13) {
-                    val dialog = UnderageDialogFragment()
-                    dialog.isCancelable = false
-                    dialog.show(mFragmentManager!!, mContext!!.getString(R.string.underage_dialog_tag))
+                    DialogHelper.showDialog(
+                        UnderageDialogFragment(),
+                        null,
+                        mFragmentManager,
+                        mContext!!.getString(R.string.underage_dialog_tag),
+                        doIgnoreOldDialog)
                 }
             }
             .addOnFailureListener { e ->
                 // Handle API/Play Store connection and system errors
-                handleFailure(e)
+                handleFailure(e, AgeSignalsStep.CHECK_SHARED, doIgnoreOldDialog)
             }
     }
 
-    private fun handleFailure(e: Exception) {
+    private fun handleFailure(e: Exception, step: AgeSignalsStep, doIgnoreOldDialog: Boolean) {
         if (e !is AgeSignalsException) {
             return
         }
 
         when (e.errorCode) {
-            AgeSignalsErrorCode.API_NOT_AVAILABLE -> {
+            AgeSignalsErrorCode.API_NOT_AVAILABLE,
+            AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND,
+            AgeSignalsErrorCode.NETWORK_ERROR,
+            AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND,
+            AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED,
+            AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> {
+                val args = Bundle()
+                args.putString(
+                    mContext!!.getString(R.string.retry_infinite_dialog_title_tag),
+                    getDialogTitleFromAgeSignalsErrorCode(e.errorCode))
+                args.putString(
+                    mContext!!.getString(R.string.retry_infinite_dialog_msg_tag),
+                    getDialogMessageFromAgeSignalsErrorCode(e.errorCode))
+                args.putSerializable(
+                    mContext!!.getString(R.string.age_signals_step_enum_tag),
+                    step)
+
+                DialogHelper.showDialog(
+                    RetryInfiniteDialogFragment(),
+                    args,
+                    mFragmentManager,
+                    getDialogTagFromAgeSignalsErrorCode(e.errorCode),
+                    doIgnoreOldDialog)
+            }
+            AgeSignalsErrorCode.APP_NOT_OWNED,
+            AgeSignalsErrorCode.DEVICE_NOT_SUPPORTED -> {
+                mIsResolved = true
             }
             else -> {
             }
+        }
+    }
+
+    private fun getDialogTitleFromAgeSignalsErrorCode(errorCode: Int): String? {
+        return when (errorCode) {
+            AgeSignalsErrorCode.API_NOT_AVAILABLE -> mContext!!.getString(R.string.api_not_available_dialog_title)
+            AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND -> mContext!!.getString(R.string.playstore_not_found_dialog_title)
+            AgeSignalsErrorCode.NETWORK_ERROR -> mContext!!.getString(R.string.network_error_dialog_title)
+            AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_title)
+            AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_title)
+            AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_title)
+            else -> null
+        }
+    }
+
+    private fun getDialogMessageFromAgeSignalsErrorCode(errorCode: Int): String? {
+        return when (errorCode) {
+            AgeSignalsErrorCode.API_NOT_AVAILABLE -> mContext!!.getString(R.string.api_not_available_dialog_msg)
+            AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND -> mContext!!.getString(R.string.playstore_not_found_dialog_msg)
+            AgeSignalsErrorCode.NETWORK_ERROR -> mContext!!.getString(R.string.network_error_dialog_msg)
+            AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_msg)
+            AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_msg)
+            AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_msg)
+            else -> null
+        }
+    }
+
+    private fun getDialogTagFromAgeSignalsErrorCode(errorCode: Int): String? {
+        return when (errorCode) {
+            AgeSignalsErrorCode.API_NOT_AVAILABLE -> mContext!!.getString(R.string.api_not_available_dialog_tag)
+            AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND -> mContext!!.getString(R.string.playstore_not_found_dialog_tag)
+            AgeSignalsErrorCode.NETWORK_ERROR -> mContext!!.getString(R.string.network_error_dialog_tag)
+            AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_tag)
+            AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_tag)
+            AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_tag)
+            else -> null
         }
     }
 }

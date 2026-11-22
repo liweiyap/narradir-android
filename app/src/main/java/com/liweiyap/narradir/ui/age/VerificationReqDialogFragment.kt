@@ -29,7 +29,7 @@ class VerificationReqDialogFragment: NarradirDialogFragmentBase() {
 
     private fun navigateToPlayStore() {
         try {
-            val appIntent = requireActivity().packageManager.getLaunchIntentForPackage("com.android.vending")
+            val appIntent: Intent? = requireActivity().packageManager.getLaunchIntentForPackage("com.android.vending")
             if (appIntent == null) {
                 // Play Store unavailable; optionally open in browser
                 val browserIntent = Intent(Intent.ACTION_VIEW, "https://play.google.com/store".toUri())

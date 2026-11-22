@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import com.liweiyap.narradir.R
 import com.liweiyap.narradir.ui.NarradirDialogFragmentBase
 
-class UnderageDialogFragment: NarradirDialogFragmentBase() {
+class UnderageDialogFragment: NarradirDialogFragmentBase(doAutoDismissOnPause = false) {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val activity = requireActivity()
 

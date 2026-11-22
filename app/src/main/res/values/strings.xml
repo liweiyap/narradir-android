@@ -271,12 +271,34 @@
 
     <string name="underage_dialog_title">Underaged user detected</string>
     <string name="underage_dialog_msg">You must be at least 13 years old to use this app.</string>
-    <string name="underage_dialog_tag">DIALOG_UNDERAGE</string>
+    <string name="underage_dialog_tag">DF_UNDERAGE</string>
     <string name="verify_req_dialog_title">Age verification mandatory</string>
     <string name="verify_req_dialog_msg">Age unknown for user. Visit the Play Store to resolve your age status. You must be at least 13 years old to use this app.</string>
-    <string name="verify_req_dialog_tag">DIALOG_VERIFY_REQ</string>
+    <string name="verify_req_dialog_tag">DF_VERI_REQ</string>
+    <string name="api_not_available_dialog_title">Play Signals API not available</string>
+    <string name="api_not_available_dialog_msg">Update the Play Store and then retry.</string>
+    <string name="api_not_available_dialog_tag">DF_API_UNAVAIL</string>
+    <string name="playstore_not_found_dialog_title">Play Store not found</string>
+    <string name="playstore_not_found_dialog_msg">Install or enable the Play Store, and then retry.</string>
+    <string name="playstore_not_found_dialog_tag">DF_STORE_NOT_FOUND</string>
+    <string name="network_error_dialog_title">Network error</string>
+    <string name="network_error_dialog_msg">Check network connection and then retry.</string>
+    <string name="network_error_dialog_tag">DF_CONN_ERR</string>
+    <string name="playsvcs_not_found_dialog_title">Play Services not found</string>
+    <string name="playsvcs_not_found_dialog_msg">Install, update, or enable Play Services, and then retry.</string>
+    <string name="playsvcs_not_found_dialog_tag">DF_SVCS_NOT_FOUND</string>
+    <string name="playstore_outdated_dialog_title">Play Store outdated</string>
+    <string name="playstore_outdated_dialog_msg">Update the Play Store and then retry.</string>
+    <string name="playstore_outdated_dialog_tag">DF_STORE_OLD</string>
+    <string name="playsvcs_outdated_dialog_title">Play Services outdated</string>
+    <string name="playsvcs_outdated_dialog_msg">Update Play Services and then retry.</string>
+    <string name="playsvcs_outdated_dialog_tag">DF_SVCS_OLD</string>
+    <string name="retry_infinite_dialog_title_tag">DF_RETRY_INFINITE_TITLE</string>
+    <string name="retry_infinite_dialog_msg_tag">DF_RETRY_INFINITE_MSG</string>
+    <string name="age_signals_step_enum_tag">AGE_SIGNALS_STEP</string>
     <string name="exit_app_button_text">Exit</string>
     <string name="playstore_link_button_text">Play Store</string>
+    <string name="retry_button_text">Retry</string>
 
     <string name="dummy_placeholder_text">Lorem Ipsum</string>  <!-- for testing/debugging -->
 </resources>
