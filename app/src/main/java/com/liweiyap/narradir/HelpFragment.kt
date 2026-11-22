@@ -13,6 +13,7 @@ import com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity
 import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.TextViewSpanHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
+import com.liweiyap.narradir.util.SafeNavigator
 
 class HelpFragment: NarradirFragmentBase() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,11 +30,9 @@ class HelpFragment: NarradirFragmentBase() {
             spanStart = 6,
             spanEnd = 10,
         ) {
-            try {
-                startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
+            SafeNavigator.navigateSafely {
+                val ossIntent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
+                startActivity(ossIntent)
             }
         }
 

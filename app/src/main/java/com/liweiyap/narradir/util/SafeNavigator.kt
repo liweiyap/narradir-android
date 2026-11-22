@@ -35,7 +35,7 @@ object SafeNavigator {
         }
     }
 
-    private fun navigateSafely(navCall: () -> Unit) {
+    fun navigateSafely(navCall: () -> Unit) {
         try {
             navCall()
         }

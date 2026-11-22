@@ -4,9 +4,10 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import com.liweiyap.narradir.R
 import com.liweiyap.narradir.ui.NarradirDialogFragmentBase
-import androidx.core.net.toUri
+import com.liweiyap.narradir.util.SafeNavigator
 
 class VerificationReqDialogFragment: NarradirDialogFragmentBase() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -28,7 +29,7 @@ class VerificationReqDialogFragment: NarradirDialogFragmentBase() {
     }
 
     private fun navigateToPlayStore() {
-        try {
+        SafeNavigator.navigateSafely {
             val appIntent: Intent? = requireActivity().packageManager.getLaunchIntentForPackage("com.android.vending")
             if (appIntent == null) {
                 // Play Store unavailable; optionally open in browser
@@ -38,9 +39,6 @@ class VerificationReqDialogFragment: NarradirDialogFragmentBase() {
             else {
                 startActivity(appIntent)
             }
-        }
-        catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 }

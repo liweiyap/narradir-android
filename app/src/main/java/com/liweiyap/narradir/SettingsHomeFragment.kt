@@ -14,6 +14,7 @@ import com.liweiyap.narradir.ui.NarradirFragmentBase
 import com.liweiyap.narradir.ui.SettingsLayout
 import com.liweiyap.narradir.ui.TextViewAutosizeHelper
 import com.liweiyap.narradir.ui.fonts.CustomTypefaceableObserverButton
+import com.liweiyap.narradir.util.SafeNavigator
 import com.liweiyap.narradir.util.TimeDisplay
 
 import kotlin.math.roundToInt
@@ -107,12 +108,9 @@ class SettingsHomeFragment: NarradirFragmentBase() {
     }
 
     private fun navigateToAuthorWebsite() {
-        try {
+        SafeNavigator.navigateSafely {
             val browserIntent = Intent(Intent.ACTION_VIEW, "https://liweiyap.github.io".toUri())
             startActivity(browserIntent)
-        }
-        catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
