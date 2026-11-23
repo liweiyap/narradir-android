@@ -1,9 +1,10 @@
 package com.liweiyap.narradir.util
 
+import com.liweiyap.narradir.util.age.AgeSignalsStep
+
 interface INarradirControl {
     fun getViewModel(): NarradirViewModel?
     fun playClickSound()
     fun navigateAwayFromApp()
-    fun requestAgeSignals(doIgnoreOldDialog: Boolean)
-    fun checkSharedAgeSignals(doIgnoreOldDialog: Boolean)
+    fun retryAgeSignals(step: AgeSignalsStep?)
 }

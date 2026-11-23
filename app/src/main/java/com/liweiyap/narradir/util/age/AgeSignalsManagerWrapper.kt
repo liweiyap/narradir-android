@@ -158,7 +158,7 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                             VerificationReqDialogFragment(),
                             null,
                             mFragmentManager,
-                            mContext!!.getString(R.string.verify_req_dialog_tag),
+                            mContext!!.getString(R.string.age_signals_dialog_tag),
                             doIgnoreOldDialog)
                     }
                 }
@@ -183,7 +183,7 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                         UnderageDialogFragment(),
                         null,
                         mFragmentManager,
-                        mContext!!.getString(R.string.underage_dialog_tag),
+                        mContext!!.getString(R.string.age_signals_dialog_tag),
                         doIgnoreOldDialog)
                 }
             }
@@ -207,20 +207,20 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> {
                 val args = Bundle()
                 args.putString(
-                    mContext!!.getString(R.string.retry_infinite_dialog_title_tag),
+                    mContext!!.getString(R.string.dialog_title_key),
                     getDialogTitleFromAgeSignalsErrorCode(e.errorCode))
                 args.putString(
-                    mContext!!.getString(R.string.retry_infinite_dialog_msg_tag),
+                    mContext!!.getString(R.string.dialog_msg_key),
                     getDialogMessageFromAgeSignalsErrorCode(e.errorCode))
                 args.putSerializable(
-                    mContext!!.getString(R.string.age_signals_step_enum_tag),
+                    mContext!!.getString(R.string.age_signals_step_enum_key),
                     step)
 
                 DialogHelper.showDialog(
                     RetryInfiniteDialogFragment(),
                     args,
                     mFragmentManager,
-                    getDialogTagFromAgeSignalsErrorCode(e.errorCode),
+                    mContext!!.getString(R.string.age_signals_dialog_tag),
                     doIgnoreOldDialog)
             }
             AgeSignalsErrorCode.APP_NOT_OWNED,
@@ -252,18 +252,6 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_msg)
             AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_msg)
             AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_msg)
-            else -> null
-        }
-    }
-
-    private fun getDialogTagFromAgeSignalsErrorCode(errorCode: Int): String? {
-        return when (errorCode) {
-            AgeSignalsErrorCode.API_NOT_AVAILABLE -> mContext!!.getString(R.string.api_not_available_dialog_tag)
-            AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND -> mContext!!.getString(R.string.playstore_not_found_dialog_tag)
-            AgeSignalsErrorCode.NETWORK_ERROR -> mContext!!.getString(R.string.network_error_dialog_tag)
-            AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_tag)
-            AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_tag)
-            AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_tag)
             else -> null
         }
     }

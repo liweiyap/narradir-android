@@ -7,6 +7,7 @@ import com.liweiyap.narradir.ui.FullScreenActivity
 import com.liweiyap.narradir.util.INarradirControl
 import com.liweiyap.narradir.util.NarradirViewModel
 import com.liweiyap.narradir.util.age.AgeSignalsManagerWrapper
+import com.liweiyap.narradir.util.age.AgeSignalsStep
 import com.liweiyap.narradir.util.audio.ClickSoundGenerator
 
 class NarradirActivity: FullScreenActivity(), INarradirControl {
@@ -34,7 +35,7 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
 
     override fun onResume() {
         super.onResume()
-        requestAgeSignals(doIgnoreOldDialog = false)
+        mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog = false)
     }
 
     override fun getViewModel(): NarradirViewModel? {
@@ -45,12 +46,15 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
         mClickSoundGenerator?.playClickSound()
     }
 
-    override fun requestAgeSignals(doIgnoreOldDialog: Boolean) {
-        mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog)
-    }
+    override fun retryAgeSignals(step: AgeSignalsStep?) {
+        val doIgnoreOldDialog = true
 
-    override fun checkSharedAgeSignals(doIgnoreOldDialog: Boolean) {
-        mAgeSignalsManagerWrapper?.checkSharedAgeSignals(doIgnoreOldDialog)
+        if (step == AgeSignalsStep.REQUEST_ACCESS) {
+            mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog)
+        }
+        else if (step == AgeSignalsStep.CHECK_SHARED) {
+            mAgeSignalsManagerWrapper?.checkSharedAgeSignals(doIgnoreOldDialog)
+        }
     }
 
     // useful in SecretHitlerCharacterSelectionFragment since popUpToInclusive is TRUE in nav_graph.xml

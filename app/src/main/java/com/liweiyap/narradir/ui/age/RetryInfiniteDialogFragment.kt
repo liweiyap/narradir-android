@@ -11,9 +11,9 @@ import com.liweiyap.narradir.util.age.AgeSignalsStep
 class RetryInfiniteDialogFragment: NarradirDialogFragmentBase() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val args = requireArguments()
-        val title = args.getString(getString(R.string.retry_infinite_dialog_title_tag))
-        val message = args.getString(getString(R.string.retry_infinite_dialog_msg_tag))
-        val step = BundleHelper.getSerializable<AgeSignalsStep>(args, getString(R.string.age_signals_step_enum_tag))
+        val title = args.getString(getString(R.string.dialog_title_key))
+        val message = args.getString(getString(R.string.dialog_msg_key))
+        val step = BundleHelper.getSerializable<AgeSignalsStep>(args, getString(R.string.age_signals_step_enum_key))
 
         val activity = requireActivity()
 
@@ -23,22 +23,11 @@ class RetryInfiniteDialogFragment: NarradirDialogFragmentBase() {
             .setMessage(message)
             .setPositiveButton(getString(R.string.retry_button_text)) { _, _ ->
                 mNarradirControl?.playClickSound()
-                retryAgeSignals(step)
+                mNarradirControl?.retryAgeSignals(step)
             }
             .create()
         dialog.setCanceledOnTouchOutside(false)
 
         return dialog
-    }
-
-    private fun retryAgeSignals(step: AgeSignalsStep?) {
-        val doIgnoreOldDialog = true
-
-        if (step == AgeSignalsStep.REQUEST_ACCESS) {
-            mNarradirControl?.requestAgeSignals(doIgnoreOldDialog)
-        }
-        else if (step == AgeSignalsStep.CHECK_SHARED) {
-            mNarradirControl?.checkSharedAgeSignals(doIgnoreOldDialog)
-        }
     }
 }
