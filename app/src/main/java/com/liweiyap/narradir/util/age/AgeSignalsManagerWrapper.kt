@@ -268,7 +268,10 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                     mContext!!.getString(R.string.dialog_msg_key),
                     message)
 
-                if (!isRetryMax) {
+                if (isRetryMax) {
+                    mIsResolved = true
+                }
+                else {
                     args.putSerializable(
                         mContext!!.getString(R.string.age_signals_step_enum_key),
                         step)
