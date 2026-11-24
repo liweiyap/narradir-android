@@ -47,7 +47,37 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
         DEBUG_CLIENT_TRANSIENT_ERROR,
         DEBUG_APP_NOT_OWNED,
         DEBUG_DEVICE_NOT_SUPPORTED,
-        DEBUG_INTERNAL_ERROR,
+        DEBUG_INTERNAL_ERROR;
+
+        fun getAgeSignalsStatus(): Int {
+            return when (this) {
+                DEBUG_SHARED, DEBUG_SHARED_UNDERAGE -> AgeSignalsStatus.SHARED
+                DEBUG_NOT_SHARED -> AgeSignalsStatus.NOT_SHARED
+                DEBUG_VERIFICATION_REQUIRED -> AgeSignalsStatus.VERIFICATION_REQUIRED
+                else -> AgeSignalsStatus.SHARED
+            }
+        }
+
+        fun getAgeSignalsExceptionCode(): Int {
+            return when (this) {
+                DEBUG_API_NOT_AVAILABLE -> AgeSignalsErrorCode.API_NOT_AVAILABLE
+                DEBUG_PLAY_STORE_NOT_FOUND -> AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND
+                DEBUG_NETWORK_ERROR -> AgeSignalsErrorCode.NETWORK_ERROR
+                DEBUG_PLAY_SERVICES_NOT_FOUND -> AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND
+                DEBUG_CANNOT_BIND_TO_SERVICE -> AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE
+                DEBUG_PLAY_STORE_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED
+                DEBUG_PLAY_SERVICES_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED
+                DEBUG_CLIENT_TRANSIENT_ERROR -> AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR
+                DEBUG_APP_NOT_OWNED -> AgeSignalsErrorCode.APP_NOT_OWNED
+                DEBUG_DEVICE_NOT_SUPPORTED -> AgeSignalsErrorCode.DEVICE_NOT_SUPPORTED
+                DEBUG_INTERNAL_ERROR -> AgeSignalsErrorCode.INTERNAL_ERROR
+                else -> AgeSignalsErrorCode.NO_ERROR
+            }
+        }
+
+        fun getAgeLower(): Int {
+            return if (this == DEBUG_SHARED_UNDERAGE) 12 else 13
+        }
     }
 
     init {
@@ -74,39 +104,18 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             mAgeSignalsManager = AgeSignalsManagerFactory.create(mContext!!)
         }
         else {
-            val fake = FakeAgeSignalsManager()
-
-            val status: Int = when (mUseCase) {
-                UseCase.DEBUG_SHARED, UseCase.DEBUG_SHARED_UNDERAGE -> AgeSignalsStatus.SHARED
-                UseCase.DEBUG_NOT_SHARED -> AgeSignalsStatus.NOT_SHARED
-                UseCase.DEBUG_VERIFICATION_REQUIRED -> AgeSignalsStatus.VERIFICATION_REQUIRED
-                else -> AgeSignalsStatus.SHARED
-            }
-
-            val errorCode: Int = when (mUseCase) {
-                UseCase.DEBUG_API_NOT_AVAILABLE -> AgeSignalsErrorCode.API_NOT_AVAILABLE
-                UseCase.DEBUG_PLAY_STORE_NOT_FOUND -> AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND
-                UseCase.DEBUG_NETWORK_ERROR -> AgeSignalsErrorCode.NETWORK_ERROR
-                UseCase.DEBUG_PLAY_SERVICES_NOT_FOUND -> AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND
-                UseCase.DEBUG_CANNOT_BIND_TO_SERVICE -> AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE
-                UseCase.DEBUG_PLAY_STORE_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED
-                UseCase.DEBUG_PLAY_SERVICES_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED
-                UseCase.DEBUG_CLIENT_TRANSIENT_ERROR -> AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR
-                UseCase.DEBUG_APP_NOT_OWNED -> AgeSignalsErrorCode.APP_NOT_OWNED
-                UseCase.DEBUG_DEVICE_NOT_SUPPORTED -> AgeSignalsErrorCode.DEVICE_NOT_SUPPORTED
-                UseCase.DEBUG_INTERNAL_ERROR -> AgeSignalsErrorCode.INTERNAL_ERROR
-                else -> AgeSignalsErrorCode.NO_ERROR
-            }
-
             val result = AgeSignalsAccessResult.builder()
-                .setAgeSignalsStatus(status)
+                .setAgeSignalsStatus(mUseCase.getAgeSignalsStatus())
                 .build()
             val user = AgeSignalsResult.builder()
-                .setAgeLower(if (mUseCase == UseCase.DEBUG_SHARED_UNDERAGE) 12 else 13)
+                .setAgeLower(mUseCase.getAgeLower())
                 .build()
 
+            val fake = FakeAgeSignalsManager()
             fake.setNextAgeSignalsAccessResult(result)
             fake.setNextAgeSignalsResult(user)
+
+            val errorCode: Int = mUseCase.getAgeSignalsExceptionCode()
             if (errorCode != AgeSignalsErrorCode.NO_ERROR) {
                 fake.setNextAgeSignalsException(AgeSignalsException(errorCode))
             }
