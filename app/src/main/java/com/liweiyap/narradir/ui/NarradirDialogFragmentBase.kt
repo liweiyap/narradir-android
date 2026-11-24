@@ -3,6 +3,7 @@ package com.liweiyap.narradir.ui
 import android.content.Context
 import androidx.fragment.app.DialogFragment
 import com.liweiyap.narradir.util.INarradirControl
+import com.liweiyap.narradir.util.NarradirViewModel
 
 abstract class NarradirDialogFragmentBase(doAutoDismissOnPause: Boolean = true): DialogFragment() {
     private val mDoAutoDismissOnPause: Boolean = doAutoDismissOnPause
@@ -34,4 +35,7 @@ abstract class NarradirDialogFragmentBase(doAutoDismissOnPause: Boolean = true):
 
     protected var mNarradirControl: INarradirControl? = null
         private set
+
+    protected val viewModel: NarradirViewModel?
+        get() = mNarradirControl?.getViewModel()
 }

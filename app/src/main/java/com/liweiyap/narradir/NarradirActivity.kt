@@ -35,7 +35,7 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
 
     override fun onResume() {
         super.onResume()
-        mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog = false)
+        mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog = false, isRetryMax = false)
     }
 
     override fun getViewModel(): NarradirViewModel? {
@@ -46,14 +46,14 @@ class NarradirActivity: FullScreenActivity(), INarradirControl {
         mClickSoundGenerator?.playClickSound()
     }
 
-    override fun retryAgeSignals(step: AgeSignalsStep?) {
+    override fun retryAgeSignals(step: AgeSignalsStep?, isMax: Boolean) {
         val doIgnoreOldDialog = true
 
         if (step == AgeSignalsStep.REQUEST_ACCESS) {
-            mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog)
+            mAgeSignalsManagerWrapper?.requestAgeSignals(doIgnoreOldDialog, isMax)
         }
         else if (step == AgeSignalsStep.CHECK_SHARED) {
-            mAgeSignalsManagerWrapper?.checkSharedAgeSignals(doIgnoreOldDialog)
+            mAgeSignalsManagerWrapper?.checkSharedAgeSignals(doIgnoreOldDialog, isMax)
         }
     }
 

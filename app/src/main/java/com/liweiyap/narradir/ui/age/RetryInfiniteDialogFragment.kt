@@ -15,15 +15,13 @@ class RetryInfiniteDialogFragment: NarradirDialogFragmentBase() {
         val message = args.getString(getString(R.string.dialog_msg_key))
         val step = BundleHelper.getSerializable<AgeSignalsStep>(args, getString(R.string.age_signals_step_enum_key))
 
-        val activity = requireActivity()
-
-        val dialog = AlertDialog.Builder(activity)
+        val dialog = AlertDialog.Builder(requireActivity())
             .setIcon(R.drawable.ic_dialog_warning)
             .setTitle(title)
             .setMessage(message)
             .setPositiveButton(getString(R.string.retry_button_text)) { _, _ ->
                 mNarradirControl?.playClickSound()
-                mNarradirControl?.retryAgeSignals(step)
+                mNarradirControl?.retryAgeSignals(step, isMax = false)
             }
             .create()
         dialog.setCanceledOnTouchOutside(false)

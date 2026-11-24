@@ -6,5 +6,5 @@ interface INarradirControl {
     fun getViewModel(): NarradirViewModel?
     fun playClickSound()
     fun navigateAwayFromApp()
-    fun retryAgeSignals(step: AgeSignalsStep?)
+    fun retryAgeSignals(step: AgeSignalsStep?, isMax: Boolean)
 }

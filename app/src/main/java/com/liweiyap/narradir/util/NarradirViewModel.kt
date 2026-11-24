@@ -8,6 +8,7 @@ import androidx.core.content.edit
 import com.liweiyap.narradir.R
 import com.liweiyap.narradir.avalon.AvalonCharacterName
 import com.liweiyap.narradir.secrethitler.SecretHitlerCharacterName
+import com.liweiyap.narradir.util.age.AgeSignalsRetryableWithCountdown
 
 class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
     var mPauseDurationInMilliSecs: Long = 5000L
@@ -29,6 +30,9 @@ class NarradirViewModel(context: Context, sharedPref: SharedPreferences) {
 
     private var mContext: Context?
     private var mSharedPref: SharedPreferences?
+
+    var mLastAgeSignalsRetryableWithCountdown: AgeSignalsRetryableWithCountdown? = null
+    var mLastAgeSignalsRetryCount: Int = 0
 
     init {
         mContext = context

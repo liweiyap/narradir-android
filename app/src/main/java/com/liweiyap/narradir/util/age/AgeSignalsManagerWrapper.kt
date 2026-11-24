@@ -16,15 +16,16 @@ import com.google.android.play.agesignals.model.AgeSignalsStatus
 import com.google.android.play.agesignals.testing.FakeAgeSignalsManager
 import com.liweiyap.narradir.R
 import com.liweiyap.narradir.ui.DialogHelper
+import com.liweiyap.narradir.ui.age.ExitDialogFragment
+import com.liweiyap.narradir.ui.age.RetryCountdownDialogFragment
 import com.liweiyap.narradir.ui.age.RetryInfiniteDialogFragment
-import com.liweiyap.narradir.ui.age.UnderageDialogFragment
 import com.liweiyap.narradir.ui.age.VerificationReqDialogFragment
 
 class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentActivity) {
     private var mAgeSignalsManager: AgeSignalsManager? = null
     private var mAccessRequest: AgeSignalsAccessRequest? = null
     private var mRequest: AgeSignalsRequest? = null
-    private val mUseCase: UseCase = UseCase.DEBUG_APP_NOT_OWNED
+    private val mUseCase: UseCase = UseCase.DEBUG_INTERNAL_ERROR
     private var mIsResolved: Boolean = false
 
     private var mContext: Context?
@@ -40,10 +41,13 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
         DEBUG_PLAY_STORE_NOT_FOUND,
         DEBUG_NETWORK_ERROR,
         DEBUG_PLAY_SERVICES_NOT_FOUND,
+        DEBUG_CANNOT_BIND_TO_SERVICE,
         DEBUG_PLAY_STORE_VERSION_OUTDATED,
         DEBUG_PLAY_SERVICES_VERSION_OUTDATED,
+        DEBUG_CLIENT_TRANSIENT_ERROR,
         DEBUG_APP_NOT_OWNED,
         DEBUG_DEVICE_NOT_SUPPORTED,
+        DEBUG_INTERNAL_ERROR,
     }
 
     init {
@@ -84,10 +88,13 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                 UseCase.DEBUG_PLAY_STORE_NOT_FOUND -> AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND
                 UseCase.DEBUG_NETWORK_ERROR -> AgeSignalsErrorCode.NETWORK_ERROR
                 UseCase.DEBUG_PLAY_SERVICES_NOT_FOUND -> AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND
+                UseCase.DEBUG_CANNOT_BIND_TO_SERVICE -> AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE
                 UseCase.DEBUG_PLAY_STORE_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED
                 UseCase.DEBUG_PLAY_SERVICES_VERSION_OUTDATED -> AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED
+                UseCase.DEBUG_CLIENT_TRANSIENT_ERROR -> AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR
                 UseCase.DEBUG_APP_NOT_OWNED -> AgeSignalsErrorCode.APP_NOT_OWNED
                 UseCase.DEBUG_DEVICE_NOT_SUPPORTED -> AgeSignalsErrorCode.DEVICE_NOT_SUPPORTED
+                UseCase.DEBUG_INTERNAL_ERROR -> AgeSignalsErrorCode.INTERNAL_ERROR
                 else -> AgeSignalsErrorCode.NO_ERROR
             }
 
@@ -108,7 +115,7 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
         }
     }
 
-    fun requestAgeSignals(doIgnoreOldDialog: Boolean) {
+    fun requestAgeSignals(doIgnoreOldDialog: Boolean, isRetryMax: Boolean) {
         if (mAccessRequest == null || mIsResolved) {
             return
         }
@@ -141,7 +148,7 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                         // Call checkAgeSignals()
                         // If the user (or parent) has decided to share the age signals, or is in an eligible auto-share region,
                         // then you receive age signals as part of the API response, and you can decide how to handle the response
-                        checkSharedAgeSignals(doIgnoreOldDialog)
+                        checkSharedAgeSignals(doIgnoreOldDialog, isRetryMax)
                     }
                     AgeSignalsStatus.NOT_SHARED -> {
                         // Your app won't get age signals in the API response.
@@ -165,11 +172,11 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             }
             .addOnFailureListener { e ->
                 // Handle API/Play Store connection and system errors
-                handleFailure(e, AgeSignalsStep.REQUEST_ACCESS, doIgnoreOldDialog)
+                handleFailure(e, AgeSignalsStep.REQUEST_ACCESS, doIgnoreOldDialog, isRetryMax)
             }
     }
 
-    fun checkSharedAgeSignals(doIgnoreOldDialog: Boolean) {
+    fun checkSharedAgeSignals(doIgnoreOldDialog: Boolean, isRetryMax: Boolean) {
         mAgeSignalsManager!!
             .checkAgeSignals(mRequest!!)
             .addOnSuccessListener { result ->
@@ -179,9 +186,17 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                 // null if ageSignalsStatus is NOT_SHARED or VERIFICATION_REQUIRED,
                 // but in the first place, we checkAgeSignals() only if ageSignalsStatus is SHARED.
                 if (lower != null && lower < 13) {
+                    val args = Bundle()
+                    args.putString(
+                        mContext!!.getString(R.string.dialog_title_key),
+                        mContext!!.getString(R.string.underage_dialog_title))
+                    args.putString(
+                        mContext!!.getString(R.string.dialog_msg_key),
+                        mContext!!.getString(R.string.underage_dialog_msg))
+
                     DialogHelper.showDialog(
-                        UnderageDialogFragment(),
-                        null,
+                        ExitDialogFragment(),
+                        args,
                         mFragmentManager,
                         mContext!!.getString(R.string.age_signals_dialog_tag),
                         doIgnoreOldDialog)
@@ -189,11 +204,11 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             }
             .addOnFailureListener { e ->
                 // Handle API/Play Store connection and system errors
-                handleFailure(e, AgeSignalsStep.CHECK_SHARED, doIgnoreOldDialog)
+                handleFailure(e, AgeSignalsStep.CHECK_SHARED, doIgnoreOldDialog, isRetryMax)
             }
     }
 
-    private fun handleFailure(e: Exception, step: AgeSignalsStep, doIgnoreOldDialog: Boolean) {
+    private fun handleFailure(e: Exception, step: AgeSignalsStep, doIgnoreOldDialog: Boolean, isRetryMax: Boolean) {
         if (e !is AgeSignalsException) {
             return
         }
@@ -223,6 +238,46 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
                     mContext!!.getString(R.string.age_signals_dialog_tag),
                     doIgnoreOldDialog)
             }
+            AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE,
+            AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR,
+            AgeSignalsErrorCode.INTERNAL_ERROR -> {
+                val title: String? = if (isRetryMax)
+                    mContext!!.getString(R.string.max_retries_exceeded_dialog_title)
+                else
+                    getDialogTitleFromAgeSignalsErrorCode(e.errorCode)
+
+                val message: String? = if (isRetryMax)
+                    mContext!!.getString(R.string.max_retries_exceeded_dialog_msg)
+                else
+                    getDialogMessageFromAgeSignalsErrorCode(e.errorCode)
+
+                val args = Bundle()
+                args.putString(
+                    mContext!!.getString(R.string.dialog_title_key),
+                    title)
+                args.putString(
+                    mContext!!.getString(R.string.dialog_msg_key),
+                    message)
+
+                if (!isRetryMax) {
+                    args.putSerializable(
+                        mContext!!.getString(R.string.age_signals_step_enum_key),
+                        step)
+
+                    args.putSerializable(
+                        mContext!!.getString(R.string.age_signals_retryable_with_countdown_enum_key),
+                        getRetryableWithCountdownFromAgeSignalsErrorCode(e.errorCode)
+                    )
+                }
+
+                DialogHelper.showDialog(
+                    if (isRetryMax) ExitDialogFragment() else RetryCountdownDialogFragment(),
+                    args,
+                    mFragmentManager,
+                    mContext!!.getString(R.string.age_signals_dialog_tag),
+                    isRetryMax || doIgnoreOldDialog
+                )
+            }
             AgeSignalsErrorCode.APP_NOT_OWNED,
             AgeSignalsErrorCode.DEVICE_NOT_SUPPORTED -> {
                 mIsResolved = true
@@ -238,8 +293,11 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND -> mContext!!.getString(R.string.playstore_not_found_dialog_title)
             AgeSignalsErrorCode.NETWORK_ERROR -> mContext!!.getString(R.string.network_error_dialog_title)
             AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_title)
+            AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE -> mContext!!.getString(R.string.cannot_bind_to_svc_dialog_title)
             AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_title)
             AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_title)
+            AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR -> mContext!!.getString(R.string.client_transient_error_dialog_title)
+            AgeSignalsErrorCode.INTERNAL_ERROR -> mContext!!.getString(R.string.internal_error_dialog_title)
             else -> null
         }
     }
@@ -250,8 +308,20 @@ class AgeSignalsManagerWrapper(applicationContext: Context, activity: FragmentAc
             AgeSignalsErrorCode.PLAY_STORE_NOT_FOUND -> mContext!!.getString(R.string.playstore_not_found_dialog_msg)
             AgeSignalsErrorCode.NETWORK_ERROR -> mContext!!.getString(R.string.network_error_dialog_msg)
             AgeSignalsErrorCode.PLAY_SERVICES_NOT_FOUND -> mContext!!.getString(R.string.playsvcs_not_found_dialog_msg)
+            AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE -> mContext!!.getString(R.string.cannot_bind_to_svc_dialog_msg)
             AgeSignalsErrorCode.PLAY_STORE_VERSION_OUTDATED -> mContext!!.getString(R.string.playstore_outdated_dialog_msg)
             AgeSignalsErrorCode.PLAY_SERVICES_VERSION_OUTDATED -> mContext!!.getString(R.string.playsvcs_outdated_dialog_msg)
+            AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR -> mContext!!.getString(R.string.client_transient_error_dialog_msg)
+            AgeSignalsErrorCode.INTERNAL_ERROR -> mContext!!.getString(R.string.internal_error_dialog_msg)
+            else -> null
+        }
+    }
+
+    private fun getRetryableWithCountdownFromAgeSignalsErrorCode(errorCode: Int): AgeSignalsRetryableWithCountdown? {
+        return when (errorCode) {
+            AgeSignalsErrorCode.CANNOT_BIND_TO_SERVICE -> AgeSignalsRetryableWithCountdown.CANNOT_BIND_TO_SERVICE
+            AgeSignalsErrorCode.CLIENT_TRANSIENT_ERROR -> AgeSignalsRetryableWithCountdown.CLIENT_TRANSIENT_ERROR
+            AgeSignalsErrorCode.INTERNAL_ERROR -> AgeSignalsRetryableWithCountdown.INTERNAL_ERROR
             else -> null
         }
     }

@@ -11,9 +11,7 @@ import com.liweiyap.narradir.util.SafeNavigator
 
 class VerificationReqDialogFragment: NarradirDialogFragmentBase() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val activity = requireActivity()
-
-        val dialog = AlertDialog.Builder(activity)
+        val dialog = AlertDialog.Builder(requireActivity())
             .setIcon(R.drawable.ic_dialog_warning)
             .setTitle(getString(R.string.verify_req_dialog_title))
             .setMessage(getString(R.string.verify_req_dialog_msg))
